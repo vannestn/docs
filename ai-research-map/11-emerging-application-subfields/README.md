@@ -12,6 +12,8 @@ benchmarks, methods, and communities.
 - [**Multi-agent systems**](multi-agent-systems.md) — agent protocols, agent societies.
 - [**Domain applications**](domain-applications.md) — healthcare, education, and other
   verticals becoming research areas.
+- [**AI for cybersecurity**](ai-for-cybersecurity.md) — autonomous vuln discovery,
+  pentesting, the patching bottleneck.
 - [**Interpretability & nascent directions**](interpretability-and-nascent-directions.md) —
   persona vectors, introspection, provenance/watermarking.
 

@@ -13,6 +13,12 @@ problems, designing drug candidates headed for trials, and running autonomous la
   problem solving.
 - [**Weather, physics & climate**](weather-physics-and-climate.md) — ML forecasting,
   physics foundation models.
+- [**Fusion & plasma control**](fusion-and-plasma-control.md) — RL controlling real tokamaks.
+- [**Astronomy & cosmology**](astronomy-and-cosmology.md) — survey foundation models, SBI.
+- [**AI for chip design (EDA)**](ai-for-chip-design.md) — AlphaChip, generative EDA.
+- [**Neuroscience & BCIs**](neuroscience-and-brain-computer-interfaces.md) — speech decoding,
+  brain foundation models.
+- [**Drug discovery & clinical**](drug-discovery-and-clinical.md) — AI-designed drugs in trials.
 
 ## The shape of this area
 

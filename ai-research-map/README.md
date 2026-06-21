@@ -41,6 +41,9 @@ unproven, per area) · [Compute & memory footprint](00-overview/compute-and-memo
 | **10** | [Startups & Nascent Fields](10-startups-and-nascent-fields/) | Emerging labs and newly-forming research directions |
 | **11** | [Emerging Application Subfields](11-emerging-application-subfields/) | AI-for-SWE, RAG/memory, multi-agent systems, domain applications |
 | **12** | [Politics, Capital & Business Models](12-politics-capital-and-business-models/) | VC funding, business models, geopolitics, export controls, power/energy |
+| **13** | [Fairness, Ethics & Human Factors](13-fairness-ethics-and-human-factors/) | Bias/fairness, human-AI interaction, model welfare |
+| **14** | [Beyond-LLM ML & Other Modalities](14-beyond-llm-ml-and-modalities/) | Time-series/tabular/graph, recsys, speech/audio, retrieval, quantum/federated |
+| **15** | [Research Methods & How Systems Are Built](15-research-methods-and-how-systems-are-built/) | Build pipelines and their limitations (LLMs, agents, science models, interp/alignment) |
 
 ### How to read each document
 

@@ -45,6 +45,18 @@ aggregates them into one comparative view.
 | [Evaluation science](../08-evaluation-and-governance/evaluation-science-and-benchmarks.md) | 🟡 | Dynamic / contamination-resistant benchmarks; ECI aggregate | Benchmarks saturate in ~1yr; sandbagging undermines validity |
 | [Governance & institutes](../08-evaluation-and-governance/safety-institutes-and-governance.md) | 🟡 | Institute evals + EU AI Act/GPAI Code; pre-deployment access | Voluntary frameworks capture ≤⅓ of recommended practice |
 | [Economics & forecasting](../08-evaluation-and-governance/economics-and-forecasting.md) | 🟡 | METR time-horizons; Epoch trends; Anthropic Econ Index | Augmentation-vs-automation; timelines contested |
+| [Fairness & sociotechnical](../13-fairness-ethics-and-human-factors/fairness-bias-and-sociotechnical-ai.md) | 🟡 | Intersectional disaggregated auditing; causal fairness tests | Debiasing backfires; biased evaluators; washing |
+| [Human-AI interaction](../13-fairness-ethics-and-human-factors/human-ai-interaction.md) | 🟡 | Cognitive-forcing functions; RCT evidence on harms | Correlation≠causation; oversight-at-speed unsolved |
+| [Model welfare](../13-fairness-ethics-and-human-factors/model-welfare-and-moral-status.md) | 🔴 | Consciousness "indicator properties"; precautionary assessment | Hard problem; any current welfare highly speculative |
+| [Time-series/tabular/graph FMs](../14-beyond-llm-ml-and-modalities/structured-data-ml.md) | 🟡 | Chronos-2; TabPFN-2.5 + ensembles; relational transformers | GBDTs still win at scale; benchmark leakage |
+| [Recommender systems](../14-beyond-llm-ml-and-modalities/recommender-systems.md) | 🟢→🟡 | Generative recommenders (HSTU, OneRec) in production | Semantic-ID grounding; reasoning gains marginal |
+| [Speech & audio](../14-beyond-llm-ml-and-modalities/speech-and-audio-ai.md) | 🟢→🟡 | LLM-decoder ASR; native-audio dialogue; low-FR codecs | Audio reasoning lags text; turn-taking unsolved |
+| [Retrieval & embeddings](../14-beyond-llm-ml-and-modalities/retrieval-and-embeddings.md) | 🟢→🟡 | Decoder-LLM embedders; ColPali; cross-encoder rerank | Single-vector dimension bound; reasoning retrieval |
+| [Quantum ML](../14-beyond-llm-ml-and-modalities/quantum-ml-and-federated-learning.md) | 🔴 | (advantage only on artificial structured data) | Trainability⇒simulability; no real-data advantage |
+| [Federated learning](../14-beyond-llm-ml-and-modalities/quantum-ml-and-federated-learning.md) | 🟢 (FL) | FL + differential privacy deployed (Google, Apple) | Federated LLM tuning gated by device memory |
+| [AI for cybersecurity](../11-emerging-application-subfields/ai-for-cybersecurity.md) | 🟡 | LLM+fuzzing find-and-patch; autonomous pentesting | Patching lags finding; dual-use; hallucinated results |
+| [AI for fusion/astronomy/chip/neuro](../05-ai-for-science/) | 🟠 | RL plasma control (real tokamaks); BCIs in-patient | Sim-to-real; reproducibility disputes; single-subject |
+| [How systems are built (methods)](../15-research-methods-and-how-systems-are-built/) | — | Documented pipelines | Goodhart, contamination, verifiability boundary |
 
 ## How to read this
 

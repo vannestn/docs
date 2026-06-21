@@ -20,6 +20,14 @@ Each pass searched arXiv, lab blogs, technical reports, institute publications, 
 reputable tech press from **late 2025 through mid-2026**, then extracted concrete,
 falsifiable claims with the responsible org, the paper/source title, and a URL.
 
+The map was then **extended in two further waves** to close gaps in the initial
+(generative-AI-centric) coverage: (a) fairness/ethics/human factors, model welfare,
+beyond-LLM ML (time-series, tabular, graph, recsys), speech/audio, retrieval/embeddings,
+quantum & federated learning, AI-for-cybersecurity, additional AI-for-science domains
+(fusion, astronomy, chip design, neuroscience, drug clinical), and academic labs; and
+(b) a dedicated **methods/how-it's-built** wave documenting construction pipelines and
+their limitations (branch 15). The same sourcing caveats apply throughout.
+
 ## Reliability caveats — read before citing
 
 - **Primary-source fetching was frequently blocked.** During compilation, automated

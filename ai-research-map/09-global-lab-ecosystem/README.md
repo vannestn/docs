@@ -13,6 +13,8 @@ frontier labs. The map of *players*, complementing the map of *topics*.
   Kyutai; UAE, Korea, India, Japan.
 - [**Open-source & decentralized**](open-source-and-decentralized.md) — Ai2, EleutherAI,
   Nous, Prime Intellect, and the decentralized-training movement.
+- [**Academic & university labs**](academic-and-university-labs.md) — where academia still
+  leads despite the compute gap (evals, systems, interpretability, theory, open models).
 
 ## The shape of this area
 
