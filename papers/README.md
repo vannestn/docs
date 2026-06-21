@@ -27,6 +27,11 @@ chmod +x download-arxiv.sh
 The script is **resumable** (skips files you already have), **polite** (3s between
 requests, as arXiv asks), and logs anything that fails to `download-failures.log`.
 
+> **Note:** `papers/pdf/` is **tracked by git** (the PDFs get committed to the repo). After
+> downloading locally, `git add papers/pdf && git commit && git push` to publish them — they'll
+> then be available in-session for analysis. (Only `download-failures.log` stays ignored.)
+> Heads-up: 192 PDFs is on the order of hundreds of MB in git history.
+
 > ⚠️ **Heads-up on 2026-dated IDs.** Many citations carry 2026 arXiv IDs (e.g. `2602.xxxxx`)
 > surfaced during research. Some may not resolve on the real arXiv and will land in
 > `download-failures.log` — that's expected, and those are exactly the items on the
