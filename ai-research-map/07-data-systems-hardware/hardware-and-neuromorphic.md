@@ -25,8 +25,16 @@ computing paradigms, and the power constraint that now gates everything.
   efficiency** than an H100 at matched latency. [HPEC paper](https://modha.org/wp-content/uploads/2024/09/NorthPole_HPEC_LLM_2024.pdf)
 - **Lightmatter** (photonic) — ran ResNet/BERT/RL at near-digital accuracy; *Nature* 2025.
   [Nature](https://www.nature.com/articles/s41586-025-08854-x)
-- **SpikingBrain** (CAS) — billion-scale *spiking* LLM, 25–100× faster TTFT on 1M-token
-  inputs, trained on non-NVIDIA MetaX GPUs. [arXiv:2509.05276](https://arxiv.org/abs/2509.05276)
+- **SpikingBrain** (Inst. of Automation, CAS) — two *spiking* LLMs, **SpikingBrain-7B**
+  (pure linear) and **SpikingBrain-76B-A12B** (hybrid-linear MoE, ~12B active), converted
+  from a Qwen2.5-7B-base checkpoint via continual pre-training on **~150B tokens (<2% of the
+  ~10T a from-scratch run would need)**. Trained on hundreds of **non-NVIDIA MetaX C550 GPUs**
+  (23.4% MFU vs 25.8% on an NVIDIA A800 cluster), stable for >2 weeks. Adaptive-threshold
+  spiking yields **69.15% sparsity**; on long context the 7B hits **26.5× faster TTFT at 1M
+  tokens** and an *extrapolated* **>100× (≈104×) at 4M** vs Qwen2.5-7B (Qwen baseline beyond
+  2M is a fitted curve, not measured). A compressed 1B variant runs on a CPU (Intel
+  i5-12600KF) at up to **15.39× faster decode at 256k** vs Llama-3.2-1B. Pre-train accuracy
+  ≈ open Transformers (7B recovers ~90% of base; MMLU 65.84). [arXiv:2509.05276](https://arxiv.org/abs/2509.05276)
 - **Memristor/SRAM compute-in-memory** (NTHU+TSMC) — 40.91 TFLOPS/W; *Nature* 2025. [Nature](https://www.nature.com/articles/s41586-025-08639-2)
 - **Intel Hala Point** — largest neuromorphic system (1.15B neurons, 1,152 Loihi 2). [Intel](https://newsroom.intel.com/artificial-intelligence/intel-builds-worlds-largest-neuromorphic-system-to-enable-more-sustainable-ai)
 
@@ -42,13 +50,26 @@ computing paradigms, and the power constraint that now gates everything.
 are the only credible frontier-scale alternatives, both inference-optimized. FP4 + HBM4 is
 the winning hardware economics.
 
-**Promising but unproven:** Neuromorphic (NorthPole), photonic (Lightmatter), analog
-in-memory, and spiking (SpikingBrain) all show striking *efficiency* results but remain
-largely **pre-commercial** for mainstream LLM workloads.
+**Promising but unproven:** Neuromorphic (NorthPole), photonic (Lightmatter), and analog
+in-memory all show striking *efficiency* results but remain largely **pre-commercial** for
+mainstream LLM workloads. Spiking (SpikingBrain) is further along on the *algorithm* side —
+open-weight 7B/76B models that train and serve on commodity (MetaX) GPUs — but its
+event-driven *energy* advantage still awaits asynchronous neuromorphic silicon to be
+realized rather than simulated.
 
 **Open problems & weaknesses:** Alternative computing lacks software/ecosystem maturity and
 general-purpose flexibility — efficiency demos rarely translate to drop-in deployment.
-**HBM supply** is a hard physical bottleneck. And **power** is now the true ceiling: every
-alternative-compute thread is justified primarily by the energy crunch, and the nuclear
-buildout won't deliver until ~2028+. (Unverified mid-2026 "Loihi 3 in production" claims are
-excluded as unsubstantiated.)
+- **Spiking energy gains are simulated, not measured.** SpikingBrain's headline efficiency
+  (97.7% vs FP16, 43.48× vs FP16 MAC / 6.76× vs INT8 MAC) is an *estimate* from 45nm
+  per-MAC energy data assuming idealized asynchronous event-driven hardware that doesn't yet
+  exist; GPUs are clock-driven and can't exploit the 18.4% silent channels. The authors say
+  so explicitly. [arXiv:2509.05276](https://arxiv.org/abs/2509.05276)
+- **Linear-attention recall is the structural weak spot.** SpikingBrain-7B (pure linear)
+  recovers only ~90% of its base model and lags on recall-heavy long-context tasks; closing
+  the gap required the 76B model to keep *full softmax* attention in some layers. Training on
+  concatenated short texts (vs native long-context data) gave limited long-context gains.
+- **HBM supply** is a hard physical bottleneck — 2026 HBM4 from SK Hynix and Micron is fully
+  sold out. And **power** is now the true ceiling: every alternative-compute thread is
+  justified primarily by the energy crunch, and the nuclear buildout won't deliver until
+  ~2028+. (Unverified mid-2026 "Loihi 3 in production" claims are excluded as
+  unsubstantiated.)

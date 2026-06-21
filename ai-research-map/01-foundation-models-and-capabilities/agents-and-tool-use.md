@@ -20,9 +20,26 @@ them.
 - Frontier coding agents now run **30+ hours autonomously**. METR's time-horizon metric
   (the task length a model completes at 50% reliability) crossed multi-day territory and
   is the most-cited autonomy trend. See [08 · Economics & forecasting](../08-evaluation-and-governance/economics-and-forecasting.md).
-- **Context management** is a named research problem: *Context-Folding* lets an agent
-  branch sub-tasks and fold their context back to control window growth.
-  [arXiv:2510.11967](https://arxiv.org/pdf/2510.11967)
+- **Context management** is a named research problem. *Context-Folding* (ByteDance Seed
+  + CMU + Stanford) gives the agent two tools — `branch(description, prompt)` to spin a
+  sub-task into a separate working context, and `return(message)` to fold that branch back
+  into the main thread, leaving only a summary. It trains the behavior end-to-end with
+  **FoldGRPO**, a GRPO variant adding token-level *process rewards*: an *unfolded-token
+  penalty* (−1 on main-thread tokens once the main context exceeds 50% of the limit, to push
+  token-heavy work into branches) and an *out-of-scope penalty* (−0.2, GPT-5-nano judges
+  whether a branch stayed on its sub-task). On a 36B base (Seed-OSS-36B-Instruct), a 32K
+  active context with ≤10 branches (≈327K theoretical max) reaches **0.620 pass@1 on
+  BrowseComp-Plus** and **0.580 on SWE-Bench Verified** — beating a 327K-context ReAct agent
+  on the *same* base by +14.2 and +2.8 points while keeping the active context ~10× smaller,
+  and matching agents built on 100B+ models (GPT-5 scores 0.793 / 0.718). FoldGRPO matters:
+  it adds +7.7% on BrowseComp and +1.6% on SWE-Bench over plain GRPO, and compresses a 100K+
+  total interaction to an ~8K main trajectory (>90% context compression).
+  [arXiv:2510.11967](https://arxiv.org/abs/2510.11967)
+  - *Author-stated limits:* implementation is incompatible with stock VeRL (branches are
+    kept as separate causally-conditioned sequences); gains **plateau beyond ~320K tokens**;
+    and *parallel* branching gave no improvement on BrowseComp (0.6133 pass@1, ≈ single-branch),
+    likely because the benchmark is depth-first — breadth-first tasks (e.g. WideSearch) are
+    flagged as the better testbed.
 
 ## Multi-agent orchestration
 - **Anthropic's multi-agent research system** — an orchestrator spawns 3–5 parallel
@@ -39,10 +56,24 @@ them.
   GPT-5.1-Codex-Max 77.9%, Gemini 3 Pro 76.2%) before saturating and being deprecated for
   contamination in early 2026 (replaced by SWE-bench Pro and others — see
   [08 · Evaluation science](../08-evaluation-and-governance/evaluation-science-and-benchmarks.md)).
-- **Meta Code World Model (CWM)** — 32B open-weights, trained to predict execution state
-  line-by-line, enabling fault localization and end-to-end patching. [arXiv:2510.02387](https://arxiv.org/abs/2510.02387)
-- **Kimi K2** (Moonshot) — open-weight 1T-param MoE explicitly optimized for agentic tool
-  use; 65.8% SWE-bench Verified. [arXiv:2507.20534](https://arxiv.org/abs/2507.20534)
+- **Meta Code World Model (CWM)** — 32B open-weights *dense* decoder-only LLM (131k context,
+  interleaved local-8k / global-131k sliding-window attention) released by Meta FAIR as a
+  *research testbed* for code-with-world-models. Beyond ordinary pretraining (8T tokens), it
+  is **mid-trained on 5T tokens** of observation–action trajectories: Python-interpreter
+  *execution traces* (predicting the post-line stack frame / local-variable state, JSON-encoded)
+  plus large-scale agentic Docker interactions from a "ForagerAgent" (3M trajectories). The
+  framing is *code world modeling* — simulating what code **does** when executed, enabling a
+  "neural debugger" and execution-grounded reasoning — not the doc's earlier "fault
+  localization + end-to-end patching." Scores: **65.8% SWE-bench Verified (with test-time
+  scaling)**, 68.6% LiveCodeBench, 96.6% Math-500, 76.0% AIME 2024.
+  [arXiv:2510.02387](https://arxiv.org/abs/2510.02387)
+- **Kimi K2** (Moonshot) — open-weight **1.04T-param** MoE (32B *activated*, DeepSeek-V3-style
+  MLA, 384 experts/8 active) explicitly optimized for agentic tool use, pretrained on 15.5T
+  tokens with the new **MuonClip** optimizer (Muon + QK-Clip weight clipping for stable
+  attention logits, zero loss spikes). A large-scale synthetic agentic-trajectory pipeline
+  (3000+ real MCP tools + 20K+ synthetic) plus RLVR-with-self-critique post-training drive
+  the tool-use gains: **65.8% SWE-bench Verified**, 66.1 Tau2-Bench, 76.5 ACEBench (En), all
+  non-thinking. [arXiv:2507.20534](https://arxiv.org/abs/2507.20534)
 
 ## Training agents with RL
 Agentic RL is a fast-moving research area of its own: long-horizon **credit assignment**,
@@ -60,7 +91,10 @@ under pressure. These are covered in
 
 **Best-performing now:** Tool-use-RL'd frontier models inside orchestrator-worker scaffolds
 are the proven approach — they hold the SOTA on agentic coding (80%+ SWE-bench Verified) and
-computer use (OSWorld ~66%+). Context compaction/folding is the working fix for long runs.
+computer use (OSWorld ~66%+). Context compaction/folding is the working fix for long runs:
+Context-Folding shows a 36B model can *match 100B+ agents* on long-horizon tasks by learning
+to manage context, but the gain plateaus past ~320K tokens — active context management buys
+efficiency, not unbounded horizon.
 
 **Promising but unproven:** Reliable *long-horizon* autonomy (multi-day tasks), self-evolving
 agents, and durable agent memory. Demonstrated, but not robust.

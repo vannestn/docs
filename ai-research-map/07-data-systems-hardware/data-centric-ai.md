@@ -24,9 +24,18 @@ Data quality is not one problem but a thread running through the whole pipeline:
 
 1. **Pretraining mixture & curation** — the single biggest non-architectural lever on base-
    model quality. Model-based *classifier filtering* is now standard:
-   - **FineWeb-Edu** used a Llama-3-70B-labeled quality classifier to filter 1.3T→280B
-     tokens with large MMLU/ARC gains; **DCLM-Baseline** reaches ~64% MMLU (7B) with ~40%
-     less compute. [Ultra-FineWeb arXiv:2505.05427](https://arxiv.org/abs/2505.05427)
+   - **FineWeb-Edu** trained an educational-quality classifier (a linear regressor on
+     Snowflake-arctic-embed-m embeddings, supervised by Llama-3-70B-Instruct 0–5 scores) and
+     released a 1.3T-token filtered subset with large MMLU/ARC/OpenBookQA gains.
+     **DCLM-Baseline** trains a 7B model to **64% MMLU on 2.6T tokens** — competitive with
+     Llama-3-8B (66%) trained with ~6.6× more compute. [FineWeb arXiv:2406.17557](https://arxiv.org/abs/2406.17557) · [DataComp-LM arXiv:2406.11794](https://arxiv.org/abs/2406.11794)
+   - **Ultra-FineWeb** (ModelBest/Tsinghua) pushes this further with a *fastText* classifier
+     (256-dim, ~1,000 CPU-hours to filter 15T tokens vs ~6,000 GPU-hours for an LLM-based
+     classifier) plus an **efficient verification strategy**: instead of training from
+     scratch to validate seed data, it anneals a near-trained 1.1T-token 1B model on 10B
+     tokens (30% candidate data), cutting validation cost from ~1,200 to ~110 H100-hours.
+     The resulting English subset (~1T tokens) lifts the 9-task English average from 44.56
+     (FineWeb-edu) to **45.89** at the 1.1B/100B-token scale. [Ultra-FineWeb arXiv:2505.05427](https://arxiv.org/abs/2505.05427)
    - The lesson of 2024–26: *aggressive filtering of a smaller, higher-quality set beats raw
      scale.* Filtering often discards up to ~99% of scraped web text.
 2. **RL reward quality** — in RLVR, the *verifier/reward* is a data-quality problem; reward
@@ -42,10 +51,18 @@ Data quality is not one problem but a thread running through the whole pipeline:
 
 ## The "data wall" — and routing around it
 
-- **Reframed as access/curation, not absolute scarcity.** Epoch projects the effective
-  human-text stock (~300T tokens) exhausting under aggressive overtraining ~2028. [Epoch](https://epoch.ai/publications/will-we-run-out-of-data-limits-of-llm-scaling-based-on-human-generated-data)
-- **Recycling filtered-out data ("REWIRE", Meta)** — rewriting the ~99% "waste" lets
-  synthetic and real tokens mix ~1:1 while improving quality. [arXiv:2506.04689](https://arxiv.org/abs/2506.04689)
+- **Reframed as access/curation, not absolute scarcity.** Epoch estimates the effective
+  human-text stock at **~300T tokens** (90% CI: 100T–1,000T) and projects compute-optimal
+  models exhausting it ~2028 — but as early as ~2027 under modest (5×) overtraining and
+  ~2025 under heavy (100×) overtraining. [Epoch](https://epoch.ai/publications/will-we-run-out-of-data-limits-of-llm-scaling-based-on-human-generated-data)
+- **Recycling filtered-out data ("REWIRE", Meta/FAIR)** — prompts Llama-3.3-70B-Instruct to
+  do chain-of-thought rewriting of *moderate-quality* docs (passed rule-based but not
+  model-based filters), then re-filters the rewrites. Mixing raw + rewritten text on the
+  DCLM-CORE benchmark (22 tasks) improves average accuracy by **+1.0 / +1.3 / +2.5 points at
+  1B / 3B / 7B**, and matches training on **2× more raw web data**. ~82% of mixed-in tokens
+  come from documents that filters would otherwise discard; raw-text quality barely predicts
+  rewrite quality (Spearman ρ=0.179), and the raw and rewritten "top-10%" sets overlap only
+  ~18.3%. [arXiv:2506.04689](https://arxiv.org/abs/2506.04689)
 - **Open, copyright-clean corpora** — EleutherAI's **Common Pile v0.1** (8TB licensed/public-
   domain) trained Comma models to first-Llama parity. [EleutherAI](https://blog.eleuther.ai/common-pile/)
 
@@ -65,8 +82,10 @@ still has to come from humans?** The dividing line is essentially **verifiabilit
   and behind "zero-data" self-play systems like Absolute Zero, where a model generates and
   solves its own tasks verified by running Python.
 - **Reformatting / augmenting existing data** — rewriting messy web text into cleaner form
-  (Meta's "REWIRE" recycles the filtered-out ~99%), generating instruction-response pairs,
-  or distilling a stronger model's outputs into a smaller one.
+  (Meta's REWIRE recycles moderate-quality docs via guided LLM rewriting), generating
+  instruction-response pairs, or distilling a stronger model's outputs into a smaller one.
+  REWIRE beats narrower synthetic recipes (Nemotron-CC diverse-QA, extracted-knowledge,
+  Wikipedia-rephrasing) on the DCLM average by generating more *diverse* text.
 - **Executable environments** — auto-generating coding/agent tasks *with built-in tests*
   (e.g., turning real code commits into thousands of checkable tasks).
 
@@ -85,8 +104,9 @@ still has to come from humans?** The dividing line is essentially **verifiabilit
 > **📦 Concept: "model collapse"** — if you train models mostly on the output of earlier
 > models, quality can *degrade* over generations (the data gets blander and loses rare
 > cases). This is the main reason synthetic data supplements human data rather than fully
-> replacing it. A 2026 result argues self-generated data only helps when each round adds
-> genuinely new, *checkable* information.
+> replacing it: REWIRE is explicitly designed to *complement* — not replace — natural web
+> data, citing the collapse risk of training on synthetic data alone (Gerstgrasser et al.,
+> Shumailov et al.). [arXiv:2506.04689](https://arxiv.org/abs/2506.04689)
 
 **Bottom line:** Synthetic data has largely solved the "we need more *verifiable*
 reasoning data" problem, but human-curated data is still essential for frontier knowledge,
@@ -94,34 +114,89 @@ judgment, and as the trusted seed that keeps the whole loop from collapsing.
 
 ## Data attribution & provenance
 
-- **Scalable influence-function attribution** now works at 8B-param / 160B+ token scale —
-  practical provenance, data citation, and contamination-debugging. [arXiv:2410.17413](https://arxiv.org/abs/2410.17413)
-- **SynthID** (Google) has watermarked **10B+ images/video frames**; pairs with C2PA 2.1
-  (now ISO/IEC 22144) signed metadata. [arXiv:2510.09263](https://arxiv.org/abs/2510.09263)
+- **Scalable gradient-based attribution** now works at **8B-param / 160B-token** pretraining
+  scale with no lexical pre-filtering. **TrackStar** (Google DeepMind) combines optimizer
+  (Adafactor second-moment) correction, a task-specific Gauss-Newton Hessian approximation,
+  random projection (d=2¹⁶), and unit normalization to retrieve "proponent" training
+  examples for a fact prediction. Key nuance: it cleanly separates *attribution* (does an
+  example **entail** a fact) from *influence* (does it **change the prediction**) — and finds
+  these **misalign**. Classical BM25/Gecko win on attribution (C4 MRR 0.687/0.636 vs
+  TrackStar's 0.338), but TrackStar's proponents have **>2.5× more influence** (tail-patch
+  +2.11% vs +0.83%/+0.54%). Author-stated limit: many high-influence examples are *non-
+  entailing* — priors on relation types, entities, names, or multi-hop paths — and influence
+  only converges toward attribution as models scale. [arXiv:2410.17413](https://arxiv.org/abs/2410.17413)
+- **SynthID-Image** (Google DeepMind) is a **post-hoc, model-independent** (encoder-decoder)
+  invisible watermark that has tagged **10B+ AI-generated images and video frames** across
+  Google products; the external **SynthID-O** variant reports SOTA quality (lowest
+  perceptibility) and robustness vs baselines (StegaStamp, TrustMark, VideoSeal, etc.) at
+  0.1% FPR. The paper frames watermarking as one *defeatable* layer of a provenance stack
+  (alongside C2PA metadata and reverse image search), not a guarantee — perfect security is
+  "impossible", so the goal is making attacks expensive. [arXiv:2510.09263](https://arxiv.org/abs/2510.09263)
+- **C2PA Content Credentials** provide the signed-metadata layer SynthID complements; C2PA
+  2.1 is being fast-tracked as the international standard **ISO/DIS 22144** ("Authenticity of
+  Information — Content Credentials"). ⚠️ This pairing is described by C2PA/ISO sources, not
+  by the SynthID paper. [C2PA](https://c2pa.org) · [ISO/DIS 22144](https://www.asist.org/2025/03/19/iso-22144-authenticity-information-standards/)
 
 ## Security & privacy of data
 
-- **Poisoning is cheaper than assumed:** a backdoor needs a near-constant **~250 documents**
-  regardless of model size. Anthropic + UK AISI + Turing — [arXiv:2510.07192](https://arxiv.org/abs/2510.07192)
-- **VaultGemma** — largest open-weight LLM trained end-to-end with **differential privacy**,
-  no detectable memorization. [arXiv:2510.15001](https://arxiv.org/abs/2510.15001)
-- **OpenUnlearning** — first unified machine-unlearning benchmark (13 algos × 16 metrics).
-  [arXiv:2506.12618](https://arxiv.org/abs/2506.12618)
-- **Tokenizers leak membership** — a new attack surface before weights are touched. [arXiv:2510.05699](https://arxiv.org/abs/2510.05699)
+- **Poisoning is cheaper than assumed — and doesn't scale with model size.** In the largest
+  pretraining-poisoning study to date (UK AISI + Anthropic + Turing; 600M–13B params,
+  Chinchilla-optimal), a *near-constant* **~250 poisoned documents** reliably backdoor models
+  across all scales, even though the 13B model trains on 20× more clean data — 250 docs is
+  just **0.00016%** of its tokens. 100 docs failed; 250 succeeded. Demonstrated for a
+  denial-of-service (gibberish-on-trigger) and a language-switch backdoor in pretraining, and
+  for harmful-compliance backdoors in fine-tuning (incl. GPT-3.5-Turbo via API). Backdoors
+  preserve benign capabilities; continued clean training *slowly* degrades them.
+  [arXiv:2510.07192](https://arxiv.org/abs/2510.07192)
+- **VaultGemma 1B** (Google) — largest open-weight LLM trained **from scratch** with a formal
+  DP guarantee (sequence-level **ε ≤ 2.0, δ ≤ 1.1e-10**) via DP-SGD on the Gemma 2 mixture
+  (13T tokens). **No memorization detected** (50-token prefix discoverable-extraction test)
+  vs measurable rates for all non-DP Gemma models. Cost: a utility gap remains — VaultGemma
+  ≈ GPT-2-1.5B-era performance (e.g. ARC-C 26.45 vs non-private Gemma3-1B 38.31), guided by
+  new DP scaling laws. [arXiv:2510.15001](https://arxiv.org/abs/2510.15001)
+- **OpenUnlearning** (UMass/CMU/DatologyAI; NeurIPS 2025 D&B) — unified machine-unlearning
+  framework: **13 algorithms, 16 metrics, 3 benchmarks (TOFU/MUSE/WMDP), 450+ released
+  checkpoints**. Its key contribution is a **meta-evaluation** of metrics: Extraction
+  Strength (ES) and Exact Memorization are most reliable; MIA-based metrics are faithful but
+  *not robust* to stress tests (relearning, quantization). On TOFU, SimNPO ranks best.
+  Finding: unlearning eval is fragile — benign interventions can "flip" supposedly-unlearned
+  models. [arXiv:2506.12618](https://arxiv.org/abs/2506.12618)
+- **Tokenizers leak membership** — a *new attack surface* that needs no model weights. Because
+  BPE merges the most frequent strings, the vocabulary/merge-order of a commercial tokenizer
+  reveals what was in its (representative) training data. **MIA via Vocabulary Overlap** and
+  **MIA via Frequency Estimation** reach **AUC 0.771 / 0.740** (vocab 200K), and the attack
+  gets *stronger as vocabularies scale* and as the target dataset grows (AUC up to 0.882 on
+  800–1,200-doc datasets). Frequency Estimation needs only one shadow tokenizer (vs ~96),
+  inferring 4,133 datasets in <20 min. [arXiv:2510.05699](https://arxiv.org/abs/2510.05699)
 
 ## State of research
 
 **Best-performing now:** Model-based classifier curation + synthetic/recycled data is the
-proven, deployed recipe — it's where a large fraction of recent base-model gains came from.
-SynthID-scale watermarking and scalable influence attribution are real, working tools.
+proven, deployed recipe (FineWeb-Edu, DCLM, Ultra-FineWeb, REWIRE) — it's where a large
+fraction of recent base-model gains came from. Cheap fastText filters now rival expensive
+LLM-based ones (Ultra-FineWeb: ~6× cheaper). SynthID-scale watermarking (10B+ frames) and
+gradient-based attribution at 8B/160B-token scale are real, deployed tools.
 
-**Promising but unproven:** Synthetic data as the *primary* source (not supplement),
-differential-privacy training at frontier scale, and reliable machine unlearning ("right to
-be forgotten").
+**Promising but unproven:** Synthetic data as the *primary* source — REWIRE shows synthetic-
+only still *lags* high-quality raw text; gains come from *mixing*. DP training at frontier
+scale (VaultGemma proves zero-memorization is achievable at 1B but with a ~5-year utility
+gap). Reliable machine unlearning ("right to be forgotten") — OpenUnlearning shows most
+metrics are unreliable under stress tests.
 
-**Open problems & weaknesses:** **Model collapse** bounds synthetic-data loops; we lack
-clean theory for the safe real:synthetic ratio. Curation classifiers bake in their own
-biases and are themselves data-quality-limited. Unlearning is fragile and unverifiable.
-Contamination detection is fragile against RL post-training. Provenance is a layered,
-defeatable defense, not a guarantee. And the data wall, while routed-around for now, is a
-real medium-term constraint.
+**Open problems & weaknesses:**
+- **Synthetic-data loops** risk model collapse; the safe real:synthetic ratio lacks clean
+  theory (REWIRE works at ~1:1 by design, but explicitly complements rather than replaces).
+- **Attribution ≠ influence:** the examples that *entail* a fact often aren't the ones that
+  *caused* the prediction (TrackStar) — provenance for "why did the model say X" is harder
+  than retrieving entailing passages.
+- **Poisoning defenses lag the threat:** ~250 docs suffice and the requirement doesn't grow
+  with model size, so the attack surface widens as datasets scale; data filtering and post-
+  hoc backdoor elicitation are the suggested but unproven defenses.
+- **New privacy attack surfaces** keep appearing — tokenizers leak membership *before* weights
+  are touched, and the leakage worsens as vocabularies scale.
+- **Unlearning is fragile and unverifiable:** MIA-based privacy metrics fail robustness; benign
+  interventions can reverse apparent forgetting.
+- **Provenance is a layered, defeatable defense**, not a guarantee (SynthID): watermarks are
+  inherently lossy and beatable; the design goal is only to make attacks expensive.
+- The **data wall**, while routed-around for now, is a real medium-term constraint (~300T
+  tokens, exhaustion ~2028 compute-optimal, sooner if overtrained).
