@@ -1,32 +1,22 @@
-# Mintlify Starter Kit
+# AI Research Repository
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+A structured, citation-backed map of the field of AI research as of **mid-2026** —
+spanning established directions, frontier-lab programs, the global lab ecosystem, small
+startups and independent collectives, nascent research directions, and the politics/capital
+dimension.
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+## → [Start in the AI Research Map](ai-research-map/README.md)
 
-### Development
+The map is organized as a **directory tree**: each top-level area is a folder, and each
+research direction within it is its own document with concrete papers, labs, and links.
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+**Quick links:**
+- [Landscape overview](ai-research-map/00-overview/landscape-overview.md) — big picture & meta-trends
+- [State-of-research scorecard](ai-research-map/00-overview/state-of-research-scorecard.md) — what's working vs. unproven, per area
+- [Compute & memory footprint](ai-research-map/00-overview/compute-and-memory-footprint.md) — laptop vs. datacenter, per area
+- [Plain-language glossary](ai-research-map/00-overview/glossary.md) — acronyms, defined
+- [Methodology & caveats](ai-research-map/00-overview/methodology-and-sources.md) — how it was built, reliability notes
 
-```
-npm i -g mintlify
-```
+---
 
-Run the following command at the root of your documentation (where docs.json is)
-
-```
-mintlify dev
-```
-
-### Publishing Changes
-
-Install our Github App to auto propagate changes from your repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
-
-#### Troubleshooting
-
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `docs.json`
+*This is a research/reference repository — plain Markdown, no build step or site framework.*
