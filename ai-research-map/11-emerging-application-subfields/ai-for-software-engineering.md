@@ -24,13 +24,28 @@ and maintain code.
   mini-SWE-agent and creates custom tools on the fly while solving each issue.
   [arXiv:2511.13646](https://arxiv.org/abs/2511.13646)
 - **Repository-level reasoning** splitting from editing — new benchmarks isolate *logical
-  reasoning over a codebase* from patch-writing. *[2026 IDs — verify]*
-- **Persistent code memory** — agents that "grow alongside" a codebase across sessions. Both
-  papers gesture at this: CWM's authors discuss serializing useful tools/insights across
-  tasks (via Skills-like concepts) as future work. *[primary works — 2026 IDs unverified]*
+  reasoning over a codebase* from patch-writing. **RepoReason** is a white-box diagnostic
+  benchmark built on *abductive assertion verification*: it masks a unit-test assertion's
+  value and forces the model to reconstruct the preceding execution history (data flows
+  across files, state mutations) to deduce the only value that satisfies it — separating core
+  reasoning from syntactic patch-writing. An **Execution-Driven Mutation** engine uses the
+  runtime as a *"Semantic Oracle"* (re-executing mutated repos to regenerate ground-truth
+  values) to sever memorization while preserving logical depth. N=2492 tasks drawn from mature
+  pure-Python repos (e.g. `toolz`, `sympy`, `jinja2`; ~1.2k–775k LoC), graded on three
+  orthogonal cognitive metrics — ESV (reading load), MCL (simulation depth), and DFI
+  (integration width / dependency fan-in).
+  [arXiv:2601.03731](https://arxiv.org/abs/2601.03731)
+- **Persistent code memory** — agents that "grow alongside" a codebase across sessions. CWM's
+  authors discuss serializing useful tools/insights across tasks (Skills-like concepts) as
+  future work; structurally-aligned *subtask-level* memory is one concrete approach
+  ([arXiv:2602.21611](https://arxiv.org/abs/2602.21611), Kuaishou; +4.7pp pass@1 on SWE-bench
+  Verified), covered under
+  [01 · Agents and tool use](../01-foundation-models-and-capabilities/agents-and-tool-use.md).
 - **Benchmarks:** SWE-bench Verified (now largely saturated) → SWE-Bench Pro
   ([arXiv:2509.16941](https://arxiv.org/abs/2509.16941); 731-problem public set, 11 repos,
-  4 languages), SWE-bench Multilingual, SWE-EVO; for computer use, **OSWorld** rose from
+  4 languages), SWE-bench Multilingual, and **SWE-EVO** (long-horizon software *evolution*:
+  48 tasks averaging ~21 files each, from versioned snapshots of mature Python repos;
+  [arXiv:2512.18470](https://arxiv.org/abs/2512.18470)); for computer use, **OSWorld** rose from
   ~20% (Claude 3.7, Feb 2025) to ~76% (late 2025), crossing the ~72% human baseline.
   [Source](https://www.theagi.company/blog/osworld) (See
   [08 · Evaluation science](../08-evaluation-and-governance/evaluation-science-and-benchmarks.md).)
@@ -61,6 +76,18 @@ Live-SWE-agent hits **65.0%** vs **DGM 53.3% / HGM 56.7% / SICA 50.0%** — at *
 cost** vs DGM's >1,200 GPU-hours (and ~$22k per the DGM paper).
 [arXiv:2511.13646](https://arxiv.org/abs/2511.13646)
 
+**RepoReason (repo-level reasoning, decoupled from editing).** Run under a *read-only* agent
+(OpenHands ReadOnlyAgent, no edits) so the score reflects reasoning, not patch craft.
+Overall accuracy: **Claude-Sonnet-4.5 66.98% > DeepSeek-v3.1-Terminus 60.96% > GPT-5.2
+56.86%** (Kimi-K2 54.74%, Qwen3-Coder-480B 50.56%). The dominant bottleneck is **DFI /
+dependency fan-in**, not reading load or simulation depth: beyond ~20 upstream sources,
+accuracy falls below ~40% for every model except Claude — an *"Aggregation Deficit"* in
+synthesizing many disparate logical inputs into one conclusion. DFI shows the steepest decline
+slope and the strongest negative Pearson correlation with accuracy (−0.234 for GPT-5.2). The
+authors also report an ESV "Cliff Effect" (sharp comprehension drop past ~600 LoC of
+causally-relevant code) and loss of state consistency beyond ~100 execution steps.
+[arXiv:2601.03731](https://arxiv.org/abs/2601.03731)
+
 ## State of research
 
 **Best-performing now:** Tool-use-RL'd frontier models inside agent scaffolds are the proven
@@ -71,8 +98,10 @@ numbers come from a 32B model, not a frontier system.
 
 **Promising but unproven:** Self-evolving agents (Live-SWE-agent is a strong existence proof
 but evaluated single-vendor at a point in time), persistent cross-session memory, and
-repository-scale *reasoning* (vs. local edits). CWM's "neural debugger" / trace-prediction
-reasoning is explicitly an early prototype, not a shipped capability.
+repository-scale *reasoning* (vs. local edits) — where RepoReason shows even frontier models
+plateau below ~67% overall and collapse past ~20-source dependency fan-in. CWM's "neural
+debugger" / trace-prediction reasoning is explicitly an early prototype, not a shipped
+capability.
 
 **Open problems & weaknesses (papers-grounded):**
 - **Scaffolding- and model-dependence.** Live-SWE-agent's own ablation shows the *same*

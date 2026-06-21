@@ -4,6 +4,14 @@ Extending the effective context to millions of tokens — and the growing recogn
 **long context ≠ long-term memory**.
 
 ## Million-token context via efficient attention
+- **DeepSeek-V4** — [arXiv:2606.19348](https://arxiv.org/abs/2606.19348) — two MoE models built for
+  **1M-token context**: **V4-Pro** (1.6T total / 49B active) and **V4-Flash** (284B total / 13B
+  active), pre-trained on **32T+ tokens**. The recipe combines a **hybrid attention** stack —
+  **Compressed Sparse Attention (CSA)** + **Heavily Compressed Attention (HCA)** —
+  **Manifold-Constrained Hyper-Connections (mHC)** in place of plain residuals, and the **Muon**
+  optimizer. Headline efficiency: at 1M-token context, **V4-Pro needs only 27% of the single-token
+  inference FLOPs and 10% of the KV cache** of DeepSeek-V3.2 ([arXiv:2606.19348](https://arxiv.org/abs/2606.19348)) —
+  the successor to the DSA line below.
 - **DeepSeek Sparse Attention (DSA)** — a "lightning indexer" computes an index score
   `I_{t,s} = Σ_j w^I_{t,j} · ReLU(q^I_{t,j} · k^I_s)` (a small number of indexer heads, ReLU
   activation, runnable in FP8) and a fine-grained token-selection mechanism then keeps only
@@ -70,6 +78,9 @@ Extending the effective context to millions of tokens — and the growing recogn
   memory-induced sycophancy — e.g. **PersistBench** ([arXiv:2602.01146](https://arxiv.org/abs/2602.01146))
   and **MemoryCD** ([arXiv:2603.25973](https://arxiv.org/abs/2603.25973)), not just recall. See
   [11 · RAG & memory systems](../11-emerging-application-subfields/rag-and-memory-systems.md).
+- Agent memory can also be made **finer-grained**: aligning storage/retrieval/updating with an
+  agent's *subtask* decomposition (rather than whole-episode instances) yields larger gains as
+  interaction sequences lengthen — [arXiv:2602.21611](https://arxiv.org/abs/2602.21611).
 
 ## State of research
 
@@ -90,5 +101,3 @@ unresolved.
 ## Connections
 - The architectures enabling cheap long context → [02 · Architectures](../02-architectures-and-training/)
 - Memory as a continual-learning problem → [04 · Continual learning](../04-reinforcement-learning-and-open-endedness/continual-learning-and-self-improvement.md)
-</content>
-</invoke>

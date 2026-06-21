@@ -75,6 +75,23 @@ performance scales with compute, data, and parameters.
     preferences raises reward accuracy 0.566 → 0.641 while staying **3.05× closer** to the
     reference policy. Memorization is *suppressed* (PINNs, implicit neural representations).
 
+### Test-time-compute scaling
+- **"Scaling LLM Test-Time Compute Optimally..."** (Snell, Lee, Xu, Kumar; UC Berkeley /
+  Google DeepMind; Aug 2024) — the primary scaling study of *inference*-time compute, asking
+  how much a fixed, non-trivial test-time budget can improve a model on a hard prompt.
+  [arXiv:2408.03314](https://arxiv.org/abs/2408.03314)
+  - **Two mechanisms studied:** (1) searching against a dense, *process-based* verifier reward
+    model (PRM), and (2) adaptively updating the model's response distribution at test time. In
+    both, the *best* allocation depends sharply on prompt **difficulty** — no single strategy
+    dominates across the difficulty spectrum.
+  - **Compute-optimal allocation.** Adaptively allocating test-time compute *per prompt* by
+    estimated difficulty improves test-time-scaling efficiency by **>4×** over a best-of-N
+    baseline. In a FLOPs-matched comparison, on problems where a smaller base model already has
+    non-trivial success rates, spending compute at test time can **outperform a 14× larger
+    model** — directly trading pretraining params against inference compute.
+  - See [01 · Reasoning & test-time compute](../01-foundation-models-and-capabilities/reasoning-and-test-time-compute.md)
+    for the downstream reasoning methods (o-series, verifiers, search) this scaling result underpins.
+
 ## State of research
 
 **Best-performing now:** Empirical scaling/efficiency laws (Epoch, Chinchilla-lineage) are
@@ -87,8 +104,10 @@ active, exciting target but not yet consensus — the Litman–Guo eNTK partitio
 recent candidate (it claims O(1)-drift guarantees and a no-validation-data objective), but it
 is a single 2026 preprint, leans on squared-loss for its exact train-test coupling, and the
 optimizer claims rest on a handful of small-to-mid-scale tasks (PINN, modular arithmetic, a
-0.5B DPO run) rather than frontier pretraining. Scaling laws for *reasoning* (RL/test-time
-compute) and for non-transformer architectures are still being mapped.
+0.5B DPO run) rather than frontier pretraining. Scaling laws for *test-time compute* now have a
+primary anchor (Snell et al.; compute-optimal allocation beats best-of-N by >4× and can outperform
+a 14× larger model), but laws for *reasoning RL* training and for non-transformer architectures are
+still being mapped.
 
 **Open problems & weaknesses:** Theory lags practice badly — most frontier progress is
 empirical. Scaling laws describe loss, not *capabilities* (emergence remains poorly

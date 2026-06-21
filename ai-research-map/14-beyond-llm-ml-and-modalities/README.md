@@ -13,6 +13,8 @@ same "foundation model" thinking. The frontier-LLM map systematically under-weig
   voice, music, codecs.
 - [**Retrieval & embeddings**](retrieval-and-embeddings.md) — the representation-learning and
   IR research underneath RAG and search.
+- [**Generative media**](generative-media.md) — image / video / 3D / creative-audio generation:
+  DiT, rectified flow, few-step distillation, Gaussian splatting, and the broken-evaluation problem.
 - [**Quantum ML & federated learning**](quantum-ml-and-federated-learning.md) — two fields with
   very different hype-vs-reality profiles.
 

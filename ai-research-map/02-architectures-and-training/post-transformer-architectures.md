@@ -75,8 +75,17 @@ linear/gated layers (~1:3 to 1:7), plus MoE:
   params, and beats Mamba-2/TTT/DeltaNet on the S-NIAH needle task (which TTT/Mamba2 fail past
   ~8K). Ablations: weight decay > momentum > convolution > persistent memory in contribution.
   Google Research. [arXiv:2501.00663](https://arxiv.org/abs/2501.00663)
-- **Nested Learning / "Hope"** — models cast as nested optimization problems with a continuum
-  memory system. [arXiv:2512.24695](https://arxiv.org/abs/2512.24695) *[2026 ID — verify]*
+- **Nested Learning / "Hope"** — recasts a model *and* its training as a stack of nested
+  optimization problems, each with its own "context flow" and update frequency (it reframes
+  backprop/momentum/Adam themselves as associative-memory compressors). The **Hope**
+  architecture instantiates this as **self-modifying Titans** (memory that learns to generate
+  its own update rule, extending Titans [arXiv:2501.00663](https://arxiv.org/abs/2501.00663))
+  stacked with a **Continuum Memory System (CMS)** — a spectrum of MLP-style memory blocks
+  updated at different frequencies, generalizing the binary "short-term/long-term memory"
+  split. Beats Transformer++/Samba/RWKV-7/Titans on average LM + commonsense at 760M/30B and
+  1.3B/100B, holds up to 10M-token context on BABILong, and tops NIAH/MAD recall; ablations
+  show DGD, momentum, weight decay, and CMS each contribute. Google Research, NeurIPS 2025.
+  [arXiv:2512.24695](https://arxiv.org/abs/2512.24695)
 - **"TTT with KV binding is secretly linear attention"** — argues a broad class of TTT layers
   (those optimizing a self-supervised key→value loss in the inner loop, i.e. TTT-KVB) can be
   **analytically rewritten as a learned linear-attention operator**, even with multi-layer

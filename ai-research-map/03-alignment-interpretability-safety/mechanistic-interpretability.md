@@ -73,9 +73,14 @@ mechanisms — now with tools usable enough to debug behavior and audit for hidd
     trait drift during fine-tuning.
   - **OpenAI (Wang et al.), "Persona Features Control Emergent Misalignment"**
     ([arXiv:2506.19823](https://arxiv.org/abs/2506.19823), June 2025) — **this** is the source
-    of the model-diffing result: SAE + logistic-regression on latent features predicts whether
-    a prompt elicits misaligned responses at **~91% accuracy (AUC ≈ 0.95)**; a "toxic persona"
-    feature most strongly controls emergent misalignment.
+    of the model-diffing result: SAEs surface "misaligned persona" features, and a single
+    **"toxic persona" latent (#10)** most strongly *controls* emergent misalignment (the
+    strongest SAE latent for steering it, §3.2) and *predicts* whether a model will exhibit
+    misaligned behavior. The paper reports this qualitatively — the change in that latent's
+    activation "perfectly discriminates aligned models from misaligned models" across the
+    fine-tuning domains examined (§3.1, Fig. 9 Right) — and gives **no formal accuracy/AUC**.
+    (A widely cited "~91% accuracy, AUC ≈ 0.95" figure for prompt-level misalignment prediction
+    comes from a secondary summary, *not* the paper itself.)
     [emergentmind](https://www.emergentmind.com/topics/persona-features-control-emergent-misalignment)
   - See [11 · Interpretability frontiers](../11-emerging-application-subfields/interpretability-and-nascent-directions.md).
 

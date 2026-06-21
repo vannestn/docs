@@ -58,9 +58,7 @@ DeepSeek, OLMo, Gemma, DCLM/FineWeb).
 - **Frontier labs choose dense over MoE for stability.** Llama 3 405B is a **dense** Transformer
   trained on 16K H100s with **AdamW**, explicitly to "maximize training stability" — and the paper
   calls that recipe "very stable" (few loss spikes, no divergence interventions even at 16M-token
-  batches). ⚠️ The doc's earlier "AdamW is unstable at huge batch sizes (hence Muon)" is *not*
-  supported here — Llama 3 never mentions Muon and reports AdamW as stable.
-  ([arXiv:2407.21783](https://arxiv.org/abs/2407.21783))
+  batches). ([arXiv:2407.21783](https://arxiv.org/abs/2407.21783))
 - **Hardware reliability becomes first-order.** Over a 54-day Llama 3 405B snapshot: **466
   interruptions (419 unexpected) ≈ one every ~3 hours**, ~78% traced to hardware (faulty GPUs +
   HBM3 dominate). Automation kept effective training time >90% with only **3 manual interventions**.
@@ -74,11 +72,10 @@ DeepSeek, OLMo, Gemma, DCLM/FineWeb).
   to vet each data source and **checkpoint souping** to lock in gains.
   ([arXiv:2501.00656](https://arxiv.org/abs/2501.00656))
 - **Labs actively *decontaminate* the mid-training mix** — OLMo 2 strips FLAN documents with ≥10%
-  n-gram overlap with any eval and holds out its benchmark suite. ⚠️ The doc's "annealing is where
-  contamination most easily enters" and "RoPE-scaling long-context degrades on needle tasks" claims
-  are **not in OLMo 2** (it trains at fixed 4096 ctx, no long-context/needle stage). By contrast
-  DeepSeek-V3 and Llama 3 both *do* extend context (to 128K) and report **clean** needle-in-a-
-  haystack passes, not degradation. ([arXiv:2501.00656](https://arxiv.org/abs/2501.00656);
+  n-gram overlap with any eval and holds out its benchmark suite; it trains at a fixed 4096 context
+  with no long-context/needle stage. By contrast DeepSeek-V3 and Llama 3 both *do* extend context
+  (to 128K) and report **clean** needle-in-a-haystack passes, not degradation.
+  ([arXiv:2501.00656](https://arxiv.org/abs/2501.00656);
   [arXiv:2412.19437](https://arxiv.org/abs/2412.19437); [arXiv:2407.21783](https://arxiv.org/abs/2407.21783))
 
 ### 5. Supervised fine-tuning

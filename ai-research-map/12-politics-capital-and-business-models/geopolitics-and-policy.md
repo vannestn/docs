@@ -18,6 +18,35 @@ Countries building their own models/compute to avoid dependence — UAE (Falcon)
 (HyperCLOVA/EXAONE), India (Sarvam/BharatGen), Japan (Sakana). See
 [09 · European & sovereign labs](../09-global-lab-ecosystem/european-and-sovereign-labs.md).
 
+## Defense / national-security AI
+The frontier labs are now direct defense contractors, and procurement has become a venue for
+fights over model-use red lines.
+- **Pentagon "frontier AI" awards (Jul 2025).** The DoD Chief Digital & AI Office (CDAO) gave
+  ceiling **$200M** Other-Transaction agreements to **OpenAI** (first, Jun 2025), then
+  **Anthropic, Google, and xAI** (Jul 14, 2025) to develop **agentic AI workflows** across
+  national-security mission areas. [DefenseScoop](https://defensescoop.com/2025/07/14/pentagon-ai-contracts-musk-xai-google-openai-anthropic-cdao/) · [CNBC](https://www.cnbc.com/2025/07/14/anthropic-google-openai-xai-granted-up-to-200-million-from-dod.html) · [Anthropic](https://www.anthropic.com/news/anthropic-and-the-department-of-defense-to-advance-responsible-ai-in-defense-operations)
+- **Classified-network deployment (May 1, 2026).** DoD signed agreements with **eight** firms —
+  **Google, Microsoft, AWS, NVIDIA, OpenAI, SpaceX, Oracle, and Reflection** — to run their AI on
+  **IL6** (Secret) and **IL7** (Top Secret / most sensitive) networks, explicitly to "prevent AI
+  vendor lock." [DoD release](https://www.war.gov/News/Releases/Release/Article/4475177/classified-networks-ai-agreements/) · [TechCrunch](https://techcrunch.com/2026/05/01/pentagon-inks-deals-with-nvidia-microsoft-and-aws-to-deploy-ai-on-classified-networks/)
+- **The Anthropic dispute — red lines vs. procurement.** Anthropic was **excluded** from the May
+  2026 cohort after refusing the Pentagon's demand for unrestricted use. Dario Amodei held two
+  red lines: no **fully autonomous weapons** (distinct from human-in-the-loop systems) and no
+  **domestic mass surveillance** of Americans (distinct from lawful foreign intelligence). [DefenseScoop](https://defensescoop.com/2026/05/01/dod-expands-classified-ai-work-with-8-companies-excluding-anthropic/) · [Amodei statement](https://www.anthropic.com/news/statement-department-of-war)
+- **Escalation & litigation.** DoD designated Anthropic a **"supply-chain risk"** (early Mar 2026)
+  — reportedly the first time the label was applied to a US company — and the administration
+  directed agencies to cease using its tech. A federal judge (Rita Lin) **blocked** the
+  designation on **First Amendment** grounds (Mar 26, 2026), calling it "classic illegal First
+  Amendment retaliation"; a DC appeals court then **declined to extend** that block while the suit
+  proceeds (Apr 8, 2026). [CNN](https://edition.cnn.com/2026/03/26/business/anthropic-pentagon-injunction-supply-chain-risk) · [NPR](https://www.npr.org/2026/03/26/nx-s1-5762971/judge-temporarily-blocks-anthropic-ban) · [CNBC](https://www.cnbc.com/2026/04/08/anthropic-pentagon-court-ruling-supply-chain-risk.html)
+- **Export-control / dual-use tie-in.** The same dual-use logic that gates chips now reaches
+  models: BIS established **worldwide license requirements on closed-weight model weights** above
+  **10²⁶** training operations (ECCN 4E091), on the theory that frontier models can act as an
+  "on-demand technical consultant" for weapons-relevant know-how controlled under EAR/ITAR. [BIS](https://www.bis.gov/press-release/biden-harris-administration-announces-regulatory-framework-responsible-diffusion-advanced-artificial) · [Just Security](https://www.justsecurity.org/126643/ai-model-outputs-export-control/)
+
+See [08 · Safety institutes & governance](../08-evaluation-and-governance/safety-institutes-and-governance.md)
+and [09 · US frontier labs](../09-global-lab-ecosystem/us-frontier-labs.md).
+
 ## Regulation
 - **EU AI Act / GPAI Code** — the most consequential binding regime; obligations in force Aug
   2025, enforcement from **Aug 2026**. [EU](https://digital-strategy.ec.europa.eu/en/policies/ai-code-practice)

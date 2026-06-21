@@ -12,9 +12,13 @@ them.
 - **Claude computer use** — introduced with Claude 3.5 Sonnet; Claude Opus 4.5 positioned
   for "coding, agents, and computer use" (80.9% SWE-bench Verified) with *effort control*
   and *context compaction* for long-running agents. [Anthropic](https://www.anthropic.com/news/claude-opus-4-5)
-- **OSWorld** progress is steep: task success rose from ~12% (2025) to ~66%+ (2026), with
-  frontier models approaching the human baseline; enterprise variants (EntWorld) extend
-  the setting. See [11 · AI for SWE / computer use](../11-emerging-application-subfields/ai-for-software-engineering.md).
+- **OSWorld** is the primary benchmark behind these claims: 369 real-computer tasks across
+  Ubuntu/Windows/macOS, each with a setup config and an *execution-based* checker (not LLM
+  judging). At release the best model hit **12.24%** vs a **72.36%** human baseline — GUI
+  grounding and operational knowledge were the named gaps. [arXiv:2404.07972](https://arxiv.org/abs/2404.07972)
+  Progress since has been steep: task success rose to ~66%+ (2026), with frontier models
+  approaching the human baseline; enterprise variants (EntWorld) extend the setting. See
+  [11 · AI for SWE / computer use](../11-emerging-application-subfields/ai-for-software-engineering.md).
 
 ## Long-horizon autonomy
 - Frontier coding agents now run **30+ hours autonomously**. METR's time-horizon metric
@@ -41,6 +45,22 @@ them.
     likely because the benchmark is depth-first — breadth-first tasks (e.g. WideSearch) are
     flagged as the better testbed.
 
+## Agent memory
+- **Subtask-level memory** (Kuaishou) reframes agent memory away from per-episode stores.
+  Instead of keying experience to the whole instance, it stores it at the **subtask** level,
+  tagged by functional category (ANALYZE / REPRODUCE / EDIT / VERIFY). Retrieval is two-stage:
+  a *hard category filter* (only same-phase entries are eligible), then embedding-similarity
+  cosine matching on the subtask's intent description — so a "fix login button" edit can reuse
+  a "modify search bar" edit while ignoring a surface-similar but logic-different "fix login
+  timeout" bug. Memory accrues *online* over the SWE-bench Verified stream (no offline corpus,
+  same LLM as solver — no stronger teacher). On the Mini-SWE-Agent scaffold it adds **+4.7pp
+  Pass@1 on average** over vanilla (up to **+6.8pp on Gemini 2.5 Pro**) and beats an
+  instance-level-memory baseline — which itself *degrades* some backbones (Claude 3.7 Sonnet
+  52.2→51.1%) by injecting off-target noise. Gains scale with horizon: **+8.7pp on tasks
+  >28 steps** (35.5→44.2%) where the matched-phase reproduction scripts act as shortcuts past
+  trial-and-error loops. This is *not* a generic persistent cross-session store — it is
+  functional-decomposition-aligned within the SWE task stream. [arXiv:2602.21611](https://arxiv.org/abs/2602.21611)
+
 ## Multi-agent orchestration
 - **Anthropic's multi-agent research system** — an orchestrator spawns 3–5 parallel
   subagents (each its own context window) plus a citation pass; beats single-agent on
@@ -50,6 +70,9 @@ them.
 - **Agent communication protocols** (MCP for agent↔tool, A2A for agent↔agent) spawned a
   security/threat-modeling subfield and proposals for unified protocols. See
   [11 · Multi-agent systems](../11-emerging-application-subfields/multi-agent-systems.md).
+- Multi-agent setups have *characteristic* failure modes (poor spec adherence, inter-agent
+  misalignment, verification gaps) catalogued by **MAST**. See
+  [11 · Multi-agent systems → MAST](../11-emerging-application-subfields/multi-agent-systems.md).
 
 ## Agentic coding & code world models
 - **SWE-bench Verified** became the headline battleground (Claude Opus 4.5 80.9%,
@@ -97,7 +120,9 @@ to manage context, but the gain plateaus past ~320K tokens — active context ma
 efficiency, not unbounded horizon.
 
 **Promising but unproven:** Reliable *long-horizon* autonomy (multi-day tasks), self-evolving
-agents, and durable agent memory. Demonstrated, but not robust.
+agents, and durable agent memory. Demonstrated, but not robust — e.g. subtask-level memory
+adds real, horizon-scaling gains *within* the SWE task stream (+8.7pp on >28-step tasks) but
+is not yet a general persistent cross-session store.
 
 **Open problems & weaknesses:** **Reliability over long horizons** is the core gap — small
 per-step error rates compound. Credit assignment for training agents is unsolved (see

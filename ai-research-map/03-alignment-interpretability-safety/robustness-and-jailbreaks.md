@@ -34,6 +34,65 @@ hallucination — especially as agents gain real-world privileges.
   ETH) — [arXiv:2510.07192](https://arxiv.org/abs/2510.07192).
   (Security/data angle: [07 · Data-centric AI](../07-data-systems-hardware/data-centric-ai.md).)
 
+## Prompt injection & agent-input security
+
+Prompt injection is **OWASP's #1 LLM risk (LLM01:2025)** and the dominant threat to deployed
+agents — attacker-controlled text overrides the developer/user's intended instructions, causing
+data leakage, privilege escalation, or unwanted tool calls
+([OWASP GenAI](https://genai.owasp.org/llmrisk/llm01-prompt-injection/)). It is distinct from
+jailbreaks: the adversary targets the *application's* trust boundary, not (only) the safety
+training.
+
+**Taxonomy.**
+- **Direct injection** — the user themselves types instructions that subvert the system prompt.
+- **Indirect / tool-stream injection** — malicious instructions hide in content the agent
+  *retrieves* (emails, web pages, documents, tickets, code repos, tool outputs) and get treated
+  as trusted instructions. This is the dangerous mode for RAG and tool-using agents, where
+  untrusted data flows straight into the context that drives actions.
+
+**Benchmarks.**
+- **AgentDojo** (ETH Zürich) — a dynamic environment, not a static suite: **97 realistic tasks**
+  (email, e-banking, travel, etc.) and **629 security test cases**, with pluggable attacks and
+  defenses. Headline finding: SOTA LLMs fail many tasks even *without* attacks, and existing
+  injection attacks break *some* security properties but not all — robustness is far from solved.
+  [arXiv:2406.13352](https://arxiv.org/abs/2406.13352)
+- **InjecAgent** — **1,054 test cases** over 17 user tools and 62 attacker tools, scoring
+  *indirect* prompt injection by intent (direct harm vs. private-data exfiltration). ReAct-prompted
+  GPT-4 was attackable **~24%** of the time, roughly doubling when the injected instruction is
+  reinforced with a "hacking" prompt. [arXiv:2403.02691](https://arxiv.org/abs/2403.02691)
+
+**Design-level defense consensus — prompting alone cannot solve it.** Because the model cannot
+reliably distinguish trusted instructions from untrusted data in a single context, the field has
+moved to *architectural* / information-flow defenses rather than better system prompts:
+- **CaMeL** (Google DeepMind) — a **dual-LLM** design: a **privileged LLM (P-LLM)** plans over the
+  trusted query and emits code, while a **quarantined LLM (Q-LLM)** parses untrusted data and never
+  feeds its raw tokens back to the P-LLM. A custom interpreter attaches **capabilities** to every
+  value and enforces **information-flow / capability control** so untrusted data can never alter
+  control flow or exfiltrate private data. It **neutralizes ~67% of AgentDojo attacks** (often to
+  zero for some models) and solves **77% of tasks with provable security** (vs **84%** undefended).
+  [arXiv:2503.18813](https://arxiv.org/abs/2503.18813)
+- **MELON** — a **provable, detection-based** defense: re-execute the agent's trajectory with a
+  *masked* user prompt; if the original and masked runs produce similar tool calls, the action was
+  driven by injected content rather than the user task, so it's flagged. No model training required.
+  [arXiv:2502.05174](https://arxiv.org/abs/2502.05174)
+- **Meta SecAlign** (Meta) — the first **fully open-source LLM with built-in model-level** injection
+  defense (Meta-SecAlign-8B / -70B). Despite training only on generic instruction-tuning data, it is
+  more secure than several flagship proprietary models with injection defenses, and the security
+  *transfers* to unseen tool-calling and web-navigation tasks. [arXiv:2507.02735](https://arxiv.org/abs/2507.02735)
+
+**Real-CVE anchor — EchoLeak (CVE-2025-32711).** A **zero-click** indirect-injection exploit in
+**Microsoft 365 Copilot** (CVSS 9.3, disclosed by Aim Security, June 2025): a single crafted email
+embeds instructions that Copilot ingests when answering an unrelated user query, then exfiltrates
+internal data with **no user interaction**. The exploit chained bypasses of Microsoft's XPIA
+cross-prompt-injection classifier, link redaction, auto-fetched images, and a CSP-allowed Teams
+proxy — the canonical demonstration that classifier-style filters are insufficient against indirect
+injection. Patched server-side. [arXiv:2509.10540](https://arxiv.org/abs/2509.10540),
+[HackTheBox](https://www.hackthebox.com/blog/cve-2025-32711-echoleak-copilot-vulnerability)
+
+> Cross-link: [11 · AI for cybersecurity](../11-emerging-application-subfields/ai-for-cybersecurity.md) and
+> [01 · Agents & tool use](../01-foundation-models-and-capabilities/agents-and-tool-use.md) should
+> point here for the agent-input threat model and defenses.
+
 ## Constitutional Classifiers++, in depth
 
 **Mechanism.** The prior generation (Sharma et al. 2025) paired an *input* classifier with

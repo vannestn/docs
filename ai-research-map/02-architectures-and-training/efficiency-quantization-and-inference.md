@@ -47,6 +47,16 @@ edge-deployable models. One of the most *mature and fast-moving* areas.
   spends precision on keys. Achieves **near-lossless ~3.25-bit** KV cache for Llama-3.1-8B and
   **4.0-bit** for the more sensitive Qwen2.5-7B on math reasoning, with **16.79–21.25%** higher
   inference throughput vs KIVI-KV8. [arXiv:2502.04420](https://arxiv.org/abs/2502.04420)
+- **DeepSeek-V4** (preview) — a long-context efficiency play built on co-designed architecture, not
+  just quantization. Two MoE models (**V4-Pro** 1.6T total / 49B active; **V4-Flash** 284B / 13B), both
+  **1M-token** context, pretrained on **>32T tokens**. Three levers: (1) a **hybrid attention** stack
+  — **Compressed Sparse Attention (CSA)** + **Heavily Compressed Attention (HCA)** — for long-context
+  efficiency; (2) **Manifold-Constrained Hyper-Connections (mHC)** enhancing the residual stream; and
+  (3) the **Muon** optimizer for faster, more stable convergence. Payoff at **1M-token** context vs
+  DeepSeek-V3.2: **V4-Pro = 27% of single-token inference FLOPs and 10% of KV cache**; **V4-Flash ~10%
+  FLOPs / ~7% KV cache** ([Source: HF blog](https://github.com/huggingface/blog/blob/main/deepseekv4.md)).
+  Evidence that attention/connection-level redesign, not numerics alone, is the lever for million-token
+  serving. [arXiv:2606.19348](https://arxiv.org/abs/2606.19348)
 - **QuantSpec** (Apple) — self-speculative decoding where the draft shares the target's weights
   but uses a hierarchical **4-bit KV cache + 4-bit weights**; **>90% acceptance**, up to **~2.5×**
   end-to-end speedup, ~1.3× less memory.

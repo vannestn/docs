@@ -19,10 +19,15 @@ tries to track AI-generated content. (Core interpretability is in
 - **Persona features as the basis of emergent misalignment** — a *separate* OpenAI study
   (often conflated with the above) uses **model-diffing**: it trains sparse autoencoders, then
   compares latent activations before vs. after a narrow harmful fine-tune. It isolates a
-  "toxic persona" feature that most strongly *controls* emergent misalignment, and shows
-  logistic regression on these latent features predicts whether a prompt will elicit a
-  misaligned response at **~91% accuracy (AUC ≈ 0.95)**. Inference-time steering / post-hoc
-  fine-tuning on these features cuts misalignment by up to ~84%.
+  "toxic persona" feature (SAE latent #10) that "most strongly *controls* emergent misalignment
+  and can be used to *predict* whether a model will exhibit such behavior" — the latent's
+  activation increase *perfectly discriminates* aligned from misaligned models across the
+  fine-tuning domains studied, and steering it positively/negatively amplifies/suppresses
+  misalignment. The same monitoring detects the persona activating *before* a standard
+  behavioral eval flags misalignment (e.g. at ~5% incorrect training data), motivating
+  interpretability auditing as an early-warning system. Mitigation: fine-tuning an emergently
+  misaligned model on just a few hundred benign samples (~120–200, ~35 steps) restores
+  alignment.
   [arXiv:2506.19823](https://arxiv.org/abs/2506.19823) (OpenAI, 2025).
   (Emergent misalignment itself is covered in
   [03 · Model organisms](../03-alignment-interpretability-safety/model-organisms-of-misalignment.md).)

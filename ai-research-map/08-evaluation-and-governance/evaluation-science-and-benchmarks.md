@@ -32,6 +32,24 @@ benchmarks saturate, leak, and can be gamed.
   [HLE](https://agi.safe.ai/), [Nature](https://www.nature.com/articles/s41586-025-09962-4)
 
 ### Methodological responses
+- **Saturation, measured.** Akhtar, Reuel et al. (EvalEval Coalition) give the phenomenon a
+  reproducible operational definition: a benchmark is *saturated* when top models are no longer
+  statistically distinguishable **and** performance approaches the empirically inferred ceiling
+  (distinct from mere *stagnation*, which is statistical indistinguishability alone). They define
+  an uncertainty-aware **saturation index** S_index = exp(−R_norm²), where R_norm = (s₁−s_k)/SE_Δ
+  is the top-1-vs-top-k score gap normalized by its standard error (k=5). Analyzing 60 text LLM
+  benchmarks × 14 annotated properties, **~half are saturated** (29/60 with S_index ≥ 0.7, 14
+  ≥ 0.9). A Bayesian regression jointly predicting S_index reaches **R² = 0.884 ± 0.012**, with
+  **benchmark age and test-set scale the strongest predictors** — saturation rises with
+  cumulative exposure and falls with measurement resolution. Crucially, commonly assumed
+  safeguards do **not** robustly resist saturation: private/held-out test sets (no significant
+  difference vs. public), open-ended formats, templating, and multilinguality all fail to retain
+  discriminative power (the apparent multilingual advantage is confounded by those benchmarks'
+  younger age). Expert-curated benchmarks saturate *less* than crowdsourced ones at comparable
+  age. The authors frame saturation as a **structural consequence of cumulative exposure +
+  finite measurement resolution — "neutral, not negative"** — problematic only when it reflects
+  lost resolution rather than genuine task mastery.
+  [arXiv:2602.16763](https://arxiv.org/abs/2602.16763)
 - **Contamination detection is fragile against reasoning models.** Wang et al. study two
   realistic contamination points: (I) *pre-LRM* — SFT contamination of a base model that is
   then RL-trained into a reasoning model; (II) *post-LRM* — SFT-with-CoT contamination as the
@@ -43,7 +61,17 @@ benchmarks saturate, leak, and can be gamed.
   evidence — best detector (LiRA) averages only ~58.7% AUROC across six reasoning benchmarks —
   because LRMs internalize and generalize the contaminated data rather than memorizing exact
   sequences. [arXiv:2510.02386](https://arxiv.org/abs/2510.02386)
-- **Dynamic / generate-at-eval-time benchmarks** restore discriminative power. *[2026 ID]*
+- **Dynamic / adversarial-collection benchmarks** are among the few structural resistors the
+  saturation study identifies: continuously updating the evaluation distribution reduces
+  optimization stability and slows convergence. The canonical instance is **Dynabench**
+  (human-and-model-in-the-loop adversarial data collection).
+  [arXiv:2104.14337](https://arxiv.org/abs/2104.14337) For *code* evals, **RepoReason** attacks
+  contamination at the data-generation step rather than the leaderboard: its **Execution-Driven
+  Mutation** engine treats the live execution environment as a **Semantic Oracle**, injecting
+  probes to regenerate runtime ground-truth after mutating inputs — severing the memorization
+  retrieval path while preserving authentic reasoning depth (see
+  [AI for software engineering](../11-emerging-application-subfields/ai-for-software-engineering.md)).
+  [arXiv:2601.03731](https://arxiv.org/abs/2601.03731)
 - **Epoch Capabilities Index (ECI)** aggregates 40+ benchmarks into one saturation-robust scale
   by stitching benchmarks via shared model evaluations; open-weight models lag frontier closed
   models by ~4 months (~8 ECI points) as of Jan 2026.
@@ -76,11 +104,21 @@ benchmarks saturate, leak, and can be gamed.
 aggregate indices (ECI), and standardized-scaffolding scoring are the current best practice.
 Agentic/autonomy time-horizon metrics are the most decision-relevant.
 
-**Promising but unproven:** Dynamic generate-at-eval-time benchmarks and capability-
-elicitation / lock-overriding methods that defeat sandbagging are early but important.
+**Promising but unproven:** Dynamic / adversarial-collection benchmarks (Dynabench-style) and
+execution-driven anti-contamination data generation (RepoReason) are among the few approaches
+shown to slow convergence; capability-elicitation / lock-overriding methods that defeat
+sandbagging are early but important. The saturation study cautions, though, that
+private/held-out test sets, open-ended formats, templating, and multilinguality do *not* reliably
+buy longevity — design must increase measurement resolution and refresh the eval distribution.
 
 **Open problems & weaknesses:**
-- **Saturation within a year** keeps the field in a perpetual arms race.
+- **Saturation within a year** keeps the field in a perpetual arms race. The systematic study
+  reframes this as *structural*, not a design failure — saturation tracks cumulative exposure
+  and finite measurement resolution (age + test-set scale predict S_index at R² ≈ 0.88), and is
+  "neutral, not negative" when it reflects genuine task mastery; it is only a problem when
+  score compression outpaces true capability gaps. The actionable levers are higher resolution
+  (larger/harder test sets, multiple metrics) and periodic refresh, not the commonly assumed
+  safeguards. [arXiv:2602.16763](https://arxiv.org/abs/2602.16763)
 - **Contamination detection is fragile** — and Wang et al. show this is *structural* for
   reasoning models: RL (GRPO) erases the log-prob separability detectors rely on, and CoT
   contamination generalizes rather than memorizes, so memorization-based detectors fail. They

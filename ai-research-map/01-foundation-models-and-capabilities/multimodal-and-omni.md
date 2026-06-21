@@ -113,5 +113,3 @@ generation, and tokenizer-free (byte-level) models at frontier scale.
 - **Evaluation of multimodal reasoning is immature**, and high-quality paired multimodal data
   is scarce (a data-quality constraint — see
   [07 · Data-centric AI](../07-data-systems-hardware/data-centric-ai.md)).
-</content>
-</invoke>

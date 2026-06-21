@@ -16,10 +16,14 @@ model lens are in [12 · Business models](../12-politics-capital-and-business-mo
 - **Reflection AI** — aiming to be a Western open-weight frontier lab (an "American DeepSeek");
   founders Misha Laskin (ex-DeepMind Gemini) and Ioannis Antonoglou (AlphaGo co-creator). **~$2B
   raised at ~$8B** (Oct 2025, Nvidia-led). [TechCrunch](https://techcrunch.com/2025/10/09/reflection-raises-2b-to-be-americas-open-frontier-ai-lab-challenging-deepseek/)
-- **AMI Labs** — Yann LeCun's new Paris-based lab (Saining Xie as chief science officer)
-  pursuing **JEPA / world models** (predict-in-representation-space, not generate pixels);
-  **~$1B seed at ~$3.5B pre-money** (March 2026), among the largest seed rounds on record. See
-  [06 · World models](../06-robotics-and-world-models/world-models-and-video.md). [TechCrunch](https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/)
+- **AMI Labs** (Advanced Machine Intelligence) — Yann LeCun's new Paris-based lab, founded after
+  he left Meta in late 2025, pursuing **JEPA / world models** (predict-in-representation-space,
+  not generate pixels); **~$1.03B seed at ~$3.5B pre-money** (March 2026), Europe's largest seed
+  round on record (co-led by Cathay Innovation, Greycroft, Hiro, HV, Bezos Expeditions; LeCun
+  has said the first ~year is research-only). Lineage runs through Meta's JEPA work, incl.
+  **V-JEPA 2** (a video world model for robot planning, released June 2025). See
+  [06 · World models](../06-robotics-and-world-models/world-models-and-video.md).
+  [TechCrunch](https://techcrunch.com/2026/03/09/yann-lecuns-ami-labs-raises-1-03-billion-to-build-world-models/) · [arXiv:2506.09985](https://arxiv.org/abs/2506.09985)
 
 ## Alternative architectures
 
@@ -79,8 +83,9 @@ non-speech audio. [arXiv:2511.23404](https://arxiv.org/abs/2511.23404)
 ### Cartesia — state-space-model audio (Sonic)
 **Sonic** real-time voice models built on **state-space models** (SSMs), the S4/Mamba line its
 founders created at Stanford (Albert Gu, Karan Goel, Chris Ré et al.); SSMs give low latency,
-long-context efficiency, and on-device viability. **Sonic-3.5** took #1 on the Artificial
-Analysis Speech Arena (May 2026); ~$191M raised total. [Cartesia](https://www.cartesia.ai/launch/)
+long-context efficiency, and on-device viability. **Sonic-3.5** took **#1 on the Artificial
+Analysis Speech Arena** leaderboard (May 2026, ahead of Inworld and Google Gemini 3.1 Flash TTS),
+with sub-100ms time-to-first-audio and 42-language support; ~$191M raised total. [Cartesia](https://www.cartesia.ai/launch/) · [Artificial Analysis](https://artificialanalysis.ai/text-to-speech/models/sonic-3-5)
 
 ## World models / spatial intelligence
 - **World Labs** (Fei-Fei Li) — **Marble** (text/image/video/3D-layout → navigable, persistent,
@@ -112,8 +117,15 @@ Analysis Speech Arena (May 2026); ~$191M raised total. [Cartesia](https://www.ca
   April 2025) that was **Anthropic's first-ever startup investment**. [Goodfire](https://www.goodfire.ai/blog/announcing-goodfire-ember)
 
 ## Generative media
-- **Black Forest Labs** (image), **Runway / Luma / Pika** (video, pivoting toward world
-  models), **Suno / Udio** (music, amid major-label licensing battles).
+- **Black Forest Labs** (image) — the **FLUX** open-weight family (FLUX.2 generation, incl. the
+  on-device `[klein]` variant, late 2025–early 2026); **$300M Series B at ~$3.25B post** (Dec 2025,
+  Salesforce Ventures / a16z / Nvidia). [SiliconANGLE](https://siliconangle.com/2025/12/01/open-source-image-generator-startup-black-forest-labs-raises-300m/)
+- **Runway / Luma / Pika** (video, pivoting toward world models).
+- **Suno / Udio** (music) — the major-label copyright suits are now mostly *settling into
+  licensing*: Universal settled with **Udio** (Oct 2025, walled-garden "fan engagement" pivot +
+  a joint AI-music platform); Warner settled with **Suno** (Nov 2025, multi-million payment +
+  license + Suno's purchase of Songkick). Sony is the lone major still litigating, with a
+  fair-use ruling expected summer 2026. [Music Business Worldwide](https://www.musicbusinessworldwide.com/warner-music-group-settles-with-suno-strikes-first-of-its-kind-deal-with-ai-song-generator/) · [Billboard](https://www.billboard.com/pro/what-suno-udio-licensing-deals-mean-future-ai-music/)
 
 ## Self-improvement / open-endedness
 - **Recursive Superintelligence** — Richard Socher (CEO) with Rocktäschel / Clune / Yuandong

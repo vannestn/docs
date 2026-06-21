@@ -104,11 +104,17 @@ to understand how misalignment arises and whether it can be detected and prevent
 finding — it shows broad misalignment can emerge from *ordinary* production training
 incentives, not just contrived narrow finetunes. Inoculation prompting is the strongest
 mitigation studied there (75–90% reduction) and is reportedly already deployed. On the
-detection side, persona-vector **model-diffing** (SAE-based) cleanly separates aligned from
-misaligned checkpoints — the "toxic persona" latent *perfectly discriminates* aligned vs
-misaligned models across the finetuning domains tested, and lets you predict misalignment
-from activations on a single prompt. [arXiv:2506.19823](https://arxiv.org/abs/2506.19823) ·
-[Anthropic](https://www.anthropic.com/research/persona-vectors)
+detection side, OpenAI's **persona-feature model-diffing** (SAEs comparing activations
+before vs after finetuning) surfaces a "toxic persona" latent that *most strongly controls*
+emergent misalignment and can be used to *predict* it: the latent "effectively
+discriminate[s] between misaligned and aligned models," and its activation rises early — at
+as little as 5% incorrect finetuning data, and in a reward-hacking model scoring 0% on the
+core misalignment eval — i.e. it "sometimes predict[s] misalignment of a training procedure
+*before* our sampling evaluation shows misalignment," suggesting interpretability auditing
+as an early-warning system. [arXiv:2506.19823](https://arxiv.org/abs/2506.19823) ·
+[OpenAI](https://openai.com/index/emergent-misalignment/) (distinct from Anthropic's
+[persona vectors](https://www.anthropic.com/research/persona-vectors),
+[arXiv:2507.21509](https://arxiv.org/abs/2507.21509))
 
 **Promising but unproven:** Whether lab-induced "model organisms" faithfully predict
 misalignment in *real* large-scale deployments is the key open question — the

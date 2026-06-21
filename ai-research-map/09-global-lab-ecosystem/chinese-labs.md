@@ -14,7 +14,9 @@ US export controls.
   Attention (DSA)** — a lightning indexer (FP8) plus top-k token selection, cutting core
   attention from O(L²) to O(Lk) while preserving quality. The **GRPO** RL recipe it
   popularized (origin: DeepSeekMath) is now the default across Chinese labs.
-  [R1 Nature](https://www.nature.com/articles/s41586-025-09422-z) · [V3.2 arXiv:2512.02556](https://arxiv.org/abs/2512.02556)
+  The **DeepSeek-V4** preview (mid-2026) pivots from V3.2's *sparse-attention-on-a-dense-base*
+  to a ground-up million-token, hybrid-attention design (CSA+HCA) on a far larger MoE.
+  [R1 Nature](https://www.nature.com/articles/s41586-025-09422-z) · [V3.2 arXiv:2512.02556](https://arxiv.org/abs/2512.02556) · [V4 arXiv:2606.19348](https://arxiv.org/abs/2606.19348)
 - **Moonshot AI** — **Kimi K2**, a 1.04T-total / 32B-active MoE for agents, pre-trained on
   15.5T tokens with **MuonClip** (the Muon optimizer + a novel QK-Clip stabilizer) with zero
   loss spikes. K2 is a *non-thinking* model that leads open-source agentic benchmarks.
@@ -56,6 +58,15 @@ standard and long-context evals (e.g. AA-LCR, Fiction.liveBench).
 - *Results:* V3.2 lands comparably to GPT-5 and Kimi-K2-Thinking across reasoning benchmarks;
   the high-compute **V3.2-Speciale** variant reaches parity with Gemini-3.0-Pro and claims
   gold-medal performance at IMO/IOI/ICPC/CMO 2025.
+- *V4 — the next jump (preview):* Where V3.1/V3.2 *retrofit* sparse attention (DSA) onto an
+  existing dense base via continued training, **DeepSeek-V4** is a ground-up redesign for
+  **1M-token context**. The preview ships two MoE variants — **V4-Pro** (1.6T total / 49B active)
+  and **V4-Flash** (284B / 13B) — pre-trained on **32T+ tokens**. The headline change is a
+  **hybrid attention** stack pairing **Compressed Sparse Attention (CSA)** with **Heavily
+  Compressed Attention (HCA)**, plus **Manifold-Constrained Hyper-Connections (mHC)** to
+  strengthen residual flow and the **Muon** optimizer (also Moonshot's pick) for the main run.
+  Efficiency vs **V3.2** at 1M context: V4-Pro uses **~27% of the single-token inference FLOPs**
+  and **~10% of the KV cache** (a ~90% cache reduction). [V4 arXiv:2606.19348](https://arxiv.org/abs/2606.19348)
 
 ### Moonshot — MuonClip and token efficiency
 The Kimi K2 thesis is *token efficiency as a scaling coefficient*. K2 trains the
