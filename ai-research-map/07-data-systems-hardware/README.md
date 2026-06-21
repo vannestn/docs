@@ -11,6 +11,8 @@ serve them, and the silicon (and power) underneath.
   cross-datacenter & decentralized training, disaggregated inference serving.
 - [**Hardware & neuromorphic**](hardware-and-neuromorphic.md) — GPUs/TPUs/ASICs, HBM supply,
   neuromorphic/photonic/analog computing, energy & power.
+- [**Energy & sustainability**](energy-and-sustainability.md) — measured per-query energy,
+  datacenter demand, water, embodied carbon, the rebound debate.
 
 ## The shape of this area
 

@@ -12,6 +12,8 @@ tries to track AI-generated content. (Core interpretability is in
 
 - **Persona vectors** — proposed as the mechanistic basis of emergent misalignment; model-
   diffing on these features predicts misaligned responses at ~91% accuracy. *[2026 IDs]*
+  (Emergent misalignment itself is covered in
+  [03 · Model organisms](../03-alignment-interpretability-safety/model-organisms-of-misalignment.md).)
 - **Introspection** — whether a model can accurately *report its own internal state*. Concept-
   injection experiments show partial, low-reliability introspective awareness. [arXiv:2601.01828](https://arxiv.org/abs/2601.01828)
 - **Model diffing** — comparing two models' internals to localize exactly what fine-tuning

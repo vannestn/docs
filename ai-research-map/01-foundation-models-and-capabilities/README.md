@@ -14,6 +14,8 @@ pushing each one. This branch covers the "headline" axes of progress.
   native multimodality, streaming speech, unified understanding+generation.
 - [**Long context & memory**](long-context-and-memory.md) — million-token contexts,
   trainable sparse attention, the long-context-vs-long-term-memory distinction.
+- [**Multilingual & low-resource AI**](multilingual-and-low-resource-ai.md) — the
+  English-centric gap, the tokenizer tax, sovereign/regional models.
 
 ## The shape of this area in mid-2026
 

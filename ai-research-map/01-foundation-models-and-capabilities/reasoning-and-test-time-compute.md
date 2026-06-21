@@ -53,8 +53,16 @@ This reframed reasoning as a *training-time + inference-time* co-design problem.
 - **DeepSeek-V3.2** reports gold-medal-level results on IMO/CMO/ICPC 2025 via a scalable
   RL framework + native "thinking in tool-use." [arXiv:2512.02556](https://arxiv.org/abs/2512.02556)
 
-## Open questions / tensions
+## State of research
 
+**Best-performing now:** RL on verifiable rewards (RLVR/GRPO-lineage) is the proven recipe for
+math/code reasoning, deployed across every frontier lab; unified fast/thinking routers (GPT-5) and
+parallel-hypothesis search (Deep Think) are shipped.
+
+**Promising but unproven:** reasoning *transfer* to open-ended/non-verifiable domains; generative
+process reward models at scale; reliable self-verification.
+
+**Open problems & tensions:**
 - **Does RLVR create new reasoning ability or only surface what the base model already
   contains?** Active empirical dispute (the pass@k "ceiling" critique vs. NVIDIA's ProRL).
   See [04 · RL for reasoning](../04-reinforcement-learning-and-open-endedness/rl-for-reasoning.md).
