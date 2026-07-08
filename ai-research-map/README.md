@@ -28,7 +28,7 @@ URLs. Start here, then drill into whichever branch interests you.
 | [Solo-researcher agenda](00-overview/solo-researcher-research-agenda.md) | Open gaps a lone, API-budget researcher can actually move — with designed methods |
 | [Compute & memory footprint](00-overview/compute-and-memory-footprint.md) | Laptop vs. datacenter, per area |
 | [Glossary](00-overview/glossary.md) | Plain-language definitions of every acronym |
-| [Source index](00-overview/source-index.md) | Full deduplicated bibliography (291 URLs) |
+| [Source index](00-overview/source-index.md) | Full deduplicated bibliography (310 URLs) |
 | [Verification checklist](00-overview/verification-checklist.md) | Load-bearing claims that need a manual source check |
 | [Methodology & caveats](00-overview/methodology-and-sources.md) | How the map was built and its limits |
 
@@ -114,4 +114,5 @@ The field in mid-2026 is being reshaped by a handful of intersecting shifts:
 
 ---
 
-*Last updated: 2026-06-21.*
+*Last updated: 2026-07-08 — full-text verification pass over all 192 cited papers, conceptual
+primers on every topic doc, and the solo-researcher agenda.*
