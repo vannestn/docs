@@ -1,8 +1,21 @@
 # Generative Media
 
-Generating images, video, 3D, and creative audio — the visual-synthesis research that runs in
-parallel to text LLMs, sharing the "scale a Transformer on a denoising objective" recipe but with
-its own architecture lineage, distillation tricks, and a famously broken evaluation story.
+## In brief
+- **What it is** — Research on generating images, video, 3D scenes, and creative audio from a
+  prompt. It runs in parallel to text LLMs and shares the same core recipe — scale up a Transformer
+  on a "denoising" objective — but has its own architecture lineage, its own tricks for making
+  generation fast, and a famously broken way of measuring quality. The dominant method starts from
+  pure random noise and repeatedly cleans it up until a coherent picture emerges (see the diffusion
+  / flow concept box below).
+- **Why it's pursued** — Text alone can't cover how people actually create and communicate: design,
+  film, games, product mockups, and 3D worlds all need visual and audio synthesis. The goal is
+  models that turn a plain-language description into a high-quality, controllable image, clip, or
+  scene — fast enough to be usable and faithful enough to match the request.
+- **Potential impact** — If it succeeds, producing professional-grade visual media becomes as easy
+  as writing a sentence, reshaping the creative-tools market and the economics of content. The key
+  open weakness is measurement: the field's standard quality metric (FID) is provably misaligned
+  with human judgment, so "progress" is hard to trust — alongside real risks around licensing and
+  training-data provenance.
 
 > **📦 Concept: "diffusion / flow"** — generate by starting from pure noise and iteratively
 > denoising toward a sample. *Diffusion* learns to reverse a noising process; *flow matching* /

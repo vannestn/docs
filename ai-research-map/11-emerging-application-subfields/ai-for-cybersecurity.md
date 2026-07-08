@@ -1,7 +1,20 @@
 # AI for Cybersecurity
 
-Autonomous agents that find, exploit, and patch software vulnerabilities — a field that
-crossed a clear inflection point in 2025–26.
+## In brief
+- **What it is** — AI agents that do the work of a security researcher: read through software
+  looking for the kinds of bugs an attacker could abuse (a "vulnerability"), demonstrate the
+  flaw with a crafted input that crashes or hijacks the program (a "proof-of-concept exploit"),
+  and propose a code fix (a "patch"). Modern systems pair a large language model, which reasons
+  about code, with a "fuzzer" that hammers a program with random inputs to trigger crashes.
+- **Why it's pursued** — critical software carries countless latent bugs, and until now finding
+  them relied on scarce, expensive human experts. If machines can hunt at scale and low cost,
+  defenders could fix flaws before attackers exploit them — but the same tools also let attackers
+  find and weaponize bugs faster, so the field is inherently dual-use.
+- **Potential impact** — a 2025–26 inflection point: autonomous agents are now finding real,
+  decades-old exploitable bugs cheaply, so the question shifted from "can AI do security tasks?"
+  to keeping up on the back end. The new bottleneck is *patching and triage* — humans can't verify
+  and fix bugs as fast as machines surface them, and AI-written patches often fail or introduce
+  new flaws.
 
 > **📦 The 2026 shift** — the question moved from "can AI do security tasks?" to "autonomous
 > agents are finding real, decades-old exploitable bugs at scale — so the bottleneck is now

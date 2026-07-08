@@ -1,9 +1,20 @@
 # Mixture-of-Experts & Sparsity
 
-Mixture-of-Experts (MoE) activates only a fraction of a model's parameters per token — the
-dominant way to scale capacity without a matching rise in compute, and now near-universal at
-the frontier. A parallel line of work applies the same sparsity idea to the *attention map*
-(attending to a selected subset of tokens), giving cheap long context.
+## In brief
+- **What it is** — A big model split into many specialist sub-networks ("experts"), where a
+  lightweight *router* sends each token to just a few of them. So the model can hold enormous
+  total knowledge, yet only a small slice fires for any given word — "sparse" meaning most of
+  the network sits idle each step. A parallel idea applies the same trick to *attention*: a
+  token looks at a chosen subset of earlier tokens instead of all of them.
+- **Why it's pursued** — Making a model smarter usually means adding parameters, which normally
+  makes it proportionally slower and costlier to run. Sparsity breaks that link: total capacity
+  can grow while the compute spent per token stays roughly flat. The same motive drives sparse
+  attention, which cuts the cost of long inputs from scaling with the square of the length to
+  scaling roughly linearly.
+- **Potential impact** — This is now the default recipe at the frontier — Qwen3, Kimi K2, and
+  DeepSeek-V3 all use it — letting far larger, cheaper-to-serve models exist. The catch is
+  systems complexity: every expert must be kept in memory and routing must stay balanced, so
+  gains that look free "on paper" can evaporate if the hardware isn't matched to the design.
 
 ## Key directions & work
 

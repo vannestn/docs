@@ -1,7 +1,19 @@
 # Mechanistic Interpretability
 
-Reverse-engineering a model's internal computations into human-understandable
-mechanisms — now with tools good enough to debug behavior and audit for hidden goals.
+## In brief
+- **What it is** — Reverse-engineering a neural network's internal computations into
+  human-understandable mechanisms: instead of treating the model as a black box that maps
+  inputs to outputs, researchers trace *how* it computes — which internal features fire, and
+  how they cause one another — the way a biologist dissects a cell rather than just observing
+  the whole organism.
+- **Why it's pursued** — A model's weights are billions of opaque numbers, so we cannot
+  simply read off its goals, know whether an explanation of its behavior is true, or catch
+  hidden or deceptive reasoning. Mechanistic interpretability aims to open that box well
+  enough to debug behavior and audit for hidden goals.
+- **Potential impact** — If it works, we gain tools to verify what a model is really doing
+  — detecting deception, editing away harmful traits, and eventually certifying safety rather
+  than just guessing at it. The key limitation today: methods are still partial and often tell
+  a plausible-but-unproven story, so interp can investigate safety but not yet guarantee it.
 
 ## Key directions & work
 

@@ -1,5 +1,20 @@
 # AI for Law & Finance
 
+## In brief
+- **What it is** — applying language models to the work of lawyers and financial analysts: drafting
+  and reviewing contracts, researching case law, answering questions over filings, tagging financial
+  reports, and hunting for trading signals. Both are high-stakes, heavily regulated domains where a
+  confident-sounding but wrong answer (a "hallucination") is a real-world harm — a fabricated legal
+  citation or a misstated dollar figure — not just a benchmark artifact.
+- **Why it's pursued** — legal and financial work is expensive, document-heavy, and slow; even modest
+  automation of research, review, and extraction promises large savings, which is why adoption and
+  investment are racing ahead of proven reliability.
+- **Potential impact** — if it succeeds, routine document analysis and first-draft work get much
+  faster and cheaper, freeing experts for judgment calls. The central tension is reliability: models
+  are already at or above human baselines at extraction and document Q&A, but fall down on
+  multi-step autonomous work, so today's deployments lean on **human-in-the-loop review** to catch
+  errors before they reach a court or a balance sheet.
+
 Two high-stakes, heavily regulated domains where the story is the gap between **adoption** and
 **measured reliability** — and where hallucination is an active real-world harm, not a benchmark
 artifact.

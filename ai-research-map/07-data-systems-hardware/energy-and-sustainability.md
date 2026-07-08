@@ -1,7 +1,19 @@
 # Energy & Environmental Sustainability
 
-The energy, carbon, and water footprint of AI — measured and unmeasured. It is a field where the
-*measurement methodology* is as contested as the numbers themselves.
+## In brief
+- **What it is** — the study of AI's physical footprint: the electricity, carbon emissions, and water
+  it consumes, both when running a query and across a model's full lifecycle (chip manufacturing,
+  training, and serving). Crucially, it is a field where the *measurement methodology* is as contested
+  as the numbers themselves — what counts as "the energy of one query" depends entirely on where you
+  draw the boundary (just the AI chip, or the idle backup machines and cooling too?).
+- **Why it's pursued** — AI's compute demand is growing fast enough to move national electricity
+  markets and grid prices, yet public figures for its footprint vary by orders of magnitude because
+  operators measure differently (or not at all). Getting the numbers and the methods right is the
+  prerequisite for any honest debate about whether AI's climate cost is acceptable.
+- **Potential impact** — reliable, comparable measurement would let regulators, buyers, and the public
+  hold AI's footprint accountable and target the real hotspots (idle capacity, memory manufacturing,
+  reasoning-model token counts). The key tension: per-query efficiency is improving sharply, yet total
+  consumption is still rising — so efficiency alone does not guarantee a smaller footprint.
 
 ## Key directions & work
 

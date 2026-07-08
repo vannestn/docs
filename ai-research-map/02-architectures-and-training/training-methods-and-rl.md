@@ -1,5 +1,23 @@
 # Training Methods & RL
 
+## In brief
+
+- **What it is** — The machinery that turns a pile of data and compute into a working model:
+  the *optimizer* (the algorithm that decides how to nudge each weight after seeing an error),
+  the *RL recipes* that fine-tune models to reason and follow instructions, and the
+  *self-improvement and synthetic-data* pipelines that let models generate their own training
+  material. Think of the optimizer as the steering system for a very high-dimensional descent
+  toward lower error; small changes to how it steers can save a large fraction of the compute.
+- **Why it's pursued** — Training is where most of the money and time go, so a better optimizer
+  or recipe pays off directly: hit the same quality for less compute, or reach higher quality
+  for the same budget. Self-generated data matters because human-written text is finite (the
+  "data wall"), so labs want models that can teach themselves without collapsing into garbage.
+- **Potential impact** — A genuine successor to the long-dominant AdamW optimizer (Muon is the
+  leading candidate) would cut frontier training bills across the industry. Reliable
+  self-improvement would loosen the data ceiling. The key risk is that self-generated data can
+  degrade quality ("model collapse") or get gamed (reward hacking), so these gains are not yet
+  guaranteed to hold at scale.
+
 How models are optimized — optimizers, RL recipes, self-improvement, and the synthetic-
 data pipelines that increasingly feed them.
 

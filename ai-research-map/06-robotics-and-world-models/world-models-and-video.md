@@ -1,10 +1,9 @@
 # World Models & Video
 
-Models that learn or generate the *dynamics* of environments — now a named frontier
-("spatial intelligence") and a heavily-funded startup category. The field splits along one
-fault line: **generate the world in pixels** (video/interactive generators) vs. **predict it
-in representation space** (JEPA-style). The two camps disagree on what "understanding"
-requires — and even on what "world model" *means*.
+## In brief
+- **What it is** — A world model is a system that learns the *dynamics* of an environment: given the current situation and an action, it predicts what happens next. Two camps disagree on how. One **generates the world in pixels** — think of an AI that renders a playable video game frame by frame as you move through it. The other **predicts in representation space** (JEPA-style) — it forecasts a compact internal summary of what comes next rather than drawing every pixel, the way you can anticipate where a rolling ball will go without imagining its exact appearance.
+- **Why it's pursued** — Agents, robots, and self-driving cars need to rehearse actions and their consequences before acting in the real world. A good world model is a cheap, safe sandbox for that — and a source of synthetic training data — which is why "spatial intelligence" has become a named frontier and a heavily-funded startup category.
+- **Potential impact** — If these models become *consistent and controllable* enough to act as true simulators, they could train robots and AV systems at scale, power interactive media, and give agents an imagination. The key limitation: today's most impressive demos optimize pixels for human eyes ("renderers") rather than physically faithful state ("simulators"), and the field hasn't even agreed on what "world model" *means*.
 
 ## Key directions & work
 

@@ -1,5 +1,23 @@
 # Diffusion & Non-Autoregressive Language Models
 
+## In brief
+- **What it is** — Today's mainstream chatbots write one word at a time, left to right, each
+  word waiting on the one before it. Diffusion (non-autoregressive) language models instead
+  start from a blank or fully "masked" sentence and fill in *all* the words at once, then
+  refine the result over a handful of passes — keeping the confident words and re-guessing the
+  shaky ones. It is like developing a photo: the whole image emerges at once and sharpens with
+  each step, rather than being painted stroke by stroke.
+- **Why it's pursued** — Writing token-by-token is an inherent speed bottleneck: a 1,000-word
+  answer needs ~1,000 sequential steps. Filling many words in parallel can be far faster, and
+  because the model reasons about the whole sentence at once rather than only what came before,
+  it can sidestep quirks of left-to-right models (e.g. the "reversal curse," where a model that
+  learns "A is B" struggles to answer "what is B?").
+- **Potential impact** — If quality holds, diffusion LMs could deliver much lower latency and
+  cheaper generation, especially for code and other structured output — Inception's commercial
+  Mercury already shows ~10× speedups at comparable code quality. The open risk: no diffusion
+  model yet leads a hard reasoning benchmark, results come from a handful of labs, and clean
+  fast-serving infrastructure (KV-caching, adaptive stopping) is still being worked out.
+
 Generate text in parallel by iterative denoising rather than strictly left-to-right,
 trading autoregression's sequential bottleneck for speed. The dominant family is
 **masked diffusion models (MDMs)**. The recipe: a forward process masks tokens at a random

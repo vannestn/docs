@@ -1,8 +1,21 @@
 # European & Sovereign Labs
 
-Europe's frontier-adjacent labs, plus the state-backed "sovereign AI" efforts building
-national models. The throughline: how do you compete near the frontier without
-US/China-scale compute? The answer here is mostly smarter methods and regional focus.
+## In brief
+
+- **What it is** — This slice of the ecosystem covers Europe's frontier-adjacent labs
+  (led by Mistral) plus the state-backed "sovereign AI" efforts — countries and regions
+  building their own models rather than relying on US or Chinese providers. None of them
+  can match US/China-scale compute budgets, so the common thread is competing through
+  smarter training methods and a focus on regional languages and needs.
+- **Why it's pursued** — Depending on foreign models for a nation's core AI is a strategic
+  risk: it can leave a country exposed on language coverage, data governance, security, and
+  economic control. These labs exist to keep that capability at home, and to prove you can
+  get near the frontier without a hyperscaler's compute.
+- **Potential impact** — Success means broader, more diverse AI supply and strong support
+  for languages that big US/China labs underserve. The open question — and key risk — is
+  whether these efforts can hold frontier parity over time, or whether they settle into
+  regional and efficiency niches while the compute-and-capital gap versus the US and China
+  keeps widening.
 
 > **📦 Concept: "sovereign AI"** — a country building its own models/compute so it isn't
 > dependent on US or Chinese providers, often for language, security, or economic reasons.

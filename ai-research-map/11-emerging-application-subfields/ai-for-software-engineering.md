@@ -1,8 +1,19 @@
 # AI for Software Engineering
 
-The most mature application-turned-research-field: agents that autonomously write, debug,
-and maintain code. The frontier question is shifting from *can a model patch one issue* to
-*can it reason across a whole codebase, learn from execution, and improve its own tooling*.
+## In brief
+
+- **What it is** — Building AI systems, mostly LLM-driven "agents," that autonomously
+  write, debug, and maintain software: reading a bug report or feature request, editing
+  files across a codebase, running tests, and iterating until the code works. It is the
+  most mature case of an *application* turning into its own research field.
+- **Why it's pursued** — Real software work is expensive and slow, and the interesting
+  challenge has moved past patching a single isolated issue. The open question is whether a
+  model can reason across an entire codebase, learn from actually *running* the code, and
+  even improve its own tools as it goes.
+- **Potential impact** — If it succeeds, much routine programming and maintenance gets
+  automated and the cost of building software drops sharply. The key limitation today is
+  reliability: agents still stumble on large, unfamiliar codebases and long tasks, and we
+  lack a trustworthy way to verify that generated code is actually correct at scale.
 
 ## Key directions & work
 

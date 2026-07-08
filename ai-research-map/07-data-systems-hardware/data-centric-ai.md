@@ -1,8 +1,12 @@
 # Data-Centric AI
 
-**Data quality is the quietest, most underrated driver of model capability.** This document
-covers where it matters, the "data wall," synthetic and recycled data, attribution,
-poisoning, privacy, and provenance.
+## In brief
+- **What it is** — the practice of treating the *training data itself* — not the model architecture — as the main dial to turn for capability. In data-centric AI you spend your effort cleaning, filtering, balancing, generating, and tracking data, on the premise that a smaller, carefully chosen dataset can beat a much larger raw one. Think of it as a chef caring more about ingredient quality than about buying a bigger stove.
+- **Why it's pursued** — over the last two years, better data has been a bigger practical lever on model quality than bigger models, and it is often far cheaper. It is also where several urgent problems live: running out of high-quality human text (the "data wall"), keeping test sets out of training (contamination), defending against poisoned or privacy-leaking data, and proving where a piece of content came from (provenance).
+- **Potential impact** — good data work lets teams match a stronger model at a fraction of the compute, extend training past the limits of scraped web text, and build trust through watermarking and attribution. The key risks: over-reliance on model-generated ("synthetic") data can quietly degrade quality ("model collapse"), and defenses for poisoning, privacy, and content provenance still lag the attacks.
+
+This document covers where data quality matters, the "data wall," synthetic and recycled
+data, attribution, poisoning, privacy, and provenance.
 
 > **📦 Concept: "data-centric AI"** — the idea that *improving the data* (cleaning,
 > filtering, balancing, generating) often boosts a model more than changing the model

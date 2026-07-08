@@ -1,7 +1,19 @@
 # Geopolitics & Policy
 
-How national competition, export controls, regulation, and the physical limits of compute
-and power decide who can do frontier AI research.
+## In brief
+- **What it is** — The web of national competition, export controls, regulation, and physical
+  resource limits that decides who *can* do frontier AI research and on what terms. Think of it
+  as the rules-and-resources layer sitting underneath the labs: who gets the chips, the
+  electricity, the legal permission, and the government contracts.
+- **Why it's pursued** — Frontier AI is now treated as strategic infrastructure, so governments
+  compete over it the way they compete over energy or semiconductors. Controlling access to
+  compute and setting the rules for deployment are the main levers a state has to shape which
+  labs — and which countries — stay at the frontier.
+- **Potential impact** — These choices reshape research itself: chip restrictions push some labs
+  toward efficiency work, energy limits cap how far scaling can go, and regulation and defense
+  procurement set red lines for how models get built and used. The upside is safer, more
+  accountable deployment; the risk is a fragmented ecosystem splitting into incompatible US and
+  China stacks, plus rules that lag a faster-moving capability frontier.
 
 ## US–China competition & export controls
 - **Compute access is the lever.** US export controls on advanced chips push Chinese labs

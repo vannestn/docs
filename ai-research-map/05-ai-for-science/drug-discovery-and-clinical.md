@@ -1,7 +1,17 @@
 # Drug Discovery & the Clinical Pipeline
 
-Where AI-designed molecules meet the hard reality of human clinical trials — the real test of
-generative biology.
+## In brief
+- **What it is** — Using AI to invent new medicines: picking which biological "target" (a protein
+  driving a disease) to attack, then designing a molecule that binds it, and finally testing that
+  molecule in human clinical trials. This is where AI-designed drugs meet the hard reality of the
+  clinic — the real test of generative biology.
+- **Why it's pursued** — Traditional drug development is slow, expensive, and mostly fails: most
+  candidates die in trials after years of work. AI promises to find better targets and design
+  better molecules faster, potentially raising the odds that a drug actually works in people.
+- **Potential impact** — If it holds up in late-stage trials, AI could compress the time and cost
+  of bringing a drug to patients and open up diseases that are currently too hard or unprofitable
+  to tackle. The key caveat: early wins so far are at the discovery stage, and no AI-discovered
+  drug has yet earned full regulatory approval.
 
 ## Key directions & work
 

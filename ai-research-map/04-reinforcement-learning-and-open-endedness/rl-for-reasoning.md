@@ -1,8 +1,9 @@
 # RL for Reasoning
 
-Reinforcement learning with verifiable rewards (RLVR) — RL trained against an automatic
-correctness check rather than a learned reward model — is the engine behind reasoning models.
-It has matured into a field with its own open problems.
+## In brief
+- **What it is** — A way to train language models to reason by rewarding *correct answers* rather than human-rated ones. The model tries a problem many times; a cheap automatic checker (does the math equation balance? do the unit tests pass?) scores each attempt, and the training nudges the model toward the answer patterns that tend to work. This "reinforcement learning with verifiable rewards" (RLVR) — RL trained against an automatic correctness check rather than a learned reward model — is the engine behind today's reasoning models.
+- **Why it's pursued** — A verifiable checker sidesteps the cost and gameability of paying humans to rate outputs, and it turns out to sharply improve models on math, code, and logic where "right" is machine-checkable. It is the recipe that produced the current wave of step-by-step reasoning systems.
+- **Potential impact** — If RL genuinely *creates* new reasoning ability, it becomes a path to capabilities beyond what pretraining alone yields; if it only *sharpens* skills the base model already had (the central open dispute below), its ceiling is lower and the field must invest in real exploration instead. Either way it is now a mature subfield with its own bottlenecks — entropy collapse, reward hacking, and credit assignment over long agent trajectories.
 
 ## Key directions & work
 

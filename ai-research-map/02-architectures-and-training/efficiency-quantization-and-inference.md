@@ -1,7 +1,9 @@
 # Efficiency, Quantization & Inference
 
-Doing more with less — lower numerical precision, smaller KV-caches, faster decoding, and
-edge-deployable models. One of the most *mature and fast-moving* areas of AI research.
+## In brief
+- **What it is** — the engineering that makes large models cheaper and faster to train and, especially, to *run*. It covers four main levers: using lower-precision numbers for the math (e.g. 4-bit instead of 16-bit), shrinking the "KV cache" (the running memory of a conversation the model must keep in fast memory), speeding up token-by-token generation, and shrinking models to run on phones and laptops. Think of it as tuning the engine rather than redesigning the car.
+- **Why it's pursued** — serving a model to millions of users is where most of the real-world cost and latency live, and modern inference is increasingly limited not by raw compute but by memory bandwidth (the "memory wall"): moving data around is slower than doing arithmetic on it. Cutting precision and memory footprint attacks that bottleneck directly.
+- **Potential impact** — the same hardware serves far more users at lower cost and latency, and capable models become deployable on-device (private, offline, no server round-trip). The key risk: aggressive compression can quietly degrade reasoning or rare-case behavior in ways average benchmark scores hide, so "nearly lossless" needs careful checking.
 
 ## Key directions & work
 

@@ -1,7 +1,17 @@
 # Open-Source & Decentralized
 
-The labs and movements that treat *openness* and *decentralization* as research values in
-their own right.
+## In brief
+- **What it is** — the labs and movements that treat *openness* and *decentralization* as
+  research values in their own right. Two threads: releasing models the public can freely use
+  and study (from just the weights to the full training data, code, and checkpoints), and
+  training models across many scattered machines instead of one datacenter.
+- **Why it's pursued** — a fully transparent model lets outsiders reproduce results and study
+  *how* it works, not just use it; decentralized training aims to pool compute that no single
+  organization owns, loosening the frontier's dependence on giant private datacenters.
+- **Potential impact** — if it succeeds, capable AI becomes cheaper to scrutinize and harder to
+  monopolize, and training can draw on distributed hardware. The key limitation: open models
+  still trail the closed frontier (~4 months as of 2026), "open" does not mean cheap to build,
+  and decentralized *pretraining* at frontier scale remains unproven.
 
 > **📦 Concept: "fully open" vs "open-weight"** — An *open-weight* release ships only the
 > trained model. A *fully open* release also includes the **training data, code, and

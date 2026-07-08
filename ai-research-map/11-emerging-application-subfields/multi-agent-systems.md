@@ -1,5 +1,20 @@
 # Multi-Agent Systems
 
+## In brief
+- **What it is** — instead of one AI model doing everything, multiple AI agents work in parallel:
+  splitting a task among specialists, talking to each other over shared "languages" (protocols), or
+  role-playing as a simulated population. Think of it as moving from a single worker to a team with a
+  manager, or to a virtual town full of agents whose collective behavior you can study.
+- **Why it's pursued** — some jobs are too big or too parallel for one agent (broad research, large
+  codebases), and some questions — how a rumor spreads, how a policy lands — are best explored by
+  simulating many interacting actors. Shared protocols also let agents from different vendors plug
+  into tools and into one another without custom glue code.
+- **Potential impact** — done well, multi-agent setups deliver measurable gains on breadth-heavy
+  tasks and give social scientists a cheap sandbox for "what if" experiments. The catches: they burn
+  far more compute (token cost multiplies), fail in characteristic coordination ways rather than from
+  weak models, and open a fresh security attack surface where one compromised tool or agent can
+  poison the rest.
+
 Multiple AI agents coordinating — to solve tasks together, to communicate over shared protocols, or
 to simulate societies.
 

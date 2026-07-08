@@ -1,7 +1,9 @@
 # Nascent Research Directions
 
-Genuinely *early-stage* ideas — some will become major fields, some will fade. They're here
-because "mapping the whole field" means capturing the edges, not just the center.
+## In brief
+- **What it is** — a scouting report on the *edges* of AI research: genuinely early-stage ideas that have real papers and labs behind them but are unproven at scale. Some will grow into major fields; many will fade.
+- **Why it's pursued** — mapping a field honestly means capturing the frontier, not just the crowded center. These directions are where the next paradigm might come from — new architectures, new ways to interpret models, new kinds of reasoning — precisely because they are not yet mainstream bets.
+- **Potential impact** — any one of these could become foundational (a post-transformer architecture, a way to give neural code correctness guarantees, a lab-in-a-box for social science). The honest expectation is that *most will not* — so these are high-variance, low-confidence signals to track rather than conclusions to rely on.
 
 > **📦 How to read this** — these are lower-confidence, higher-variance directions. Each is
 > real (it has papers and labs behind it) but unproven at scale.

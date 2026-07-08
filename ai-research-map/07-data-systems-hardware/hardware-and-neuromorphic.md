@@ -1,7 +1,23 @@
 # Hardware & Neuromorphic
 
-The silicon underneath AI — mainstream accelerators, the HBM chokepoint, alternative
-computing paradigms, and the power constraint that now gates everything.
+## In brief
+- **What it is** — The physical silicon that AI runs on: the mainstream accelerators (NVIDIA
+  GPUs, Google TPUs, Amazon Trainium) that train and serve today's models, the specialized
+  memory chips (HBM) that feed them data fast enough, and a set of experimental "alternative"
+  designs — neuromorphic chips that mimic how neurons fire, photonic chips that compute with
+  light, and in-memory chips that do math where the data already sits — that trade generality
+  for radically lower energy use.
+- **Why it's pursued** — Every capability gain rides on cheaper, faster, more energy-efficient
+  compute. Two things now gate progress: HBM memory (the fast memory beside the processor is
+  sold out) and, above all, electricity — a frontier data center's power draw, not its chip
+  budget, is increasingly what limits how big AI can get. The exotic architectures exist to
+  break that energy ceiling.
+- **Potential impact** — If mainstream accelerators keep scaling, AI stays on its current
+  trajectory but consumes a fast-growing share of the world's power (the IEA projects
+  data-center demand roughly doubling by 2030). If an alternative paradigm delivers its
+  promised order-of-magnitude efficiency gains at production scale, it could reshape both the
+  cost of AI and its energy footprint — but so far these designs win on efficiency demos while
+  lacking the software maturity and general-purpose flexibility to displace GPUs.
 
 ## Key directions & work
 

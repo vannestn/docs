@@ -1,8 +1,19 @@
 # Multilingual & Low-Resource AI
 
-Extending capability beyond English — and closing the persistent equity gap that remains the
-field's defining open problem. This is both a *capability* axis and a *fairness* one (see
-[13 · Fairness](../13-fairness-ethics-and-human-factors/fairness-bias-and-sociotechnical-ai.md)).
+## In brief
+- **What it is** — the effort to make AI work well in the world's many languages, not just English —
+  especially "low-resource" languages that have little digital text to train on. It spans reasoning,
+  speech recognition, translation, and whether a model shares a culture's actual values rather than a
+  translated Western default. It is both a *capability* axis and a *fairness* one (see
+  [13 · Fairness](../13-fairness-ethics-and-human-factors/fairness-bias-and-sociotechnical-ai.md)).
+- **Why it's pursued** — most of humanity does not speak English, yet AI is far weaker outside it: on
+  hard reasoning tasks the best-to-worst-language gap reaches ~24 points, and some African languages
+  score under 1%. Closing this gap is the field's defining equity problem, and it also costs money —
+  languages that split into more tokens are literally more expensive to serve (the "token tax").
+- **Potential impact** — success means billions of people getting AI that understands their language
+  and cultural context, with open speech models already reaching 1,600+ languages. The key risk is
+  the reverse: baking English-centric benchmarks, tokenizers, and values into systems that then
+  quietly underserve or misrepresent everyone else.
 
 ## Key directions & work
 

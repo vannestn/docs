@@ -1,7 +1,21 @@
 # Scalable Oversight & RLHF Successors
 
-How to supervise models on tasks where humans struggle to judge correctness — and the
-evolution of preference-tuning beyond vanilla RLHF.
+## In brief
+
+- **What it is** — Methods for supervising models on tasks where humans can't easily
+  judge whether an answer is right, plus the evolution of preference-tuning beyond vanilla
+  RLHF (reinforcement learning from human feedback). The recurring trick is to *amplify* a
+  human's limited judgment — for example, having two copies of a model argue opposite sides
+  so a weaker judge can spot the winner, or rewarding a model for actions that *look* useful
+  in the moment so it can't quietly plan a hard-to-catch shortcut.
+- **Why it's pursued** — As models tackle problems humans find hard to check, direct human
+  feedback breaks down: a person can't reliably grade a proof, a sprawling codebase, or a
+  superhuman strategy. Without a way to keep supervision trustworthy past that point, we lose
+  the main lever for steering what models actually optimize.
+- **Potential impact** — Success would let us safely train systems that exceed human
+  judgment on a task, closing the central gap between today's methods and trustworthy
+  superhuman AI. The catch: current techniques are demonstrated only in controlled or
+  toy settings, and reliably overseeing genuinely superhuman systems remains unsolved.
 
 ## Key directions & work
 

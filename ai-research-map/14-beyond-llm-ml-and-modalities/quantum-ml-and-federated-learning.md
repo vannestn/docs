@@ -1,7 +1,9 @@
 # Quantum ML & Federated Learning
 
-Two fields often lumped under "emerging ML" with opposite hype-vs-reality profiles: quantum ML
-is mostly *promise*, federated learning is quietly *deployed*.
+## In brief
+- **What it is** — Two distinct "emerging ML" fields bundled here for contrast. *Quantum machine learning (QML)* tries to run learning algorithms on quantum computers, hoping their exotic physics unlocks patterns classical computers cannot. *Federated learning (FL)* trains a shared model across many phones or hospitals without ever pooling their raw data — each device computes updates locally and only those updates are combined.
+- **Why it's pursued** — QML is chasing a speed or accuracy advantage on hard problems no classical machine can match. FL solves a privacy problem: it lets you learn from sensitive data (keyboard typing, medical records) that legally or ethically cannot be centralized.
+- **Potential impact** — They have opposite hype-vs-reality profiles. QML is mostly *promise*: leading groups now find its flagship models are secretly reproducible on a classical laptop, so real-world advantage remains unproven. FL is quietly *deployed*: it already ships at scale (Google Gboard, Apple) with formal privacy guarantees, and the live frontier is stretching it to fine-tune large language models on-device.
 
 ## Quantum machine learning (QML) — mostly promise
 

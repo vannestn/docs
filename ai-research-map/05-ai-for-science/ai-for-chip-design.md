@@ -1,7 +1,18 @@
 # AI for Chip Design (EDA)
 
-Using AI — reinforcement learning and, increasingly, generative/agentic models — to design the
-chips that AI itself runs on.
+## In brief
+- **What it is** — Using AI to help design the chips that AI itself runs on. A modern chip packs
+  billions of components onto silicon, and deciding where each block goes is a fiendishly hard
+  layout puzzle. Two flavors are in play: reinforcement learning (RL), where an agent learns
+  good layouts by trial and error, and — increasingly — generative/agentic models that act as
+  copilots for engineers.
+- **Why it's pursued** — Chip layout is slow, expert-driven, and directly bounds performance,
+  power, and cost. Automating even part of it can shorten design cycles and free scarce engineers
+  for higher-level work, which matters most for the AI accelerators the whole field now depends on.
+- **Potential impact** — If it works, faster and cheaper chip design compounds across the whole
+  hardware stack. The key caveat: the headline RL result (Google's AlphaChip) is the subject of a
+  still-unsettled reproducibility dispute, and commercial vendors are betting more on AI copilots
+  than on RL for the core layout problem.
 
 > **📦 Concept: EDA (Electronic Design Automation)** — the software used to design computer
 > chips. "Placement/floorplanning" = deciding where blocks go on the silicon, a hard

@@ -1,6 +1,10 @@
 # Mathematics
 
-The domain where AI crossed from competition problems to *original research* in 2026.
+## In brief
+
+- **What it is** — Using AI to do mathematics: not just arithmetic, but constructing proofs — the step-by-step logical arguments that establish a theorem is true. The strongest systems pair a large language model (which reasons in ordinary math prose) with a *proof assistant* like Lean, software that mechanically checks each step so a claimed proof either compiles or fails. The LLM proposes; Lean verifies. This is the domain where, in 2026, AI crossed from competition problems to *original research*.
+- **Why it's pursued** — Verifying a mathematical proof by hand is slow and error-prone, and even elite mathematicians make mistakes. A machine-checked proof is trustworthy in a way informal reasoning is not, which lets AI systems search vast spaces of possible arguments without a human vouching for every line. The bottleneck is data: high-quality formal (machine-checkable) math is scarce, so much of the work is *autoformalization* — automatically translating informal math into Lean to generate training material.
+- **Potential impact** — If it succeeds, AI becomes a genuine research collaborator that can settle long-open conjectures and formally certify results, as early systems already have on a handful of decades-old problems. The upside is trustworthy, verifiable mathematics at scale; the key limits are that results so far cluster in areas where the Lean library is mature and problems break into tractable pieces, that research-level math remains far out of reach, and that verified output is expensive while cheap informal reasoning stays unverified.
 
 ## Key directions & work
 

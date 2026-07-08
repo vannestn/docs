@@ -1,7 +1,20 @@
 # Building Interpretability & Alignment Tools
 
-How the techniques meant to *understand* and *align* models are themselves constructed — and the
-methodological reasons they're not yet reliable enough to certify safety.
+## In brief
+- **What it is** — a look under the hood at the *tools* researchers build to understand what a model is
+  thinking (interpretability) and to steer it toward safe behavior (alignment): feature dictionaries,
+  circuit maps, automated auditors, preference-based training, and monitoring protocols. The focus is
+  how each tool is constructed and how it can fail — not which lab is ahead.
+- **Why it's pursued** — modern models are opaque, so labs need instruments to inspect and control
+  them; but a safety tool is only useful if it works, and a tool that quietly gives *false* assurance is
+  worse than none. Stress-testing the methods themselves is how the field learns which claims to trust.
+- **Potential impact** — reliable tools would let labs certify a model as safe before release, not just
+  probe it after the fact. The recurring finding here is the limit: every current method has a
+  documented way it can mislead, so today these tools can *investigate* models but cannot yet *certify*
+  them.
+
+*This doc covers how the techniques meant to understand and align models are themselves constructed —
+and the methodological reasons they're not yet reliable enough to certify safety.*
 
 ## (1) Sparse autoencoders & transcoders
 - **Method:** train a sparse dictionary-learning layer on a frozen model's activations, then

@@ -1,7 +1,19 @@
 # Building Scientific Models & Evaluations
 
-How domain foundation models (proteins, DNA, materials, weather) and benchmarks are constructed
-— and the validity limits baked into those processes.
+## In brief
+- **What it is** — A look at *how* two things get built: domain foundation models (AI trained on
+  proteins, DNA, materials, weather) and the benchmarks used to grade AI. The focus is on the
+  construction process — what data goes in, how tests are written — and the validity limits baked
+  in along the way.
+- **Why it's pursued** — Headline results (a model "discovered" millions of materials, or "beats"
+  physics-based forecasts) can hide how the underlying data and test design shape the answer.
+  Understanding the pipeline reveals when a number reflects real capability versus an artifact of
+  biased data or a flawed benchmark.
+- **Potential impact** — Getting this right decides whether scientific AI is trusted for real
+  discovery and whether evaluations actually measure what they claim. The recurring risk: training
+  data is scarce and skewed, physical validation (wet-lab, simulation, observation) is the
+  throughput bottleneck, and benchmarks saturate, resist auditing, and rarely report uncertainty —
+  so headline numbers can overstate what the systems truly know.
 
 ## (A) Scientific foundation models
 

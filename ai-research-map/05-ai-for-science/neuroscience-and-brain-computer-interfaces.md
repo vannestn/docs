@@ -1,7 +1,23 @@
 # Neuroscience & Brain-Computer Interfaces
 
-AI decoding neural activity — restoring speech to paralyzed patients, decoding *inner*
-speech, and building cross-species "brain foundation models."
+## In brief
+
+- **What it is** — Using AI to read out what the brain is doing. Sensors (electrodes on or in
+  the cortex, or non-invasive EEG/fMRI) record neural activity while a person tries to speak, imagine
+  speaking, or move; a machine-learning model then translates those signals into text, a synthesized
+  voice, or other outputs. The frontier work here restores speech to paralyzed patients, decodes
+  *inner* (imagined, unspoken) speech, and builds cross-species "brain foundation models" — large
+  models pretrained on lots of neural recordings so they can adapt to many decoding tasks.
+- **Why it's pursued** — People with ALS, stroke, or spinal-cord injury can lose the ability to speak
+  while their intentions stay intact. A brain-computer interface (BCI) can give them back a way to
+  communicate, ideally in real time and in their own voice. Beyond the clinic, shared "foundation
+  model" pretraining aims to overcome the field's core scarcity: neural data is tiny, noisy, and
+  differs from person to person, so learning that transfers across subjects would be a major unlock.
+- **Potential impact** — If it succeeds, fluent real-time communication becomes possible for people
+  who are "locked in," including expressive control over intonation and emphasis, not just words. The
+  main limitation today is that the best results are invasive (surgical implants), single-patient, and
+  still error-prone on large vocabularies; and decoding *inner* speech raises real mental-privacy
+  concerns, prompting safeguards like an unlock "password."
 
 ## Key directions & work
 

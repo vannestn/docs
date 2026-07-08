@@ -1,8 +1,22 @@
 # Continual Learning & Self-Improvement
 
-How a model can learn new things over time without forgetting old ones — and the "era of
-experience" framing, where agents learn mainly from their own interaction rather than from
-static data.
+## In brief
+- **What it is** — Methods for letting a model keep learning new things over time without
+  forgetting what it already knew. Today's models are frozen after training; this line of
+  work asks how a deployed model could absorb new experience the way a person picks up a
+  skill on the job. A related framing is the "era of experience": agents that learn mainly
+  from their own interaction with an environment rather than from a fixed pile of human data.
+- **Why it's pursued** — Two stubborn failures block it. *Catastrophic forgetting*: train a
+  network on a new task and it tends to overwrite the old one. *Loss of plasticity*: over
+  many tasks a network gradually loses even the ability to fit new ones. Retraining a model
+  from scratch every time the world changes is slow and expensive, so a model that updates
+  itself safely would be far more useful.
+- **Potential impact** — If it works, models could adapt to new users, tools, and facts on
+  the fly instead of waiting for the next big retraining run — a step toward agents that
+  genuinely self-improve. The key limitation is that forgetting and plasticity loss are not
+  solved, only mitigated, and at least one line of work argues forgetting is an *intrinsic*
+  cost of compressing experience into limited memory rather than a bug a better method will
+  remove.
 
 ## Key directions & work
 

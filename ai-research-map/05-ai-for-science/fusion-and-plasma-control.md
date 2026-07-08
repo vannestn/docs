@@ -1,7 +1,10 @@
 # Fusion & Plasma Control
 
-Using reinforcement learning (RL) to control the superheated plasma inside tokamak fusion
-reactors — one of the clearest "RL controls real hardware" success stories in science.
+## In brief
+
+- **What it is** — Fusion reactors called tokamaks confine a cloud of superheated gas (plasma) inside a doughnut-shaped magnetic field. The plasma is unstable and squirms constantly, so its shape and position must be corrected thousands of times a second by adjusting dozens of magnetic coils. This work uses AI — mainly reinforcement learning (RL), where a controller learns by trial and error in simulation — to steer those coils, replacing hand-tuned control systems.
+- **Why it's pursued** — Keeping a fusion plasma stable is a hard, fast, high-dimensional control problem, and disruptions (sudden loss of confinement) can damage a reactor. It is also one of the clearest cases where RL controls real, expensive hardware rather than a game or a benchmark, making it a proving ground for applied RL in science.
+- **Potential impact** — Better control could make fusion experiments cheaper and safer to run and help hold the exotic plasma shapes future power plants may need. The open question is whether controllers trained on one machine transfer to others — today they are still built device-by-device, and nothing has been validated at reactor scale (ITER/DEMO).
 
 ## Key directions & work
 

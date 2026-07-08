@@ -1,7 +1,19 @@
 # Economics & Forecasting
 
-Quantifying AI's trajectory and its economic impact — the numbers that anchor policy and
-investment.
+## In brief
+- **What it is** — the effort to put numbers on where AI is heading and what it does to the
+  economy: how fast capabilities improve, how many powerful models will exist, how much compute
+  and money the trend consumes, and whether AI is replacing workers or making them more
+  productive. Think of it as the "dashboard and forecast" for the whole field — the measurements
+  policymakers and investors reach for when they need something more concrete than a vibe.
+- **Why it's pursued** — big decisions (regulation, safety planning, capital allocation) need
+  quantitative anchors, not guesses. If you can measure the doubling rate of what a model can do,
+  or project how many models will cross a regulatory compute line, you can plan for the world a
+  few years out instead of reacting to it.
+- **Potential impact** — good forecasts let governance and industry get ahead of AI's trajectory;
+  bad ones misdirect regulation and investment. The key limitation is that these numbers are
+  contested and keep getting revised — capability trends translate poorly into economic value,
+  and headline forecasts have recently moved *slower*, not faster.
 
 ## Key directions & work
 

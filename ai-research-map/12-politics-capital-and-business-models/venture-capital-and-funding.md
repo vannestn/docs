@@ -1,7 +1,9 @@
 # Venture Capital & Funding
 
-Where the money is going — and what that reveals about which research directions investors
-believe in.
+## In brief
+- **What it is** — A map of where private investment is flowing in AI, and what those bets reveal about which research directions investors think will pay off. Venture capital funds early-stage companies in exchange for equity, hoping a few big winners cover many losses; where that money lands is a live signal of what the market believes is coming next.
+- **Why it's pursued** — Frontier AI research is extraordinarily expensive (talent, compute, data), so who gets funded — and at what scale — largely decides which directions get seriously explored. Tracking the flows shows which theses investors are underwriting, sometimes years ahead of any shipped product.
+- **Potential impact** — Funding concentration steers the whole field: well-capitalized directions attract talent and compute and crowd out others, and a handful of firms can define the near-term agenda. The upside is fast progress on backed ideas; the key risk is that valuations run far ahead of results, so a correction could strand the least-proven bets.
 
 ## The "post-scaling research era" bet
 The most striking 2025–26 pattern: **enormous rounds for labs with little or no public

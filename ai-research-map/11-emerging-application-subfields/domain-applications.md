@@ -1,5 +1,20 @@
 # Domain Applications
 
+## In brief
+- **What it is** — a survey of specific industries (healthcare, education, enterprise software,
+  agriculture) where AI is maturing into its own research area, with methods and benchmarks tailored
+  to that domain rather than borrowed from general-purpose chatbots. In each vertical the question
+  has shifted from "can a model answer a question?" to "can a system reliably complete a real,
+  multi-step task in this setting?"
+- **Why it's pursued** — general models are strong on knowledge quizzes but brittle on the messy,
+  high-stakes workflows real practitioners face (reading a lab value, tutoring a struggling student,
+  updating enterprise records). Purpose-built methods and honest evaluations are needed to tell
+  genuine capability apart from benchmark scores that overstate readiness.
+- **Potential impact** — success means AI that dependably augments doctors, teachers, and knowledge
+  workers end-to-end, not just at isolated steps. The key risk is deployment outrunning evidence:
+  in medicine and law especially, cascading errors and thin external validation mean a good score in
+  one setting says little about safety in another.
+
 Verticals where AI is becoming a distinct research area with its own methods and benchmarks —
 beyond general-purpose models.
 

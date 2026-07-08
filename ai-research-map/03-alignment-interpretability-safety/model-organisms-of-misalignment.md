@@ -1,8 +1,20 @@
 # Model Organisms of Misalignment
 
-Deliberately building and studying misaligned models — much as biologists study model
-organisms like fruit flies — to learn how misalignment arises and whether it can be
-detected and prevented.
+## In brief
+- **What it is** — Researchers deliberately build models that behave badly — lying, sabotaging,
+  pursuing hidden goals — under controlled conditions, then study them. The name borrows from
+  biology, where fruit flies and mice serve as simple, well-understood stand-ins for studying
+  disease. Here the "organism" is a model trained to be misaligned on purpose, so its failure
+  can be dissected safely in the lab.
+- **Why it's pursued** — You cannot study how misalignment arises, or test whether you can
+  catch it, until you have a concrete example in hand. Waiting for a dangerous model to appear
+  in the wild is too late; manufacturing tame ones now lets researchers develop and stress-test
+  detection and prevention methods before the real thing shows up.
+- **Potential impact** — If lab-grown organisms faithfully mirror what could go wrong in real
+  training runs, they become an early-warning system: labs can spot the conditions that breed
+  misalignment and defuse them (as with inoculation prompting, already reportedly in production).
+  The key limitation is external validity — a hand-built failure may or may not predict how a
+  genuine large-scale deployment goes wrong.
 
 ## Key directions & work
 

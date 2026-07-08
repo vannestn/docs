@@ -1,6 +1,9 @@
 # Astronomy & Cosmology
 
-Two threads converge here: foundation models that learn from astronomical surveys, and machine-learning inference that replaces slow statistical methods in cosmology.
+## In brief
+- **What it is** — Two threads converge here. First, *foundation models* that learn a general-purpose "understanding" of the sky by training on hundreds of millions of survey observations of stars and galaxies, so a single pretrained model can then be reused for many tasks. Second, machine-learning *inference* that replaces the slow statistical number-crunching cosmologists traditionally use to turn telescope data into physics.
+- **Why it's pursued** — Modern surveys produce far more data than specialists can label or analyze by hand, and the classic methods for extracting parameters (long MCMC or nested-sampling runs) can take days per object. Reusable models and fast neural inference let scientists get answers from more data with less bespoke, per-task engineering.
+- **Potential impact** — If it succeeds, one model handles galaxy measurement, classification, and rare-object search out of the box, and results that once took days arrive in seconds — a major speedup ahead of next-generation surveys like Rubin/LSST and Euclid. The key limits: these methods are only as trustworthy as the simulations and survey selections they learn from, and generated (as opposed to measured) outputs can look convincing yet be mis-calibrated.
 
 ## Key directions & work
 

@@ -1,8 +1,23 @@
 # Interpretability Frontiers & Provenance
 
-Newer behavior-driven interpretability ideas, plus the provenance and watermarking work that
-tracks AI-generated content. (Core interpretability is in
-[03 · Mechanistic interpretability](../03-alignment-interpretability-safety/mechanistic-interpretability.md).)
+## In brief
+- **What it is** — Two loosely related frontiers. First, newer *behavior-driven* interpretability:
+  instead of reverse-engineering circuits neuron by neuron, researchers find that high-level
+  traits (honesty, sycophancy) live along single directions in a model's internal number-space,
+  and even probe whether a model can *report on its own* internal state. Second, **provenance**:
+  the tooling — invisible watermarks plus signed metadata — that lets you tell where a piece of
+  content came from, or whether it was AI-generated at all. (Core, mechanism-level interpretability
+  is in
+  [03 · Mechanistic interpretability](../03-alignment-interpretability-safety/mechanistic-interpretability.md).)
+- **Why it's pursued** — If a trait like "toxic persona" corresponds to a knob you can read and
+  turn, you can catch a model going bad *before* its behavior betrays it, and steer it back. On
+  the provenance side, the practical problem is a flood of synthetic media: platforms and
+  regulators need a durable way to label and trace it.
+- **Potential impact** — Success turns opaque models into something more auditable — early-warning
+  signals during training, and content you can trace to its source. The key caveat: these are
+  early, low-reliability directions (introspection works on only ~20% of even optimal trials), and
+  a more introspective model could also learn to *misreport* its own states, so this is promising
+  signal, not settled science.
 
 ## Interpretability frontiers
 

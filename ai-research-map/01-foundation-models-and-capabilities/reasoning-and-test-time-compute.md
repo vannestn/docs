@@ -1,8 +1,21 @@
 # Reasoning & Test-Time Compute
 
-The single biggest shift in frontier AI since 2024: spending more compute *at inference*
-("thinking" before answering) rather than only scaling parameters. This is now the
-dominant frontier paradigm.
+## In brief
+- **What it is** — Letting a model spend extra compute *while answering* — generating a long
+  internal "chain of thought," trying several approaches, and checking its own work — instead
+  of just producing the first response that comes to mind. Think of it as the difference
+  between blurting out an answer and taking time to reason it through on scratch paper. This
+  inference-time "thinking" is the single biggest shift in frontier AI since 2024, and is now
+  the dominant paradigm.
+- **Why it's pursued** — For hard problems (math, code, multi-step logic), a bigger model is
+  not always the cheapest path to a better answer. Giving a fixed model more room to think,
+  search, and revise can raise accuracy — and when compute is allocated well, doing so can
+  beat spending the same compute on a larger model.
+- **Potential impact** — It reframes progress as a *training-time + inference-time* co-design
+  problem rather than a race to add parameters, and it underpins today's deployed "reasoning"
+  systems (OpenAI o3/o4, GPT-5, Gemini Deep Think, DeepSeek-R1). Key limits: it is not a free
+  substitute for scale on the very hardest problems, the reward signals that drive it can be
+  gamed, and the visible chain of thought — useful for oversight — is fragile.
 
 ## Why it matters
 

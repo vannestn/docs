@@ -1,8 +1,21 @@
 # RAG & Memory Systems
 
-Two ways to give a model knowledge it wasn't trained on: **retrieval** (pull in external,
-current, or private documents at query time) and **memory** (durable, evolving state that
-persists across sessions — not just a bigger context window).
+## In brief
+
+- **What it is** — Two ways to give a model knowledge it wasn't trained on. **Retrieval**
+  (RAG) pulls in external, current, or private documents at query time and feeds them to the
+  model, like a student who looks things up in a reference library before answering.
+  **Memory** is durable, evolving state that persists across sessions — a running notebook the
+  system reads *and* writes, not just a bigger context window it forgets after each chat.
+- **Why it's pursued** — A trained model's knowledge is frozen at training time and knows
+  nothing private to you. Retrieval keeps answers current and grounded in real sources (so they
+  can be cited), while memory lets an assistant remember what you told it last week instead of
+  starting from scratch every conversation.
+- **Potential impact** — Grounding answers in retrieved documents already makes assistants far
+  more accurate and trustworthy for private and up-to-date knowledge. Durable memory could turn
+  chatbots into long-lived personal assistants — but done naively it introduces new failure
+  modes, such as leaking facts across contexts where they don't belong or flattering the user
+  based on remembered preferences.
 
 > **📦 Concept: RAG (Retrieval-Augmented Generation)** — before answering, the system
 > *searches* a document store and feeds the relevant bits into the model's context. This

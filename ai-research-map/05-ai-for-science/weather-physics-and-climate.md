@@ -1,8 +1,23 @@
 # Weather, Physics & Climate
 
-ML forecasting models now routinely beat traditional numerical methods — and a nascent push
-aims to extend that success into general "physics foundation models" that simulate many physical
-systems with one network.
+## In brief
+
+- **What it is** — Using machine learning to predict and simulate physical systems: first
+  weather (where the atmosphere obeys fluid-dynamics equations), and increasingly the broader
+  goal of a "physics foundation model" — one network that can simulate many different physical
+  systems. Traditional methods solve the governing equations step-by-step on supercomputers; the
+  ML approach instead learns the patterns from vast amounts of past data, then predicts new
+  states directly. Think of it as replacing a from-scratch physics calculation with a model that
+  has seen enough weather to know what comes next.
+- **Why it's pursued** — Conventional numerical weather prediction is accurate but slow and
+  expensive, tying up supercomputers for hours per forecast. ML models can match or beat that
+  accuracy in minutes on a single chip, and a general physics model would remove the need to
+  hand-build and retrain a separate simulator for every new system.
+- **Potential impact** — Faster, cheaper, and often more skillful forecasts — including of
+  extreme events — already in production (Google Search, Maps, Gemini). A working general
+  physics model could accelerate engineering and science broadly. The key limitation: forecast
+  skill does not guarantee physical correctness, and errors still snowball over long time
+  horizons, so these models are not yet a replacement for precise numerical solvers.
 
 ## Key directions & work
 

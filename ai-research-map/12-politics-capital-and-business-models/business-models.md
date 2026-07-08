@@ -1,7 +1,9 @@
 # Business Models
 
-The distinct ways organizations turn AI research into a sustainable business — and how each
-one pulls research in a different direction.
+## In brief
+- **What it is** — the distinct ways organizations turn AI research into a paying business: selling model access, giving weights away and monetizing something else, renting fast chips, shipping autonomous agents, owning the discoveries a model makes, or supplying the labs their raw materials. Think of it as the different "revenue engines" bolted onto broadly similar underlying technology.
+- **Why it's pursued** — the same research can be packaged many ways, and the packaging choice shapes what a lab builds. A revenue model that rewards reasoning and safety pulls research one way; one that rewards cheap serving or ecosystem reach pulls it another. Understanding the model explains the incentives.
+- **Potential impact** — which models prove durably profitable decides who can afford frontier-scale compute, whether capability or safety wins when they conflict, and which of today's focused startups survive rather than being absorbed by a frontier lab. It affects who funds the next round of research and on what terms.
 
 ## The main models
 

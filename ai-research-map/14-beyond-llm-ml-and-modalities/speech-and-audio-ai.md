@@ -1,7 +1,18 @@
 # Speech & Audio AI
 
-Recognition, understanding, dialogue, music, and the codecs underneath — a field rapidly
-merging with LLMs.
+## In brief
+- **What it is** — the AI that turns speech into text (recognition), understands and reasons about
+  sound, holds spoken conversations, generates music, and compresses audio into the compact
+  "tokens" models work with (codecs). Increasingly these tasks run inside a single language model
+  rather than a chain of separate tools — the same shift LLMs brought to text is now reshaping audio.
+- **Why it's pursued** — voice is the most natural human interface, and the old pipeline
+  (speech-to-text → LLM → text-to-speech) is slow, drops tone and emotion, and can't handle natural
+  back-and-forth. Handling audio directly promises faster, more lifelike assistants, transcription
+  for thousands of under-served languages, and cheaper audio processing overall.
+- **Potential impact** — near-instant voice assistants that interrupt and are interrupted like
+  people, transcription that finally reaches the long tail of the world's languages, and commodity
+  music generation. The key risk: the same tech makes voice cloning and audio deepfakes easy, so
+  provenance and watermarking are in an arms race with realism.
 
 ## Key directions & work
 

@@ -1,7 +1,23 @@
 # Systems & Infrastructure
 
-The distributed-training and inference-serving stack that makes frontier models trainable at
-all and affordable to run.
+## In brief
+- **What it is** — The distributed-training and inference-serving stack that makes frontier
+  models trainable at all and affordable to run: the software and networking that splits one
+  model across tens of thousands of GPUs, keeps them working together despite constant hardware
+  failures, and then serves the finished model to users cheaply. Think of it as the plumbing and
+  logistics behind the model — not the model itself, but everything that lets a chip cluster
+  behave like one giant computer.
+- **Why it's pursued** — Frontier models are too large for any single machine, so training and
+  serving them are fundamentally distributed-systems problems. The bottlenecks are rarely raw
+  math speed; they are the cost of moving data between chips, the memory needed to hold each
+  request's context (the "KV-cache"), and the near-certainty that some GPU fails during a
+  months-long run. Solving these decides whether a model is affordable to build and run at all.
+- **Potential impact** — Gains here compound directly into cost and capability: lower-precision
+  arithmetic (FP4/FP8) and smarter serving cut training and inference bills severalfold, cheaper
+  cross-datacenter links loosen the constraint that all compute sit in one building, and better
+  fault tolerance turns wasted idle time into usable training. The key limitation is that many
+  wins are workload-specific (long-context serving in particular stays memory-bound) and the most
+  aggressive techniques are not yet proven at true frontier scale.
 
 ## Key directions & work
 

@@ -3,6 +3,11 @@
 How to push the effective context to millions of tokens — and why that still falls short of
 real memory: **long context ≠ long-term memory**.
 
+## In brief
+- **What it is** — Two related capabilities. *Long context* is how much text a model can read at once (its "working memory" for a single request); pushing this to millions of tokens means a model can take in whole books or codebases in one go. *Long-term memory* is different: it is durable, evolving knowledge that persists and updates across many separate conversations — closer to what we mean by remembering than to re-reading a big document each time.
+- **Why it's pursued** — Standard attention costs grow with the square of the input length, so naively feeding in a million tokens is prohibitively slow and memory-hungry; the research here makes long inputs cheap enough to be practical. Separately, models that forget everything between sessions cannot act as reliable assistants or agents, which drives work on genuine memory.
+- **Potential impact** — Cheap million-token context is already shipping in production models and lets systems reason over large documents and long histories at a fraction of the cost. The open frontier is true memory: an assistant that recalls, updates, and (crucially) forgets the right things over time — with the key risk being stale, leaked, or manipulated memories rather than just missed facts.
+
 ## Million-token context via efficient attention
 - **DeepSeek-V4** — [arXiv:2606.19348](https://arxiv.org/abs/2606.19348) — two MoE models built for
   **1M-token context**: **V4-Pro** (1.6T total / 49B active) and **V4-Flash** (284B total / 13B

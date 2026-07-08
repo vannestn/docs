@@ -1,7 +1,17 @@
 # Academic & University Labs
 
-What academia researches in the frontier-model era — and where it still leads despite a stark
-compute gap.
+## In brief
+- **What it is** — the slice of AI research done by universities and non-profit academic labs.
+  Unable to match industry's compute for training frontier models, academia has refocused on the
+  work that doesn't need thousands of GPUs: measuring how good and how reliable AI systems really
+  are, making models cheaper to run, understanding how they work inside, releasing fully-open
+  models, and proving theory.
+- **Why it's pursued** — someone independent of the model vendors has to hold the neutral yardstick.
+  Academia supplies the trusted evaluations, the reproducible open models, and the skeptical
+  scrutiny that a field dominated by commercial labs would otherwise lack.
+- **Potential impact** — if it works, the public keeps an honest, vendor-independent picture of what
+  AI can and can't do, plus open tools everyone can build on. The key risk: the widening compute
+  gap could push academia to the margins, leaving frontier progress unchecked by outsiders.
 
 > **📦 The structural reality** — by 2024–25, ~90% of notable AI models came from industry, and
 > academic researchers often get 1–8 GPUs versus industry's thousands. Academia responded by

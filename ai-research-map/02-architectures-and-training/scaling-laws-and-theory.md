@@ -1,8 +1,20 @@
 # Scaling Laws & Theory
 
-The quantitative and theoretical understanding of *why* deep learning works, and how
-performance scales with compute, data, and parameters. This matters because reliable scaling
-laws turn frontier training and inference into a budgeting problem rather than a gamble.
+## In brief
+- **What it is** — the quantitative and theoretical study of *why* deep learning works and how
+  performance improves as you add more compute, data, and parameters. Scaling *laws* are the
+  empirical curves — often clean power laws — that predict a model's error before you train it;
+  the *theory* side tries to explain, from first principles, why those curves exist and when
+  they break.
+- **Why it's pursued** — frontier training runs cost hundreds of millions of dollars, so guessing
+  wrong is expensive. Reliable scaling laws turn "how big a model, how much data, how much
+  inference compute?" into a budgeting problem rather than a gamble, and let labs and regulators
+  reason about future capability before it arrives.
+- **Potential impact** — better laws mean cheaper, more predictable models and sounder
+  compute-governance thresholds; a working theory of generalization could even yield practical
+  training speedups. The key limitation: today's laws predict *loss*, not *capabilities* — the
+  surprising jumps ("emergence") stay hard to forecast, and new regimes like repeated or
+  synthetic data may not obey the classic curves.
 
 ## Key directions & work
 

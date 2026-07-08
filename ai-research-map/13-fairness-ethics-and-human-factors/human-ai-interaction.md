@@ -1,7 +1,19 @@
 # Human-AI Interaction
 
-The HCI of AI: how people actually use, trust, over-rely on, and are affected by AI — which
-determines real-world outcomes as much as raw capability does.
+## In brief
+- **What it is** — The study of how people actually use, trust, over-rely on, and are
+  affected by AI systems — the human-computer interaction (HCI) layer on top of the models.
+  It asks what happens when a real person sits in front of an AI: Do they catch its
+  mistakes? Do they lean on it too hard? Does using it change how they think or feel?
+- **Why it's pursued** — Raw model capability only matters if humans can put it to good use.
+  A highly accurate AI can still make a human-plus-AI team perform *worse* if the person
+  defers to wrong answers, stops thinking critically, or can't oversee a fast-moving agent —
+  so understanding the human side determines real-world outcomes as much as the technology does.
+- **Potential impact** — Getting this right means designing AI that augments people without
+  fostering blind reliance, skill erosion, or unhealthy dependence; getting it wrong means
+  deployed systems that look impressive in benchmarks but degrade decisions, judgment, and
+  well-being in practice. Much of the evidence here is still correlational, so the field's
+  biggest near-term challenge is separating genuine harms from selection effects.
 
 ## Key directions & work
 

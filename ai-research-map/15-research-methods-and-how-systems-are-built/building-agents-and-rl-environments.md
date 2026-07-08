@@ -1,5 +1,10 @@
 # Building Agents & RL Environments
 
+## In brief
+- **What it is** — The engineering layer beneath AI agents: the *scaffold* (the code that lets a model call tools, read results, and take multiple turns), the *RL environments* it trains in (sandboxed tasks with an automatic grader that says "you succeeded" or "you failed"), and the *eval harnesses* that score it. Think of it as the gym, the training equipment, and the scoreboard — separate from the "athlete" (the model weights) itself.
+- **Why it's pursued** — To turn a model that can *chat* into one that can *do multi-step work* (fix code, use a computer), you need large numbers of realistic practice tasks with trustworthy automatic feedback. Hand-writing those tasks doesn't scale, so the field is racing to mass-produce them — and to measure agents honestly, since the surrounding plumbing often moves scores more than the model does.
+- **Potential impact** — Get it right and agents improve reliably and comparably across labs; get it wrong and the automatic grader rewards the wrong behavior at scale, benchmarks mislead, and training can make models *less* aligned even as they get more capable. The core lesson here: much of an agent's measured skill lives in the harness and the reward signal, not the weights.
+
 How agentic systems, their training environments, and their eval harnesses are constructed —
 and why so much of it is brittle.
 

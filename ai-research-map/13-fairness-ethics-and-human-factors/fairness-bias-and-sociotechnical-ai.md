@@ -1,7 +1,9 @@
 # Fairness, Bias & Sociotechnical AI
 
-The FAccT/AIES research community: measuring and mitigating bias, auditing deployed systems,
-and the structural critique of "responsible AI."
+## In brief
+- **What it is** — The research community (organized around the FAccT and AIES conferences) that studies how AI systems treat different groups of people unequally, how to measure that unfairness, and how to fix it. Crucially, it treats the model and the social system it operates in as one unit — because harm usually comes from the *interaction* (who deploys the model, on whom, and with what stakes), not from the model in isolation.
+- **Why it's pursued** — AI now sorts résumés, scores loan applicants, and flags medical risk, so a biased model can quietly deny opportunities to whole groups at scale. The field exists to catch that bias — including subtle forms that hide beneath a model's polite surface — and to tell when a system is genuinely fair versus merely *appearing* fair.
+- **Potential impact** — Done well, it produces auditing tools, evaluation standards, and legal requirements that keep deployed AI accountable. The key limitation is sobering: a mathematical impossibility result shows you cannot satisfy all reasonable fairness definitions at once, so choosing a fairness metric is an unavoidable value judgment, not a purely technical fix.
 
 > **📦 Concept: "sociotechnical"** — studying the AI model *and* the social system it's
 > embedded in together, because harms usually arise from the interaction, not the model alone.

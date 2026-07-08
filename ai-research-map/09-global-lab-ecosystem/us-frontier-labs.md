@@ -1,7 +1,17 @@
 # US Frontier Labs
 
-The best-capitalized labs setting the capability frontier. Their work appears
-throughout this map; this page is a consolidated view of *who emphasizes what*.
+## In brief
+- **What it is** — the handful of best-capitalized US organizations building the
+  most capable general-purpose AI systems: OpenAI, Anthropic, Google DeepMind, Meta,
+  and xAI. Their work appears throughout this map; this page is a consolidated view
+  of *who emphasizes what*.
+- **Why it's pursued** — being at the frontier means setting the agenda: these labs
+  attract the most funding, talent, and compute, and their model releases define what
+  "state of the art" means for everyone else. Understanding their differing bets shows
+  where the field's money and attention are flowing.
+- **Potential impact** — whichever bets pay off will shape the next generation of AI
+  products and capabilities. The key tension: capability is advancing faster than the
+  safety commitments these same labs publish, and closed models limit outside scrutiny.
 
 ## The players
 

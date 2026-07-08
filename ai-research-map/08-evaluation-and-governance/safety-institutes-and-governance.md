@@ -1,8 +1,21 @@
 # Safety Institutes & Governance
 
-Who actually tests frontier models for dangerous capabilities, and the rules they answer to:
-government and third-party evaluation capacity, dangerous-capability assessment, and the
-emerging regulatory regime.
+## In brief
+- **What it is** — The people and rules that decide whether a powerful new AI model is safe to
+  release. This covers who actually tests frontier models for dangerous capabilities (government
+  bodies like the UK's AISI and the US CAISI, plus independent groups), how they run those tests,
+  and the emerging web of laws and voluntary commitments the labs answer to. Think of it as the
+  safety-inspection regime for AI — part crash-test lab, part regulator.
+- **Why it's pursued** — Frontier models are getting good at things society cares about keeping
+  in check: cyberattacks, bioweapon-relevant knowledge, mass persuasion, and (in principle)
+  copying themselves onto new machines. Left purely to the companies building them, there is no
+  neutral party checking those risks before release, so governments and independent evaluators
+  are building the capacity to test models and set enforceable rules.
+- **Potential impact** — If it works, dangerous capabilities get caught and mitigated before a
+  model ships, and labs compete on demonstrable safety rather than promises. The central risk is
+  that it does not keep up: the recurring finding here is that capability is advancing faster
+  than the safeguards, voluntary commitments capture only a fraction of best practice and can
+  quietly weaken, and the tests themselves may not measure the real-world risk they claim to.
 
 ## Key directions & work
 

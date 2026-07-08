@@ -1,8 +1,9 @@
 # Structured-Data ML
 
-Foundation models arriving in the most "classical" data types — time-series, tabular, and
-graph/relational — and the live question of whether they beat the trees-and-boosting
-incumbents.
+## In brief
+- **What it is** — Applying the "pretrain once, use everywhere" foundation-model recipe to the most "classical" data types: time-series (sensor readings, sales over time), tabular (spreadsheet-style rows and columns), and graph/relational data (linked database tables). Instead of training a fresh model for each dataset, a single model pretrained on many datasets aims to make good predictions on a brand-new one with little or no extra fitting.
+- **Why it's pursued** — For decades these data types have been dominated by "trees-and-boosting" methods (gradient-boosted decision trees like XGBoost) that must be retrained per task. A foundation model that works out-of-the-box would cut engineering effort and, ideally, beat the incumbents. The live question is whether it actually does.
+- **Potential impact** — If it works, forecasting, database analytics, and everyday spreadsheet prediction get faster and cheaper with less bespoke tuning. The key caveat: results so far are strong but partial — benchmark leakage inflates time-series scores, tabular models hit a scaling wall, and classical methods remain SOTA in several niches.
 
 ## Time-series foundation models
 - **Chronos-2** (Amazon) — current SOTA; the first pretrained model to do zero-shot

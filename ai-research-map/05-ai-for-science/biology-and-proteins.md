@@ -1,7 +1,9 @@
 # Biology & Proteins
 
-The most mature AI-for-science domain, spanning structure prediction, protein/DNA design, and
-the emerging frontier of whole-cell models.
+## In brief
+- **What it is** — Using AI to read and write the language of life: predicting the 3D shape a protein folds into from its amino-acid sequence, designing new proteins and DNA that do what we want, and simulating how living cells behave. This is the most mature AI-for-science domain, spanning structure prediction, protein/DNA design, and the emerging frontier of whole-cell models.
+- **Why it's pursued** — A protein's shape determines its function, and figuring that shape out experimentally once took years per protein. Getting it right unlocks faster drug discovery, engineered enzymes, and a mechanistic understanding of disease that traditional lab work cannot deliver at scale.
+- **Potential impact** — If it succeeds, AI-designed drugs go from sequence to clinic in a fraction of the current time and cost, and biology shifts from slow trial-and-error toward prediction. The key limits: predicting *function and dynamics* is far harder than static structure, wet-lab validation is the bottleneck, and the leading engines are closed, limiting outside scrutiny.
 
 ## Key directions & work
 

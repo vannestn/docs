@@ -1,5 +1,19 @@
 # How Frontier LLMs Are Built
 
+## In brief
+- **What it is** — the end-to-end assembly line that turns raw internet text into a frontier
+  model: collect and filter data, chop text into tokens, pretrain on trillions of tokens, patch
+  weak spots with a mid-training stage, then teach the model to follow instructions and match
+  human preferences before shipping. Each stage is a distinct engineering step with its own
+  known failure mode.
+- **Why it's pursued** — the "secret sauce" of top models used to be folklore; a handful of labs
+  now *publish* their recipes with hard numbers (Llama, DeepSeek, OLMo, Gemma, DCLM/FineWeb),
+  so it is possible to see exactly which choices move the needle and which quietly break things.
+- **Potential impact** — building a frontier model is now a repeatable discipline rather than a
+  mystery, which lowers the barrier for new entrants and makes claims checkable. The catch: the
+  failure modes (optimizing a proxy until it stops meaning anything, hidden test-data
+  contamination, rewarding confident-but-wrong answers) are structural and still unsolved.
+
 The end-to-end pipeline that turns raw web text into a frontier model — and the documented
 limitation at each stage. Sourced largely from labs that *disclose* their recipes (Llama,
 DeepSeek, OLMo, Gemma, DCLM/FineWeb).

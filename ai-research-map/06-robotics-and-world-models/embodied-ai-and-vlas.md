@@ -1,6 +1,10 @@
 # Embodied AI & Vision-Language-Action Models
 
-Vision-Language-Action (VLA) models are generalist robot policies that map perception and language goals to physical actions — the bet that one model can drive many robots across many tasks, the way foundation models did for text and images.
+## In brief
+
+- **What it is** — A Vision-Language-Action (VLA) model is a single neural network that takes in what a robot sees (camera images) plus a goal written in plain language ("clear the dishes into the sink"), and outputs the physical motions to carry it out. It is the robotics version of a foundation model: instead of one specialist controller per robot and per task, the bet is that one general model can drive many robots across many tasks — the way GPT-style models generalized across text and images.
+- **Why it's pursued** — Traditional robots are hand-programmed for narrow, controlled settings and break the moment the environment changes. Language and vision models generalized because they trained on the whole internet; robotics has no comparable internet-scale record of physical actions, so the field is trying to reach that same generality by combining scarce robot data with abundant web images, human video, and simulation.
+- **Potential impact** — If it works, robots could handle open-ended tasks in messy real settings (homes, warehouses, labs) without bespoke reprogramming for each new job. The upside is broadly useful physical labor; the key limits so far are fine dexterity that is plateauing, reliability on long multi-step tasks, and unsolved safety for operating around people.
 
 ## Key directions & work
 

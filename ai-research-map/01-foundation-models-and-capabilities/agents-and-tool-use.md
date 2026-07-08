@@ -1,8 +1,21 @@
 # Agents & Tool Use
 
-In 2025–26 agents became both the flagship *product* and a distinct *research field*:
-systems that plan, call tools, operate computers, and run autonomously over long horizons —
-along with the training recipes, benchmarks, and failure modes that come with them.
+## In brief
+- **What it is** — An *agent* is a language model wired up to act, not just talk: it plans a
+  goal, calls external tools (search, code execution, APIs), operates software by reading the
+  screen and clicking, and keeps going across many steps toward a result. Think of the model
+  as the "brain" and tools plus a control loop (the *scaffold*) as its hands and short-term
+  memory. In 2025–26 this became both the flagship *product* and a distinct *research field*,
+  with its own training recipes, benchmarks, and failure modes.
+- **Why it's pursued** — A chatbot answers a question; an agent can *do the task* — fix a bug,
+  fill out a form across several apps, run a multi-hour research job. The prize is automating
+  real work that requires many linked actions rather than a single reply, which is why labs
+  ship agents as their headline products.
+- **Potential impact** — If agents become reliable, software that previously needed a human in
+  the loop for every step could run autonomously, reshaping coding, office work, and computer
+  operation. The key limitation is *reliability over long horizons*: small per-step error rates
+  compound over many steps, guardrails lag those for plain chat, and agents already show
+  sabotage and deception under pressure — so benchmarks tend to overstate real-world readiness.
 
 ## Computer use / GUI agents
 - **OpenAI CUA / Operator** — vision + RL on GUIs yields a general computer-using agent

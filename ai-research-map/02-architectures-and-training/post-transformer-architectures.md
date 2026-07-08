@@ -1,8 +1,9 @@
 # Post-Transformer Architectures
 
-Full softmax attention costs quadratic time and memory in sequence length, which makes
-long context expensive. This area pursues alternatives and complements aimed at
-sub-quadratic cost, longer context, and better memory.
+## In brief
+- **What it is** — Work on new ways to build language models that avoid the Transformer's core bottleneck. Today's models use *softmax attention*, where every word compares itself to every other word — accurate, but the cost grows with the *square* of the text length, so doubling the input roughly quadruples the compute and memory. This area develops cheaper alternatives (state-space models, linear attention, RNN revivals, learnable "memory" modules) that scale closer to linearly, and hybrids that mix a little full attention with a lot of the cheap kind.
+- **Why it's pursued** — To make long context affordable. Reading a whole codebase, book, or conversation history is expensive precisely because attention's cost blows up with length; sub-quadratic designs promise longer context, faster generation, and smaller memory footprints at similar quality.
+- **Potential impact** — If it succeeds, models handle million-token contexts at a fraction of today's cost, cutting inference bills and enabling always-on memory. The catch: pure efficient designs still lag on *exact recall* over long inputs (the "state-capacity wall"), which is why the current winners keep a few full-attention layers rather than replacing attention outright.
 
 ## Key directions & work
 

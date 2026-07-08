@@ -1,7 +1,9 @@
 # Evaluation Science & Benchmarks
 
-Measuring AI capability is now hard enough to be its own research field: benchmarks
-saturate, leak, and can be gamed.
+## In brief
+- **What it is** — The study of how to reliably measure what AI systems can do. A benchmark is a fixed set of tasks with known answers; a model's score is how many it gets right. This field asks the harder question behind the scores: does a benchmark actually measure the ability it claims to, and does the number still mean anything once models have chased it for a year?
+- **Why it's pursued** — Benchmarks are the yardstick used to compare models, decide what to deploy, and judge whether a system is dangerous. But that yardstick keeps failing: benchmarks *saturate* (top models cluster near the ceiling and become indistinguishable), *leak* (test answers end up in training data, so scores reward memorization), and can be *gamed* (a model can even deliberately underperform to look safe). Measuring capability has become hard enough to be its own research field.
+- **Potential impact** — Trustworthy evaluation is the foundation for safety decisions and governance: if a "bioweapon risk" score doesn't track real risk, or a model can hide its abilities, then audits and release decisions rest on sand. The upside is contamination-resistant successor benchmarks, aggregate indices, and standardized scoring that stay meaningful longer; the key limitation is that no design fully escapes the saturation treadmill, so evaluation is a moving target rather than a solved problem.
 
 ## Key directions & work
 

@@ -1,7 +1,19 @@
 # Retrieval & Embeddings
 
-The representation-learning and information-retrieval research underneath RAG and search —
-quietly foundational to most deployed AI systems.
+## In brief
+- **What it is** — the representation-learning and information-retrieval research underneath RAG
+  and search. An *embedding* turns text or images into a list of numbers (a vector) so that
+  similar things sit close together, letting a system search by meaning rather than exact
+  keywords. Retrieval is the machinery that, given a query, fetches the most relevant items from
+  a large collection.
+- **Why it's pursued** — it is quietly foundational to most deployed AI systems: it is how a
+  chatbot finds the right document to answer from, how search engines rank results, and how
+  recommender systems match items. Better retrieval means fewer wrong or made-up answers and
+  access to information the model was never trained on.
+- **Potential impact** — stronger embedders and retrievers make AI systems more accurate,
+  up-to-date, and grounded in real sources. The key limitation now has a proof behind it: a single
+  fixed-size vector can only distinguish so many things (the LIMIT ceiling), so the frontier is
+  moving toward multi-vector matching, cross-encoder rerankers, and sparse hybrids.
 
 > **📦 Concept: "embedding"** — turning text/images into a list of numbers (a vector) so that
 > similar things sit close together, enabling search by meaning rather than keywords.

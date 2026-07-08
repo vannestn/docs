@@ -1,7 +1,21 @@
 # Recommender Systems
 
-The economic backbone of the internet — and now undergoing its own "generative" revolution,
-with real production wins (not just offline metrics).
+## In brief
+
+- **What it is** — the machinery that decides what a feed, store, or streaming app shows you next.
+  The classic design scores each candidate item separately through a multi-stage pipeline
+  (retrieve → pre-rank → rank). The new "generative recommendation" wave instead treats the problem
+  like language modeling: the model *generates* the next item(s) as a sequence, predicting the next
+  item much as an LLM predicts the next word.
+- **Why it's pursued** — recommenders are the economic backbone of the internet, and the classic
+  approach plateaus: throwing more compute at it stops helping. Framing recommendation as sequence
+  generation lets these systems scale with compute the way LLMs do, and lets one model replace a
+  hand-tuned, multi-stage pipeline.
+- **Potential impact** — measured production wins are already here (watch-time, view-duration, and
+  ad-revenue lifts at billion-user scale), plus large cost savings from collapsing the pipeline into
+  one model. The main open risks: these strong results come almost entirely from a few large
+  platforms on proprietary traffic, and adding explicit "reasoning" has not yet clearly earned its
+  compute cost at production scale.
 
 > **📦 Concept: "generative recommendation"** — instead of scoring each candidate item
 > separately (the classic approach), the model *generates* the next item(s) as a sequence,

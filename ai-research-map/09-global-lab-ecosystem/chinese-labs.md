@@ -1,10 +1,19 @@
 # Chinese Labs
 
-The center of gravity for *efficient-architecture* research and competitive open-weight
-models in 2026. Two goals recur across these labs: **escape the quadratic cost of attention**
-(via linear/hybrid attention or trainable sparse attention) and **squeeze more capability
-per token and per FLOP**. This is partly a research bet, partly a response to compute scarcity
-under US export controls.
+## In brief
+- **What it is** — the cluster of Chinese AI labs (DeepSeek, Moonshot, MiniMax, Alibaba Qwen,
+  Zhipu, Tencent, StepFun, Baidu, ByteDance) that in 2026 form the center of gravity for
+  *efficient-architecture* research and competitive open-weight models — the models whose
+  weights anyone can download and run, rather than access only through a paid API.
+- **Why it's pursued** — two goals recur: **escape the quadratic cost of attention** (the way a
+  transformer's compute balloons as text gets longer) via linear/hybrid or trainable sparse
+  attention, and **squeeze more capability per token and per FLOP**. This is partly a research
+  bet and partly a forced response to compute scarcity under US export controls: with fewer and
+  weaker chips available, doing more with less becomes the winning move.
+- **Potential impact** — if it succeeds, frontier-grade capability arrives more cheaply and in
+  the open, pressuring closed labs on price and reshaping who controls AI. The key open question
+  is whether open weights can stay at parity with the *absolute* closed frontier on the hardest
+  tasks, where the gap may be widening.
 
 ## The players & their signature research
 

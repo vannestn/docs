@@ -1,9 +1,20 @@
 # Emerging Labs
 
-Newer and smaller labs, grouped by what each is actually researching — useful for telling apart
-the ones with shipping, third-party-evaluable results from the ones still betting on talent and a
-thesis. (Funding details and the business-model lens are in
-[12 · Business models](../12-politics-capital-and-business-models/business-models.md).)
+## In brief
+- **What it is** — a map of the newer, smaller AI labs, grouped by what each is *actually*
+  researching rather than by hype. It separates labs with shipping, third-party-evaluable results
+  from those still betting on assembled talent and an unproven research thesis. (Funding details
+  and the business-model lens are in
+  [12 · Business models](../12-politics-capital-and-business-models/business-models.md).)
+- **Why it's pursued** — the frontier is not owned only by the giants. Some of these labs chase a
+  bet that scaling has diminishing returns and *algorithmic* breakthroughs come next; others carve
+  out niches the big labs underserve — on-device models, real-time audio, diffusion-based speed,
+  3D world models, robotics, interpretability, autonomous science.
+- **Potential impact** — if the focused labs are right, whole capabilities (edge inference,
+  low-latency voice, navigable 3D worlds) become commodity building blocks; if the stealth
+  mega-funded labs are right, the next leap comes from a small team and an idea, not a data center.
+  The key risk: valuations that vastly outrun demonstrated results, and narrow wins that are easy
+  for better-resourced frontier labs to absorb.
 
 ## "Post-scaling research era" labs
 - **Safe Superintelligence (SSI)** — Ilya Sutskever; **~$3B raised total** ($1B Sept 2024 + $2B

@@ -1,7 +1,9 @@
 # Open-Endedness & Self-Improvement
 
-The highest-variance, highest-ceiling corner of the field: systems that generate their own
-challenges, rewrite their own code, or do autonomous research without a fixed human curriculum.
+## In brief
+- **What it is** — Systems that improve *themselves* instead of being trained on a fixed, human-supplied dataset. An open-ended system keeps inventing its own challenges and getting better at them; a self-improving one rewrites its own code, edits its own weights, or runs its own research. Think of a student who not only answers the questions but writes the next, harder problem set — the highest-variance, highest-ceiling corner of the field.
+- **Why it's pursued** — Human-curated training data is finite and expensive, and it caps how far a model can go. If a system can generate its own useful problems and reliably check its own answers, progress need not stall when the curated data runs out — the path many researchers see toward far more capable AI.
+- **Potential impact** — Success could mean AI that discovers genuinely new algorithms, science, or skills with little human input (AlphaEvolve already found a faster matrix-multiplication scheme). The catch: it only works when the system has a trustworthy way to *verify* its own output, and the same loops that make capability compound also make risk compound — which is why recursive-self-improvement safety concerns are sharpest here.
 
 ## Key directions & work
 

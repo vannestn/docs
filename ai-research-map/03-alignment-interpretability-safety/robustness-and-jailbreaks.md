@@ -1,7 +1,20 @@
 # Robustness & Jailbreaks
 
-Defending models against adversarial inputs, jailbreaks, and misuse — and reducing
-hallucination — especially as agents gain real-world privileges.
+## In brief
+- **What it is** — the work of keeping a model behaving safely when someone actively tries to
+  make it misbehave. A *jailbreak* is a prompt crafted to talk the model past its safety
+  training (e.g. eliciting bomb-making steps); a *prompt injection* smuggles hostile
+  instructions into content the model reads (an email, a web page) so the model treats them as
+  orders. This topic also covers reducing *hallucination* (confident wrong answers) and
+  *data poisoning* (corrupting a model via its training data).
+- **Why it's pursued** — as models move from chat boxes to agents that read untrusted content
+  and take real actions (send email, run code, move money), a single tricked response can leak
+  data or cause real-world harm. Safety training alone is porous, so the field builds
+  defenses that assume attackers will keep probing.
+- **Potential impact** — if it succeeds, agents can be given real privileges without becoming
+  an easy attack surface, and models can say "I don't know" instead of guessing. The key
+  limitation: defenses remain an empirical cat-and-mouse game with no formal guarantees — even
+  the strongest deployed system here was eventually broken by expert red-teamers.
 
 ## Key directions & work
 

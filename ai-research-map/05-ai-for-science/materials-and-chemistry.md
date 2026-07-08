@@ -1,8 +1,19 @@
 # Materials & Chemistry
 
-AI is reshaping how new materials and molecules are found: generative models propose
-candidates, universal interatomic potentials (fast ML surrogates for quantum-accurate
-simulation) screen them, and autonomous labs aim to close the experimental loop.
+## In brief
+- **What it is** — AI applied to finding new materials and molecules. Instead of chemists
+  guessing candidates one at a time, generative models *propose* new structures, fast ML
+  "surrogate" simulators (universal interatomic potentials) *screen* them for stability far
+  cheaper than exact quantum physics, and autonomous robotic labs aim to *make and test*
+  the winners — ideally closing the whole loop with little human input.
+- **Why it's pursued** — the search space of possible materials is astronomically large and
+  traditional discovery is slow and expensive: real quantum-mechanical simulation is
+  costly, and physically synthesizing and measuring a candidate is slower still. AI promises
+  to explore that space orders of magnitude faster.
+- **Potential impact** — faster discovery of batteries, catalysts, superconductors, and
+  drugs could reshape energy and medicine. The key limits: many computationally "stable"
+  candidates can't actually be made in a lab (the *synthesizability* gap), and the
+  bottleneck of slow, costly physical validation keeps the discovery loop from truly closing.
 
 ## Key directions & work
 

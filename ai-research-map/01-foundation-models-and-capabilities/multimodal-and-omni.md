@@ -1,7 +1,19 @@
 # Multimodal & Omni Models
 
-Models are moving toward natively perceiving and generating across text, image, audio, and
-video — increasingly in a single "any-to-any" architecture with streaming input and output.
+## In brief
+- **What it is** — Instead of a text-only model bolted to separate image, audio, or video
+  tools, a *multimodal* ("omni") model natively perceives and generates across text, image,
+  audio, and video inside one system. The frontier is "any-to-any": a single architecture that
+  can take any mix of these as input and produce any mix as output, often streaming both
+  directions in real time (e.g. holding a live spoken conversation).
+- **Why it's pursued** — The world isn't text; grounding a model in what it sees and hears
+  makes it more capable and unlocks natural interfaces like real-time voice. Folding everything
+  into one model — rather than stitching separate specialist models together — cuts latency,
+  simplifies deployment, and lets the modalities reinforce each other.
+- **Potential impact** — Enables assistants you talk to and show things to, long-video and
+  audio understanding, and unified systems that both *understand* and *generate* media. The
+  main tension: unified any-to-any models still trail dedicated specialists on generation
+  quality, and deep cross-modal reasoning (spatial, temporal, counting) remains weak.
 
 ## Native multimodality at the frontier
 - **Gemini 2.5** — natively multimodal with a >1M-token context (2M announced); can process
