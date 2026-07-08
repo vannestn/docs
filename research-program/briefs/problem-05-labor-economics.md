@@ -1,0 +1,109 @@
+# Problem 05 — AI's Labor & Economic Impact
+
+*Brief prepared July 2026. Grounding: internal map doc [economics-and-forecasting.md](../../ai-research-map/08-evaluation-and-governance/economics-and-forecasting.md) (verified against primary sources), extended with web research below. Claims not confirmed from an opened page are marked ⚠️ unverified.*
+
+---
+
+## The problem, concretely
+
+At stake: trillion-dollar policy and personal decisions (retraining, education, regulation, safety planning) are being made on **contradictory evidence** about what AI is doing to work. The headline contradictions are real and unresolved:
+
+- **Displacement signal:** early-career workers (22–25) in the most AI-exposed occupations show a **~16% relative employment decline** in US payroll data ([Brynjolfsson, Chandar & Chen, "Canaries in the Coal Mine," Stanford Digital Economy Lab, Nov 2025](https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/)).
+- **Null signal:** Danish matched employer-employee data across 25,000 workers / 7,000 workplaces in 11 exposed occupations finds **precise null effects on earnings and hours** — effects >2% ruled out two years post-adoption; average time savings only 2.8% of work hours ([Humlum & Vestergaard, NBER w33777](https://www.nber.org/system/files/working_papers/w33777/w33777.pdf); [BFI version](https://bfi.uchicago.edu/working-papers/large-language-models-small-labor-market-effects/)).
+- **Micro-productivity gains vs. macro skepticism:** RCTs show **+14% call-center productivity** ([Brynjolfsson, Li & Raymond, QJE 2025](https://academic.oup.com/qje/article/140/2/889/7990658)) and **−40% writing-task time** ([Noy & Zhang, Science 2023](https://www.science.org/doi/10.1126/science.adh2586)) — while [Acemoglu's task-based macro model](https://www.nber.org/papers/w32487) bounds AI's TFP gain at **≤0.66–0.71% total over 10 years**, and [METR's developer RCT](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) found experienced open-source devs were **19% slower** with early-2025 AI tools while *believing* they were 20% faster.
+
+Measurable sub-problems:
+1. **Displacement vs. augmentation** — which tasks/occupations show automation vs. complement patterns, and for whom (entry-level vs. senior; the Canaries result is age-stratified).
+2. **Wage effects** — thinnest evidence base; clearest result is freelance markets: **−2% jobs, −5.2% earnings** for writing freelancers post-ChatGPT, with *top-rated* freelancers hit harder ([Hui, Reshef & Zhou, Organization Science 2024](https://pubsonline.informs.org/doi/abs/10.1287/orsc.2023.18441); [summary](https://olin.washu.edu/about/news-and-media/news/2023/08/study-ai-tools-cause-a-decline-in-freelance-work-and-incomeat-least-in-the-short-run.php)).
+3. **Productivity measurement** — micro RCT gains don't yet appear in macro statistics; perception–reality gaps (METR) suggest self-report is unreliable.
+4. **The measurement problem** — real usage data sits inside labs. The [Anthropic Economic Index](https://www.anthropic.com/research/labor-market-impacts) (open data) and OpenAI's [How People Use ChatGPT](https://www.nber.org/papers/w34255) (internal-only data, 1.1M de-identified messages) are the partial exceptions.
+5. **Regional/global inequality** — IMF: ~40% of global employment exposed (60% advanced / 40% emerging / 26% low-income) ([Cazzaniga et al., IMF SDN 2024/001](https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf)); Anthropic's geography report shows Claude usage concentrated in high-income countries relative to working-age population ([arXiv:2511.15080](https://arxiv.org/abs/2511.15080)).
+
+## The research field around it
+
+Sub-areas, methods, maturity:
+
+| Sub-area | Method | Maturity | Anchor work |
+|---|---|---|---|
+| **Occupational exposure indices** | Map O*NET tasks → AI capability via rubric/LLM/patents | Mature but *predictive, not outcome* measures | [Eloundou et al. "GPTs are GPTs" (Science 2024 / arXiv:2303.10130)](https://arxiv.org/pdf/2303.10130); Felten AIOE; Webb patent-based; comparisons in [Bruegel WP 06/2024](https://www.bruegel.org/system/files/2024-03/WP%2006.pdf) |
+| **Task-level RCTs / field experiments** | Randomize tool access, measure output | Mature for narrow tasks; conflicting for complex work | [Noy & Zhang](https://www.science.org/doi/10.1126/science.adh2586); [Brynjolfsson-Li-Raymond](https://www.nber.org/papers/w31161); [METR RCT (arXiv:2507.09089)](https://arxiv.org/pdf/2507.09089) |
+| **Quasi-experimental labor data** | Diff-in-diff around model releases; payroll/registry data | Young, contested (Canaries vs. Danish null) | [Canaries](https://digitaleconomy.stanford.edu/app/uploads/2025/11/CanariesintheCoalMine_Nov25.pdf); [Humlum & Vestergaard](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5219933); [Hui-Reshef-Zhou](https://pubsonline.informs.org/doi/abs/10.1287/orsc.2023.18441) |
+| **Usage telemetry ("digital exhaust")** | Classify provider-side conversations → O*NET tasks | New; only two labs publish; Anthropic open-sources | [Anthropic Economic Index](https://www.anthropic.com/research/labor-market-impacts) + [HF dataset](https://huggingface.co/datasets/Anthropic/EconomicIndex); [Chatterji et al. NBER w34255](https://www.nber.org/papers/w34255) |
+| **Adoption surveys** | Nationally representative surveys | Solid, cheap, replicable | [Bick, Blandin & Deming, NBER w32966](https://www.nber.org/papers/w32966) — ~40% of US adults 18–64 used genAI by late 2024; adoption faster than PC or internet |
+| **Macro/task-based modeling** | Hulten's theorem over exposure × cost savings | Mature theory, contested inputs | [Acemoglu NBER w32487](https://www.nber.org/papers/w32487) |
+| **Capability-side economic benchmarks** | Expert tasks graded vs. human professionals | New (2025–) | [OpenAI GDPval (arXiv:2510.04374)](https://arxiv.org/abs/2510.04374) — 1,320 tasks, 44 occupations, 9 GDP sectors; 220-task gold subset open |
+| **Global/regional analysis** | Cross-country exposure + preparedness indices | Institutional, descriptive | [IMF Gen-AI SDN](https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf) + AI Preparedness Index (125 countries); [OECD AI & work](https://www.oecd.org/en/topics/ai-and-work.html), [Employment Outlook 2025](https://www.oecd.org/en/publications/oecd-employment-outlook-2025_194a947b-en/full-report.html) |
+
+The field is **young where it matters most**: exposure indices (2018–2024) are abundant, but realized-outcome studies only began landing 2024–2026, and they disagree.
+
+## Who does this work
+
+**Academic groups (grant/university funded):**
+- **MIT** — [Shaping the Future of Work Initiative / Stone Center](https://shapingwork.mit.edu/) (Acemoglu, Autor, Simon Johnson, launched Jan 2024); Autor's ["AI and the Future of Work"](https://economics.mit.edu/people/faculty/david-h-autor/david-autor-ai-and-future-work) line argues AI could rebuild middle-skill work.
+- **Stanford Digital Economy Lab** (Brynjolfsson) — Canaries paper + [monthly-updated Canaries Dashboard](https://digitaleconomy.stanford.edu/project/indicators/canaries-dashboard/) on ADP payroll data (25k firms, 4.6M matched workers, downloadable ZIPs).
+- **U Chicago / Becker Friedman Institute** (Humlum), **WashU Olin** (Hui, Reshef), **Harvard/Fed** (Deming, Bick, Blandin — Real-Time Population Survey).
+- **NBER** — the working-paper clearinghouse for nearly all of the above (w31161, w32487, w32966, w33777, w34255).
+
+**Company economics teams (corporate funded):**
+- **Anthropic** — Economic Index team (Appel, McCrory, Tamkin, et al.); publishes [ongoing reports](https://www.anthropic.com/research/economic-index-march-2026-report) ([June 2026 "Cadences"](https://www.anthropic.com/research/economic-index-june-2026-report)) and **open-sources data (CC-BY) and code (MIT)** on [Hugging Face](https://huggingface.co/datasets/Anthropic/EconomicIndex).
+- **OpenAI** — economic research under Chief Economist Aaron "Ronnie" Chatterji ([NBER w34255](https://www.nber.org/papers/w34255); [Duke Fuqua podcast](https://www.fuqua.duke.edu/podcast/how-do-700-million-people-use-ChatGPT)); GDPval team. Data stays internal; only a task subset is open.
+
+**International orgs (member-state funded):** [IMF](https://www.imf.org/en/blogs/articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity) (SDN series + Preparedness Index; a 2026 follow-up SDN on [new-job creation](https://www.imf.org/-/media/files/publications/sdn/2026/english/sdnea2026001.pdf)), [OECD](https://oecd.ai/en/working-group-future-of-work) (Future of Work working group, country studies e.g. [Korea](https://www.oecd.org/en/publications/artificial-intelligence-and-the-labour-market-in-korea_68ab1a5a-en/full-report/the-impact-of-ai-on-the-labour-market_69793977.html)).
+
+**Nonprofit/think tank:** Economic Innovation Group ([EIG "AI and Jobs: The Final Word (Until the Next One)," Aug 2025](https://eig.org/wp-content/uploads/2025/08/EIG-AI-and-Jobs.pdf), with [open replication code on GitHub](https://github.com/EIG-Research/AI-unemployment)); [Brookings](https://www.brookings.edu/articles/is-generative-ai-a-job-killer-evidence-from-the-freelance-market/); METR (nonprofit, ran the developer RCT).
+
+**How outsiders contribute — funding paths that exist right now:**
+- **[Anthropic Economic Futures Program](https://www.anthropic.com/economic-futures/program)** — research awards of **$10k–$50k + $5k Claude API credits** for empirical work on AI's economic impacts, explicitly open to external researchers; plus symposia (Georgetown McCourt, LSE) and a commitment to scale the Economic Index into a longitudinal dataset ([launch post](https://www.anthropic.com/news/introducing-the-anthropic-economic-futures-program)). A larger **$200M Economic Futures Research Fund** was announced for policy trials — ⚠️ unverified whether individual independent researchers are eligible ([secondary report](https://aiweekly.co/node/2863)).
+- NBER affiliation is not required to build on the open datasets (Anthropic HF data, Canaries dashboard downloads, GDPval gold subset, EIG code, O*NET/BLS public data).
+
+## Published exemplars
+
+Favoring small teams (all links opened):
+
+1. **[Humlum & Vestergaard — "Large Language Models, Small Labor Market Effects"](https://bfi.uchicago.edu/working-papers/large-language-models-small-labor-market-effects/)** (2 authors; NBER w33777). Two surveys + Danish registry data → precise nulls that discipline the entire displacement debate. Mattered because it's the highest-quality *negative* result in the field.
+2. **[Hui, Reshef & Zhou — freelancer diff-in-diff](https://pubsonline.informs.org/doi/abs/10.1287/orsc.2023.18441)** (3 authors, Organization Science 2024). Used a public online labor market as a natural experiment around ChatGPT/DALL-E/Midjourney releases; found −5.2% earnings and that *skill did not protect*. Template for solo-scale causal work without proprietary data.
+3. **[Noy & Zhang — Science 2023](https://www.science.org/doi/10.1126/science.adh2586)** (2 authors, then MIT *grad students*). 453-person preregistered online experiment; −40% time, +18% quality, compressed skill distribution. Proof that a two-person team with a survey platform can land in *Science*.
+4. **[Brynjolfsson, Chandar & Chen — Canaries in the Coal Mine](https://digitaleconomy.stanford.edu/publication/canaries-in-the-coal-mine-six-facts-about-the-recent-employment-effects-of-artificial-intelligence/)** (3 authors + ADP data partnership). First credible realized-employment effect; spawned a [live public dashboard](https://digitaleconomy.stanford.edu/project/indicators/canaries-dashboard/) updated monthly.
+5. **[METR developer RCT](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/)** (small nonprofit team; [arXiv:2507.09089](https://arxiv.org/pdf/2507.09089)). 16 devs, 246 tasks; the 19% slowdown + 39-point perception gap is the field's strongest caution against self-reported productivity.
+6. **[Bick, Blandin & Deming — Rapid Adoption of Generative AI](https://www.nber.org/papers/w32966)** (3 authors). A ~10,000-respondent online survey became the canonical US adoption number (~40% of adults). Cheap instrument, huge citation impact.
+7. **[Kumar & Manning — frontier model-count forecast](https://arxiv.org/abs/2504.16138)** (2 authors, GovAI/Edinburgh; detailed in the internal map doc). Shows a two-person team can produce governance-grade quantitative forecasts from open Epoch data.
+8. **[EIG — AI and Jobs](https://eig.org/wp-content/uploads/2025/08/EIG-AI-and-Jobs.pdf)** (think-tank report with [public GitHub replication](https://github.com/EIG-Research/AI-unemployment)). Cross-checks exposure measures against unemployment outcomes — an outsider-replicable outcome-validation exercise.
+
+## Where the gaps are
+
+Specific, source-grounded:
+
+1. **The Canaries–Denmark contradiction is unadjudicated.** US payroll shows entry-level declines; Danish registry shows precise nulls. Candidate explanations (US vs. EU labor institutions, chatbots-vs-agents timing, ADP balanced-sample selection — the dashboard [itself notes](https://digitaleconomy.stanford.edu/project/indicators/canaries-dashboard/) it excludes firm entry/exit) are hypothesized, not tested. No published reconciliation as of the pages opened here.
+2. **Exposure ≠ outcome validation is thin.** The workhorse indices (Eloundou GPT-4-scored, Felten AIOE, Webb patents) are *ex ante predictions*; systematic horse-races against realized employment/wage changes barely exist ([EIG](https://eig.org/wp-content/uploads/2025/08/EIG-AI-and-Jobs.pdf) and [Bruegel](https://www.bruegel.org/system/files/2024-03/WP%2006.pdf) are early attempts). The indices intercorrelate ~0.8 yet imply different exposed populations.
+3. **Wage effects outside freelance platforms are near-absent.** Hui-Reshef-Zhou is the clean causal wage result; economy-wide wage evidence is missing (Humlum-Vestergaard's null covers Denmark only).
+4. **Micro-to-macro translation is unsolved** (the map doc flags this): RCT gains of 14–40% coexist with Acemoglu's ≤0.71%/decade TFP bound and METR's negative result for experienced experts. Nobody has published the aggregation model that reconciles them. ⚠️ inferred from absence in sources opened, not from a survey claiming absence.
+5. **Usage telemetry is a two-lab oligopoly.** Only Anthropic (open data) and OpenAI (internal) publish provider-side usage; Google/Meta/Microsoft equivalents don't exist publicly. Independent validation of the Claude→O*NET task classifier is itself an open problem — the mapping is done by Anthropic's own models (⚠️ classifier-validity concern inferred from methodology descriptions, not from a published critique).
+6. **Global South is measured by exposure, not usage or outcomes.** IMF gives exposure shares ([26% low-income](https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf)); Anthropic shows usage *concentration in rich countries* ([arXiv:2511.15080](https://arxiv.org/abs/2511.15080)); realized labor-market studies in emerging economies are essentially absent from what was opened here.
+7. **Benchmarks-to-economics disconnect.** GDPval shows frontier models "approaching industry-expert" deliverable quality with roughly linear improvement ([arXiv:2510.04374](https://arxiv.org/abs/2510.04374)), while realized labor effects stay small — echoing the map doc's core weakness: *capability trends translate poorly into economic value*. The grading methodology (expert + automated graders) has had little independent audit.
+
+## What a solo researcher could do here
+
+Concrete study shapes matching the profile (facts and precedents, not a ranking):
+
+1. **Exposure-index horse-race against realized outcomes.** Merge public exposure indices (Eloundou/Felten/Webb/AHC) with Canaries Dashboard downloadable occupation-level series and BLS CPS/OEWS data; test which index best predicts 2023–2026 employment changes. Precedent: [EIG's open-code analysis](https://github.com/EIG-Research/AI-unemployment). Pure data-pipeline + classical-ML work; $0 data cost.
+2. **Independent audit of the Anthropic Economic Index classifier.** The [HF dataset](https://huggingface.co/datasets/Anthropic/EconomicIndex) is CC-BY with MIT code; a published LLM-as-a-judge methodologist could measure agreement/robustness of the conversation→O*NET-task mapping (alternative prompts, alternative judge models, human-label subsample). No published external audit was found in this research pass (⚠️ absence inferred).
+3. **LLM-judge audit of GDPval grading.** The [220-task gold subset](https://arxiv.org/abs/2510.04374) is open with a public grading service; replicating grades across judge models and quantifying grader-induced ranking shifts directly extends the researcher's prior RAG-hallucination judge study. Budget: API costs only.
+4. **Online-labor-market event study around a 2026 model release.** The [Hui-Reshef-Zhou design](https://pubsonline.informs.org/doi/abs/10.1287/orsc.2023.18441) (diff-in-diff on platform postings/earnings around release dates) is solo-replicable on newer releases and non-writing categories (e.g., agentic coding, voice); it used platform data, not lab telemetry.
+5. **Small preregistered task RCT in an underexplored occupation.** Noy-Zhang's design (453 online participants) cost a survey-platform budget; a scoped version (one occupation, ~100–200 participants) fits ≤$500 + API credits, and the [Anthropic Economic Futures award](https://www.anthropic.com/economic-futures/program) ($10k–50k + $5k credits) exists precisely for this class of study.
+6. **Capability-trend-to-labor bridge.** Combine METR time-horizon data (open) with O*NET task-duration/wage structure to publish a transparent "which tasks fall inside the current horizon, at what wage bill" tracker — the translation layer both METR and the map doc flag as missing. Precedent for two-person quantitative-forecast impact: [Kumar & Manning](https://arxiv.org/abs/2504.16138).
+
+## What we still don't know
+
+For the program ledger:
+
+- **Is the Canaries entry-level decline causal AI displacement**, or sectoral/macro confounds? And why does Denmark show nulls — institutions, timing, or measurement? (Open contradiction.)
+- **Does the 2025–26 agent shift change the augmentation/automation split?** Anthropic reported directive/delegation usage rising 27%→39% ([arXiv:2511.15080](https://arxiv.org/abs/2511.15080)); whether that shows up in employment data is unknown.
+- **How valid is lab telemetry as an economic instrument** — does Claude/ChatGPT usage represent the AI-using workforce, and does the O*NET mapping survive independent audit? ⚠️ unverified.
+- **Economy-wide wage effects: sign unknown.** Freelance markets say negative; Denmark says zero; no US economy-wide causal wage estimate opened in this pass.
+- **Eligibility/mechanics of the $200M Economic Futures Research Fund** for independent researchers — ⚠️ unverified (secondary sources only).
+- **Whether GDPval-style "expert parity" predicts anything** about adoption or displacement in the corresponding occupations — untested as far as sources opened here show.
+- **What is happening in low-income countries' labor markets** — exposure estimates exist; outcome studies were not found.
+
+## Fit notes
+
+The field's open datasets (Anthropic HF, Canaries ZIPs, GDPval gold subset, O*NET/BLS/CPS, EIG code) are tabular and pipeline-shaped, matching the researcher's XGBoost/classical-ML and data-pipeline strengths; the marquee studies above were done by 2–3-person teams on comparable tooling. The researcher's published LLM-as-a-judge work maps directly onto two live methodological needs: auditing the Economic Index's LLM-based task classifier and GDPval's grading pipeline. A named external funding channel exists at the right grant size (Anthropic Economic Futures, $10k–50k + API credits). The domain requires no GPU training runs; frontier-API and laptop-scale compute cover every study shape listed.

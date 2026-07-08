@@ -24,6 +24,14 @@ research direction within it is its own document with concrete papers, labs, and
 The map spans **16 branches grouped into 5 parts** (Capabilities · Foundations & Methods ·
 Safety, Evaluation & Society · Applications & Science · The Ecosystem) across **91 documents**.
 
+## → [The Research Program](research-program/README.md)
+
+The active research program built on top of the map: a charter with explicit operating
+principles, deep field maps (evaluation/benchmarking first), a broad candidate-fields
+sweep, a knowledge-gaps ledger, a side-by-side domain-comparison index, and automated
+weekly/monthly radar agents that keep it current. Start at the
+[charter](research-program/00-goals-and-operating-principles.md).
+
 ---
 
 *This is a research/reference repository — plain Markdown, no build step or site framework.*
