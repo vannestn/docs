@@ -100,8 +100,11 @@
 
 ## Generative media
 Image/video/audio generation has become its own startup-dense ecosystem (FLUX.2, Sora 2,
-Veo 3, Suno/Udio, Runway). Image/video models increasingly bleed into **world models** —
-see [06 · World models & video](../06-robotics-and-world-models/world-models-and-video.md)
+Veo 3, Suno/Udio, Runway) — and its own research field: see
+[14 · Generative media](../14-beyond-llm-ml-and-modalities/generative-media.md) for the
+architecture, distillation, and evaluation science. Image/video models increasingly bleed
+into **world models** — see
+[06 · World models & video](../06-robotics-and-world-models/world-models-and-video.md)
 and [10 · Emerging labs](../10-startups-and-nascent-fields/emerging-labs.md).
 
 ## State of research

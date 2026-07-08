@@ -59,7 +59,7 @@ URLs. Start here, then drill into whichever branch interests you.
 |---|--------|--------|
 | **05** | [AI for Science](05-ai-for-science/) | Biology, materials, math, weather, fusion, astronomy, chip design, neuro, drug clinical |
 | **11** | [Emerging Application Subfields](11-emerging-application-subfields/) | AI-for-SWE, RAG/memory, multi-agent, cybersecurity, law & finance |
-| **14** | [Beyond-LLM ML & Other Modalities](14-beyond-llm-ml-and-modalities/) | Time-series/tabular/graph, recsys, speech/audio, retrieval, quantum/federated |
+| **14** | [Beyond-LLM ML & Other Modalities](14-beyond-llm-ml-and-modalities/) | Generative media, time-series/tabular/graph, recsys, speech/audio, retrieval, quantum/federated |
 
 **Part V · The Ecosystem** — who builds it, and the forces around them
 | # | Branch | Inside |
