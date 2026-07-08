@@ -1,7 +1,7 @@
 # Efficiency, Quantization & Inference
 
 Doing more with less — lower numerical precision, smaller KV-caches, faster decoding, and
-edge-deployable models. One of the most *mature and fast-moving* areas.
+edge-deployable models. One of the most *mature and fast-moving* areas of AI research.
 
 ## Key directions & work
 
@@ -15,7 +15,7 @@ edge-deployable models. One of the most *mature and fast-moving* areas.
   per-tensor FP32 scale; Blackwell Tensor Cores give **2× (GB200) / 3× (GB300)** math
   throughput over FP8. The recipe needs four ingredients — keep ~15% of (final) linear
   layers in higher precision, Random Hadamard transforms (d=16) on Wgrad inputs, 2D 16×16
-  weight scaling, and stochastic rounding on gradients; ablations show each is required for
+  weight scaling, and stochastic rounding on gradients; ablations show each is needed for
   convergence. The single biggest systems shift of the year. [arXiv:2509.25149](https://arxiv.org/abs/2509.25149)
 - **Quartet** (ISTA / Red Hat AI + ETH Zürich) — a **native MXFP4 training** method (all
   linear-layer GEMMs in MXFP4) plus an FP4 *scaling law* that splits each method into a
@@ -30,20 +30,20 @@ edge-deployable models. One of the most *mature and fast-moving* areas.
   (~90% of total parameters) in MXFP4 at ~4.25 bits/param. [Model card](https://arxiv.org/abs/2508.10925)
 
 ### KV-cache optimization
-- **XQuant** — quantizes and caches the **per-layer input activation X**, then *rematerializes*
-  K/V on-the-fly during decode (one tensor per layer instead of two → immediate **2×** memory
-  saving vs KV caching), trading recompute for memory ("breaking the memory wall"). On
-  Llama-2-7B/WikiText-2, **~7.7× memory savings at <0.1 perplexity degradation**. **XQuant-CL**
+- **XQuant** — caches the quantized **per-layer input activation X** and *rematerializes* K/V
+  on-the-fly during decode, storing one tensor per layer instead of two (→ immediate **2×**
+  memory saving vs KV caching). This trades recompute for memory ("breaking the memory wall").
+  On Llama-2-7B/WikiText-2, **~7.7× memory savings at <0.1 perplexity degradation**. **XQuant-CL**
   exploits cross-layer similarity of X (it tracks the residual stream) to cache only inter-layer
   *deltas*, reaching **up to 10× memory savings at 0.01 perplexity degradation** (12.5× at 0.1)
-  — surpassing outlier-aware non-uniform KV-quant baselines (KIVI, KVQuant) using *plain uniform*
+  — beating outlier-aware non-uniform KV-quant baselines (KIVI, KVQuant) with *plain uniform*
   quantization. Extended to GQA via offline SVD of W_k/W_v. Premise: inference is increasingly
-  memory-bandwidth-bound, so spending compute to save memory wins on current/future hardware.
+  memory-bandwidth-bound, so spending compute to save memory wins on current and future hardware.
   [arXiv:2508.10395](https://arxiv.org/abs/2508.10395)
 - **KVTuner** (Huawei) — offline, sensitivity-aware **layer-wise mixed-precision** KV-cache
   quantization (multi-objective search over per-layer K/V precision pairs, applied at inference
   with no online overhead). Key empirical finding: the **key cache matters more than the value
-  cache** (low-bit key quant drives attention-distribution shift and error accumulation), so it
+  cache** (low-bit key quant shifts the attention distribution and accumulates error), so it
   spends precision on keys. Achieves **near-lossless ~3.25-bit** KV cache for Llama-3.1-8B and
   **4.0-bit** for the more sensitive Qwen2.5-7B on math reasoning, with **16.79–21.25%** higher
   inference throughput vs KIVI-KV8. [arXiv:2502.04420](https://arxiv.org/abs/2502.04420)
@@ -63,10 +63,10 @@ edge-deployable models. One of the most *mature and fast-moving* areas.
   [arXiv:2502.10424](https://arxiv.org/abs/2502.10424) · [OpenReview](https://openreview.net/forum?id=7SHbJENgHX)
 
 ### Speculative decoding
-- **EAGLE-3** (PKU / Microsoft) — drops EAGLE's feature-prediction constraint (predicts tokens
-  directly) and fuses **low/mid/high-level** target features via a "training-time test" recipe,
-  which unlocks a *scaling law* for the draft model (more draft training data → higher speedup,
-  not seen in prior EAGLE). **Lossless** (strict speculative acceptance). Up to **~6.5×** speedup
+- **EAGLE-3** (PKU / Microsoft) — drops EAGLE's feature-prediction constraint (it predicts tokens
+  directly) and fuses **low/mid/high-level** target features via a "training-time test" recipe.
+  This unlocks a *scaling law* for the draft model — more draft training data → higher speedup,
+  not seen in prior EAGLE. **Lossless** (strict speculative acceptance). Up to **~6.5×** speedup
   (HumanEval, Vicuna-13B), ~3.0–5.5× across chat/reasoning models, **~1.4×** over EAGLE-2 at
   batch=1. Holds up at scale: **+38% throughput at batch=64** in SGLang where speculation usually
   fades. Now standard in **vLLM and SGLang**. [arXiv:2503.01840](https://arxiv.org/abs/2503.01840)
@@ -76,9 +76,10 @@ edge-deployable models. One of the most *mature and fast-moving* areas.
   teacher/student size and token budgets (students 143M–12.6B, up to 512B distillation tokens).
   Core results: **distillation cannot beat supervised learning given enough student compute/tokens**,
   but *is* more efficient when (i) the student budget is below a size-dependent threshold **and**
-  (ii) a teacher already exists or is reused across many students. It also resolves the **capacity
-  gap** — a *stronger* teacher can yield a *worse* student — as a gap in relative learning capacity,
-  not just size; student cross-entropy depends on teacher *cross-entropy* L_T, not teacher size N_T.
+  (ii) a teacher already exists or is reused across many students. It also explains the **capacity
+  gap** — where a *stronger* teacher can yield a *worse* student — as a gap in relative learning
+  capacity, not just size: student cross-entropy depends on teacher *cross-entropy* L_T, not teacher
+  size N_T.
   [arXiv:2502.08606](https://arxiv.org/abs/2502.08606)
 - **Liquid AI LFM2** — a family of **edge-first** models (350M/700M/1.2B/2.6B dense + an 8.3B-total/
   **1.5B-active MoE**, all 32K context) found by **hardware-in-the-loop architecture search** under
@@ -100,9 +101,9 @@ near-lossless. Key insight across KV work: the **key cache is more quantization-
 value cache**.
 
 **Promising but unproven:** Fully lossless FP4 *inference* at long context; KV-cache
-rematerialization (XQuant) as a default; on-device frontier-class agents. All advancing fast but
-not yet settled. NVFP4 itself is shown only at 12B/10T — scaling laws across sizes and FP4 for
-attention/MoE/post-training remain open (authors' stated future work).
+rematerialization (XQuant) as a default; on-device frontier-class agents — all advancing fast but
+not yet settled. NVFP4 itself is shown only at 12B/10T; scaling laws across sizes, and FP4 for
+attention/MoE/post-training, remain open (authors' stated future work).
 
 **Open problems & weaknesses:** The *memory wall* (KV-cache growth with context, and compute
 outpacing memory bandwidth) is the binding constraint for long-context serving — XQuant explicitly

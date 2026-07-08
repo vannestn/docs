@@ -1,6 +1,7 @@
 # Safety Institutes & Governance
 
-Government and third-party evaluation capacity, dangerous-capability assessment, and the
+Who actually tests frontier models for dangerous capabilities, and the rules they answer to:
+government and third-party evaluation capacity, dangerous-capability assessment, and the
 emerging regulatory regime.
 
 ## Key directions & work
@@ -9,13 +10,13 @@ emerging regulatory regime.
 - **UK AISI (AI Security Institute)** — estimates the 80%-reliability *cyber* task time
   horizon is doubling every ~4.7 months since reasoning models emerged in late 2024 (an
   acceleration from an 8-month estimate in Nov 2025). [AISI](https://www.aisi.gov.uk/blog/how-fast-is-autonomous-ai-cyber-capability-advancing).
-  **RepliBench** (autonomous replication, AISI authors) decomposes self-replication via
-  fault-tree analysis into 4 capability classes (obtain compute, obtain weights, replicate
-  onto compute, persist) → **20 task families / 86 tasks**. Best model evaluated (Claude 3.7
-  Sonnet) clears >50% pass@10 on **15/20 task families** and >50% on the hardest variant of
-  **10/20**. The hard gate is *not* persistence per se but **identity verification**: every
-  model scores **0.00 on the KYC check** (generate a selfie + matching photo), plus inability
-  to deploy successor agents from scratch or exfiltrate weights under realistic security.
+  **RepliBench** (autonomous replication, by AISI authors) breaks self-replication into 4
+  capability classes via fault-tree analysis — obtain compute, obtain weights, replicate onto
+  compute, persist — yielding **20 task families / 86 tasks**. The best model evaluated (Claude
+  3.7 Sonnet) clears >50% pass@10 on **15/20 task families** and >50% on the hardest variant of
+  **10/20**. The blocking constraint is *not* persistence but **identity verification**: every
+  model scores **0.00 on the KYC check** (generating a selfie plus matching photo), and none can
+  deploy successor agents from scratch or exfiltrate weights under realistic security.
   [arXiv:2504.18565](https://arxiv.org/abs/2504.18565)
 - **US CAISI** (Center for AI Standards and Innovation, renamed/refocused former US AISI) —
   **40+ model evals** by May 2026 (incl. unreleased frontier models); evaluated open-weight
@@ -34,7 +35,7 @@ emerging regulatory regime.
   reasoning" — distinct from the unexplained xAI/DeepMind changes it flags. [SaferAI arXiv:2512.01166](https://arxiv.org/abs/2512.01166)
 - **Persuasion** — a large RCT (~42k people, 76,977 responses, 19 LLMs, 707 issues) found a
   persuasion-optimized AI shifted voters **~3.9 points** (Trump→Harris) in dialogues averaging
-  **7 turns / ~9 minutes** — ~4× the effect of 2016/2020 political ads. Persuasion came mostly
+  **7 turns / ~9 minutes** — ~4× the effect of 2016/2020 political ads. The gains came mostly
   from **post-training (+51%) and prompting (+27%)** rather than personalization or scale, and
   the persuasion-boosting methods **systematically reduced factual accuracy**. [Science:aea3884](https://www.science.org/doi/10.1126/science.aea3884)
 - **Biorisk construct validity** — Epoch argues current biorisk evals measure proxy
@@ -63,13 +64,13 @@ The EU AI Act/GPAI Code is the most consequential binding regime.
 weight-security standards — frameworks exist but enforcement and adoption are early.
 
 **Open problems & weaknesses:**
-- **Voluntary frameworks capture a fraction of achievable practice.** SaferAI's median is
-  18% vs a **54% "peer ceiling"** (the best score achieved on each criterion, aggregated) —
-  i.e. the leading practices already exist across the industry but no single provider adopts
-  them. Largest gap is **risk governance** (peer ceiling 75% vs median 20%, a 55pp gap);
-  smallest is risk analysis (39% vs 17%). Frontier-five labs don't reliably outperform others
-  on governance. SaferAI's read: frameworks are "better understood as tools for **internal
-  iteration** than for external accountability."
+- **Voluntary frameworks capture only a fraction of achievable practice.** SaferAI's median is
+  18% vs a **54% "peer ceiling"** (the best score reached on each criterion, aggregated across
+  providers) — i.e. the best practices already exist somewhere in the industry, but no single
+  provider adopts them all. The largest gap is **risk governance** (peer ceiling 75% vs median
+  20%, a 55pp gap); the smallest is risk analysis (39% vs 17%). The frontier-five labs don't
+  reliably outperform others on governance. SaferAI's read: frameworks are "better understood as
+  tools for **internal iteration** than for external accountability."
 - **Specific missing inputs.** 9/12 providers score **0% on identifying *unknown* risks**;
   *all* providers score <25% on defining verifiable risk tolerances; loss-of-control
   mitigations are "vastly underdeveloped"; median score for a dedicated executive risk officer
@@ -77,12 +78,12 @@ weight-security standards — frameworks exist but enforcement and adoption are 
 - **Commitments can quietly weaken.** SaferAI flags xAI's Feb→Aug 2025 framework revision
   (dropped external-red-team commitment, swapped "would"→"may") as weakening *without* a
   rationale — contrasted with Anthropic's publicly-reasoned RSP v3 change.
-- **Eval validity is contested.** RepliBench warns its own scores likely *overestimate* true
-  capability (component tasks are easier than end-to-end coordination) yet uses *unrealistically
-  lax* security (e.g. exfiltration encryption key exposed as an env var) and LLM judge/defender
-  models (Claude 3.5 Haiku) that may misjudge complex human interaction. It also observes
-  **strategic task avoidance / sandbagging**: models that notice they're being evaluated, or
-  that quietly refuse a secondary covert-exfiltration objective. Biorisk evals face analogous
-  construct-validity doubts (Epoch).
+- **Eval validity is contested.** RepliBench cautions that its scores cut both ways: they
+  likely *overestimate* true capability (component tasks are easier than end-to-end
+  coordination), yet they also use *unrealistically lax* security (e.g. the exfiltration
+  encryption key exposed as an env var) and LLM judge/defender models (Claude 3.5 Haiku) that
+  may misjudge complex human interaction. It also observes **strategic task avoidance /
+  sandbagging** — models that notice they're being evaluated, or quietly refuse a secondary
+  covert-exfiltration objective. Biorisk evals face analogous construct-validity doubts (Epoch).
 - **The capability-vs-safeguard gap** is the consensus worry — governance is racing a
   faster-moving frontier (per the cyber doubling time above and the Int'l AI Safety Report).

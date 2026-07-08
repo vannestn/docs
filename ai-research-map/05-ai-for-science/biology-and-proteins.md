@@ -1,7 +1,7 @@
 # Biology & Proteins
 
-The most mature AI-for-science domain — structure prediction, protein/DNA design, and the
-emerging frontier of whole-cell models.
+The most mature AI-for-science domain, spanning structure prediction, protein/DNA design, and
+the emerging frontier of whole-cell models.
 
 ## Key directions & work
 
@@ -9,12 +9,12 @@ emerging frontier of whole-cell models.
 - **Isomorphic Labs IsoDDE** (Isomorphic Drug Design Engine) — reports ~50% accuracy on the
   hardest protein-ligand cases vs AlphaFold 3's 23.3%; first human trials (oncology) targeted
   by end of 2026 after a $2.1B Series B. [Isomorphic](https://www.isomorphiclabs.com/articles/the-isomorphic-labs-drug-design-engine-unlocks-a-new-frontier) *[secondary specifics — verify]*
-- **Boltz-2** (MIT) — first *open* model approaching FEP accuracy on binding affinity at
-  ~1000× lower cost; MIT-licensed. [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.06.14.659707v1)
+- **Boltz-2** (MIT) — first *open* model to approach FEP (free-energy perturbation) accuracy on
+  binding affinity at ~1000× lower cost; MIT-licensed. [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.06.14.659707v1)
 
 ### Protein language / generative models
-- **ESM3 / ESM C** (EvolutionaryScale) — frontier multimodal generative protein LM over
-  sequence/structure/function; ESM3 published in *Science*. [Science](https://www.science.org/doi/10.1126/science.ads0018)
+- **ESM3 / ESM C** (EvolutionaryScale) — frontier multimodal generative protein language model
+  spanning sequence, structure, and function; ESM3 published in *Science*. [Science](https://www.science.org/doi/10.1126/science.ads0018)
 - **ProGen3** (Profluent) — up to 46B params, "scaling laws" for protein design; released
   OpenAntibodies. [bioRxiv](https://www.biorxiv.org/content/10.1101/2025.04.15.649055v1)
 
@@ -35,9 +35,9 @@ emerging frontier of whole-cell models.
 (Boltz-2, Chai-1, ESM C) are reliable tools used daily. Protein/DNA language models are
 solid and increasingly open-weight.
 
-**Promising but unproven:** **Virtual cell models** are the exciting frontier but early —
-predicting cellular response to perturbation is far harder than static structure, and
-validation is hard. AI-designed drugs heading to *clinical trials* is the real test of
+**Promising but unproven:** **Virtual cell models** are the exciting frontier, but still early —
+predicting how cells respond to perturbation is far harder than predicting static structure, and
+validation is difficult. AI-designed drugs reaching *clinical trials* will be the real test of
 generative design.
 
 **Open problems & weaknesses:** Predicting *function and dynamics* (not just structure)

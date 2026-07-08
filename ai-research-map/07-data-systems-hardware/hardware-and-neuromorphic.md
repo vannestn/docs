@@ -28,7 +28,7 @@ computing paradigms, and the power constraint that now gates everything.
 - **SpikingBrain** (Inst. of Automation, CAS) — two *spiking* LLMs, **SpikingBrain-7B**
   (pure linear) and **SpikingBrain-76B-A12B** (hybrid-linear MoE, ~12B active), converted
   from a Qwen2.5-7B-base checkpoint via continual pre-training on **~150B tokens (<2% of the
-  ~10T a from-scratch run would need)**. Trained on hundreds of **non-NVIDIA MetaX C550 GPUs**
+  ~10T that a from-scratch run would need)**. Trained on hundreds of **non-NVIDIA MetaX C550 GPUs**
   (23.4% MFU vs 25.8% on an NVIDIA A800 cluster), stable for >2 weeks. Adaptive-threshold
   spiking yields **69.15% sparsity**; on long context the 7B hits **26.5× faster TTFT at 1M
   tokens** and an *extrapolated* **>100× (≈104×) at 4M** vs Qwen2.5-7B (Qwen baseline beyond
@@ -54,8 +54,8 @@ the winning hardware economics.
 in-memory all show striking *efficiency* results but remain largely **pre-commercial** for
 mainstream LLM workloads. Spiking (SpikingBrain) is further along on the *algorithm* side —
 open-weight 7B/76B models that train and serve on commodity (MetaX) GPUs — but its
-event-driven *energy* advantage still awaits asynchronous neuromorphic silicon to be
-realized rather than simulated.
+event-driven *energy* advantage is still only simulated; realizing it awaits asynchronous
+neuromorphic silicon.
 
 **Open problems & weaknesses:** Alternative computing lacks software/ecosystem maturity and
 general-purpose flexibility — efficiency demos rarely translate to drop-in deployment.
@@ -69,7 +69,6 @@ general-purpose flexibility — efficiency demos rarely translate to drop-in dep
   the gap required the 76B model to keep *full softmax* attention in some layers. Training on
   concatenated short texts (vs native long-context data) gave limited long-context gains.
 - **HBM supply** is a hard physical bottleneck — 2026 HBM4 from SK Hynix and Micron is fully
-  sold out. And **power** is now the true ceiling: every alternative-compute thread is
-  justified primarily by the energy crunch, and the nuclear buildout won't deliver until
-  ~2028+. (Unverified mid-2026 "Loihi 3 in production" claims are excluded as
-  unsubstantiated.)
+  sold out. **Power** is now the true ceiling: every alternative-compute thread is justified
+  primarily by the energy crunch, and the nuclear buildout won't deliver until ~2028+.
+  (Unverified mid-2026 "Loihi 3 in production" claims are excluded as unsubstantiated.)

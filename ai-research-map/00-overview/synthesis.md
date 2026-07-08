@@ -10,7 +10,7 @@ the branches together into one argument. Every claim links to the branch that do
 
 The single most important shift since 2024 is that capability is increasingly bought at
 **inference time**, not just training time. Reasoning models trained with reinforcement learning
-on *verifiable* rewards — DeepSeek-R1's pure-RL "aha moments," published in *Nature* — made
+(RL) on *verifiable* rewards — DeepSeek-R1's pure-RL "aha moments," published in *Nature* — made
 "think before answering" the frontier default, and the whole stack reorganized around it:
 process reward models, parallel-hypothesis search, and routers that decide how hard to think
 ([01 · Reasoning](../01-foundation-models-and-capabilities/reasoning-and-test-time-compute.md)).
@@ -22,7 +22,7 @@ already contains** — a live, unresolved empirical dispute
 
 ## 2. Agents became the product, the benchmark, and the risk surface — at once
 
-Reasoning made agents viable, and agents became simultaneously the commercial product, the way
+Reasoning made agents viable, and agents became at once the commercial product, the way
 progress is measured, and a new category of risk. Autonomous coding (30+ hour runs), computer
 use, and orchestrator-worker systems all arrived together
 ([01 · Agents](../01-foundation-models-and-capabilities/agents-and-tool-use.md)). With them came
@@ -46,7 +46,7 @@ peak capability.
 
 ## 4. AI-for-science crossed from prediction to discovery
 
-2026 is the year AI stopped only *predicting* and started *discovering*. AlphaProof-lineage systems
+In 2026, AI stopped only *predicting* and started *discovering*. AlphaProof-lineage systems
 resolved long-open Erdős/OEIS conjectures ([05 · Mathematics](../05-ai-for-science/mathematics.md));
 the first fully generative-AI-designed drug produced a real clinical signal
 ([05 · Drug discovery](../05-ai-for-science/drug-discovery-and-clinical.md)); RL controls real

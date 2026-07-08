@@ -5,7 +5,7 @@ believe in.
 
 ## The "post-scaling research era" bet
 The most striking 2025–26 pattern: **enormous rounds for labs with little or no public
-output**, betting on talent + a research thesis rather than shipped products.
+output** — betting on talent and a research thesis rather than shipped products.
 - **Safe Superintelligence (SSI)** — ~$6B raised, ~$32B valuation, **zero papers/products**.
   Sutskever frames 2026 as a return to a "research era" ("a different mountain to climb").
 - **Thinking Machines Lab** (Mira Murati) — multi-billion valuation pre-product.

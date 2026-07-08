@@ -1,7 +1,8 @@
 # RAG & Memory Systems
 
-Giving models access to external/up-to-date/private knowledge (retrieval) and durable,
-evolving memory (beyond a big context window).
+Two ways to give a model knowledge it wasn't trained on: **retrieval** (pull in external,
+current, or private documents at query time) and **memory** (durable, evolving state that
+persists across sessions — not just a bigger context window).
 
 > **📦 Concept: RAG (Retrieval-Augmented Generation)** — before answering, the system
 > *searches* a document store and feeds the relevant bits into the model's context. This
@@ -13,13 +14,13 @@ evolving memory (beyond a big context window).
 
 ## Key directions & work
 
-- **Agentic RAG** — embedding agents (planning, reflection, tool use, multi-step retrieval)
-  into the retrieval loop, rather than a single search-then-answer. The
+- **Agentic RAG** — putting agents (planning, reflection, tool use, multi-step retrieval)
+  inside the retrieval loop, instead of a single search-then-answer. The
   [Agentic RAG survey](https://arxiv.org/abs/2501.09136) ([arXiv:2501.09136](https://arxiv.org/abs/2501.09136))
-  organizes the field into a taxonomy by *agent cardinality, control structure, autonomy,
-  and knowledge representation*: single-agent **router** (one agent picks the source:
-  Text-to-SQL / vector / web / recsys), **multi-agent** (specialized retrieval agents in
-  parallel under a coordinator), **hierarchical** (tiered master→sub-agent delegation),
+  organizes the field by *agent count, control structure, autonomy, and knowledge
+  representation*: single-agent **router** (one agent picks the source:
+  Text-to-SQL / vector / web / recsys), **multi-agent** (specialized retrieval agents working
+  in parallel under a coordinator), **hierarchical** (tiered master→sub-agent delegation),
   **corrective** (a relevance-evaluation agent grades retrieved docs and triggers query
   rewriting or web fallback), **adaptive** (a classifier routes by query complexity — no
   retrieval / single-step / multi-step), and **graph-based** (Agent-G, GeAR, and

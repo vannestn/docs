@@ -1,7 +1,7 @@
 # Multilingual & Low-Resource AI
 
-Extending capability beyond English — and the persistent equity gap that remains the field's
-defining open problem. This is both a *capability* axis and a *fairness* one (see
+Extending capability beyond English — and closing the persistent equity gap that remains the
+field's defining open problem. This is both a *capability* axis and a *fairness* one (see
 [13 · Fairness](../13-fairness-ethics-and-human-factors/fairness-bias-and-sociotechnical-ai.md)).
 
 ## Key directions & work
@@ -19,9 +19,9 @@ defining open problem. This is both a *capability* axis and a *fairness* one (se
 - **Translated benchmarks smuggle in Western cultural priors.** Global-MMLU finds **28% of MMLU
   questions require culturally-sensitive knowledge**, of which **86.5% is tagged Western** (next
   closest, South Asian, is 4%); geographic questions focus **84.9% on North America or Europe**
-  (North America alone 64.5%). Re-ranking models on the culturally-sensitive (CS) subset shifts
-  rankings far more than the culturally-agnostic (CA) subset — CS shows avg 5.7 rank changes / 7.3
-  position shifts vs 3.4 / 3.7 for CA — so blindly translated MMLU rewards Western-concept mastery.
+  (North America alone, 64.5%). Re-ranking models on the culturally-sensitive (CS) subset reshuffles
+  the leaderboard far more than the culturally-agnostic (CA) subset (CS: avg 5.7 rank changes / 7.3
+  position shifts vs CA: 3.4 / 3.7) — so blindly translated MMLU rewards Western-concept mastery.
   [Global-MMLU arXiv:2412.03304](https://arxiv.org/abs/2412.03304)
 
 ### The "token tax"
@@ -31,14 +31,14 @@ defining open problem. This is both a *capability* axis and a *fairness* one (se
 
 - **The Token Tax** evaluates 10 LLMs on **AfriMMLU** (9,000 MCQA items, 5 subjects, 16 African
   languages) and shows fertility (tokens/word) **reliably predicts accuracy**: linear-regression
-  slopes run **−0.08 to −0.18** (each extra token/word costs 8–18 accuracy points), with fertility
-  explaining **20–50% of accuracy variance**. African languages trail English by **~25 points** on
+  slopes run **−0.08 to −0.18** (each extra token/word costs 8–18 accuracy points), and fertility
+  explains **20–50% of accuracy variance**. African languages trail English by **~25 points** on
   average; reasoning models (DeepSeek, o1) narrow this by **8–12 points** but do not close it.
   [arXiv:2509.05486](https://arxiv.org/abs/2509.05486)
-- **Economic bite:** because training scales O(n²) in sequence length, a 2× fertility increase →
-  **4× training cost** (e.g. Llama-3.1-405B: $105M English vs $420M at double fertility), and a 2×
-  fertility language doubles inference latency. The paper argues for morphology-aware tokenization,
-  fairer pricing, and multilingual benchmarks — not a specific algorithm.
+- **Economic bite:** because training cost scales O(n²) in sequence length, doubling fertility
+  **quadruples training cost** (e.g. Llama-3.1-405B: $105M in English vs $420M at double fertility)
+  and **doubles inference latency**. The paper calls for morphology-aware tokenization, fairer
+  pricing, and multilingual benchmarks — not a specific algorithm.
 - **Proposed fix:** *parity-aware BPE* changes the merge rule to maximize compression for the
   currently worst-compressed language, equalizing per-language token counts at near-zero global
   compression cost and matching downstream quality. [arXiv:2508.04796](https://arxiv.org/abs/2508.04796)
@@ -49,11 +49,11 @@ defining open problem. This is both a *capability* axis and a *fairness* one (se
   never served by any ASR system before), via 7B-param self-supervised pre-training + an
   encoder–decoder, LLM-inspired decoder. CER < 10 for 78% of the 1,600+ languages.
   [arXiv:2511.09690](https://arxiv.org/abs/2511.09690)
-- **Zero-shot in-context extension to ~5,400 languages:** a speaker provides a handful of
-  audio–text pairs at inference time and the model transcribes the new language without retraining —
-  reframing coverage from a fixed release inventory to a community-extensible framework. (Context
-  examples are retrieved with the SONAR encoder; zero-shot quality still trails fully-trained
-  systems.) [Meta blog](https://ai.meta.com/blog/omnilingual-asr-advancing-automatic-speech-recognition/)
+- **Zero-shot in-context extension to ~5,400 languages:** a speaker supplies a few audio–text pairs
+  at inference time and the model transcribes the new language without retraining — reframing
+  coverage from a fixed release inventory into a community-extensible framework. (Context examples
+  are retrieved with the SONAR encoder; zero-shot quality still trails fully-trained systems.)
+  [Meta blog](https://ai.meta.com/blog/omnilingual-asr-advancing-automatic-speech-recognition/)
 
 ### Sovereign / regional models
 - Regional stacks are maturing across **African** (Masakhane; AfriMMLU/IrokoBench evals — the latter
@@ -71,30 +71,31 @@ defining open problem. This is both a *capability* axis and a *fairness* one (se
     native language (Arabic/Persian/Turkish) — value representation is unstable, not consistent moral
     reasoning.
   - **Reasoning-induced degradation:** prompting models to reason *before* answering **lowers**
-    cultural-alignment (NVAS) scores across most settings — e.g. −6.96 for Llama-3.1, −6.12 for
-    Fanar, −3.52 for Mistral.
-  - **Logit leakage:** models verbally refuse sensitive questions while internal token probabilities
-    reveal high-confidence hidden preferences (refusal-masked leakage rates up to 47.5% for Fanar).
+    cultural-alignment (NVAS) scores in most settings — e.g. −6.96 for Llama-3.1, −6.12 for Fanar,
+    −3.52 for Mistral.
+  - **Logit leakage:** models verbally refuse sensitive questions while their internal token
+    probabilities reveal high-confidence hidden preferences (refusal-masked leakage rates up to
+    47.5% for Fanar).
   - Notably, **Arabic-specialist models (Fanar, ALLaM) do not beat general-purpose models** on
-    alignment, and PCA shows models collapse to *language*-based clustering (linguistic essentialism)
-    rather than true cultural distinctions.
+    alignment, and PCA shows models cluster by *language* (linguistic essentialism) rather than by
+    genuine cultural distinctions.
 
 ### Data scarcity
 - **Machine-translated pretraining works.** *TransWebLLM* (1.3B) is trained from scratch on
   **TransWebEdu** — FineWeb-Edu translated into 9 languages with NLLB-200-1.3B (sentence-level),
   **1.7T tokens** — and matches or beats Llama-3.2, Qwen2.5 and Gemma on 9 non-English reasoning
-  tasks despite an order of magnitude less data; biggest gains on Swahili and Welsh (ranks #1 among
-  baselines). Adding <5% in-domain data sets new SOTA in Arabic, Italian, Indonesian, Swahili, Welsh.
-  [arXiv:2502.13252](https://arxiv.org/abs/2502.13252)
+  tasks despite an order of magnitude less data; the biggest gains are on Swahili and Welsh (ranked
+  #1 among baselines). Adding <5% in-domain data sets new SOTA in Arabic, Italian, Indonesian,
+  Swahili, and Welsh. [arXiv:2502.13252](https://arxiv.org/abs/2502.13252)
   - Even a small (45B-token) general-web + cooldown addition lifts French linguistic proficiency
     ~+10 points and Indonesian cultural reasoning (COPAL-ID) ~+8 points — translationese in the long
     tail is real but tractable.
 - **ATLAS** runs the largest multilingual scaling-laws study to date (774 experiments, 10M–8B params,
-  400+ training languages) and models the **curse of multilinguality** directly: fitting
-  `L(K,N,Dₜ)` over training languages K gives capacity exponent φ≈0.11 and data exponent ψ≈−0.04 —
-  i.e. a **mild, capacity-driven** curse *tempered by positive transfer*, mitigated more by scaling
-  model size N than data D. Expanding language coverage by r requires ~`C·r^0.97` more compute.
-  [arXiv:2510.22037](https://arxiv.org/abs/2510.22037)
+  400+ training languages) and models the **curse of multilinguality** (adding languages degrades
+  per-language quality) directly: fitting `L(K,N,Dₜ)` over training languages K gives capacity
+  exponent φ≈0.11 and data exponent ψ≈−0.04 — i.e. a **mild, capacity-driven** curse *tempered by
+  positive transfer*, eased more by scaling model size N than data D. Expanding language coverage by
+  a factor r requires ~`C·r^0.97` more compute. [arXiv:2510.22037](https://arxiv.org/abs/2510.22037)
   - Its 38×38 cross-lingual transfer matrix finds **English is the best source language for many
     targets** (top-5 for 19/30), but shared **script** then language family predict transfer best,
     and transfer is often **asymmetric** (A→B ≠ B→A; Pearson r=−0.11 across all pairs).
@@ -104,8 +105,8 @@ defining open problem. This is both a *capability* axis and a *fairness* one (se
 **Best-performing now:** Omnilingual ASR (1,600+ languages, open-source) for speech breadth; strong
 parallel evals that separate breadth from difficulty (Global-MMLU's CS/CA split, MMLU-ProX's
 reasoning-focused 29-language parallel set, AfriMMLU for African MCQA); translation-pretrained small
-models (TransWebLLM) that punch above their data budget; reasoning models (DeepSeek-R1, Qwen3-think)
-which consistently top low-resource leaderboards.
+models (TransWebLLM) that punch above their data budget; and reasoning models (DeepSeek-R1,
+Qwen3-think) that consistently top low-resource leaderboards.
 
 **Promising but unproven:** zero-shot ASR extension toward ~5,400 languages (quality still trails
 trained systems); parity-aware tokenizers (⚠️ no confirmed frontier adoption); machine-translated +

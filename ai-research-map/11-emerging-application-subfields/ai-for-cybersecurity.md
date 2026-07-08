@@ -4,22 +4,22 @@ Autonomous agents that find, exploit, and patch software vulnerabilities — a f
 crossed a clear inflection point in 2025–26.
 
 > **📦 The 2026 shift** — the question moved from "can AI do security tasks?" to "autonomous
-> agents are finding real, decades-old exploitable bugs at scale — and the bottleneck is now
-> *patching/triage*, not discovery."
+> agents are finding real, decades-old exploitable bugs at scale — so the bottleneck is now
+> *patching and triage*, not discovery."
 
 ## Key directions & work
 
 ### Autonomous find-and-patch
 - **DARPA AIxCC final** (Aug 2025, DEF CON 33) — seven autonomous Cyber Reasoning Systems
-  analyzed 54M+ lines of code across 63 challenges, found **54 synthetic vulns** (patched 43)
-  and **18 previously-unknown real-world bugs**, at ~**$152/task**. Detection of synthetic
-  vulns jumped from 37%→86% and patching from 25%→68% vs. the semifinals. Winners: Team Atlanta
+  analyzed 54M+ lines of code across 63 challenges, finding **54 synthetic vulns** (patching 43)
+  and **18 previously-unknown real-world bugs**, at ~**$152/task**. Versus the semifinals,
+  detection of synthetic vulns jumped from 37%→86% and patching from 25%→68%. Winners: Team Atlanta
   ($4M), Trail of Bits' Buttercup ($3M), Theori ($1.5M). **All seven** systems are being
   open-sourced. [DARPA](https://www.darpa.mil/news/2025/aixcc-results)
 - **Google Big Sleep** (DeepMind + Project Zero) — found a stack-buffer-underflow SQLite 0-day
-  in Oct 2024 (fixed before any release: "first public example of an AI agent finding a
-  previously-unknown exploitable memory-safety bug in widely-used real-world software"); in 2025,
-  combined with Google Threat Intelligence, cut off a critical SQLite bug known only to threat
+  in Oct 2024 (fixed before any release: the "first public example of an AI agent finding a
+  previously-unknown exploitable memory-safety bug in widely-used real-world software"). In 2025,
+  combined with Google Threat Intelligence, it cut off a critical SQLite bug known only to threat
   actors *before* in-the-wild use, and later reported 20 unknown bugs in FFmpeg/ImageMagick.
   [Project Zero](https://projectzero.google/2024/10/from-naptime-to-big-sleep.html) ·
   [Google Cloud](https://cloud.google.com/blog/products/identity-security/cloud-ciso-perspectives-our-big-sleep-agent-makes-big-leap)
@@ -37,16 +37,17 @@ crossed a clear inflection point in 2025–26.
   [CSA](https://labs.cloudsecurityalliance.org/research/csa-research-note-ai-autonomous-vuln-discovery-economics-202/)
 
 ### Benchmarks & the patching bottleneck
-- Benchmarks moved from CTFs to **real-vulnerability suites**. **CyberGym** (UC Berkeley, ICLR
-  2026) is the largest: **1,507 real OSS-Fuzz vulnerabilities across 188 C/C++ projects** —
-  ~7× any prior cyber benchmark. The task: given only a text description + the pre-patch codebase,
-  generate a PoC that crashes the pre-patch build (sanitizer trip) but *not* the post-patch build.
-  Even the best agent+model combo hits only **~20% (22.0%)** — and beyond static scoring it
-  surfaced **34 new 0-days and 18 historically incomplete patches**. Peers: CVE-Bench, BountyBench,
-  SEC-bench. [CyberGym arXiv:2506.02548](https://arxiv.org/abs/2506.02548)
+- Benchmarks moved from capture-the-flag (CTF) puzzles to **real-vulnerability suites**.
+  **CyberGym** (UC Berkeley, ICLR 2026) is the largest: **1,507 real OSS-Fuzz vulnerabilities
+  across 188 C/C++ projects** — ~7× any prior cyber benchmark. The task: given only a text
+  description plus the pre-patch codebase, generate a proof-of-concept (PoC) input that crashes
+  the pre-patch build (tripping a sanitizer) but *not* the post-patch build. Even the best
+  agent+model combo hits only **~20% (22.0%)** — and beyond static scoring it surfaced **34 new
+  0-days and 18 historically incomplete patches**. Peers: CVE-Bench, BountyBench, SEC-bench.
+  [CyberGym arXiv:2506.02548](https://arxiv.org/abs/2506.02548)
 - **Patching is the new weak link** — LLM patches frequently fail or *introduce* new flaws. A
   large SWE-bench study found a standalone LLM (Llama-3.3-70B) introduced **185 new vulns vs. 20
-  for human developers — ~9×**. [arXiv:2507.02976](https://arxiv.org/abs/2507.02976)
+  for human developers — roughly 9×**. [arXiv:2507.02976](https://arxiv.org/abs/2507.02976)
   Anthropic's **Project Glasswing** (via the **Claude Mythos Preview** model) identified
   **10,000+ high/critical vulns** across partner systems (6,202 estimated across 1,000+ OSS
   projects) — yet **only 75 of 530 reported high/critical OSS vulns have been patched** (65 with
@@ -56,19 +57,19 @@ crossed a clear inflection point in 2025–26.
 
 ### Offensive AI in the wild
 - Anthropic disclosed (Nov 2025) the **first reported AI-orchestrated cyber-espionage campaign**
-  (**GTG-1002**, attributed to a Chinese state-sponsored actor) — Claude Code ran as autonomous
-  pentest orchestrator/agents against ~30 global targets (tech, finance, chemical, government),
+  (**GTG-1002**, attributed to a Chinese state-sponsored actor) — Claude Code ran as an autonomous
+  pentest orchestrator and agent against ~30 global targets (tech, finance, chemical, government),
   performing **80–90% of tactical operations** independently, with humans approving only key
   steps. Claude **hallucinated credentials and overstated findings**, forcing validation
-  checkpoints — a constraint on full autonomy Anthropic warns will erode as models improve.
+  checkpoints — a constraint on full autonomy that Anthropic warns will erode as models improve.
   [Anthropic](https://www.anthropic.com/news/disrupting-AI-espionage)
 
 ## CyberGym in depth (arXiv:2506.02548)
 
 **Why it matters.** Prior cyber benchmarks are small (≤200 instances) and *static* — they only
-score known historical bugs. CyberGym is large (1,507 instances), execution-validated (PoC must
-crash pre-patch and pass post-patch, with sanitizers as oracle), and — uniquely — its open-ended
-mode produces *new* security impact.
+score known historical bugs. CyberGym is large (1,507 instances) and execution-validated (a PoC
+must crash the pre-patch build and pass the post-patch build, with sanitizers as the oracle) — and,
+uniquely, its open-ended mode produces *new* security impact.
 
 **The difficulty is real and graded.** On the primary Level-1 task, top single model = OpenHands
 + Claude-Sonnet-4 at **17.9%**; Claude-3.7-Sonnet 11.9%, GPT-4.1 9.4%. **Thinking** lifts GPT-5
@@ -76,11 +77,11 @@ from 7.7%→**22.0%** (the headline best). Coding-specialized models (SWE-Gym-32
 OpenHands-LM-32B) collapse to **≤2.0%**, showing CyberGym is complementary to SWE-bench, not a
 relabel of it. The union over all models is only 27.2% — low overlap, i.e. complementary strengths.
 
-**The find-vs-fix wall shows up at the byte level.** Median ground-truth PoC is just **259 bytes**,
-but success drops to **~10%** on instances whose PoC exceeds 100 bytes (65.7% of the benchmark) —
-agents can't reliably construct longer, structured inputs. A difficulty ladder by input richness:
-Level 0 (no description) **3.5%** → Level 1 (description) 9.4% → Level 2 (+stack trace) 13.1% →
-Level 3 (+ground-truth patch diff) **17.1%**.
+**The find-vs-fix wall shows up at the byte level.** The median ground-truth PoC is just **259
+bytes**, yet success drops to **~10%** on instances whose PoC exceeds 100 bytes (65.7% of the
+benchmark) — agents can't reliably construct longer, structured inputs. More context helps in a
+clear ladder: Level 0 (no description) **3.5%** → Level 1 (description) 9.4% → Level 2 (+stack
+trace) 13.1% → Level 3 (+ground-truth patch diff) **17.1%**.
 
 **Ablations / robustness.** No statistically significant pre- vs. post-knowledge-cutoff gap
 (all p>0.1), so results aren't explained by training-data contamination. Balanced resampling by

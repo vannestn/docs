@@ -1,7 +1,7 @@
 # Data-Centric AI
 
 **Data quality is the quietest, most underrated driver of model capability.** This document
-covers where it plays a role, the "data wall," synthetic/recycled data, attribution,
+covers where it matters, the "data wall," synthetic and recycled data, attribution,
 poisoning, privacy, and provenance.
 
 > **📦 Concept: "data-centric AI"** — the idea that *improving the data* (cleaning,
@@ -23,7 +23,8 @@ poisoning, privacy, and provenance.
 Data quality is not one problem but a thread running through the whole pipeline:
 
 1. **Pretraining mixture & curation** — the single biggest non-architectural lever on base-
-   model quality. Model-based *classifier filtering* is now standard:
+   model quality. Model-based *classifier filtering* (training a small model to score and
+   keep only high-quality documents) is now standard:
    - **FineWeb-Edu** trained an educational-quality classifier (a linear regressor on
      Snowflake-arctic-embed-m embeddings, supervised by Llama-3-70B-Instruct 0–5 scores) and
      released a 1.3T-token filtered subset with large MMLU/ARC/OpenBookQA gains.
@@ -36,8 +37,8 @@ Data quality is not one problem but a thread running through the whole pipeline:
      tokens (30% candidate data), cutting validation cost from ~1,200 to ~110 H100-hours.
      The resulting English subset (~1T tokens) lifts the 9-task English average from 44.56
      (FineWeb-edu) to **45.89** at the 1.1B/100B-token scale. [Ultra-FineWeb arXiv:2505.05427](https://arxiv.org/abs/2505.05427)
-   - The lesson of 2024–26: *aggressive filtering of a smaller, higher-quality set beats raw
-     scale.* Filtering often discards up to ~99% of scraped web text.
+   - The lesson of 2024–26: *a smaller, aggressively filtered set beats raw scale.* Filtering
+     often discards up to ~99% of scraped web text.
 2. **RL reward quality** — in RLVR, the *verifier/reward* is a data-quality problem; reward
    hacking is what happens when reward data is even slightly gameable (see
    [04 · RL for reasoning](../04-reinforcement-learning-and-open-endedness/rl-for-reasoning.md)).
@@ -55,9 +56,9 @@ Data quality is not one problem but a thread running through the whole pipeline:
   human-text stock at **~300T tokens** (90% CI: 100T–1,000T) and projects compute-optimal
   models exhausting it ~2028 — but as early as ~2027 under modest (5×) overtraining and
   ~2025 under heavy (100×) overtraining. [Epoch](https://epoch.ai/publications/will-we-run-out-of-data-limits-of-llm-scaling-based-on-human-generated-data)
-- **Recycling filtered-out data ("REWIRE", Meta/FAIR)** — prompts Llama-3.3-70B-Instruct to
-  do chain-of-thought rewriting of *moderate-quality* docs (passed rule-based but not
-  model-based filters), then re-filters the rewrites. Mixing raw + rewritten text on the
+- **Recycling filtered-out data ("REWIRE", Meta/FAIR)** — uses Llama-3.3-70B-Instruct to
+  rewrite *moderate-quality* docs (those that passed rule-based but not model-based filters)
+  via chain-of-thought, then re-filters the rewrites. Mixing raw + rewritten text on the
   DCLM-CORE benchmark (22 tasks) improves average accuracy by **+1.0 / +1.3 / +2.5 points at
   1B / 3B / 7B**, and matches training on **2× more raw web data**. ~82% of mixed-in tokens
   come from documents that filters would otherwise discard; raw-text quality barely predicts
@@ -80,12 +81,12 @@ still has to come from humans?** The dividing line is essentially **verifiabilit
   solutions (run the code, verify the proof in a checker). This is the engine behind
   reasoning models (see [RL for reasoning](../04-reinforcement-learning-and-open-endedness/rl-for-reasoning.md))
   and behind "zero-data" self-play systems like Absolute Zero, where a model generates and
-  solves its own tasks verified by running Python.
+  solves its own tasks, verified by running Python.
 - **Reformatting / augmenting existing data** — rewriting messy web text into cleaner form
   (Meta's REWIRE recycles moderate-quality docs via guided LLM rewriting), generating
   instruction-response pairs, or distilling a stronger model's outputs into a smaller one.
   REWIRE beats narrower synthetic recipes (Nemotron-CC diverse-QA, extracted-knowledge,
-  Wikipedia-rephrasing) on the DCLM average by generating more *diverse* text.
+  Wikipedia-rephrasing) on the DCLM average because it produces more *diverse* text.
 - **Executable environments** — auto-generating coding/agent tasks *with built-in tests*
   (e.g., turning real code commits into thousands of checkable tasks).
 
@@ -114,17 +115,18 @@ judgment, and as the trusted seed that keeps the whole loop from collapsing.
 
 ## Data attribution & provenance
 
-- **Scalable gradient-based attribution** now works at **8B-param / 160B-token** pretraining
-  scale with no lexical pre-filtering. **TrackStar** (Google DeepMind) combines optimizer
-  (Adafactor second-moment) correction, a task-specific Gauss-Newton Hessian approximation,
-  random projection (d=2¹⁶), and unit normalization to retrieve "proponent" training
-  examples for a fact prediction. Key nuance: it cleanly separates *attribution* (does an
-  example **entail** a fact) from *influence* (does it **change the prediction**) — and finds
-  these **misalign**. Classical BM25/Gecko win on attribution (C4 MRR 0.687/0.636 vs
-  TrackStar's 0.338), but TrackStar's proponents have **>2.5× more influence** (tail-patch
-  +2.11% vs +0.83%/+0.54%). Author-stated limit: many high-influence examples are *non-
-  entailing* — priors on relation types, entities, names, or multi-hop paths — and influence
-  only converges toward attribution as models scale. [arXiv:2410.17413](https://arxiv.org/abs/2410.17413)
+- **Scalable gradient-based attribution** (tracing a model's output back to the training
+  examples that drove it) now works at **8B-param / 160B-token** pretraining scale with no
+  lexical pre-filtering. **TrackStar** (Google DeepMind) combines optimizer (Adafactor
+  second-moment) correction, a task-specific Gauss-Newton Hessian approximation, random
+  projection (d=2¹⁶), and unit normalization to retrieve "proponent" training examples for a
+  fact prediction. Its key insight: *attribution* (does an example **entail** a fact) and
+  *influence* (does it **change the prediction**) are distinct, and they **misalign**.
+  Classical BM25/Gecko win on attribution (C4 MRR 0.687/0.636 vs TrackStar's 0.338), but
+  TrackStar's proponents have **>2.5× more influence** (tail-patch +2.11% vs +0.83%/+0.54%).
+  Author-stated limit: many high-influence examples are *non-entailing* — priors on relation
+  types, entities, names, or multi-hop paths — and influence only converges toward
+  attribution as models scale. [arXiv:2410.17413](https://arxiv.org/abs/2410.17413)
 - **SynthID-Image** (Google DeepMind) is a **post-hoc, model-independent** (encoder-decoder)
   invisible watermark that has tagged **10B+ AI-generated images and video frames** across
   Google products; the external **SynthID-O** variant reports SOTA quality (lowest
@@ -162,12 +164,13 @@ judgment, and as the trusted seed that keeps the whole loop from collapsing.
   Finding: unlearning eval is fragile — benign interventions can "flip" supposedly-unlearned
   models. [arXiv:2506.12618](https://arxiv.org/abs/2506.12618)
 - **Tokenizers leak membership** — a *new attack surface* that needs no model weights. Because
-  BPE merges the most frequent strings, the vocabulary/merge-order of a commercial tokenizer
-  reveals what was in its (representative) training data. **MIA via Vocabulary Overlap** and
-  **MIA via Frequency Estimation** reach **AUC 0.771 / 0.740** (vocab 200K), and the attack
-  gets *stronger as vocabularies scale* and as the target dataset grows (AUC up to 0.882 on
-  800–1,200-doc datasets). Frequency Estimation needs only one shadow tokenizer (vs ~96),
-  inferring 4,133 datasets in <20 min. [arXiv:2510.05699](https://arxiv.org/abs/2510.05699)
+  byte-pair encoding (BPE) merges the most frequent strings, a commercial tokenizer's
+  vocabulary and merge order reveal what was in its training data. Two membership-inference
+  attacks (MIA) — **Vocabulary Overlap** and **Frequency Estimation** — reach **AUC 0.771 /
+  0.740** (vocab 200K), and they get *stronger as vocabularies scale* and as the target
+  dataset grows (AUC up to 0.882 on 800–1,200-doc datasets). Frequency Estimation needs only
+  one shadow tokenizer (vs ~96), inferring 4,133 datasets in <20 min.
+  [arXiv:2510.05699](https://arxiv.org/abs/2510.05699)
 
 ## State of research
 
@@ -178,9 +181,9 @@ LLM-based ones (Ultra-FineWeb: ~6× cheaper). SynthID-scale watermarking (10B+ f
 gradient-based attribution at 8B/160B-token scale are real, deployed tools.
 
 **Promising but unproven:** Synthetic data as the *primary* source — REWIRE shows synthetic-
-only still *lags* high-quality raw text; gains come from *mixing*. DP training at frontier
-scale (VaultGemma proves zero-memorization is achievable at 1B but with a ~5-year utility
-gap). Reliable machine unlearning ("right to be forgotten") — OpenUnlearning shows most
+only still *lags* high-quality raw text, and the gains come from *mixing*. DP training at
+frontier scale — VaultGemma proves zero-memorization is achievable at 1B, but with a ~5-year
+utility gap. Reliable machine unlearning ("right to be forgotten") — OpenUnlearning shows most
 metrics are unreliable under stress tests.
 
 **Open problems & weaknesses:**

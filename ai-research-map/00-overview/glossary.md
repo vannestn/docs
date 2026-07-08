@@ -1,7 +1,7 @@
 # Glossary — Plain-Language Definitions
 
-The field is drowning in acronyms. This page defines the ones used across the map in plain
-language. Leaf documents expand acronyms on first use; this is the master reference.
+The field is dense with jargon and acronyms. This page defines the terms used across the map in
+plain language. Leaf documents expand acronyms on first use; this is the master reference.
 
 ## Core model concepts
 
@@ -26,8 +26,8 @@ language. Leaf documents expand acronyms on first use; this is the master refere
 - **RLHF (RL from Human Feedback)** — tuning a model using human preference ratings.
 - **RLVR (RL from Verifiable Rewards)** — tuning using *automatically checkable* rewards
   (e.g., did the code pass? is the math right?). The engine behind reasoning models.
-- **GRPO / GSPO / CISPO** — specific RL recipes/algorithms in the RLVR family. (You don't
-  need the internals; they're variations on "reward good reasoning.")
+- **GRPO / GSPO / CISPO** — specific algorithms in the RLVR family. (You don't need the
+  internals; they're variations on "reward good reasoning.")
 - **Reasoning / test-time compute** — letting a model "think" (generate intermediate steps)
   before answering. Spending more compute *at answer time* improves hard tasks.
 - **Chain of thought (CoT)** — the model's written-out reasoning steps.

@@ -1,7 +1,9 @@
 # Emerging Labs
 
-Newer/smaller labs and what each is actually researching. (Funding details and the business-
-model lens are in [12 · Business models](../12-politics-capital-and-business-models/business-models.md).)
+Newer and smaller labs, grouped by what each is actually researching — useful for telling apart
+the ones with shipping, third-party-evaluable results from the ones still betting on talent and a
+thesis. (Funding details and the business-model lens are in
+[12 · Business models](../12-politics-capital-and-business-models/business-models.md).)
 
 ## "Post-scaling research era" labs
 - **Safe Superintelligence (SSI)** — Ilya Sutskever; **~$3B raised total** ($1B Sept 2024 + $2B
@@ -29,10 +31,11 @@ model lens are in [12 · Business models](../12-politics-capital-and-business-mo
 
 ### Inception Labs — diffusion LLMs (Mercury)
 **Mercury Coder**, presented as the first commercial-scale diffusion LLM family for code.
-Mechanism: a *Transformer* denoiser (not autoregressive) refines all tokens in parallel
-"coarse-to-fine," extending masked-diffusion ([Lou et al.](https://arxiv.org/abs/2310.16834))
-to trillions-of-tokens scale, trained on NVIDIA H100s. Two sizes (**Mini**, **Small**), 32,768
-context (128k with extension), OpenAI-compatible API → drop-in for AR models.
+Mechanism: instead of generating tokens left-to-right (autoregressive, AR), a *Transformer*
+denoiser refines all tokens in parallel "coarse-to-fine," scaling masked-diffusion
+([Lou et al.](https://arxiv.org/abs/2310.16834)) to trillions of tokens, trained on NVIDIA H100s.
+Two sizes (**Mini**, **Small**), 32,768-token context (128k with extension), OpenAI-compatible
+API → drop-in for AR models.
 
 Results (Table 1, pass@1; speed = output tokens/sec on H100, per Artificial Analysis):
 - **Throughput**: Mercury Coder Mini **1109 tok/s**, Small **737 tok/s** — vs ~27–201 tok/s for
@@ -58,10 +61,11 @@ with a *small minority* of grouped-query-attention (GQA) blocks — and finds th
 linear-attention / extra-conv operators *did not* improve quality at equal device budgets.
 
 Lineup: dense **350M / 700M / 1.2B / 2.6B** plus an MoE **LFM2-8B-A1B** (8.3B total, 1.5B active,
-32 experts top-4), all 32K context. Pre-trained on **10–12T tokens** via a *tempered, decoupled
-Top-K distillation* objective (teacher = internal LFM1-7B) that splits the KL into an untempered
-Bernoulli "mass" term + a tempered conditional Top-K term to avoid support mismatch; then a
-three-stage post-training (SFT → length-normalized preference alignment → model merging).
+32 experts top-4), all 32K context. Pre-trained on **10–12T tokens** by distilling from an
+internal LFM1-7B teacher with a *tempered, decoupled Top-K* objective: it splits the
+distillation loss (KL divergence) into an untempered Bernoulli "mass" term plus a tempered
+conditional Top-K term, which avoids support mismatch between teacher and student. Post-training
+is three stages: SFT → length-normalized preference alignment → model merging.
 
 Results the paper reports (internal harness, may differ from others):
 - **Speed (CPU, batch 1)**: up to **~2×** faster prefill + decode vs similarly-sized baselines.
@@ -81,11 +85,12 @@ weakest on open-ended/long-context reasoning; LFM2-Audio is English-dominant and
 non-speech audio. [arXiv:2511.23404](https://arxiv.org/abs/2511.23404)
 
 ### Cartesia — state-space-model audio (Sonic)
-**Sonic** real-time voice models built on **state-space models** (SSMs), the S4/Mamba line its
-founders created at Stanford (Albert Gu, Karan Goel, Chris Ré et al.); SSMs give low latency,
-long-context efficiency, and on-device viability. **Sonic-3.5** took **#1 on the Artificial
-Analysis Speech Arena** leaderboard (May 2026, ahead of Inworld and Google Gemini 3.1 Flash TTS),
-with sub-100ms time-to-first-audio and 42-language support; ~$191M raised total. [Cartesia](https://www.cartesia.ai/launch/) · [Artificial Analysis](https://artificialanalysis.ai/text-to-speech/models/sonic-3-5)
+**Sonic** real-time voice models built on **state-space models** (SSMs) — the S4/Mamba line its
+founders created at Stanford (Albert Gu, Karan Goel, Chris Ré et al.). SSMs give low latency,
+long-context efficiency, and on-device viability. **Sonic-3.5**
+took **#1 on the Artificial Analysis Speech Arena** leaderboard (May 2026, ahead of Inworld and
+Google Gemini 3.1 Flash TTS), with sub-100ms time-to-first-audio and 42-language support; ~$191M
+raised total. [Cartesia](https://www.cartesia.ai/launch/) · [Artificial Analysis](https://artificialanalysis.ai/text-to-speech/models/sonic-3-5)
 
 ## World models / spatial intelligence
 - **World Labs** (Fei-Fei Li) — **Marble** (text/image/video/3D-layout → navigable, persistent,
@@ -139,7 +144,7 @@ with sub-100ms time-to-first-audio and 42-language support; ~$191M raised total.
 LMs), Liquid AI (edge models), Cartesia (audio), World Labs (3D worlds), Physical Intelligence
 (robots), Goodfire (interp) — have concrete, *third-party-evaluable* results. Notably, both
 Mercury and LFM2 lean on independent evals (Artificial Analysis, Copilot Arena, NanoBEIR) rather
-than self-reported numbers alone, and both stake out a defensible niche frontier labs underserve:
+than self-reported numbers alone, and both stake out a niche the frontier labs underserve —
 **latency** (diffusion's parallel decode; LFM2's batch-1 CPU/mobile budget) rather than raw
 capability.
 

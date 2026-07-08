@@ -1,7 +1,7 @@
 # Geopolitics & Policy
 
-How national competition, export controls, regulation, and the physical constraints of
-compute and power shape who can do frontier AI research.
+How national competition, export controls, regulation, and the physical limits of compute
+and power decide who can do frontier AI research.
 
 ## US–China competition & export controls
 - **Compute access is the lever.** US export controls on advanced chips push Chinese labs

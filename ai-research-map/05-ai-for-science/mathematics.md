@@ -13,14 +13,14 @@ The domain where AI crossed from competition problems to *original research* in 
 - **AlphaProof Nexus** (DeepMind) — a *framework* for LLM-aided Lean proof generation, and
   the first large-scale evaluation of formal proof search on **open** research problems.
   Its "full-featured" agent uses prover subagents (Gemini 3.1 Pro) that can call AlphaProof
-  as a tool, coordinated by an **AlphaEvolve-style evolutionary loop** with LLM rater
-  subagents (Gemini 3.0 Flash) producing Elo rankings over proof sketches. It autonomously
-  **resolved 9 of 353 attempted open Erdős problems** (two open 56 years), proved **44/492
+  as a tool, coordinated by an **AlphaEvolve-style evolutionary loop** in which LLM rater
+  subagents (Gemini 3.0 Flash) produce Elo rankings over proof sketches. It autonomously
+  **resolved 9 of 353 attempted open Erdős problems** (two open for 56 years), proved **44/492
   open OEIS conjectures**, and is deployed in optimization, graph theory, algebraic geometry,
-  and quantum optics. Inference cost was a few hundred dollars per problem; AlphaProof itself
+  and quantum optics. Inference cost a few hundred dollars per problem; AlphaProof itself
   cost ~27.5 v6e-TPU-hours (~$60) per problem. Notably, the **basic** agent (independent
-  subagents, no evolution/AlphaProof) also solved **all 9** Erdős problems — costlier only on
-  the hardest ones. [coverage](https://the-decoder.com/google-deepminds-alphaproof-nexus-solves-decades-old-math-problems-for-a-few-hundred-dollars/) ·
+  subagents, no evolution or AlphaProof) also solved **all 9** Erdős problems — costing more
+  only on the hardest ones. [coverage](https://the-decoder.com/google-deepminds-alphaproof-nexus-solves-decades-old-math-problems-for-a-few-hundred-dollars/) ·
   [arXiv:2605.22763](https://arxiv.org/abs/2605.22763) ·
   [results repo](https://github.com/google-deepmind/alphaproof-nexus-results)
 - **Gold-medal formal solvers:** Harmonic's **Aristotle** ([arXiv:2510.01346](https://arxiv.org/abs/2510.01346))
@@ -36,30 +36,30 @@ The domain where AI crossed from competition problems to *original research* in 
 
 **AlphaProof Nexus** ([arXiv:2605.22763](https://arxiv.org/abs/2605.22763)). The input is a
 Lean *proof sketch*: a target theorem with `sorry` in place of a proof, annotated with
-`EVOLVE-BLOCK` markers (where the agent may add lemmas/steps) and `EVOLVE-VALUE` markers
+`EVOLVE-BLOCK` markers (where the agent may add lemmas or steps) and `EVOLVE-VALUE` markers
 (expressions, e.g. parameters, whose value it may change). Each prover subagent runs a
 "Ralph loop" — multi-turn LLM episodes that reason via chain-of-thought and edit the sketch
 with a search-and-replace tool, re-checking against the Lean compiler each turn. The
-evolutionary agent (D) adds a shared **population database** of sketches with **Elo scores**:
-because formal proof is *binary* (compiles or not), LLM rater subagents rank sketches by
-plausibility/clarity/novelty in tournaments, and a P-UCB sampling procedure drives the
-search. A validator checks the final sketch did not unsafely change the statement and is
-`sorry`-free. The agent was run on all 353 Formal Conjectures Erdős statements for up to
-3000 episodes; experts then confirmed each solved Lean statement faithfully captured the
-original conjecture, and results were logged on Terence Tao's wiki of AI contributions to
-Erdős problems.
+evolutionary agent adds a shared **population database** of sketches with **Elo scores**:
+because a formal proof either compiles or not (a *binary* signal), LLM rater subagents rank
+sketches by plausibility, clarity, and novelty in tournaments, and a P-UCB sampling procedure
+drives the search. A validator checks that the final sketch did not unsafely change the
+statement and is `sorry`-free. The agent was run on all 353 Formal Conjectures Erdős
+statements for up to 3000 episodes; experts then confirmed each solved Lean statement
+faithfully captured the original conjecture, and results were logged on Terence Tao's wiki of
+AI contributions to Erdős problems.
 
 **Aristotle** ([arXiv:2510.01346](https://arxiv.org/abs/2510.01346)) has three subsystems:
-(1) a **Monte Carlo Graph Search** Lean prover with a >200B-parameter transformer as both
-policy (predicting Lean tactics conditioned on the proof state, history, and any informal
-proof) and value function, trained via expert-iteration RL; (2) a **lemma-based informal
-reasoning** pipeline (Draft–Sketch–Prove-style: generate informal proof → decompose into
-short lemmas → autoformalize → error-correct against the Lean REPL, iterating); and (3) a
-**geometry solver, Yuclid** — a C++ DD/AR engine ~500x faster than AlphaGeometry-1 (solves
-17/30 on AG-30 and saturates the set). At inference it uses **test-time training** (TTT):
-retraining on search traces from failed attempts. Geometry problems are solved outside Lean
-but still require machine-verified solutions; everything else is a complete Lean 4 proof with
-no `sorryAx` or unsound axioms.
+(1) a **Monte Carlo Graph Search** Lean prover with a >200B-parameter transformer serving as
+both policy (predicting Lean tactics from the proof state, history, and any informal proof)
+and value function, trained via expert-iteration RL; (2) a **lemma-based informal reasoning**
+pipeline (Draft–Sketch–Prove-style: generate an informal proof → decompose into short lemmas
+→ autoformalize → error-correct against the Lean REPL, iterating); and (3) a **geometry
+solver, Yuclid** — a C++ DD/AR engine ~500x faster than AlphaGeometry-1 (solves 17/30 on
+AG-30 and saturates the set). At inference it uses **test-time training** (TTT): retraining on
+search traces from failed attempts. Geometry problems are solved outside Lean but still
+require machine-verified solutions; everything else is a complete Lean 4 proof with no
+`sorryAx` or unsound axioms.
 
 ## State of research
 
@@ -72,9 +72,9 @@ stronger base models plus compiler feedback grounding LLM reasoning.
 
 **Promising but unproven:** Autonomous **open-problem solving** is genuinely new — but the
 authors are explicit about what "open" means and where it stops. Successes concentrate in
-combinatorics, convex optimization, and number theory, *where Lean's mathlib is mature and
-tasks decompose into tractable subgoals*; the same paper notes that **most Erdős problems
-remain out of reach, let alone problems requiring extensive new theory.** Beyond Erdős, the
+combinatorics, convex optimization, and number theory, *where Lean's mathlib library is
+mature and tasks decompose into tractable subgoals*; the same paper notes that **most Erdős
+problems remain out of reach, let alone problems requiring extensive new theory.** Beyond Erdős, the
 agents settled an open Hilbert-function (log-concavity of pure O-sequences) question, improved
 a convex-optimization bound (an exact O(1/t) rate for Anchored GDA, discovered by searching
 over the learning schedule), and aided graph-theory and quantum-optics work. Separately, the

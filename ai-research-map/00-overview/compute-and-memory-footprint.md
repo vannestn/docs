@@ -1,13 +1,13 @@
 # Compute & Memory Footprint of AI Research
 
-Not all AI research needs a datacenter. This page breaks the field by **what hardware the
-work actually requires** — and, crucially, separates the *cheap proof-of-concept* path from
-the *scaled / competitive* version, because for many areas they're wildly different.
+Not all AI research needs a datacenter. This page breaks the field down by **what hardware the
+work actually requires**, separating the *cheap proof-of-concept* path from the
+*scaled / competitive* one — because for many areas the two are wildly different.
 
-> **📦 Why this matters** — "AI research needs massive compute" is half-true. *Frontier
+> **📦 Why this matters** — "AI research needs massive compute" is only half-true. *Frontier
 > pretraining* does. But large parts of the field — interpretability, evaluation, RL-for-
 > reasoning method development, agent scaffolding, data curation, many architecture ideas —
-> can be *prototyped* on a laptop or a single GPU, and only need scale to *confirm* results.
+> can be *prototyped* on a laptop or a single GPU, and only need scale to *confirm* the results.
 
 ## The tiers (with rough memory)
 
@@ -19,14 +19,14 @@ the *scaled / competitive* version, because for many areas they're wildly differ
 | **T3 · Small cluster** | tens–low-hundreds of GPUs | multi-TB | $100k–$1M / run |
 | **T4 · Frontier** | thousands–100k+ GPUs, power-constrained datacenter | many PB | $10M–$1B+ / run |
 
-> **📦 Memory vs compute** — two different limits. **Compute** (FLOPs) sets *training time*.
-> **Memory** (GPU HBM) sets *what fits at all* — a 70B model in 16-bit needs ~140 GB just to
-> load, before training overhead. **Quantization** (4-bit) is what lets big models *run* (not
+> **📦 Memory vs compute** — two different limits. **Compute** (FLOPs) sets *training time*;
+> **memory** (GPU HBM) sets *what fits at all*. A 70B model in 16-bit needs ~140 GB just to
+> load, before any training overhead. **Quantization** (4-bit) is what lets big models *run* (not
 > train) on small hardware — e.g., a 70B model in 4-bit fits in ~40 GB.
 
 ## Where each research area actually sits
 
-The key distinction per area: **PoC** = the cheapest hardware where you can do *real,
+For each area, two tiers matter: **PoC** = the cheapest hardware where you can do *real,
 publishable* work; **Scaled/SOTA** = what competitive frontier results require.
 
 ### Runs on a laptop (T0) for real work
@@ -34,7 +34,7 @@ publishable* work; **Scaled/SOTA** = what competitive frontier results require.
   scale) on a single consumer GPU or even CPU. Sparse-autoencoder probing, circuit analysis,
   and steering experiments are famously *compute-cheap*. **Scaled:** analyzing frontier models
   needs their activations (T1–T2), but the *methods* are developed at T0.
-- **Evaluation & benchmark design** — building evals, contamination analysis, and scoring use
+- **Evaluation & benchmark design** — building evals, contamination analysis, and scoring run on
   *API calls*, not local training. T0 + an API budget.
 - **Agent scaffolding & prompting research** — orchestration, tool-use patterns, RAG pipelines,
   multi-agent protocols: all built on top of API/model calls. T0.
@@ -46,7 +46,7 @@ publishable* work; **Scaled/SOTA** = what competitive frontier results require.
 
 ### Needs a single GPU (T1) — including many cheap PoCs
 - **RL-for-reasoning (RLVR) method development** — GRPO-style experiments on a **1.5B** model
-  run on one A100/H100. The *science* (entropy collapse, reward design) is studied here;
+  run on one A100/H100. The *science* (entropy collapse, reward design) is studied at this scale;
   **Scaled:** competitive reasoning models are T3–T4.
 - **Fine-tuning 7–8B with LoRA/QLoRA** — adapter fine-tuning fits on one 80 GB GPU.
 

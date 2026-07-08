@@ -4,7 +4,7 @@ What academia researches in the frontier-model era — and where it still leads 
 compute gap.
 
 > **📦 The structural reality** — by 2024–25, ~90% of notable AI models came from industry, and
-> academic researchers often get 1–8 GPUs vs. industry's thousands. Academia responded by
+> academic researchers often get 1–8 GPUs versus industry's thousands. Academia responded by
 > **specializing in what doesn't require frontier-scale pretraining.**
 
 ## Where academia leads
@@ -13,22 +13,23 @@ compute gap.
   **Chatbot Arena** (6M+ human votes, the trusted leaderboard), Princeton **HAL** (cost-aware
   agent eval). Academia owns the neutral evaluation commons.
 - **Agent-reliability skepticism** — Princeton (Rabanser, Kapoor, Narayanan et al.) built "a
-  science of AI agent reliability": borrowing from safety-critical engineering (aviation, nuclear),
+  science of AI agent reliability." Borrowing from safety-critical engineering (aviation, nuclear),
   they decompose reliability into **4 dimensions** (consistency, robustness, predictability,
-  safety) with **12 metrics that are independent of raw accuracy**. Evaluating **15 models across
+  safety) and **12 metrics that are independent of raw accuracy**. Evaluating **15 models across
   ~24 months of releases** on GAIA + τ-bench, they find **reliability gains badly lag accuracy
-  gains** — e.g., GAIA reliability slope ≈ 0.03/yr (r=0.46), an industry-wide plateau, not a
-  vendor quirk. Key result: **outcome consistency stays low across all models** (the pass@k vs.
-  pass∧k gap), and agents reliably pick *similar* actions but vary in *execution order* ("what but
-  not when"). [arXiv:2602.16666](https://arxiv.org/abs/2602.16666) *[ICML 2026]*
+  gains** — e.g., GAIA reliability improves only ≈ 0.03/yr (r=0.46), an industry-wide plateau
+  rather than a vendor quirk. Key result: **outcome consistency stays low across all models** (the
+  pass@k vs. pass∧k gap), and agents reliably pick *similar* actions but vary in *execution order*
+  ("what but not when"). [arXiv:2602.16666](https://arxiv.org/abs/2602.16666) *[ICML 2026]*
   ([dashboard](https://hal.cs.princeton.edu/reliability/))
-- **Cheap-ideas-beat-scale** — Stanford **s1** SFTs Qwen2.5-32B-Instruct on just **1,000 curated
-  examples** (s1K, filtered from 59K by quality/difficulty/diversity, traces distilled from Gemini
-  Flash Thinking) in **26 min on 16 H100s**, then adds **budget forcing** — a decode-time trick
-  that appends "Wait" to extend thinking or a stop-token to cut it short (no RL). s1-32B **exceeds
-  o1-preview on competition math by up to 27%**, and budget forcing **extrapolates AIME24 from 50%
-  → 57%**. Ablations show all three curation criteria matter (random/diverse/longest-only 1K each
-  lose ~30% on AIME24) and budget forcing beats conditional-length and rejection-sampling controls.
+- **Cheap-ideas-beat-scale** — Stanford **s1** fine-tunes Qwen2.5-32B-Instruct on just **1,000
+  curated examples** (s1K, filtered from 59K by quality/difficulty/diversity, with reasoning traces
+  distilled from Gemini Flash Thinking) in **26 min on 16 H100s** — no RL. It then adds **budget
+  forcing**, a decode-time trick that appends "Wait" to extend the model's thinking or a stop-token
+  to cut it short. s1-32B **exceeds o1-preview on competition math by up to 27%**, and budget
+  forcing **extrapolates AIME24 from 50% → 57%**. Ablations show all three curation criteria matter
+  (random/diverse/longest-only 1K each lose ~30% on AIME24) and that budget forcing beats
+  conditional-length and rejection-sampling controls.
   [arXiv:2501.19393](https://arxiv.org/abs/2501.19393)
 - **Inference/serving systems** — Berkeley Sky Lab's **vLLM** (PagedAttention) and **SGLang** are
   the de-facto open serving stack. Systems is where academia *leads* industry.
@@ -55,9 +56,9 @@ verifiable niche domains** (theorem proving, scientific synthesis).
 (~90% of notable models are industry; the compute gap is structural). Its own literature flags
 the field's biggest worries:
 
-- **Reliability ≠ capability.** The Princeton work argues evaluation's single-accuracy paradigm
-  *obscures* whether agents behave consistently, degrade gracefully, or know when they'll fail —
-  and that capability scaling does **not** automatically buy reliability, so it must be measured
+- **Reliability ≠ capability.** The Princeton work argues that evaluation's single-accuracy paradigm
+  *obscures* whether agents behave consistently, degrade gracefully, or know when they'll fail.
+  Because capability scaling does **not** automatically buy reliability, reliability must be measured
   independently with dynamic, multi-run, parameterized benchmarks. [arXiv:2602.16666](https://arxiv.org/abs/2602.16666)
 - **Sample-efficiency has a ceiling.** s1's authors stress budget forcing **eventually flattens
   out** (~6× thinking before gains stall, bounded by the context window) and credit the 1K-SFT

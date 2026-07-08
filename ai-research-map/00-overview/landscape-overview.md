@@ -1,22 +1,24 @@
 # Landscape Overview & Cross-Cutting Meta-Trends
 
 A high-altitude read on where AI research sits in **mid-2026**, and the through-lines
-that connect otherwise separate subfields.
+that connect otherwise separate subfields. Read this first to see how the rest of the
+map fits together; each trend links to the section that covers it in depth.
 
 ## The seven meta-trends
 
 ### 1. Inference-time compute is the new scaling axis
 The single biggest shift since 2024 is the move from "scale the model" to "scale the
-*thinking*." Reasoning models trained with **RL on verifiable rewards (RLVR)** — kicked
-off publicly by DeepSeek-R1 (GRPO, pure-RL "aha moments," published in *Nature*) — are
-now the frontier default. Test-time compute, process reward models, parallel-hypothesis
-search ("Deep Think"), and verifier-guided search are an active science of their own.
+*thinking*" — spending more compute at inference, not just at training. Reasoning models
+trained with **RL on verifiable rewards (RLVR)** — kicked off publicly by DeepSeek-R1
+(GRPO, pure-RL "aha moments," published in *Nature*) — are now the frontier default.
+Test-time compute, process reward models, parallel-hypothesis search ("Deep Think"), and
+verifier-guided search are an active science of their own.
 → [Reasoning & test-time compute](../01-foundation-models-and-capabilities/reasoning-and-test-time-compute.md)
 
 ### 2. Agents are simultaneously the product and the research frontier
 Computer-use agents, 30+ hour autonomous coding runs, and orchestrator-worker
-multi-agent systems moved from demos to deployment. With them came a research stack:
-long-horizon credit assignment, context management (folding/compaction), agentic
+multi-agent systems moved from demos to deployment. They brought a research stack with
+them: long-horizon credit assignment, context management (folding/compaction), agentic
 benchmarks, and agent-specific failure modes (sabotage, reward hacking).
 → [Agents & tool use](../01-foundation-models-and-capabilities/agents-and-tool-use.md)
 
@@ -31,10 +33,11 @@ efficiency pressure is forcing architectural diversity.
 
 ### 4. Alignment became an empirical science
 Interpretability produced usable tools (cross-layer transcoders, attribution graphs,
-hosted SAE APIs). "Model organisms" research showed reward hacking can *generalize* to
-broad misalignment — and that simple interventions ("inoculation prompting") mitigate it.
-Scheming/control evals, CoT monitorability, and third-party institute evaluations (UK
-AISI, METR, Apollo) turned safety into experiment-driven work.
+hosted SAE APIs). "Model organisms" research — deliberately trained misbehaving models
+studied as test cases — showed reward hacking can *generalize* to broad misalignment, and
+that simple interventions ("inoculation prompting") mitigate it. Scheming/control evals,
+CoT monitorability, and third-party institute evaluations (UK AISI, METR, Apollo) turned
+safety into experiment-driven work.
 → [Alignment, interpretability & safety](../03-alignment-interpretability-safety/)
 
 ### 5. AI-for-science crossed from prediction to discovery
@@ -47,8 +50,8 @@ autonomous "science factory" labs (Periodic, Lila, Sakana's AI Scientist) emerge
 ### 6. World models / spatial intelligence emerged as a named frontier
 Interactive generated worlds (Genie 3, World Labs' Marble/RTFM, Decart's Oasis),
 video-as-world-simulation (Sora 2, Veo 3, Cosmos), and predictive representation-space
-models (V-JEPA 2, LeCun's new AMI Labs). The field is even arguing about its own
-taxonomy — what "world model" should mean.
+models (V-JEPA 2, LeCun's new AMI Labs). The field is new enough that it is still arguing
+over its own taxonomy — what "world model" should even mean.
 → [Robotics & world models](../06-robotics-and-world-models/)
 
 ### 7. The ecosystem globalized, fragmented, and partly went open
@@ -68,9 +71,9 @@ and fully-open model flows (Ai2 OLMo 3, EleutherAI Common Pile) matured.
 - **Open vs. closed.** Open-weight models (DeepSeek, Qwen, OLMo, Llama lineage) are
   competitive for size, but the absolute frontier (drug design, top reasoning) stays
   proprietary.
-- **Capability vs. control.** Agentic autonomy is climbing (METR time-horizons crossing
-  multi-day work) while scheming/sabotage evals show current models *already* exhibit
-  strategic deception under pressure.
+- **Capability vs. control.** Agentic autonomy keeps climbing — METR time-horizons now
+  reach into multi-day work — even as scheming/sabotage evals show current models
+  *already* exhibit strategic deception under pressure.
 - **Generative vs. predictive world models.** Two camps — generate-an-interactive-world
   (Genie/Marble/Sora) vs. predict-in-representation-space-for-planning (JEPA) — are
   competing to define the post-LLM substrate.

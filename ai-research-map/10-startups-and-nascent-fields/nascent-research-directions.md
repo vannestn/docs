@@ -1,10 +1,10 @@
 # Nascent Research Directions
 
-Genuinely *early-stage* ideas — some will become major fields, some will fade. Included
+Genuinely *early-stage* ideas — some will become major fields, some will fade. They're here
 because "mapping the whole field" means capturing the edges, not just the center.
 
 > **📦 How to read this** — these are lower-confidence, higher-variance directions. Each is
-> real (has papers/labs behind it) but unproven at scale.
+> real (it has papers and labs behind it) but unproven at scale.
 
 ## Architecture & learning paradigms
 - **Test-time training as continual learning** — models that keep updating their own weights
@@ -14,8 +14,8 @@ because "mapping the whole field" means capturing the edges, not just the center
 - **Nested learning** — see [the dedicated section below](#nested-learning-spotlight).
   [arXiv:2512.24695](https://arxiv.org/abs/2512.24695)
 - **Active inference / Free Energy Principle** — a Bayesian, brain-inspired alternative to
-  deep RL built on Karl Friston's Free Energy Principle (VERSES AI's "Genius", a Bayesian
-  inference engine); a rare commercial non-LLM bet.
+  deep RL built on Karl Friston's Free Energy Principle; a rare commercial non-LLM bet (VERSES
+  AI's "Genius", a Bayesian inference engine).
   [Source](https://www.verses.ai/active-inference-research)
 
 ## Interpretability frontiers
@@ -50,13 +50,13 @@ Mirrokni (Google Research), [arXiv:2512.24695](https://arxiv.org/abs/2512.24695)
 appears at NeurIPS 2025. Public write-up:
 [Google Research blog](https://research.google/blog/introducing-nested-learning-a-new-ml-paradigm-for-continual-learning/).
 
-**The reframe.** A model + its optimizer is recast as a set of *nested optimization problems*,
+**The reframe.** A model plus its optimizer is recast as a set of *nested optimization problems*,
 each an **associative memory** that compresses its own "context flow" into parameters at its own
 **update frequency**. Two claims do the work: (1) backprop on a layer is itself an associative
 memory mapping inputs to their *local surprise signal* (the gradient); (2) common optimizers are
 the same trick one level up — momentum is shown to be a memory that compresses past gradients, so
 SGD-with-momentum is literally a two-level optimization. Transformers fall out as a special case:
-attention runs at frequency ∞, MLP/pre-training at frequency ~0.
+attention runs at frequency ∞, the MLP and pre-training at frequency ~0.
 
 **What's new on top.** A **Continuum Memory System (CMS)** — a chain of MLP blocks each updated
 every *Cᵗ* steps rather than one "long-term vs short-term" split — and **Hope**, a self-modifying
@@ -82,15 +82,15 @@ finite-capacity compression, and NL is offered as a "roadmap, not a destination.
 [arXiv:2502.08691](https://arxiv.org/abs/2502.08691).
 
 **Scale & mechanism.** Over **10k** LLM agents generating **~5 million interactions** (≈500/agent/day;
-Table 5 measures 491.68 environment interactions per agent per day). Each agent has a mind (emotion
-via a six-emotion 0–10 framework, Maslow needs, cognition) feeding a Need→Plan→Behavior loop over
-**Stream Memory** (an Event Flow + Perception Flow). The world is three coupled spaces — urban
+Table 5 measures 491.68 environment interactions per agent per day). Each agent has a mind — emotion
+(a six-emotion 0–10 framework), Maslow needs, and cognition — feeding a Need→Plan→Behavior loop over
+**Stream Memory** (an Event Flow plus Perception Flow). The world is three coupled spaces: urban
 (OpenStreetMap roads/AOI/POI, IDM + MOBIL traffic models, SafeGraph POIs), social (a supervisor-moderated
 message network), and economic (firms/banks/government, Taylor-rule interest). The engine runs on
-**Ray + an MQTT (EMQX) messaging backbone**; experiments used **DeepSeek-V3**.
+**Ray plus an MQTT (EMQX) messaging backbone**; experiments used **DeepSeek-V3**.
 
 **Why MQTT (with the eval).** Against Redis/RabbitMQ/Kafka at 100k agents, MQTT hit **44,702 msg/s**
-— roughly *half* Redis Pub/Sub's 81,216 but with built-in monitoring GUI tooling; RabbitMQ only
+— roughly *half* Redis Pub/Sub's 81,216, but with built-in monitoring tooling; RabbitMQ only
 cleared the 20k msg/s bar marginally and Kafka couldn't even finish 100k-agent init in 5 min (Table 3).
 Environment step time stays sub-second to **1M individuals** (0.168 s/step; Table 2).
 
@@ -116,7 +116,7 @@ an empirical results paper — it frames problems rather than reporting benchmar
 
 **The idea.** A neuro-symbolic program is modelled as `s(u ∘ f ∘ e)` — a neural net `f` embedded
 between embed/unembed maps inside a symbolic program — and proving a property Ψ decomposes into three
-lemmas (a *network* property Ξ(f), a *solution* property Φ, the *program* property Ψ). The running
+lemmas: a *network* property Ξ(f), a *solution* property Φ, and the *program* property Ψ. The running
 example is a neural controller for adaptive cruise control, where safety reduces to a reachability
 bound on `f`. Proof-carrying code's three-decade tradition (Necula 1997) is argued to still apply.
 

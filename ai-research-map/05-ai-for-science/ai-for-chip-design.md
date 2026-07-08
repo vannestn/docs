@@ -5,16 +5,16 @@ chips that AI itself runs on.
 
 > **📦 Concept: EDA (Electronic Design Automation)** — the software used to design computer
 > chips. "Placement/floorplanning" = deciding where blocks go on the silicon, a hard
-> optimization problem. **Macro placement** specifically = positioning the large blocks (SRAMs,
-> compute units) before the millions of small standard cells are placed around them.
+> optimization problem. **Macro placement** = positioning the large blocks (SRAMs, compute units)
+> first, before the millions of small standard cells are placed around them.
 
 ## Key directions & work
 
 - **AlphaChip** (Google DeepMind) — deep RL for macro placement, framed as a sequential
   decision process: the agent places macros one at a time onto a coarse grid, guided by a graph
-  neural network and a proxy reward blending wirelength, congestion, and density. Pre-training on
-  prior chip blocks is the central claimed advantage (the agent gets better as it sees more
-  designs). Google says it has designed layouts for **TPU v5e, v5p, and Trillium (6th-gen)**, with
+  neural network and a proxy reward blending wirelength, congestion, and density. The central
+  claimed advantage is pre-training on prior chip blocks — the agent gets better as it sees more
+  designs. Google says it has designed layouts for **TPU v5e, v5p, and Trillium (6th-gen)**, with
   AlphaChip handling a *growing share* of each generation's floorplan, plus 7 blocks in the Axion
   Arm CPU. Pre-trained checkpoint and weights are open-sourced.
   [DeepMind](https://deepmind.google/blog/how-alphachip-transformed-computer-chip-design/) ·
@@ -25,9 +25,9 @@ chips that AI itself runs on.
     — reimplemented the method, ran SA and a commercial macro placer (Cadence CMP), and reported
     that Google RL did *not* beat them; SA had lower variance and CMP led on quality.
   - **Igor L. Markov, "The False Dawn,"** *Comm. ACM* Nov 2024 / [arXiv:2306.09633](https://arxiv.org/abs/2306.09633)
-    — a meta-analysis (no new experiments of its own) arguing the Nature paper's claims are
-    "substantially undermined" and alleging questionable practices; it leans heavily on the Cheng
-    et al. results and on court filings from the Google whistleblower lawsuit.
+    — a meta-analysis (no new experiments) arguing the Nature paper's claims are "substantially
+    undermined" and alleging questionable practices; it leans heavily on the Cheng et al. results
+    and on court filings from the Google whistleblower lawsuit.
   - **Google's rebuttal, "That Chip Has Sailed"** [arXiv:2411.10053](https://arxiv.org/abs/2411.10053)
     (Goldie, Mirhoseini, Dean) answers both: it says Cheng et al. *didn't run the method as
     published* (no pre-training, 20× fewer RL collectors, 8 vs 16 GPUs, not trained to convergence,
@@ -35,8 +35,8 @@ chips that AI itself runs on.
     disclosure. **Status: Nature investigated, found in the authors' favor, and published an
     Addendum (not a Correction) in Sep 2024, removing its editor's note**
     ([Nature Addendum](https://www.nature.com/articles/s41586-024-08032-5)). Markov maintains none
-    of the substantive concerns were addressed. So it is *resolved editorially but not by community
-    consensus* — the most important caveat here.
+    of the substantive concerns were addressed. So the dispute is *resolved editorially but not by
+    community consensus* — the most important caveat here.
 - **Commercial EDA leans agentic/generative AI, not pure RL.** Cadence Cerebrus AI Studio and
   Synopsys.ai Copilot are the shipping direction; NVIDIA built a domain-adapted LLM, **ChipNeMo**,
   as an internal copilot for chatbot/EDA-script/bug-summary tasks
@@ -51,18 +51,18 @@ chips that AI itself runs on.
 The two papers on disk are the rebuttal (2411.10053) and Markov's meta-analysis (2306.09633).
 The substantive technical disagreement reduces to a few concrete points:
 
-- **Pre-training.** Google's core claim is that the RL agent improves with experience; in the
-  rebuttal they show (Nature Fig. 4/5, reproduced) that a from-scratch policy needs ~48h to reach
-  what a pre-trained policy hits in ~6h on the Ariane RISC-V CPU. Cheng et al. pre-trained on
-  **0 blocks** vs Google's 20 — which Google argues invalidates the comparison ("like evaluating
+- **Pre-training.** Google's core claim is that the RL agent improves with experience; the
+  rebuttal reproduces Nature Fig. 4/5 to show that a from-scratch policy needs ~48h to reach what
+  a pre-trained policy hits in ~6h on the Ariane RISC-V CPU. Cheng et al. pre-trained on **0
+  blocks** vs Google's 20 — which Google argues invalidates the comparison ("like evaluating
   AlphaGo that never saw a game of Go").
 - **The proxy reward.** Markov's central methodological charge (via Cheng et al.) is that the RL
-  proxy cost correlates *poorly* with real chip-timing metrics (TNS/WNS), which are high-variance
-  (σ/|μ| > 0.5), so reported timing "improvements" may be noise from later, non-RL steps. Google's
-  counter: Cheng et al.'s own correlation table actually shows a *weak but positive* correlation
-  between overall proxy cost and final metrics (except standard-cell area, which is a hard
-  constraint they don't optimize), and the study cherry-picks (only proxy costs < 0.9, a single
-  45nm case).
+  proxy cost correlates *poorly* with real chip-timing metrics (TNS/WNS), which are themselves
+  high-variance (σ/|μ| > 0.5) — so reported timing "improvements" may just be noise from later,
+  non-RL steps. Google's counter: Cheng et al.'s own correlation table actually shows a *weak but
+  positive* correlation between overall proxy cost and final metrics (except standard-cell area,
+  a hard constraint they don't optimize), and the study cherry-picks (only proxy costs < 0.9, a
+  single 45nm case).
 - **The initial-placement / clustering "ablation."** Cheng et al. argued RL secretly exploits
   (x,y) coordinates from commercial tools. Google's rebuttal Table 2 shows clustering *with vs
   without* initial placement gives essentially identical RL results (wirelength 5,176 vs 5,133;
@@ -74,8 +74,8 @@ The substantive technical disagreement reduces to a few concrete points:
   in less time on the same proxy.
 - **Deployment as evidence.** Google points to TPU v5e/v5p/Trillium + Axion tape-outs and external
   adoption (MediaTek extended AlphaChip for its "most advanced chips"). Markov counters that wide
-  internal use could be "dogfooding" and doesn't prove SOTA was advanced, since chips ship every
-  year without improving the state of the art.
+  internal use could be "dogfooding" and doesn't prove the state of the art was advanced, since
+  chips ship every year without doing so.
 
 A separate, independent 2024 benchmark Markov cites (Wang et al., arXiv:2407.15026) reportedly
 found post-Nature RL placement lagging RePlAce, DREAMPlace, and AutoDMP on end-to-end chip metrics

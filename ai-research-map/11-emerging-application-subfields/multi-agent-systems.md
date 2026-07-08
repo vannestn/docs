@@ -1,7 +1,7 @@
 # Multi-Agent Systems
 
-Multiple AI agents coordinating — to solve tasks, to communicate via shared protocols, or to
-simulate societies.
+Multiple AI agents coordinating — to solve tasks together, to communicate over shared protocols, or
+to simulate societies.
 
 > **📦 Concept: agent protocols** — standard "languages" for agents to talk to tools and to
 > each other. **MCP** (Model Context Protocol, Anthropic) connects an agent to tools/data; **A2A**
@@ -9,11 +9,11 @@ simulate societies.
 
 ## Key directions & work
 
-- **Communication protocols & their security** — two complementary "languages" have emerged: **MCP**
-  (Anthropic, Nov 2024) is a JSON-RPC client-server interface for an agent to invoke tools/data;
+- **Communication protocols & their security** — two complementary "languages" have emerged. **MCP**
+  (Anthropic, Nov 2024) is a JSON-RPC client-server interface an agent uses to invoke tools and data;
   **A2A** (Google, Apr 2025) is a peer-to-peer protocol for agents to delegate tasks via
-  capability-describing "Agent Cards" — 50+ companies partnering at launch. The two are
-  complementary (A2A routes the task; MCP gives the agent context to execute it). A survey compares
+  capability-describing "Agent Cards," with 50+ companies partnering at launch. They work together:
+  A2A routes the task, and MCP gives the agent the context to execute it. A survey compares
   MCP/ACP/A2A/ANP across interaction modes, discovery, communication patterns, and security models,
   proposing a phased MCP→ACP→A2A→ANP adoption roadmap
   ([arXiv:2505.02279](https://arxiv.org/abs/2505.02279)). Security is a fresh attack surface: an
@@ -23,24 +23,26 @@ simulate societies.
 - **Why multi-agent systems fail** — **MAST** (Multi-Agent System failure Taxonomy, UC Berkeley)
   hand-annotates 1,600+ traces across 7 frameworks into 14 failure modes in 3 categories: ~42% from
   bad specification / system design, ~37% from inter-agent misalignment, ~21% from weak task
-  verification. The headline: most failures are *design/orchestration* problems, not model capability
-  — bigger models alone won't fix them ([arXiv:2503.13657](https://arxiv.org/abs/2503.13657)).
+  verification. The takeaway: most failures are *design and orchestration* problems, not limits of
+  model capability — so bigger models alone won't fix them
+  ([arXiv:2503.13657](https://arxiv.org/abs/2503.13657)).
 - **Orchestrator-worker systems** — a lead agent plans, spawns 3–5 specialist subagents in parallel,
   then runs a separate citation pass. Anthropic's internal eval reports this beats single-agent Claude
-  Opus 4 by **90.2%** on a breadth-first research task, at ~**15× the tokens** of a normal chat — so
-  the economics only work for high-value research
+  Opus 4 by **90.2%** on a breadth-first research task, but uses ~**15× the tokens** of a normal chat
+  — so the economics only work for high-value research
   ([Anthropic](https://www.anthropic.com/engineering/multi-agent-research-system)). See
   [01 · Agents](../01-foundation-models-and-capabilities/agents-and-tool-use.md).
-- **Agent societies as social-science labs** — **AgentSociety** couples LLM-driven generative agents
-  (minds: emotion/needs/cognition; behaviors: mobility/social/economic) with a realistic urban-social-
-  economic environment and a distributed engine (Ray + MQTT/EMQX), running DeepSeek-V3 over **10k+
-  agents and ~5M total interactions** (~491 env-interactions/agent/day). It reproduces five real-world
-  social phenomena — polarization, inflammatory-message spread, UBI, hurricane shocks, urban
-  sustainability — though each *experiment* uses only 100–1,000 agents
+- **Agent societies as social-science labs** — **AgentSociety** pairs LLM-driven generative agents
+  (minds: emotion/needs/cognition; behaviors: mobility/social/economic) with a realistic urban
+  social-economic environment and a distributed engine (Ray + MQTT/EMQX), running DeepSeek-V3 over
+  **10k+ agents and ~5M total interactions** (~491 env-interactions/agent/day). It reproduces five
+  real-world social phenomena — polarization, inflammatory-message spread, UBI, hurricane shocks, and
+  urban sustainability — though each *experiment* uses only 100–1,000 agents
   ([arXiv:2502.08691](https://arxiv.org/abs/2502.08691)). Counterpoint: *"Position: AI Agents Are Not
-  (Yet) a Panacea for Social Simulation"* argues role-play plausibility ≠ faithful behavioral validity,
-  and that outcomes are often dominated by interaction protocols, scheduling, and initial priors rather
-  than agent-agent messaging ([arXiv:2603.00113](https://arxiv.org/abs/2603.00113)).
+  (Yet) a Panacea for Social Simulation"* argues that plausible role-play is not the same as faithful
+  behavioral validity, and that outcomes are often dominated by interaction protocols, scheduling, and
+  initial priors rather than by agent-to-agent messaging
+  ([arXiv:2603.00113](https://arxiv.org/abs/2603.00113)).
 
 ## What AgentSociety actually shows
 

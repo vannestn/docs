@@ -1,7 +1,8 @@
 # Continual Learning & Self-Improvement
 
-Learning new things over time without forgetting old ones — and the "era of experience"
-framing where agents learn primarily from their own interaction rather than static data.
+How a model can learn new things over time without forgetting old ones — and the "era of
+experience" framing, where agents learn mainly from their own interaction rather than from
+static data.
 
 ## Key directions & work
 
@@ -25,23 +26,24 @@ framing where agents learn primarily from their own interaction rather than stat
 ## Experience replay vs. plasticity loss ([arXiv:2503.20018](https://arxiv.org/abs/2503.20018))
 
 Wang, Chandra & Zhang (UVA) test one hypothesis: that *experience replay is a form of
-memory* that can address **loss of plasticity** (the phenomenon where backprop-trained nets
-gradually lose the ability to fit new tasks). The surprising empirical result: simply add a
+memory* that can address **loss of plasticity** — the phenomenon where backprop-trained nets
+gradually lose the ability to fit new tasks. The surprising empirical result: simply add a
 small replay buffer (size 100, FILO) and feed it to a **Transformer**, and plasticity loss
-*disappears* across three continual settings — Slowly-Changing Regression, permuted MNIST,
-and Boyan's-chain policy evaluation. No changes to backprop, activations, or
+*disappears* across three continual-learning settings — Slowly-Changing Regression, permuted
+MNIST, and Boyan's-chain policy evaluation — with no changes to backprop, activations, or
 regularization.
 
 **The architecture is load-bearing, not the replay.** Replay alone does *not* fix it: an
-MLP with replay (ERMLP) and an RNN with replay show "no clear signs of learning" and keep
-losing plasticity. Only the attention-based model is immune. The Transformer is a stripped
-self-attention stack — no feed-forward layers, no positional encoding, no layernorm, just an
-output layer. On permuted MNIST its ~70k parameters *beat* an 8M-parameter MLP in the long
-run (Transformer test accuracy *rises* with more tasks; the MLP's *falls*).
+MLP with replay (ERMLP) and an RNN with replay both show "no clear signs of learning" and
+keep losing plasticity. Only the attention-based model is immune. Here the Transformer is a
+stripped-down self-attention stack — no feed-forward layers, no positional encoding, no
+layernorm, just an output layer. On permuted MNIST, its ~70k parameters *beat* an
+8M-parameter MLP in the long run: Transformer test accuracy *rises* with more tasks, while
+the MLP's *falls*.
 
 **Mechanism is conjectured, not shown.** The authors speculate the Transformer stays plastic
-because it learns *in-context* — implementing some algorithm in its forward pass so it
-doesn't need parameter updates for each new task, citing parallel work that an RNN likely
+because it learns *in-context* — implementing some algorithm in its forward pass, so it
+doesn't need parameter updates for each new task — and cite parallel work that an RNN likely
 *cannot* implement TD in its forward pass. They are explicit that this is unproven: "we do
 not draw a decisive conclusion that it is what is happening." They also do **not** claim
 replay+Transformer beats prior plasticity methods (continual backprop, ReDo, UPGD, etc.) —
@@ -56,23 +58,24 @@ They flag state-space models (Mamba) as a way to cut the cost.
 Tandon, Dalal, Li et al. (Astera / NVIDIA / Stanford / Berkeley / UCSD) reframe
 *long-context language modeling as continual learning rather than architecture design*. The
 model is a standard Transformer with **sliding-window attention** that keeps learning at test
-time via next-token prediction on the given context — compressing context into its weights
+time, doing next-token prediction on the given context — compressing context into its weights
 instead of caching every token. Their method, **TTT-E2E**, is end-to-end in two ways: the
-inner loop directly optimizes next-token loss (vs. prior layer-wise reconstruction losses in
-TTT-KVB / Titans), and a meta-learning outer loop optimizes the *initialization* for TTT
-("gradients of gradients").
+inner loop directly optimizes next-token loss (vs. the layer-wise reconstruction losses of
+prior TTT-KVB / Titans), and a meta-learning outer loop optimizes the *initialization* for
+TTT ("gradients of gradients").
 
 **Headline result:** for 3B models trained on 164B tokens, TTT-E2E **scales with context
 length the same way as full attention** (flat loss-Δ out to 128K), while SWA, Mamba 2, Gated
 DeltaNet, and TTT-KVB all degrade. With constant per-token cost, it is **2.7× faster than
 full attention for 128K-context prefill** on an H100.
 
-**How it's built (implementation details that matter):** TTT only the **MLP** layers (not
-attention/embeddings/norms — updating those destabilizes the outer loop); TTT only the last
+**How it's built (implementation details that matter):** TTT updates only the **MLP** layers
+(not attention/embeddings/norms — updating those destabilizes the outer loop); only the last
 **1/4 of blocks** (an ablation shows updating 1 or 3 of 24 layers fails to scale, but 6
-matches 12 — so update 1/4 regardless of model size); and a **second static MLP** per block
-as "safe" storage for pre-trained knowledge against forgetting. Mini-batch TTT with batch
-size *b* = 1K and window *k* = 8K resolves the instability of online (b=1) updates.
+matches 12 — so update 1/4 regardless of model size); and adds a **second static MLP** per
+block as "safe" storage that shields pre-trained knowledge from forgetting. Mini-batch TTT
+with batch size *b* = 1K and window *k* = 8K resolves the instability of online (b=1)
+updates.
 
 **Where it loses — recall.** On Needle-in-a-Haystack (RULER), full attention "dramatically
 outperforms" TTT-E2E, especially in long context (e.g. S-NIAH-1 at 128K: full attention
@@ -81,27 +84,27 @@ recall*; their method's compression deliberately drops "seemingly irrelevant det
 the target string. On general loss, TTT-E2E is the *only* method that always beats full
 attention across context length, with the advantage coming mostly from earlier tokens.
 
-**Author-stated limitations:** training latency is the big one — taking gradients of
-gradients, TTT-E2E is **3.4× slower than full attention at 8K** (though 1.2× faster at
-128K); current code can't use cuDNN FlashAttention. They propose a custom kernel and
-initializing TTT-E2E from a pre-trained non-TTT Transformer as fixes. The decode-long-
-sequences and RL settings are only evaluated indirectly (via Qwen-8B as judge).
+**Author-stated limitations:** training latency is the big one — because it takes gradients
+of gradients, TTT-E2E is **3.4× slower than full attention at 8K** (though 1.2× faster at
+128K), and the current code can't use cuDNN FlashAttention. Proposed fixes: a custom kernel,
+and initializing TTT-E2E from a pre-trained non-TTT Transformer. The decode-long-sequences
+and RL settings are only evaluated indirectly (via Qwen-8B as judge).
 
 ## Nested Learning & "Hope" ([arXiv:2512.24695](https://arxiv.org/abs/2512.24695))
 
-Behrouz, Razaviyayn, Zhong & Mirrokni (Google Research) propose **Nested Learning (NL)**: a
-model — architecture *and* its optimizer *and* pre-training — is one *nested system of
-associative memories*, each level compressing its own "context flow" (tokens, gradients, or
-higher-level signals) at its own update *frequency*. From this lens, momentum/Adam are
-associative memories over gradients; pre-training is in-context learning with an ultra-large
-context; and **catastrophic forgetting is a natural consequence of compression** under
-limited capacity, not a bug to be patched.
+Behrouz, Razaviyayn, Zhong & Mirrokni (Google Research) propose **Nested Learning (NL)**:
+treat a model — architecture *and* its optimizer *and* pre-training — as one *nested system
+of associative memories*, where each level compresses its own "context flow" (tokens,
+gradients, or higher-level signals) at its own update *frequency*. From this lens,
+momentum/Adam are associative memories over gradients; pre-training is in-context learning
+with an ultra-large context; and **catastrophic forgetting is a natural consequence of
+compression** under limited capacity, not a bug to be patched.
 
 **Continuum Memory System (CMS):** generalizes "short-term / long-term memory" into a chain
-of MLP blocks updated at *different* frequencies (high-frequency = fast/transient,
+of MLP blocks updated at *different* frequencies (high-frequency = fast and transient,
 low-frequency = persistent). Because knowledge forgotten from a fast block can be recovered
 from a slower one via the meta-learned initialization, updates "loop through the time
-dimension," reducing (not eliminating) forgetting.
+dimension," reducing forgetting (though not eliminating it).
 
 **"Hope"** is the proposed architecture: **self-modifying Titans** (a sequence model that
 learns its own update rule and generates its own keys/values via Delta Gradient Descent)
@@ -138,14 +141,15 @@ shows it only works when paired with the right architecture.
 **Promising but unproven:** Architectural continual learning (nested-learning continuum
 memory), the "era of experience" RL framing, and in-context-learning-as-plasticity. All
 three source papers above flag their core mechanisms as conjectured or early — ICL-as-
-plasticity is explicitly "not a decisive conclusion," and Hope's authors call NL a roadmap.
+plasticity is explicitly "not a decisive conclusion," and Hope's authors call NL a roadmap
+rather than a finished method.
 
 **Open problems & weaknesses:** **Catastrophic forgetting and plasticity loss are not
-solved** — they're mitigated, and at least one of these papers argues forgetting is an
+solved** — only mitigated, and at least one of these papers argues forgetting is an
 *intrinsic* consequence of compression rather than something a better method will remove.
-There's no widely-adopted method for a deployed model to durably learn from its own
-experience without retraining or risking collapse. The compression/recall trade-off is now
-sharp: methods that scale cheaply with context (TTT-E2E, RNNs, CMS) sacrifice lossless
-retrieval. Benchmarks for *lifelong* learning (and for when memories should be *forgotten*)
-are immature. This is the bottleneck under "self-improving" claims in
+There's no widely-adopted way for a deployed model to durably learn from its own experience
+without retraining or risking collapse. The compression/recall trade-off is now sharp:
+methods that scale cheaply with context (TTT-E2E, RNNs, CMS) give up lossless retrieval.
+Benchmarks for *lifelong* learning — and for *when* memories should be forgotten — remain
+immature. This is the bottleneck under "self-improving" claims in
 [open-endedness](open-endedness-and-self-improvement.md).

@@ -1,8 +1,8 @@
 # AI for Law & Finance
 
-Two high-stakes, heavily-regulated domains where the gap between **adoption** and **measured
-reliability** is the whole story — and where hallucination is an active real-world harm, not a
-benchmark artifact.
+Two high-stakes, heavily regulated domains where the story is the gap between **adoption** and
+**measured reliability** — and where hallucination is an active real-world harm, not a benchmark
+artifact.
 
 ## AI for Law
 
@@ -12,11 +12,11 @@ benchmark artifact.
   over authoritative databases* — directly contradicting vendor "hallucination-free" marketing.
   [Stanford RegLab](https://reglab.stanford.edu/publications/hallucination-free-assessing-the-reliability-of-leading-ai-legal-research-tools/)
 - **Autonomous end-to-end legal work is far from solved** — Harvey's Legal Agent Benchmark (LAB,
-  May 2026) scores tasks under a strict **all-pass rubric** (a deliverable catching 8/10 risks is
-  *not* 80% useful). In aggregate frontier models complete **<10% end-to-end**; initial results put
-  Claude Opus 4.7 top at 7.1% (Sonnet 4.6 5.4%, GPT-5.5 2.1%, Gemini 3.5 Flash 0.8%). Per-criterion
-  pass rates are far higher (~86–90%) — the gap is in *chaining* steps without any failure.
-  [Harvey LAB](https://www.harvey.ai/blog/legal-agent-benchmark-initial-results)
+  May 2026) scores tasks under a strict **all-pass rubric**: a deliverable that catches 8 of 10
+  risks is *not* 80% useful. Frontier models complete **<10% end-to-end** in aggregate; initial
+  results put Claude Opus 4.7 on top at 7.1% (Sonnet 4.6 5.4%, GPT-5.5 2.1%, Gemini 3.5 Flash 0.8%).
+  Per-criterion pass rates are far higher (~86–90%) — the gap is in *chaining* steps without a single
+  failure. [Harvey LAB](https://www.harvey.ai/blog/legal-agent-benchmark-initial-results)
 - **…yet adoption is racing ahead** — Harvey raised $200M at an **$11B valuation** (Mar 2026; GIC +
   Sequoia), on ~**$190M ARR** (up from $100M in 5 months) with **100,000+ lawyers** across 1,300+
   customers in 60+ countries. [Harvey](https://www.harvey.ai/blog/harvey-raises-at-dollar11-billion-valuation-to-scale-agents-across-law-firms-and-enterprises)
@@ -42,24 +42,27 @@ benchmark artifact.
 - **Capability profile** (FinBen, **42 datasets / 24 tasks**, 21 LLMs incl. GPT-4): strong at
   information extraction and textual analysis, **weak at advanced reasoning, forecasting, and
   generation**. NeurIPS 2024 D&B Track. [arXiv:2402.12659](https://arxiv.org/abs/2402.12659)
-- **Open adaptation beat from-scratch** — FinGPT does lightweight LoRA/QLoRA domain adaptation at
-  **~$300/fine-tune** vs BloombergGPT's ~1.3M GPU-hours ≈ **$3M** train. LoRA cuts trainable params
-  ~1000× (6.17B → 3.67M); in the paper's sentiment experiment, FinGPT (Llama-3.1-8B SFT+RLSP)
-  reaches **82.1% acc / 80.9 macro-F1**, beating FinBERT (71.2/69.9) and 0-shot ChatGPT (63.4/61.7).
+- **Open adaptation beats training from scratch** — FinGPT does lightweight LoRA/QLoRA domain
+  adaptation (low-rank fine-tuning of a frozen base model) at **~$300/fine-tune**, versus
+  BloombergGPT's ~1.3M GPU-hours ≈ **$3M** to train. LoRA cuts trainable parameters ~1000×
+  (6.17B → 3.67M); in the paper's sentiment experiment, FinGPT (Llama-3.1-8B SFT+RLSP) reaches
+  **82.1% acc / 80.9 macro-F1**, beating FinBERT (71.2/69.9) and 0-shot ChatGPT (63.4/61.7).
   Note: it democratizes *adaptation*, not raw accuracy ceilings. [arXiv:2306.06031](https://arxiv.org/abs/2306.06031)
-- **LLM-agent factor mining is promising-but-unproven** — AlphaAgent (KDD'25) reports backtested
+- **LLM-agent factor mining is promising but unproven** — AlphaAgent (KDD'25) reports backtested
   annualized **excess** returns of **11.0% (IR 1.49) on CSI 500** and **8.74% (IR 1.05) on S&P 500**
-  over 2021–2024 *after transaction costs* (out-of-sample, but Qlib backtest, not live trading). Its
-  thesis: **alpha decay** from factor homogenization/crowding is *the* open problem — LLMs default
-  to known factors (momentum/value/RSI), so it adds AST-similarity originality, hypothesis-alignment,
-  and complexity-control regularizers, yielding an 81% higher hit ratio (0.29 vs 0.16) at ~23–30%
-  fewer tokens. [arXiv:2502.16789](https://arxiv.org/abs/2502.16789)
-- **Structured/numerical grounding is the bottleneck** — FinTagging recasts XBRL tagging as
-  extract-then-link over the full **17k+-concept US-GAAP taxonomy**. Even strong LLMs (DeepSeek-V3,
-  GPT-4o) hit only **~0.19 accuracy** on fine-grained concept linking (FinCL) and **~0.10 F1**
-  end-to-end; single-step extreme classification over the full taxonomy collapses *all* models to
-  ~0. Extraction is recoverable; **disambiguation against the taxonomy is the hard part**.
-  [arXiv:2505.20650](https://arxiv.org/abs/2505.20650)
+  over 2021–2024 *after transaction costs* (out-of-sample, but a Qlib backtest, not live trading).
+  Its thesis: **alpha decay** — the erosion of returns as trading factors become crowded and
+  homogeneous — is *the* open problem. LLMs default to known factors (momentum/value/RSI), so
+  AlphaAgent adds regularizers for originality (AST-similarity), hypothesis-alignment, and
+  complexity-control, yielding an 81% higher hit ratio (0.29 vs 0.16) at ~23–30% fewer tokens.
+  [arXiv:2502.16789](https://arxiv.org/abs/2502.16789)
+- **Structured/numerical grounding is the bottleneck** — FinTagging recasts XBRL tagging (labeling
+  financial-report values with standardized accounting concepts) as extract-then-link over the full
+  **17k+-concept US-GAAP taxonomy**. Even strong LLMs (DeepSeek-V3, GPT-4o) hit only **~0.19
+  accuracy** on fine-grained concept linking (FinCL) and **~0.10 F1** end-to-end; single-step
+  extreme classification (choosing one label from the full taxonomy at once) collapses *all*
+  models to ~0. Extraction is recoverable;
+  **disambiguation against the taxonomy is the hard part**. [arXiv:2505.20650](https://arxiv.org/abs/2505.20650)
 
 ## Regulation as the binding constraint
 The EU AI Act classifies **credit-scoring of natural persons as high-risk** (Annex III; fraud

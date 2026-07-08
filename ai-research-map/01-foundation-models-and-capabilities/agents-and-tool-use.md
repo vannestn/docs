@@ -1,9 +1,8 @@
 # Agents & Tool Use
 
-Agents became simultaneously the flagship *product* and a distinct *research field* in
-2025–26: systems that plan, call tools, operate computers, and run autonomously over long
-horizons — along with the training recipes, benchmarks, and failure modes that come with
-them.
+In 2025–26 agents became both the flagship *product* and a distinct *research field*:
+systems that plan, call tools, operate computers, and run autonomously over long horizons —
+along with the training recipes, benchmarks, and failure modes that come with them.
 
 ## Computer use / GUI agents
 - **OpenAI CUA / Operator** — vision + RL on GUIs yields a general computer-using agent
@@ -13,9 +12,10 @@ them.
   for "coding, agents, and computer use" (80.9% SWE-bench Verified) with *effort control*
   and *context compaction* for long-running agents. [Anthropic](https://www.anthropic.com/news/claude-opus-4-5)
 - **OSWorld** is the primary benchmark behind these claims: 369 real-computer tasks across
-  Ubuntu/Windows/macOS, each with a setup config and an *execution-based* checker (not LLM
-  judging). At release the best model hit **12.24%** vs a **72.36%** human baseline — GUI
-  grounding and operational knowledge were the named gaps. [arXiv:2404.07972](https://arxiv.org/abs/2404.07972)
+  Ubuntu/Windows/macOS, each with a setup config and an *execution-based* checker (it runs the
+  result rather than asking an LLM to judge it). At release the best model hit **12.24%** vs a
+  **72.36%** human baseline — GUI grounding and operational knowledge were the named gaps.
+  [arXiv:2404.07972](https://arxiv.org/abs/2404.07972)
   Progress since has been steep: task success rose to ~66%+ (2026), with frontier models
   approaching the human baseline; enterprise variants (EntWorld) extend the setting. See
   [11 · AI for SWE / computer use](../11-emerging-application-subfields/ai-for-software-engineering.md).
@@ -25,19 +25,19 @@ them.
   (the task length a model completes at 50% reliability) crossed multi-day territory and
   is the most-cited autonomy trend. See [08 · Economics & forecasting](../08-evaluation-and-governance/economics-and-forecasting.md).
 - **Context management** is a named research problem. *Context-Folding* (ByteDance Seed
-  + CMU + Stanford) gives the agent two tools — `branch(description, prompt)` to spin a
-  sub-task into a separate working context, and `return(message)` to fold that branch back
-  into the main thread, leaving only a summary. It trains the behavior end-to-end with
-  **FoldGRPO**, a GRPO variant adding token-level *process rewards*: an *unfolded-token
-  penalty* (−1 on main-thread tokens once the main context exceeds 50% of the limit, to push
-  token-heavy work into branches) and an *out-of-scope penalty* (−0.2, GPT-5-nano judges
-  whether a branch stayed on its sub-task). On a 36B base (Seed-OSS-36B-Instruct), a 32K
-  active context with ≤10 branches (≈327K theoretical max) reaches **0.620 pass@1 on
-  BrowseComp-Plus** and **0.580 on SWE-Bench Verified** — beating a 327K-context ReAct agent
-  on the *same* base by +14.2 and +2.8 points while keeping the active context ~10× smaller,
-  and matching agents built on 100B+ models (GPT-5 scores 0.793 / 0.718). FoldGRPO matters:
-  it adds +7.7% on BrowseComp and +1.6% on SWE-Bench over plain GRPO, and compresses a 100K+
-  total interaction to an ~8K main trajectory (>90% context compression).
+  + CMU + Stanford) gives the agent two tools: `branch(description, prompt)` spins a sub-task
+  into a separate working context, and `return(message)` folds that branch back into the main
+  thread, leaving only a summary. The behavior is trained end-to-end with **FoldGRPO**, a GRPO
+  variant that adds token-level *process rewards* — an *unfolded-token penalty* (−1 on
+  main-thread tokens once the main context exceeds 50% of the limit, pushing token-heavy work
+  into branches) and an *out-of-scope penalty* (−0.2, with GPT-5-nano judging whether a branch
+  stayed on its sub-task). On a 36B base (Seed-OSS-36B-Instruct), a 32K active context with
+  ≤10 branches (≈327K theoretical max) reaches **0.620 pass@1 on BrowseComp-Plus** and
+  **0.580 on SWE-Bench Verified**. That beats a 327K-context ReAct agent on the *same* base by
+  +14.2 and +2.8 points while keeping the active context ~10× smaller, and matches agents built
+  on 100B+ models (GPT-5 scores 0.793 / 0.718). FoldGRPO matters: over plain GRPO it adds +7.7%
+  on BrowseComp and +1.6% on SWE-Bench, and it compresses a 100K+ total interaction to an ~8K
+  main trajectory (>90% context compression).
   [arXiv:2510.11967](https://arxiv.org/abs/2510.11967)
   - *Author-stated limits:* implementation is incompatible with stock VeRL (branches are
     kept as separate causally-conditioned sequences); gains **plateau beyond ~320K tokens**;
@@ -47,11 +47,11 @@ them.
 
 ## Agent memory
 - **Subtask-level memory** (Kuaishou) reframes agent memory away from per-episode stores.
-  Instead of keying experience to the whole instance, it stores it at the **subtask** level,
-  tagged by functional category (ANALYZE / REPRODUCE / EDIT / VERIFY). Retrieval is two-stage:
-  a *hard category filter* (only same-phase entries are eligible), then embedding-similarity
-  cosine matching on the subtask's intent description — so a "fix login button" edit can reuse
-  a "modify search bar" edit while ignoring a surface-similar but logic-different "fix login
+  Instead of keying experience to the whole instance, it stores experience at the **subtask**
+  level, tagged by functional category (ANALYZE / REPRODUCE / EDIT / VERIFY). Retrieval is
+  two-stage: a *hard category filter* (only same-phase entries are eligible), then cosine
+  similarity on the subtask's intent description — so a "fix login button" edit can reuse a
+  "modify search bar" edit while ignoring a surface-similar but logically different "fix login
   timeout" bug. Memory accrues *online* over the SWE-bench Verified stream (no offline corpus,
   same LLM as solver — no stronger teacher). On the Mini-SWE-Agent scaffold it adds **+4.7pp
   Pass@1 on average** over vanilla (up to **+6.8pp on Gemini 2.5 Pro**) and beats an
@@ -85,9 +85,9 @@ them.
   is **mid-trained on 5T tokens** of observation–action trajectories: Python-interpreter
   *execution traces* (predicting the post-line stack frame / local-variable state, JSON-encoded)
   plus large-scale agentic Docker interactions from a "ForagerAgent" (3M trajectories). The
-  framing is *code world modeling* — simulating what code **does** when executed, enabling a
-  "neural debugger" and execution-grounded reasoning — not the doc's earlier "fault
-  localization + end-to-end patching." Scores: **65.8% SWE-bench Verified (with test-time
+  framing is *code world modeling* — simulating what code **does** when executed, which enables
+  a "neural debugger" and execution-grounded reasoning (not the doc's earlier "fault
+  localization + end-to-end patching"). Scores: **65.8% SWE-bench Verified (with test-time
   scaling)**, 68.6% LiveCodeBench, 96.6% Math-500, 76.0% AIME 2024.
   [arXiv:2510.02387](https://arxiv.org/abs/2510.02387)
 - **Kimi K2** (Moonshot) — open-weight **1.04T-param** MoE (32B *activated*, DeepSeek-V3-style

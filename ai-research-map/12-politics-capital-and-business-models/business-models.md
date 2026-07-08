@@ -1,7 +1,7 @@
 # Business Models
 
-The distinct ways organizations try to turn AI research into a sustainable business — each
-of which pulls research in a different direction.
+The distinct ways organizations turn AI research into a sustainable business — and how each
+one pulls research in a different direction.
 
 ## The main models
 
@@ -25,12 +25,12 @@ of which pulls research in a different direction.
 > [08 · Governance](../08-evaluation-and-governance/safety-institutes-and-governance.md)).
 
 - **Open vs. closed** is partly a business-model choice: open-weight labs trade direct API
-  revenue for ecosystem leverage and (for Chinese labs) a way to compete despite compute
+  revenue for ecosystem leverage — and, for Chinese labs, a way to compete despite compute
   constraints.
 - **"Lab" vs. "product company"** — the AI-for-science labs (Isomorphic, Periodic, Lila) bet
   that *owning the discoveries* beats selling model access.
 - **Focused capability vs. platform** — a single-capability startup (audio, video, interp)
-  must show it's a durable business, not a feature a frontier lab absorbs.
+  must prove it's a durable business, not a feature a frontier lab will absorb.
 
 ## The data / RL-environment foundry — picks-and-shovels for the agentic-RL boom
 

@@ -1,16 +1,16 @@
 # Embodied AI & Vision-Language-Action Models
 
-Generalist robot policies that map perception + language goals to physical actions.
+Vision-Language-Action (VLA) models are generalist robot policies that map perception and language goals to physical actions — the bet that one model can drive many robots across many tasks, the way foundation models did for text and images.
 
 ## Key directions & work
 
 - **π0 / π0.5 / π*0.6** (Physical Intelligence) — π0 introduced *flow matching* for
-  continuous action generation and was open-sourced (`openpi`); **π0.5** is the paper covered
-  here — a co-trained VLA with a hierarchical "high-level subtask → low-level action" design
-  that controls mobile manipulators in *entirely unseen* homes for 10–15-minute multi-stage
+  continuous action generation and was open-sourced (`openpi`). **π0.5** (the paper covered
+  here) is a co-trained VLA with a hierarchical "high-level subtask → low-level action" design
+  that controls mobile manipulators in *entirely unseen* homes on 10–15-minute multi-stage
   tasks. [arXiv:2504.16054](https://arxiv.org/abs/2504.16054). **π*0.6** adds on-robot RL via
   **RECAP** (*RL with Experience and Corrections via Advantage-conditioned Policies*); PI claims
-  it roughly doubles throughput / cuts failures in half on tasks like espresso-making and
+  it roughly doubles throughput and halves failures on tasks like espresso-making and
   laundry-folding. [arXiv:2511.14759](https://arxiv.org/abs/2511.14759)
 - **Gemini Robotics 1.5 + ER 1.5** (DeepMind) — a two-model agentic system: **GR-ER 1.5**
   (an embodied-reasoning VLM) acts as orchestrator/planner and success-detector, while
@@ -79,8 +79,9 @@ embeddings rather than final-layer — faster and higher success rate. Per-embod
 state/action encoders let one model span single-arm to bimanual-humanoid.
 
 **Data pyramid.** Web/human-video data at the base, synthetic in the middle, real-robot at
-the top. To use action-less video, they learn a **latent-action codebook** (VQ-VAE) and an
-inverse-dynamics model to produce pseudo-actions, treating videos as extra "embodiments."
+the top. To use video that has no action labels, they learn a **latent-action codebook**
+(VQ-VAE) and an inverse-dynamics model that infer pseudo-actions, treating videos as extra
+"embodiments."
 They generate **neural trajectories** by fine-tuning image-to-video models on their 88 h of
 teleop data, producing ~827 h (~10× augmentation), and **simulation trajectories** via
 DexMimicGen (780k trajectories ≈ 6,500 h of human-demo-equivalent, generated in ~11 h).

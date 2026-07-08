@@ -1,24 +1,24 @@
 # Chinese Labs
 
 The center of gravity for *efficient-architecture* research and competitive open-weight
-models in 2026. The recurring throughline across these labs: **escape quadratic attention
-cost** (linear/hybrid attention, trainable sparse attention) and **squeeze more capability
-per token and per FLOP** — partly a research bet, partly a response to compute scarcity under
-US export controls.
+models in 2026. Two goals recur across these labs: **escape the quadratic cost of attention**
+(via linear/hybrid attention or trainable sparse attention) and **squeeze more capability
+per token and per FLOP**. This is partly a research bet, partly a response to compute scarcity
+under US export controls.
 
 ## The players & their signature research
 
 - **DeepSeek** — the breakout. **DeepSeek-R1** showed reasoning can emerge from pure RL, and
   was the first major LLM to clear independent peer review — published in *Nature* (vol. 645,
   18 Sep 2025) on the cover ("Self-help"). **DeepSeek-V3.2** introduces **DeepSeek Sparse
-  Attention (DSA)** — a lightning indexer (FP8) plus top-k token selection, cutting core
-  attention from O(L²) to O(Lk) while preserving quality. The **GRPO** RL recipe it
-  popularized (origin: DeepSeekMath) is now the default across Chinese labs.
+  Attention (DSA)** — a fast (FP8) "lightning indexer" plus top-k token selection, cutting core
+  attention from O(L²) to O(Lk) while preserving quality. Its **GRPO** RL recipe (origin:
+  DeepSeekMath) is now the default across Chinese labs.
   The **DeepSeek-V4** preview (mid-2026) pivots from V3.2's *sparse-attention-on-a-dense-base*
   to a ground-up million-token, hybrid-attention design (CSA+HCA) on a far larger MoE.
   [R1 Nature](https://www.nature.com/articles/s41586-025-09422-z) · [V3.2 arXiv:2512.02556](https://arxiv.org/abs/2512.02556) · [V4 arXiv:2606.19348](https://arxiv.org/abs/2606.19348)
 - **Moonshot AI** — **Kimi K2**, a 1.04T-total / 32B-active MoE for agents, pre-trained on
-  15.5T tokens with **MuonClip** (the Muon optimizer + a novel QK-Clip stabilizer) with zero
+  15.5T tokens with **MuonClip** (the Muon optimizer plus a novel QK-Clip stabilizer) and zero
   loss spikes. K2 is a *non-thinking* model that leads open-source agentic benchmarks.
   [Kimi K2 arXiv:2507.20534](https://arxiv.org/abs/2507.20534)
 - **MiniMax** — **MiniMax-M1**, first open-weight large reasoning model on *lightning
@@ -44,13 +44,13 @@ US export controls.
 
 ### DeepSeek — sparse attention + a hardened RL recipe
 **DeepSeek-V3.2** keeps the V3.1-Terminus architecture and adds **DSA** via *continued
-training*: a cheap **lightning indexer** (few heads, FP8, ReLU) scores preceding tokens, and a
+training*. A cheap **lightning indexer** (few heads, FP8, ReLU) scores preceding tokens, then a
 **fine-grained selector** keeps only the top-k (2048) key-value entries for full attention —
-instantiated under MLA in its MQA mode. Training is two-stage: a 1,000-step dense warm-up
-(2.1B tokens) that aligns the indexer to the dense attention distribution via KL, then a
-15,000-step sparse stage (943.7B tokens). Result: attention complexity O(L²) → O(Lk), large
-end-to-end long-context speedups, and **no measurable quality regression** vs V3.1-Terminus on
-standard and long-context evals (e.g. AA-LCR, Fiction.liveBench).
+all instantiated under MLA in its MQA mode. Training runs in two stages: a 1,000-step dense
+warm-up (2.1B tokens) that aligns the indexer to the dense attention distribution via KL, then a
+15,000-step sparse stage (943.7B tokens). The result: attention complexity drops from O(L²) to
+O(Lk), with large end-to-end long-context speedups and **no measurable quality regression** vs
+V3.1-Terminus on standard and long-context evals (e.g. AA-LCR, Fiction.liveBench).
 - *RL at scale:* V3.2 uses **GRPO** with several stability fixes — an **unbiased KL estimate**
   (correcting the K3 estimator), **off-policy sequence masking** (mask only negative-advantage,
   high-divergence sequences), and **keep-routing / keep-sampling masks** so MoE expert routing
@@ -63,34 +63,34 @@ standard and long-context evals (e.g. AA-LCR, Fiction.liveBench).
   **1M-token context**. The preview ships two MoE variants — **V4-Pro** (1.6T total / 49B active)
   and **V4-Flash** (284B / 13B) — pre-trained on **32T+ tokens**. The headline change is a
   **hybrid attention** stack pairing **Compressed Sparse Attention (CSA)** with **Heavily
-  Compressed Attention (HCA)**, plus **Manifold-Constrained Hyper-Connections (mHC)** to
-  strengthen residual flow and the **Muon** optimizer (also Moonshot's pick) for the main run.
+  Compressed Attention (HCA)**. It also adds **Manifold-Constrained Hyper-Connections (mHC)** to
+  strengthen residual flow and uses the **Muon** optimizer (also Moonshot's pick) for the main run.
   Efficiency vs **V3.2** at 1M context: V4-Pro uses **~27% of the single-token inference FLOPs**
   and **~10% of the KV cache** (a ~90% cache reduction). [V4 arXiv:2606.19348](https://arxiv.org/abs/2606.19348)
 
 ### Moonshot — MuonClip and token efficiency
-The Kimi K2 thesis is *token efficiency as a scaling coefficient*. K2 trains the
-token-efficient **Muon** optimizer but tames its failure mode — exploding attention logits — with
-**QK-Clip**, which rescales only the query/key projections of heads whose max logit exceeds a
-threshold τ (=100), and only on the head-specific (non-shared-rotary) components for MLA.
-Combined as **MuonClip**, this drove 15.5T tokens with **zero loss spikes** (logits cap then
-decay to a stable band after ~30% of training). Architecture: ultra-sparse MoE (384 experts,
-8 active) à la DeepSeek-V3 but with sparsity-48 (a stated **sparsity scaling law**: more total
-experts at fixed active params lowers loss) and **64 attention heads** (half of DeepSeek-V3's
-128) to cut long-context inference cost. K2 reports 65.8 SWE-bench Verified, 66.1 Tau2-bench,
+The Kimi K2 thesis is *token efficiency as a scaling coefficient*. K2 uses the token-efficient
+**Muon** optimizer but tames its failure mode — exploding attention logits — with **QK-Clip**.
+QK-Clip rescales the query/key projections only for heads whose max logit exceeds a threshold
+τ (=100), and for MLA touches only the head-specific (non-shared-rotary) components. Combined as
+**MuonClip**, it drove 15.5T tokens with **zero loss spikes** (logits cap, then decay to a stable
+band after ~30% of training). Architecture: ultra-sparse MoE (384 experts, 8 active) à la
+DeepSeek-V3 but with sparsity-48 — a stated **sparsity scaling law** (more total experts at fixed
+active params lowers loss) — and **64 attention heads** (half of DeepSeek-V3's 128) to cut
+long-context inference cost. K2 reports 65.8 SWE-bench Verified, 66.1 Tau2-bench,
 53.7 LiveCodeBench v6, 49.5 AIME 2025 — all in non-thinking mode.
 
 ### MiniMax — lightning attention + CISPO
 **MiniMax-M1** is built on MiniMax-Text-01 (456B / 45.9B active, 32 experts), interleaving one
-softmax-attention block per seven lightning-attention (linear) blocks. This is what makes its
-test-time compute cheap: at a 100K generation length M1 uses **~25% of DeepSeek-R1's FLOPs**.
-Its RL contribution, **CISPO**, *clips importance-sampling weights instead of token updates* — so
-rare reflective "fork" tokens (However/Recheck/Wait/Aha), which GRPO/PPO clipping tends to drop
-after the first off-policy step, keep contributing gradient. On a Qwen2.5-32B zero-RL study,
-CISPO matches DAPO's performance with **half the training steps**. Two model-specific fixes were
-needed: FP32 precision on the LM output head (to fix a train/infer probability mismatch that
-blocked reward growth) and repetition-based early truncation. Full RL ran in **3 weeks on 512
-H800s (~$0.53M)**.
+softmax-attention block per seven lightning-attention (linear) blocks. That mix is what makes its
+test-time compute cheap: at a 100K generation length, M1 uses **~25% of DeepSeek-R1's FLOPs**.
+Its RL contribution, **CISPO**, *clips importance-sampling weights instead of token updates*. The
+payoff: rare reflective "fork" tokens (However/Recheck/Wait/Aha) keep contributing gradient,
+whereas GRPO/PPO clipping tends to drop them after the first off-policy step. On a Qwen2.5-32B
+zero-RL study, CISPO matches DAPO's performance with **half the training steps**. Two
+model-specific fixes were needed: FP32 precision on the LM output head (to fix a train/infer
+probability mismatch that blocked reward growth) and repetition-based early truncation. Full RL
+ran in **3 weeks on 512 H800s (~$0.53M)**.
 
 ### Alibaba Qwen — unified thinking + dense/MoE breadth
 **Qwen3** unifies thinking and non-thinking modes in one model with a *thinking budget*
@@ -119,11 +119,11 @@ which it argues is decoupled from parameter count. Two levers: **Multi-Matrix Fa
 Attention (MFA)**, a low-rank QK factorization that shrinks both KV cache and attention
 compute while keeping a high attention effective rank (16,384, matching DeepSeek-V3's MLA); and
 **Attention-FFN Disaggregation (AFD)**, which runs attention and FFN on separate GPU pools so
-each hits ideal hardware utilization. The paper's headline claim: **~40% lower decoding cost**
-than DeepSeek-V3 and Qwen3-MoE-235B, with the gap widening at longer context; on H800 it serves
-~4,039 tokens/s/GPU under a 50ms TPOT SLA (vs DeepSeek-V3's 2,324 in the same setup). Its
-broader argument — total/activated param count is a *bad* proxy for decoding cost; attention
-design and hardware-aware MoE sparsity dominate — is the paper's real contribution.
+each hits ideal hardware utilization. The headline claim: **~40% lower decoding cost** than
+DeepSeek-V3 and Qwen3-MoE-235B, with the gap widening at longer context; on H800 it serves
+~4,039 tokens/s/GPU under a 50ms TPOT SLA (vs DeepSeek-V3's 2,324 in the same setup). The paper's
+real contribution is that broader argument: total/activated param count is a *bad* proxy for
+decoding cost — attention design and hardware-aware MoE sparsity dominate.
 
 ### Zhipu — GLM-4.5 (text ARC) and GLM-4.5V (vision)
 **GLM-4.5** ("ARC": Agentic, Reasoning, Coding) is a 355B-A32B hybrid-reasoning MoE
@@ -131,8 +131,8 @@ design and hardware-aware MoE sparsity dominate — is the paper's real contribu
 is actually the **vision** line — **GLM-4.5V / GLM-4.1V-Thinking** VLMs (ViT + MLP adapter +
 GLM decoder) — whose contribution is **RL with Curriculum Sampling (RLCS)**: difficulty-aware
 sample selection across STEM, grounding, GUI agents, OCR, video and long-document tasks. A
-stated lesson: with a *unified* reward across many multimodal skills, a weak reward signal in
-any one capability can collapse the whole RL run, so a precise multi-domain reward system is
+stated lesson: when one reward is *unified* across many multimodal skills, a weak signal in any
+single capability can collapse the whole RL run — so a precise multi-domain reward system is
 critical. GLM-4.5V reports SOTA among comparably sized open VLMs across 42 benchmarks.
 
 ## State of research

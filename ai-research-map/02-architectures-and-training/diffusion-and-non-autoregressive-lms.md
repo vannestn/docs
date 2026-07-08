@@ -1,12 +1,12 @@
 # Diffusion & Non-Autoregressive Language Models
 
-Generating text by iterative denoising / in parallel rather than strictly left-to-right —
-trading the sequential bottleneck of autoregression for speed. The dominant family here is
-**masked diffusion models (MDMs)**: a forward process masks tokens at a random ratio
-*t ∼ U(0,1)*; a Transformer *mask predictor* is trained with a cross-entropy loss on masked
-positions only (reweighted by 1/t), which upper-bounds the negative log-likelihood; at
-inference the model iteratively denoises from a fully masked sequence, predicting all masks
-in parallel and remasking low-confidence tokens between steps.
+Generate text in parallel by iterative denoising rather than strictly left-to-right,
+trading autoregression's sequential bottleneck for speed. The dominant family is
+**masked diffusion models (MDMs)**. The recipe: a forward process masks tokens at a random
+ratio *t ∼ U(0,1)*; a Transformer *mask predictor* is trained with cross-entropy loss on the
+masked positions only (reweighted by 1/t), which upper-bounds the negative log-likelihood. At
+inference, the model starts from a fully masked sequence and iteratively denoises it,
+predicting all masks in parallel and remasking the low-confidence tokens between steps.
 
 ## Key directions & work
 
@@ -14,8 +14,8 @@ in parallel and remasking low-confidence tokens between steps.
   tokens** (0.13M H800 GPU-hours) + SFT on 4.5M pairs. Competitive with **LLaMA3-8B** in
   in-context learning and surpasses LLaMA2-7B on nearly all 15 zero/few-shot tasks; notably
   *breaks the reversal curse*, beating **GPT-4o** on a Chinese-poem reversal-completion task
-  (45.6 vs 34.3, while losing on forward 51.8 vs 82.7). Uses vanilla MHA (no GQA) because
-  it is incompatible with KV-caching. Renmin U / Ant; NeurIPS 2025 —
+  (45.6 vs 34.3, while losing on forward 51.8 vs 82.7). Uses vanilla MHA (no GQA), since GQA
+  is incompatible with KV-caching here. Renmin U / Ant; NeurIPS 2025 —
   [arXiv:2502.09992](https://arxiv.org/abs/2502.09992)
 - **LLaDA-MoE** — masked-diffusion LM with a **sparse MoE** backbone (64 experts, top-8),
   trained from scratch on **~20T tokens** (≈21T across 4 stages), **7B total / 1.4B active**.
@@ -34,10 +34,10 @@ in parallel and remasking low-confidence tokens between steps.
 - **Learn2PD** (*"Learning to Parallel"*) — accelerates dLLM inference by training a tiny
   2-layer MLP *filter* (~2k params, ~6 min on a T4) that predicts, per token, whether the
   current prediction is final and can be unmasked — approximating an oracle ("Extremely
-  Greedy Parallel") that the authors show could give 15–20× speedup. Plus **EoTP**
-  (End-of-Text Prediction) which halts a block once the EoT token is confidently produced,
-  cutting the ~90% of compute wasted decoding padding. On LLaDA-8B-Instruct: **22.58×
-  speedup with no accuracy drop, 57.51× with KV-cache** (GSM8K, gen-length 1024). —
+  Greedy Parallel") that the authors show could give 15–20× speedup. A companion trick,
+  **EoTP** (End-of-Text Prediction), halts a block once the EoT token is confidently
+  produced, cutting the ~90% of compute wasted decoding padding. On LLaDA-8B-Instruct:
+  **22.58× speedup with no accuracy drop, 57.51× with KV-cache** (GSM8K, gen-length 1024). —
   [arXiv:2509.25188](https://arxiv.org/abs/2509.25188)
 - **Block / semi-autoregressive decoding** — partitioning the sequence into blocks decoded
   left-to-right (parallel *within* a block) is the standard practical recipe (introduced by
@@ -54,18 +54,18 @@ commercial scale and delivers genuine latency wins (1109/737 tok/s on H100, ~10�
 optimized AR models at comparable code quality per third-party eval).
 
 **Promising but unproven:** Whether diffusion LMs can match the *quality* frontier of
-autoregressive reasoning models is open. They're compelling for low-latency and
+autoregressive reasoning models is still open. They are compelling for low-latency and
 controllable/parallel generation, and the reversal-curse result hints at representational
-advantages — LLaDA's authors argue scalability stems from the *generative-modeling
-principle* (likelihood maximization), not autoregression per se, and attribute the reversal
-gain to LLaDA optimizing multiple conditioning directions rather than only left-to-right.
-But no diffusion model yet leads a hard reasoning benchmark, and LLaDA-MoE still only
-*matches* a 3B AR instruct model.
+advantages: LLaDA's authors argue that scalability comes from the *generative-modeling
+principle* (likelihood maximization), not from autoregression per se, and attribute the
+reversal gain to LLaDA optimizing multiple conditioning directions rather than only
+left-to-right. But no diffusion model yet leads a hard reasoning benchmark, and LLaDA-MoE
+still only *matches* a 3B AR instruct model.
 
 **Inference is heavily over-computed — and that's the opportunity.** Learn2PD's analysis
-on LLaDA shows the vanilla sampler *remasks tokens that are already correct*, doing a median
-of ~32 decoding steps per block where ~2 would suffice, and that ~90% of compute at
-gen-length 1024 is spent decoding padding after the answer ends. The headline 22.58×/57.51×
+on LLaDA shows the vanilla sampler *remasks tokens that are already correct*, running a
+median of ~32 decoding steps per block where ~2 would suffice, and spending ~90% of compute
+at gen-length 1024 decoding padding after the answer ends. The headline 22.58×/57.51×
 speedups come from removing that redundancy, not from a better model — suggesting current
 dLLM latency numbers understate the ceiling.
 

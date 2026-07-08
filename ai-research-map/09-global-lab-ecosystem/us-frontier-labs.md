@@ -1,7 +1,7 @@
 # US Frontier Labs
 
-The best-capitalized labs setting the capability frontier. Their research shows up
-throughout this map; this is a consolidated view of *who emphasizes what*.
+The best-capitalized labs setting the capability frontier. Their work appears
+throughout this map; this page is a consolidated view of *who emphasizes what*.
 
 ## The players
 
@@ -30,8 +30,8 @@ from here.
 agents+reasoning, DeepMind on science+world models, Meta on open-weight + world models +
 JEPA (now spun out).
 
-**Open problems & weaknesses:** Closed models limit external scrutiny. Capability is
+**Open problems & weaknesses:** Closed models limit external scrutiny, and capability is
 outpacing the safety commitments these same labs publish (see
-[08 · Governance](../08-evaluation-and-governance/safety-institutes-and-governance.md)). The
-business pressure to ship is in tension with the research/safety mission — a recurring theme
-in [12 · Business models](../12-politics-capital-and-business-models/business-models.md).
+[08 · Governance](../08-evaluation-and-governance/safety-institutes-and-governance.md)).
+Pressure to ship strains the research/safety mission — a recurring theme in
+[12 · Business models](../12-politics-capital-and-business-models/business-models.md).

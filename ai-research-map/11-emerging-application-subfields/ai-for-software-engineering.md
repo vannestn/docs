@@ -1,7 +1,8 @@
 # AI for Software Engineering
 
 The most mature application-turned-research-field: agents that autonomously write, debug,
-and maintain code.
+and maintain code. The frontier question is shifting from *can a model patch one issue* to
+*can it reason across a whole codebase, learn from execution, and improve its own tooling*.
 
 ## Key directions & work
 
@@ -13,31 +14,31 @@ and maintain code.
   [arXiv:2510.02387](https://arxiv.org/abs/2510.02387)
 
   > **📦 Concept: "code world model"** — instead of predicting the next *token* of source
-  > text, the model is trained to predict the program's *execution state* (e.g. local
-  > variables after a line runs). The paper frames this as "neural code interpretation" —
-  > a step toward a *neural debugger* that can simulate execution without a live
-  > interpreter. CWM shows early *trace-prediction-as-reasoning* prototypes, but the authors
-  > are explicit this is a **research testbed**, not a deployed bug-fixer.
+  > text, the model predicts the program's *execution state* (e.g. local variables after a
+  > line runs). The paper frames this as "neural code interpretation" — a step toward a
+  > *neural debugger* that simulates execution without a live interpreter. CWM ships early
+  > *trace-prediction-as-reasoning* prototypes, but the authors are explicit that this is a
+  > **research testbed**, not a deployed bug-fixer.
 
 - **Self-evolving SWE agents** — agents that synthesize and revise their own *tools/scaffold*
   mid-task, with no offline training. **Live-SWE-agent** starts from a bash-only
   mini-SWE-agent and creates custom tools on the fly while solving each issue.
   [arXiv:2511.13646](https://arxiv.org/abs/2511.13646)
-- **Repository-level reasoning** splitting from editing — new benchmarks isolate *logical
-  reasoning over a codebase* from patch-writing. **RepoReason** is a white-box diagnostic
-  benchmark built on *abductive assertion verification*: it masks a unit-test assertion's
-  value and forces the model to reconstruct the preceding execution history (data flows
-  across files, state mutations) to deduce the only value that satisfies it — separating core
-  reasoning from syntactic patch-writing. An **Execution-Driven Mutation** engine uses the
-  runtime as a *"Semantic Oracle"* (re-executing mutated repos to regenerate ground-truth
-  values) to sever memorization while preserving logical depth. N=2492 tasks drawn from mature
+- **Repository-level reasoning, split from editing** — new benchmarks isolate *reasoning over
+  a codebase* from patch-writing. **RepoReason** is a white-box diagnostic benchmark built on
+  *abductive assertion verification*: it hides a unit-test assertion's expected value and asks
+  the model to reconstruct the preceding execution history (cross-file data flows, state
+  mutations) to deduce the only value that satisfies it — so the score reflects reasoning, not
+  syntactic patch craft. An **Execution-Driven Mutation** engine uses the runtime as a
+  *"Semantic Oracle"* — re-executing mutated repos to regenerate ground-truth values — which
+  defeats memorization while preserving logical depth. N=2492 tasks drawn from mature
   pure-Python repos (e.g. `toolz`, `sympy`, `jinja2`; ~1.2k–775k LoC), graded on three
-  orthogonal cognitive metrics — ESV (reading load), MCL (simulation depth), and DFI
-  (integration width / dependency fan-in).
+  orthogonal metrics: ESV (reading load), MCL (simulation depth), and DFI (integration width
+  / dependency fan-in).
   [arXiv:2601.03731](https://arxiv.org/abs/2601.03731)
 - **Persistent code memory** — agents that "grow alongside" a codebase across sessions. CWM's
-  authors discuss serializing useful tools/insights across tasks (Skills-like concepts) as
-  future work; structurally-aligned *subtask-level* memory is one concrete approach
+  authors flag serializing useful tools/insights across tasks (Skills-like concepts) as future
+  work; structurally-aligned *subtask-level* memory is one concrete approach
   ([arXiv:2602.21611](https://arxiv.org/abs/2602.21611), Kuaishou; +4.7pp pass@1 on SWE-bench
   Verified), covered under
   [01 · Agents and tool use](../01-foundation-models-and-capabilities/agents-and-tool-use.md).
@@ -66,12 +67,11 @@ lifts SBV pass@1 to 22.1% and agentic-trace NLL from 0.38 → 0.29. Released und
 **Live-SWE-agent.** Reaches **77.4% on SWE-bench Verified** (Gemini 3 Pro backend, single
 attempt, *no* test-time scaling) — the paper claims SOTA over all open *and* commercial
 agents at submission — and **45.8% on SWE-Bench Pro** (Claude 4.5 Sonnet), the best reported
-there. The mechanism is minimal: append a reflection prompt after each environment step
-asking whether a custom tool (a runnable script) would help. Ablation on 50 SWE-bench Verified
-problems: base mini-SWE-agent **62%** → +tool-creation-in-prompt **64%** → +per-step
-reflection **76%** (Claude 4.5 Sonnet). Tool creation helps *only on capable models* — on
-GPT-5-Nano it *hurts* (-68.2% relative), as the weak model loops without grasping the
-tool-creation goal. Versus offline self-evolving agents on the Verified-60 subset,
+there. The mechanism is minimal: after each environment step, a reflection prompt asks whether
+a custom tool (a runnable script) would help. Ablation on 50 SWE-bench Verified problems: base
+mini-SWE-agent **62%** → +tool-creation-in-prompt **64%** → +per-step reflection **76%**
+(Claude 4.5 Sonnet). Tool creation helps *only on capable models* — on GPT-5-Nano it *hurts*
+(-68.2% relative), as the weak model loops without grasping the tool-creation goal. Versus offline self-evolving agents on the Verified-60 subset,
 Live-SWE-agent hits **65.0%** vs **DGM 53.3% / HGM 56.7% / SICA 50.0%** — at **0 offline
 cost** vs DGM's >1,200 GPU-hours (and ~$22k per the DGM paper).
 [arXiv:2511.13646](https://arxiv.org/abs/2511.13646)
@@ -96,8 +96,8 @@ open data point). Code world models are the most interesting *research* directio
 demonstrates concrete gains from execution-grounded mid-training, though its headline coding
 numbers come from a 32B model, not a frontier system.
 
-**Promising but unproven:** Self-evolving agents (Live-SWE-agent is a strong existence proof
-but evaluated single-vendor at a point in time), persistent cross-session memory, and
+**Promising but unproven:** Self-evolving agents (Live-SWE-agent is a strong existence proof,
+but evaluated single-vendor at one point in time), persistent cross-session memory, and
 repository-scale *reasoning* (vs. local edits) — where RepoReason shows even frontier models
 plateau below ~67% overall and collapse past ~20-source dependency fan-in. CWM's "neural
 debugger" / trace-prediction reasoning is explicitly an early prototype, not a shipped

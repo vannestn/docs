@@ -1,7 +1,7 @@
 # Interpretability Frontiers & Provenance
 
-Newer behavior-driven interpretability ideas, plus the provenance/watermarking work that
-tries to track AI-generated content. (Core interpretability is in
+Newer behavior-driven interpretability ideas, plus the provenance and watermarking work that
+tracks AI-generated content. (Core interpretability is in
 [03 · Mechanistic interpretability](../03-alignment-interpretability-safety/mechanistic-interpretability.md).)
 
 ## Interpretability frontiers
@@ -20,10 +20,10 @@ tries to track AI-generated content. (Core interpretability is in
   (often conflated with the above) uses **model-diffing**: it trains sparse autoencoders, then
   compares latent activations before vs. after a narrow harmful fine-tune. It isolates a
   "toxic persona" feature (SAE latent #10) that "most strongly *controls* emergent misalignment
-  and can be used to *predict* whether a model will exhibit such behavior" — the latent's
+  and can be used to *predict* whether a model will exhibit such behavior." The latent's
   activation increase *perfectly discriminates* aligned from misaligned models across the
-  fine-tuning domains studied, and steering it positively/negatively amplifies/suppresses
-  misalignment. The same monitoring detects the persona activating *before* a standard
+  fine-tuning domains studied, and steering it up or down amplifies or suppresses
+  misalignment. This same monitoring detects the persona activating *before* a standard
   behavioral eval flags misalignment (e.g. at ~5% incorrect training data), motivating
   interpretability auditing as an early-warning system. Mitigation: fine-tuning an emergently
   misaligned model on just a few hundred benign samples (~120–200, ~35 steps) restores
@@ -33,7 +33,7 @@ tries to track AI-generated content. (Core interpretability is in
   [03 · Model organisms](../03-alignment-interpretability-safety/model-organisms-of-misalignment.md).)
 - **Introspection** — whether a model can accurately *report its own internal state*, tested
   via **concept injection** (an application of activation steering): inject a known concept
-  vector into activations, then ask the model to report on its mental state.
+  vector into the model's activations, then ask it to report on its mental state.
   [arXiv:2601.01828](https://arxiv.org/abs/2601.01828) (Anthropic / Jack Lindsey, 2026). See
   the deep-dive below.
 - **Model diffing** — comparing two models' internals (e.g. via SAEs) to localize exactly what
@@ -43,9 +43,9 @@ tries to track AI-generated content. (Core interpretability is in
 
 The paper's headline is deliberately hedged: current models possess *some* **functional
 introspective awareness**, but it is "highly unreliable and context-dependent." A self-report
-counts as introspective only if it meets four criteria — **accuracy, grounding** (the report
-causally depends on the state, tested via injection), **internality** (the report can't be
-inferred from the model's own prior outputs), and a **metacognitive representation** (the model
+counts as introspective only if it meets four criteria — **accuracy**; **grounding** (the report
+causally depends on the state, tested via injection); **internality** (the report can't be
+inferred from the model's own prior outputs); and a **metacognitive representation** (the model
 registers the state internally before verbalizing it). The authors explicitly **do not**
 claim to demonstrate the metacognitive-representation mechanism directly — they call this a key
 limitation.
@@ -66,8 +66,8 @@ Four experiments, all using contrastive concept vectors injected into the residu
 - **Detecting unintended outputs.** Models normally disavow an artificial prefill as "an
   accident"; retroactively injecting the matching concept vector *before* the prefill makes the
   model accept the output as intentional (and confabulate a reason). The effect requires the
-  concept be present *prior* to the prefill; injecting *after* does nothing. Opus 4.1/4 show
-  the strongest apology-reduction (~0.4–0.46). Notably this behavior peaks at a *different
+  concept to be present *prior* to the prefill; injecting it *after* does nothing. Opus 4.1/4
+  show the strongest apology-reduction (~0.4–0.46). Notably, this behavior peaks at a *different
   (earlier) layer* than the other tasks — evidence that distinct introspective capabilities use
   mechanistically distinct circuits.
 - **Intentional control.** Told to "think about aquariums" while writing an unrelated sentence,

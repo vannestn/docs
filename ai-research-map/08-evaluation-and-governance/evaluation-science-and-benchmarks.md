@@ -1,7 +1,7 @@
 # Evaluation Science & Benchmarks
 
-Measuring AI capability has become hard enough to be its own research field — because
-benchmarks saturate, leak, and can be gamed.
+Measuring AI capability is now hard enough to be its own research field: benchmarks
+saturate, leak, and can be gamed.
 
 ## Key directions & work
 
@@ -12,13 +12,13 @@ benchmarks saturate, leak, and can be gamed.
   GPT-5.4 ~0.26%, Opus 4.6 ~0.25%, Grok 0.00%) while humans solve 100%.
   [ARC Prize](https://arcprize.org/blog/arc-prize-2025-results-analysis),
   [the-decoder](https://the-decoder.com/arc-agi-3-offers-2m-to-any-ai-that-matches-untrained-humans-yet-every-frontier-model-scores-below-1/)
-- **SWE-bench Verified** saturated (frontier models clustered near ~80%) and OpenAI stopped
-  reporting it (Feb 2026), citing both contamination — evidence that all major frontier models
-  had seen benchmark solutions — and broken tests (OpenAI found ~59% of its models' *failed*
-  problems had flawed tests). They recommend migrating to SWE-bench Pro.
+- **SWE-bench Verified** saturated (frontier models clustered near ~80%), and OpenAI stopped
+  reporting it (Feb 2026), citing two problems: contamination (evidence that all major frontier
+  models had seen benchmark solutions) and broken tests (OpenAI found ~59% of its models'
+  *failed* problems had flawed tests). It recommends migrating to SWE-bench Pro.
   [OpenAI](https://openai.com/index/why-we-no-longer-evaluate-swe-bench-verified/),
   [blockchain.news](https://blockchain.news/news/openai-abandons-swe-bench-verified-contamination-flawed-tests)
-- **SWE-bench Pro** (Scale AI) is a contamination-resistant successor of 1,865 human-verified,
+- **SWE-bench Pro** (Scale AI) is a contamination-resistant successor with 1,865 human-verified,
   multi-file tasks. The same frontier models that hit ~80% on Verified land **below 45% Pass@1**
   here (public set: Claude Sonnet 4.5 43.6%, Sonnet 4 42.7%, GPT-5 high 41.8%, Haiku 4.5 39.5%;
   commercial set <20%, e.g. Opus 4.1 17.8%). [arXiv:2509.16941](https://arxiv.org/abs/2509.16941)
@@ -34,21 +34,21 @@ benchmarks saturate, leak, and can be gamed.
 ### Methodological responses
 - **Saturation, measured.** Akhtar, Reuel et al. (EvalEval Coalition) give the phenomenon a
   reproducible operational definition: a benchmark is *saturated* when top models are no longer
-  statistically distinguishable **and** performance approaches the empirically inferred ceiling
-  (distinct from mere *stagnation*, which is statistical indistinguishability alone). They define
-  an uncertainty-aware **saturation index** S_index = exp(−R_norm²), where R_norm = (s₁−s_k)/SE_Δ
-  is the top-1-vs-top-k score gap normalized by its standard error (k=5). Analyzing 60 text LLM
-  benchmarks × 14 annotated properties, **~half are saturated** (29/60 with S_index ≥ 0.7, 14
-  ≥ 0.9). A Bayesian regression jointly predicting S_index reaches **R² = 0.884 ± 0.012**, with
-  **benchmark age and test-set scale the strongest predictors** — saturation rises with
-  cumulative exposure and falls with measurement resolution. Crucially, commonly assumed
-  safeguards do **not** robustly resist saturation: private/held-out test sets (no significant
-  difference vs. public), open-ended formats, templating, and multilinguality all fail to retain
-  discriminative power (the apparent multilingual advantage is confounded by those benchmarks'
-  younger age). Expert-curated benchmarks saturate *less* than crowdsourced ones at comparable
-  age. The authors frame saturation as a **structural consequence of cumulative exposure +
-  finite measurement resolution — "neutral, not negative"** — problematic only when it reflects
-  lost resolution rather than genuine task mastery.
+  statistically distinguishable **and** performance approaches the empirically inferred ceiling.
+  (This differs from mere *stagnation*, which is statistical indistinguishability alone.) They
+  define an uncertainty-aware **saturation index** S_index = exp(−R_norm²), where R_norm =
+  (s₁−s_k)/SE_Δ is the top-1-vs-top-k score gap normalized by its standard error (k=5). Across
+  60 text LLM benchmarks × 14 annotated properties, **~half are saturated** (29/60 with
+  S_index ≥ 0.7, 14 ≥ 0.9). A Bayesian regression predicting S_index reaches
+  **R² = 0.884 ± 0.012**, with **benchmark age and test-set scale the strongest predictors**:
+  saturation rises with cumulative exposure and falls with measurement resolution. Crucially,
+  commonly assumed safeguards do **not** robustly resist it — private/held-out test sets (no
+  significant difference vs. public), open-ended formats, templating, and multilinguality all
+  fail to retain discriminative power (the apparent multilingual advantage is confounded by those
+  benchmarks' younger age). Expert-curated benchmarks saturate *less* than crowdsourced ones at
+  comparable age. The authors frame saturation as a **structural consequence of cumulative
+  exposure + finite measurement resolution — "neutral, not negative"** — a problem only when it
+  reflects lost resolution rather than genuine task mastery.
   [arXiv:2602.16763](https://arxiv.org/abs/2602.16763)
 - **Contamination detection is fragile against reasoning models.** Wang et al. study two
   realistic contamination points: (I) *pre-LRM* — SFT contamination of a base model that is
@@ -58,18 +58,18 @@ benchmarks saturate, leak, and can be gamed.
   data collapses every detector toward chance. They attribute this to PPO-style importance
   sampling + clipping (proven theoretically, confirmed by ablation: removing the clipping term
   restores detectability). In Stage II, even *extensive* CoT contamination leaves near-random
-  evidence — best detector (LiRA) averages only ~58.7% AUROC across six reasoning benchmarks —
-  because LRMs internalize and generalize the contaminated data rather than memorizing exact
-  sequences. [arXiv:2510.02386](https://arxiv.org/abs/2510.02386)
+  evidence — the best detector (LiRA) averages only ~58.7% AUROC across six reasoning
+  benchmarks — because LRMs internalize and generalize the contaminated data rather than
+  memorizing exact sequences. [arXiv:2510.02386](https://arxiv.org/abs/2510.02386)
 - **Dynamic / adversarial-collection benchmarks** are among the few structural resistors the
   saturation study identifies: continuously updating the evaluation distribution reduces
   optimization stability and slows convergence. The canonical instance is **Dynabench**
   (human-and-model-in-the-loop adversarial data collection).
   [arXiv:2104.14337](https://arxiv.org/abs/2104.14337) For *code* evals, **RepoReason** attacks
   contamination at the data-generation step rather than the leaderboard: its **Execution-Driven
-  Mutation** engine treats the live execution environment as a **Semantic Oracle**, injecting
-  probes to regenerate runtime ground-truth after mutating inputs — severing the memorization
-  retrieval path while preserving authentic reasoning depth (see
+  Mutation** engine treats the live execution environment as a **Semantic Oracle**, mutating
+  inputs and re-running them to regenerate runtime ground-truth — cutting off the memorized-answer
+  retrieval path while still demanding genuine reasoning (see
   [AI for software engineering](../11-emerging-application-subfields/ai-for-software-engineering.md)).
   [arXiv:2601.03731](https://arxiv.org/abs/2601.03731)
 - **Epoch Capabilities Index (ECI)** aggregates 40+ benchmarks into one saturation-robust scale
@@ -94,9 +94,9 @@ benchmarks saturate, leak, and can be gamed.
   a weaker model's profile, making sandbagging harder to detect from outputs alone.
   [arXiv:2406.07358](https://arxiv.org/abs/2406.07358)
 - Implication: dangerous-capability evals may *underestimate* true capability. The authors' own
-  caveats: experiments are MCQA-only; SFT on a few correct-answer-without-password samples can
-  *override* a lock; and white-box probes can catch sandbagging — so black-box access is
-  insufficient for trustworthy audits.
+  caveats: experiments are MCQA-only; fine-tuning (SFT) on a few correct-answer-without-password
+  samples can *override* a lock; and white-box probes can catch sandbagging — so black-box access
+  alone is insufficient for trustworthy audits.
 
 ## State of research
 

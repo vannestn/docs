@@ -1,9 +1,9 @@
 # State-of-Research Scorecard
 
-A cross-field, at-a-glance read on **maturity, what's winning, and what's open** as of
+An at-a-glance, cross-field read on **maturity, what's winning, and what's open** as of
 mid-2026. Every leaf document in this map carries a detailed **"State of research"** block
 (Best-performing now / Promising but unproven / Open problems & weaknesses); this page
-aggregates them into one comparative view.
+aggregates those blocks into one comparative view.
 
 **Maturity legend**
 - 🟢 **Mature** — deployed at the frontier, clear SOTA methods, diminishing fundamental surprises.
@@ -61,12 +61,12 @@ aggregates them into one comparative view.
 ## How to read this
 
 - **🟢 areas** are where you'd *bet on the known SOTA* — but "mature" means fast-moving, not
-  finished (MoE routing, low-bit training, and serving all still have live research).
-- **🟠/🔴 areas** are where the *highest-variance research bets* sit — open-endedness,
-  diffusion LMs, world models, neuromorphic hardware, and autoformalization could each
-  reshape the field or stall.
-- The **"biggest open avenue"** column is deliberately the *weakness/uncertainty*, not the
-  hype — it's where continued research is most clearly needed.
+  finished: MoE routing, low-bit training, and serving all still have live research.
+- **🟠/🔴 areas** hold the *highest-variance research bets* — open-endedness, diffusion LMs,
+  world models, neuromorphic hardware, and autoformalization could each reshape the field
+  or stall.
+- The **"biggest open avenue"** column deliberately names the *weakness or uncertainty*, not
+  the hype — it marks where continued research is most clearly needed.
 
 Each linked leaf expands these into concrete papers, labs, and the specific empirical
 disputes behind the rating.

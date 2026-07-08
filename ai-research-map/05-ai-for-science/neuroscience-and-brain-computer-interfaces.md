@@ -6,25 +6,25 @@ speech, and building cross-species "brain foundation models."
 ## Key directions & work
 
 - **Real-time voice synthesis from brain activity** (UC Davis / BrainGate2) — an ALS
-  participant's intended speech instantaneously synthesized from **256 microelectrodes** in
-  ventral precentral gyrus, with **<10 ms** closed-loop latency. On a large open vocabulary,
+  participant's intended speech was synthesized instantly from **256 microelectrodes** in
+  the ventral precentral gyrus, with **<10 ms** closed-loop latency. On a large open vocabulary,
   human listeners transcribed the synthesized voice at **43.75% median WER** (vs **96.43%** for
-  the participant's residual dysarthric speech), and matched the correct transcript with **94.3%**
-  mean accuracy. The system also decoded *paralinguistics*: question intonation (90.5%) and word
-  emphasis (95.7%), and let him sing three-note melodies. A limited 50-word vocabulary was used
-  only for the first-day online demo. [Wairagkar et al., Nature 2025](https://www.nature.com/articles/s41586-025-09127-3) · [ScienceDaily](https://www.sciencedaily.com/releases/2025/06/250612081317.htm)
+  the participant's residual dysarthric speech), and matched it to the correct transcript with **94.3%**
+  mean accuracy. The system also decoded *paralinguistics* — meaning conveyed beyond the words
+  themselves: question intonation (90.5%) and word emphasis (95.7%) — and let him sing three-note
+  melodies. A limited 50-word vocabulary was used only for the first-day online demo. [Wairagkar et al., Nature 2025](https://www.nature.com/articles/s41586-025-09127-3) · [ScienceDaily](https://www.sciencedaily.com/releases/2025/06/250612081317.htm)
 - **Inner-speech decoding** (Stanford / BrainGate2) — decoded self-paced *imagined* speech from
   motor cortex across 4 participants (ALS + stroke). Real-time WER reached **14%** on a 50-word
-  vocabulary (T15) and **26%** on a **125,000-word** vocabulary (T15); harder participants were
-  worse (e.g. 54% WER at 125K). Inner speech shares the same neural representation as attempted
-  speech but at **~40–75% of its magnitude** (≈52% for one array), which is why it decodes less
-  reliably. A "password" safeguard (unlock phrase *"chitty chitty bang bang"*) was detected with
-  **98.75%** accuracy, addressing mental-privacy concerns. [Kunz et al., Cell 2025](https://www.cell.com/cell/fulltext/S0092-8674(25)00681-6)
+  vocabulary and **26%** on a **125,000-word** vocabulary (both participant T15); harder participants
+  fared worse (e.g. 54% WER at 125K words). Inner speech uses the same neural representation as
+  attempted speech but at only **~40–75% of its magnitude** (≈52% for one array), which is why it
+  decodes less reliably. A "password" safeguard (unlock phrase *"chitty chitty bang bang"*) was
+  detected with **98.75%** accuracy, addressing mental-privacy concerns. [Kunz et al., Cell 2025](https://www.cell.com/cell/fulltext/S0092-8674(25)00681-6)
 - **Cross-species end-to-end speech decoding (BIT, *BraIn-to-Text*)** — a transformer neural
   encoder pretrained with masked self-supervision on **~98 h of human + ~269 h of monkey** Utah-array
-  recordings, paired with an audio-LLM decoder. Cross-species, cross-task pretraining transfers to
+  recordings, paired with an audio-LLM decoder. Pretraining across species and tasks transfers to
   both attempted and imagined speech and sets SOTA on the Brain-to-Text '24/'25 benchmarks. Its
-  end-to-end variant cuts WER from the prior end-to-end method's **24.69% → 10.22%** (ensembled, BTT
+  end-to-end variant cuts WER from the prior end-to-end method's **24.69% to 10.22%** (ensembled, BTT
   '24). [arXiv:2511.21740](https://arxiv.org/abs/2511.21740) (ICLR 2026)
 - **"Brain foundation models" (BFMs)** — proposed as a defined 2025 paradigm: large-scale,
   *neurocentric* pretraining on EEG/fMRI (and MEG/fNIRS) for cross-scenario, cross-task decoding
@@ -34,9 +34,9 @@ speech, and building cross-species "brain foundation models."
 
 ### BIT — end-to-end speech decoding via a cross-species encoder + audio-LLM
 
-The core thesis of [BIT](https://arxiv.org/abs/2511.21740) is that *modern speech BCIs are
-cascaded* (RNN → phonemes → n-gram LM → sentence) and can't be optimized end-to-end — and that
-lower phoneme error doesn't reliably translate to lower WER. BIT replaces this with a single
+The core thesis of [BIT](https://arxiv.org/abs/2511.21740): today's speech BCIs are *cascaded*
+(RNN → phonemes → n-gram LM → sentence), so they can't be optimized end-to-end, and lower phoneme
+error doesn't reliably translate into lower WER. BIT replaces this pipeline with a single
 differentiable network:
 
 - **Neural encoder.** A transformer over **20 ms** patches of thresholded spike counts and
@@ -73,17 +73,17 @@ On the **'25** leaderboard, BIT Cascaded + Ensemble leads at **1.76% WER**.
   linearly separable before) — evidence for genuine cross-task generalization.
 
 **Author-stated limitations.** End-to-end is **slower (~0.95 s/sentence vs 0.24 s cascaded)** and
-not yet real-time-ready; the encoder uses bidirectional attention (offline) — going causal costs
-accuracy; the 1.5B audio-LLM is too big to run on-device; monkey reaching transfers *less* than
-human speech data; and the end-to-end decoder still trails the cascaded decoder (the paper aims to
+not yet real-time-ready; the encoder uses bidirectional attention (offline), and making it causal
+costs accuracy; the 1.5B audio-LLM is too big to run on-device; monkey reaching transfers *less*
+than human speech data; and the end-to-end decoder still trails the cascaded one (the paper aims to
 *narrow*, not close, that gap).
 
 ### Brain Foundation Models — the survey's framework
 
 The [BFM survey](https://arxiv.org/abs/2503.00580) offers what it claims is the **first formal
-definition** of BFMs and argues they differ from generic FMs along data (high noise, non-stationary,
-heterogeneous channels), objectives (neuroscience constraints, spatial+temporal modeling), and
-ethics (neural-data privacy, clinical safety). Its taxonomy:
+definition** of BFMs, arguing they differ from generic foundation models along three axes: data
+(high noise, non-stationary, heterogeneous channels), objectives (neuroscience constraints,
+spatial+temporal modeling), and ethics (neural-data privacy, clinical safety). Its taxonomy:
 
 - **Three model classes:** pretrained-only; pretrained + fine-tuned; pretrained + interpretability
   (for brain *discovery* via digital-twin brains).
@@ -99,9 +99,9 @@ ethics (neural-data privacy, clinical safety). Its taxonomy:
 
 ## State of research
 
-**Best-performing now:** invasive (intracortical) speech BCIs are **proven in-patient** — real-time
-text *and* voice synthesis with paralinguistic control is a landmark, but still at high WER on open
-vocabularies (~44% for UC Davis voice synthesis; lower for cascaded text decoders).
+**Best-performing now:** invasive (intracortical) speech BCIs are **proven in-patient**. Real-time
+text *and* voice synthesis with paralinguistic control is a landmark, but WER on open vocabularies
+is still high (~44% for UC Davis voice synthesis; lower for cascaded text decoders).
 
 **Promising but unproven:** cross-species pretraining transfer (BIT); end-to-end (vs. cascaded)
 decoding; inner-speech BCIs; non-invasive decoding; and general "brain foundation models," which the
@@ -120,6 +120,6 @@ survey itself frames as still early.
   (password unlock at 98.75% detection; "imagery-silenced" training) but are early. [Kunz et al., Cell 2025](https://www.cell.com/cell/fulltext/S0092-8674(25)00681-6)
 - **BFMs are AI adaptations, not neuro-tailored.** The survey's own critique: current BFMs lean on
   heavy fine-tuning (curtailing true zero-shot), borrow NLP/CV training recipes wholesale, and rarely
-  encode biological priors (connectivity, oscillations, cortical gradients) — limiting biological
-  interpretability and real-world use. Data harmonization (GDPR/HIPAA, no standardized preprocessing)
-  is the other named blocker. [Survey arXiv:2503.00580](https://arxiv.org/abs/2503.00580)
+  encode biological priors (connectivity, oscillations, cortical gradients), which limits their
+  biological interpretability and real-world use. Data harmonization (GDPR/HIPAA, no standardized
+  preprocessing) is the other named blocker. [Survey arXiv:2503.00580](https://arxiv.org/abs/2503.00580)
