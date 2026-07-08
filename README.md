@@ -14,6 +14,7 @@ research direction within it is its own document with concrete papers, labs, and
 - **[Synthesis](ai-research-map/00-overview/synthesis.md) — the whole field as one narrative (read this first)**
 - [Landscape overview](ai-research-map/00-overview/landscape-overview.md) — the cross-cutting meta-trends
 - [State-of-research scorecard](ai-research-map/00-overview/state-of-research-scorecard.md) — what's working vs. unproven, per area
+- [Solo-researcher agenda](ai-research-map/00-overview/solo-researcher-research-agenda.md) — tractable open research questions for one person + a laptop
 - [Compute & memory footprint](ai-research-map/00-overview/compute-and-memory-footprint.md) — laptop vs. datacenter, per area
 - [Glossary](ai-research-map/00-overview/glossary.md) — acronyms, defined
 - [Source index](ai-research-map/00-overview/source-index.md) — full bibliography (310 sources)

@@ -25,6 +25,7 @@ URLs. Start here, then drill into whichever branch interests you.
 | [**Synthesis**](00-overview/synthesis.md) | The whole field as one narrative argument — read this first |
 | [Landscape overview](00-overview/landscape-overview.md) | The cross-cutting meta-trends |
 | [State-of-research scorecard](00-overview/state-of-research-scorecard.md) | What's working / promising / unproven, per area |
+| [Solo-researcher agenda](00-overview/solo-researcher-research-agenda.md) | Open gaps a lone, API-budget researcher can actually move — with designed methods |
 | [Compute & memory footprint](00-overview/compute-and-memory-footprint.md) | Laptop vs. datacenter, per area |
 | [Glossary](00-overview/glossary.md) | Plain-language definitions of every acronym |
 | [Source index](00-overview/source-index.md) | Full deduplicated bibliography (291 URLs) |
