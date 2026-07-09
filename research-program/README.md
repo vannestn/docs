@@ -23,7 +23,8 @@ hired paths all stay open.
 | [11 · Problem space](11-problem-space.md) | Problem-FIRST foundation — 33 pains mined via 8 discovery lenses + adversarial vet; the driver that supersedes the solution-first drafts (08/10/12) |
 | [11b · Expanded problem catalog](11b-expanded-problem-catalog.md) | ~90 problems, 12 clusters, wide-aperture + source-mined; top-11 for deep validation |
 | [13 · Problem validation](13-problem-validation.md) | Thorough validation of top-11 problems (2 evidence + 2 kills each); 4 advance, 7 killed |
-| [**16 · Pilot candidates (plain-English)**](16-pilot-candidates.md) | **Start here for pilots.** The readable synthesis: the ~6 surviving pilots, each explained — what it is, why it exists, the problem it solves, how it solves it, how it could fail |
+| [**16 · Pilot candidates (plain-English)**](16-pilot-candidates.md) | **Start here for pilots.** The readable synthesis: the ~6 surviving pilots, each explained — what it is, why it exists, the problem it solves, how it solves it, plus labeling burden, publishability & effort, and how it could fail |
+| [pilot-drafts/](pilot-drafts/) | Publication-grade **Introduction + Methods** draft per pilot (title, abstract, formalized method, metrics, human validation, statistics, pre-registered success/kill) — doubles as a pre-registration |
 | [14 · Creative re-angles](14-creative-reangles.md) | *Research log (dense).* Re-shaping each real problem's **business** to dodge why a solo couldn't found on it. Readable version → doc 16 |
 | [15 · Method-transfer solutions](15-method-transfer-solutions.md) | *Research log (dense).* Mining top papers' **methods** and recombining them into cheaper technical approaches. Readable version → doc 16 |
 | [12 · Company theses](12-company-theses.md) | Creative company-thesis pass (8 lenses) + VC vet — early SOLUTION sketch, subordinate to the problem-first pass |

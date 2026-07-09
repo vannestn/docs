@@ -63,6 +63,41 @@ Higher "vetting score" = stronger (0–100, from the adversarial judge; two numb
 
 ---
 
+## Labeling & publishability at a glance
+
+*From the per-pilot analysis ([raw output](14-creative-reangles.md) methodology; run 2026-07-09). Two YELLOW
+labeling flags (PV-Grade, Multilingual) — no hard blockers, but both need expertise you can't fully self-supply.*
+
+> **Honest effort correction.** The "≤ 6 weeks" framing above was optimistic. Realistic time to a *submittable*
+> output is **~6–13 part-time weeks** (at ≤15 hrs/wk); a genuine ≤6-week version means shipping a deliberately
+> narrow v1. The **≤ $500 budget holds for all six.**
+
+**Human-labeling burden**
+
+| Pilot | Burden | Who labels / expertise | Labels free or sourced? | Human hours |
+|---|:--:|---|---|---|
+| 1 · Ingestion Corruption | 🟢 GREEN | You; table-literacy only | Self-supervised; gold from OHR-Bench; XBRL answer key | ~3–6 hrs, spot-check |
+| 2 · Reviewer Scrutiny | 🟢 GREEN | You; working-engineer level | Reverts free from git; PRs from AIDev; small hand-calibration | ~4–7 hrs |
+| 3 · PV-Grade | 🟡 YELLOW | Causality needs a PV/clinical specialist | 3 of 4 decisions free (FAERS, OnSIDES); causality isn't | Your 4–7 hrs + a few hrs of a clinician |
+| 4 · Code-Review | 🟢 GREEN | You (a SWE); equivalent-mutant judgment | Bug-present & "subtle" labels free by construction; APPS-Control-Arena | ~7 hrs, triage mutants |
+| 5 · Multilingual Safety | 🟡 YELLOW | Native/fluent speaker per language (mandatory) | Prompts free (RabakBench/IndicJR); the ~50 gold labels/lang are **not** | 1–2 native annotators/language |
+| 6 · Injection Report Card | 🟢 GREEN | You; read tool-call traces | Success labels free/deterministic (AgentDojo); tiny judge-validation | ~4–7 hrs |
+
+**Publishability & effort**
+
+| Pilot | Novelty | Realistic venue | Effort (pt-wks) | Null still publishes? |
+|---|:--:|---|:--:|---|
+| 1 · Ingestion Corruption | moderate | FinNLP@EMNLP workshop → NeurIPS Evals/DMLR stretch | ~9–13 | Yes (DMLR/TMLR) |
+| 2 · Reviewer Scrutiny | moderate | HEAL@CHI / KDD-SE workshop → MSR registered report | ~6–9 | Yes (a strength) |
+| 3 · PV-Grade | moderate | ML4H/ClinicalNLP workshop + *Drug Safety* journal → D&B stretch | ~9–13 | Yes (low scores = the headline) |
+| 4 · Code-Review | moderate | NeurIPS Evals & Datasets / MSR showcase | ~8–11 | Yes (welcomed) |
+| 5 · Multilingual Safety | moderate | ACL-family workshop (TrustNLP/MRL/SoLaR) → Findings stretch | ~7–10 | Only as an identifiability finding |
+| 6 · Injection Report Card | moderate | NeurIPS/ICLR safety workshop or SaTML + living leaderboard | ~6–9 | Weakest (under-attack confound) |
+
+Per-pilot detail is in each brief below, under **Human labeling** and **Publishability & effort**.
+
+---
+
 ## The briefs
 
 ### 1 · Ingestion Corruption Detector
@@ -105,6 +140,17 @@ catches nothing new → you publish a clean null and stop. The first experiment 
 which detects corruption by disagreement between *different parsers*; you invert it to *one parser, many
 renderings*, catching the confident errors parser-voting misses.
 
+**Human labeling.** 🟢 Green — none needed to *run* it (self-supervised: value-flips across resolutions are its
+own labels; the leaderboard's answer key is free SEC XBRL). Labeling is only for *validation* — you personally
+spot-check ~150–400 flagged cells against the source PDF (~3–6 hrs), and even that is largely pre-solved by
+OHR-Bench's human-verified gold set. Expertise needed is table-literacy only (knowing a cell printed "(1,234)"
+means −1,234), not accounting or ML.
+
+**Publishability & effort.** Moderate novelty; realistic home is a workshop (e.g. FinNLP@EMNLP) plus a
+genuinely-used OSS tool/leaderboard, with a stretch to the NeurIPS Evaluations & Datasets track if the method
+result is clean. **~9–13 part-time weeks** — the real work is the *method* head-to-head, not the quick leaderboard
+cron. A clean null publishes (DMLR/TMLR). Strong hire signal; best "found" optionality alongside PV-Grade.
+
 ---
 
 ### 2 · Reviewer Scrutiny Metric
@@ -143,6 +189,17 @@ depth shows no real link to reverts after controlling for change size, the headl
 which measures scrutiny only by approval rates and comment counts — no depth rubric, and crucially no
 revert-validation. Your delta is the "did they say why the AI is *wrong*" feature plus using reverts as a free
 answer key.
+
+**Human labeling.** 🟢 Green and self-doable. Outcome labels (was a PR later reverted/hot-fixed) are free from git
+history; depth scores across the whole corpus are LLM-generated; you hand-label only a small calibration +
+revert-triage sample (~4–7 hrs) to confirm the judge and separate defect-driven reverts from feature rollbacks.
+The labeler must be a working engineer (you qualify), no per-codebase specialism. Raw PRs come free from the AIDev
+dataset; the revert label is computed, not shipped.
+
+**Publishability & effort.** Moderate novelty; a workshop + released dataset now (HEAL@CHI, KDD-SE), upgradeable to
+an MSR registered report. **~6–9 part-time weeks** — biggest sink is constructing a defensible "revert = missed
+defect" label. A rigorous null is a genuine strength here. Strong hire signal for AI-code-review teams (CodeRabbit,
+Qodo, Greptile).
 
 ---
 
@@ -183,6 +240,19 @@ causality has no universal gold standard, which caps how clean the benchmark can
 **Prior work → your delta.** Closest is *Robust or Suggestible?* ([2510.13931](https://arxiv.org/abs/2510.13931)),
 which touches the same four decisions but as a bias study — no released benchmark, no honest accuracy number. Your
 delta is the actual benchmark + honest leaderboard.
+
+**Human labeling.** 🟡 The catch. Three of the four decisions get labels essentially free from structured data —
+*seriousness* (FAERS serious-flags + CIOMS rules), *expectedness* (label-ADR resources like OnSIDES), and much of
+*faithfulness*. But *causality* — the headline decision — needs genuine drug-safety expertise (a pharmacist / PV
+specialist / clinical pharmacologist) and has **no universal gold standard**. Your ~4–7 hrs can seed it, but a
+defensible causality gold really wants a few hours of a clinician's time (recruitable — this is the load-bearing
+risk). A true 6-week v1 could ship seriousness + faithfulness first and defer causality.
+
+**Publishability & effort.** Moderate novelty; workshop-strong (ML4H / GenAI4Health / ClinicalNLP) plus a parallel
+*Drug Safety*-style journal version that is the highest-leverage move for the hiring/founding audience; borderline
+Datasets & Benchmarks track. **~9–13 part-time weeks** (high — the causality gold pipeline is the crux; exceeds
+≤6wk). Near null-proof: low model scores *are* the mandate-relevant headline. Best-targeted credential for
+vertical-AI-safety / PV-tech, with real found upside.
 
 ---
 
@@ -225,6 +295,18 @@ but for a different (whole-file security-scanner) setting; the AI-safety "contro
 curve but for adversarial backdoors, not everyday code review. Your delta is the fusion applied to naturalistic
 pull-request review.
 
+**Human labeling.** 🟢 Green because *you're* the labeler and you're an engineer — though the judgment is genuinely
+expert (deciding whether two code versions are behaviorally identical = the equivalent-mutant problem, which the
+literature calls costly and subjective). The hard labels are free by construction: planted bugs are known-present,
+and a mutant that compiles and passes existing tests is by definition "subtle." Paired clean/backdoored data
+already exists (APPS-Control-Arena). Your ~7 hrs go to triaging out accidental equivalent mutants and auditing
+~20% of the "clean" traps.
+
+**Publishability & effort.** Moderate novelty; realistic home is the NeurIPS Evaluations & Datasets track or an MSR
+Data & Tool showcase, plus an adopted leaderboard. **~8–11 part-time weeks** (manual mutant triage + oracle audit
+push it past ≤6wk). Null is publishable and explicitly welcomed. Strong hire credential for code-AI teams — but not
+a founding wedge (Martian holds the neutral-standard slot).
+
 ---
 
 ### 5 · Multilingual Safety Meter
@@ -262,6 +344,18 @@ if garbled translations mostly land in the "unclear" bucket; a fluent-but-wrong 
 **Prior work → your delta.** Closest is *Why Do Safety Guardrails Degrade Across Languages?*
 ([2605.17173](https://arxiv.org/abs/2605.17173)) — binary, no "unclear" channel, no error bars on the noise
 fraction. Your delta is the three-way correction with honest confidence intervals per language.
+
+**Human labeling.** 🟡 The one pilot where labeling is genuinely *necessary and not free*: the method is "measure
+the measurer," so it needs a small trustworthy gold set (~50 items/language) to estimate and invert the judge's
+error. Each labeler must be **native or fluent** in the target language (Tamil, etc.) — the non-negotiable
+requirement, and beyond what you can self-supply. Prompts and even model responses are free (RabakBench, IndicJR);
+the ternary gold labels are not. Plan: recruit 1–2 native annotators per language for a few hours (within/near
+budget).
+
+**Publishability & effort.** Moderate novelty; a solid ACL-family workshop (TrustNLP / MRL / SoLaR) with a Findings
+shot if the identifiability result comes back clean across 3 languages. **~7–10 part-time weeks.** A null publishes
+*only* if framed as an identifiability/methods finding. Strong safety/eval hire + grant on-ramp (UK AISI, Frontier
+Model Forum AI Safety Fund both fund independents); weak for founding.
 
 ---
 
@@ -301,6 +395,18 @@ neutral referee yet") also erodes once someone else does.
 (AgentDojo) is *static*. Your delta is the recurring, dated report card grading the *claim*, plus the
 "is-the-referee-gameable" check. (A close sibling idea was already killed — scooped by a paper called LaunchSafe.)
 
+**Human labeling.** 🟢 Mostly free and deterministic — AgentDojo decides injection success by comparing the
+resulting environment state to a released attacker-goal state, no humans in the loop. You hand-label only a small
+judge-validation sample (~4–7 hrs, reading tool-call traces — "was the money actually transferred?"), which is
+general-technical, no security-research depth needed. A released 596-item human-labeled slice exists for the
+grader-gaming (OracleProof) check.
+
+**Publishability & effort.** Moderate novelty — the adaptive-attack method is *imported, not invented*; the
+contribution is the standardized recurring graded protocol + grader-robustness. Workshop-solid (NeurIPS/ICLR
+safety, SaTML) with a *living leaderboard* as the real credibility engine. **~6–9 part-time weeks.** Weakest null
+in the set (a "defenses hold" result is confounded with a solo under-attacking). Direct, current hire signal
+(OpenAI acquired Promptfoo in 2026).
+
 ---
 
 ## Honorable mentions (real, but second-tier for now)
@@ -328,6 +434,11 @@ The four questions that actually decide it — and only you can answer the first
    are the fastest to something public.
 4. **Breadth?** The staged plan says run 2–3 in *different* areas. A natural trio: one document/RAG (Ingestion),
    one human-oversight (Reviewer Scrutiny), one safety/security (Multilingual Safety or Injection Report Card).
+
+**Full paper drafts.** Each pilot now has a publication-grade **Introduction + Methods** written out (working
+title, abstract, formalized method, metrics, human-validation procedure, statistics, and pre-registered
+success/kill criteria) in [pilot-drafts/](pilot-drafts/) — detailed enough to run the study from, and doubling as a
+pre-registration.
 
 **Next step:** pick 2–3. For each, I'll run a final "has anyone already done exactly this" check on the combined
 form, then write a one-page pre-registration (question · method · what counts as success · what makes you stop ·
