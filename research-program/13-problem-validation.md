@@ -143,8 +143,8 @@ at ingestion passes faithfulness (the LLM faithfully echoes garbage) while the a
 eval blind spot is confirmed by the framework's own metric taxonomy. Who bleeds: finance/legal/
 manufacturing/healthcare RAG, where a flipped cell is liability.
 
-**Neglectedness / buyer (N+B 4).** Strongest buyer picture in the set. Reducto crossed $1M ARR with 4
-employees and raised $108M ($75M a16z Series B, Feb 2026) — hard proof this buyer pays for ingestion
+**Neglectedness / buyer (N+B 4).** Strongest buyer picture in the set. Reducto raised $108M ($75M a16z
+Series B, Feb 2026) and has processed >1B pages — hard proof this buyer pays for ingestion
 reliability. >85% of enterprise RAG pilots never reach production. The specific whitespace is a
 **parser-agnostic ingestion-corruption eval layer** ("did this number get silently corrupted,
 regardless of which parser you used?") — no product sells this as its core; it sits between parsing
@@ -597,7 +597,7 @@ kill-survived form. Ranked by strength (magnitude × surviving-buyer × founder-
 *Scoped form to carry:* a **parser-agnostic ingestion-corruption eval/monitoring layer for one
 regulated vertical document type** (e.g. clinical or insurance forms) — hand-label ground truth, flag
 silently-corrupted tables/numbers in production, plug into the buyer's existing pipeline. This is the
-only survivor with a *demonstrated paying buyer* (Reducto $1M ARR at 4 people) and direct alignment to
+only survivor with a *demonstrated paying buyer* (Reducto: $108M raised, >1B pages processed) and direct alignment to
 the founder's RAG-hallucination work. The ≤$500 first experiment: measure ingestion→answer corruption
 on one document class against a small labeled set. *Kill to keep watching:* incumbent parsers adding
 corruption-detection as a feature — stay parser-agnostic and vertical.

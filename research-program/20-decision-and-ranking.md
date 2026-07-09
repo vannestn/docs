@@ -1,94 +1,39 @@
-# 20 · Decision & Ranking — the one place to choose from
+# 20 · Decision & Ranking — the ONE combined place to choose from
 
-*Written 2026-07-09. This is the single master decision document. It consolidates every candidate
-we generated, re-shaped, method-transferred, validated, and data-audited across
-[docs 11–19](README.md) into one ranked, stand-alone picture. If you read nothing else, read this.
-It supersedes the scattered analysis: where an earlier doc and this one disagree on a number or a
-license, **this doc is current.***
+*Written 2026-07-09 (consolidated pass). This is **the** master decision document. It supersedes every
+earlier ranking, tier table, and per-candidate score scattered across [docs 11–25](README.md). All **26
+candidates** — 6 research pilots and 20 founding bets — are re-scored here on a **single consistent
+rubric against shared anchors in one pass**, so for the first time the numbers are actually
+apples-to-apples. Where any earlier doc disagrees with a number, a license, or a data verdict, **this
+doc is current.** If you read nothing else, read this.*
 
 ---
 
-## What this document is
+## What this document is (and how to read it)
 
-You now have **11 fully-worked candidates**: 6 research pilots (which ship a paper or a public
-artifact fast) and 5 founding bets (higher-ceiling, slower, and — this matters — *companies, not
-credentials*). Each has been checked the same way: is the problem real, is the data actually
-obtainable and license-clean, how much of your own labeling does it need, can a solo pull it off for
-≤$500, and what does a good outcome buy you.
+You have **26 fully-worked candidates**. Each was checked the same way: is the problem real, is the
+data actually obtainable and license-clean, how much of *your own* labeling does it need, can a solo
+pull it off for ≤$500 part-time, and what does a good outcome buy you. This pass adds one thing the
+scattered docs never had: **every candidate re-scored together, against the same anchors, in a single
+sitting** — so a 91.7 and an 80.0 are now on the same scale.
 
-This doc turns all of that into **one ranking, three shortlist picks, and eleven honest cards** so
-you can decide without re-reading the raw logs.
-
-**A note on the two types, because it changes how you read the scores:**
+**The two candidate types, because it changes how you read the scores:**
 
 - A **research pilot** is a small study you can actually run — ≤$500, part-time, solo — ending in a
-  public artifact (a short paper, a released dataset, an OSS tool) with a pre-written win-or-kill
-  line. It buys you a *credential* and a *hire signal* fast, and sometimes a founding wedge as a
-  bonus.
-- A **founding bet** is the seed of a *company*. It can still produce a shippable artifact, but its
+  public artifact (a short paper, a released dataset, an OSS tool) with a pre-written win-or-kill line.
+  It buys you a **credential and a hire signal fast**, and sometimes a founding wedge as a bonus.
+- A **founding bet** is the seed of a **company**. It can still produce a shippable artifact, but its
   reason to exist is a durable business with a moat. These score higher on founding-upside by
-  construction and lower on ship-speed, because a company needs paying users, and several of them
-  have a genuine cold-start (no data until a customer shows up).
+  construction and often lower on ship-speed, and several carry a genuine cold-start (no moat data until
+  a customer shows up).
 
 Do not compare the two types on founding-upside alone and conclude the pilots are weak — a pilot
 scoring 4 on founding-upside is remarkable *for a pilot*.
 
----
+### The criteria and exactly how they're weighted
 
-## UPDATE (2026-07-09, later) — expanded founding search supersedes the founding tier below
-
-After the 11-candidate ranking below was written, an aggressive parallel founding search ran five
-aperture streams ([docs 21–25](README.md)) — literature-mining, vertical-industry, buyer-GTM,
-capability-frontier, and two deep liability-vertical drills — generating **~150 candidates**, each
-adversarially "already-built"-checked and scored on the *same* Kappa-anchored rubric. **~15 cleared the
-83.3 bar**, and the strongest **beat the old overall #1 (Ingestion, 84.2).** The original doc-18 five
-founding bets (Kappa, GroundTruth Streams, RailKit, ToolTamer, Callsmith) are now **superseded** by this
-tier for the *founding* decision.
-
-**The convergent thesis.** Nearly every top candidate is the *same shape*: **an independent,
-vendor-agnostic verifier that checks an AI's output before a human or institution that holds
-non-delegable liability signs off.** It is a repeatable company pattern built directly on your published
-RAG-hallucination / LLM-as-judge method. It scores highest in **regulated-money and clinical verticals**,
-because there the *buyer is the liability-holder* (a bank, a physician) who *wants* the verification —
-which escapes the "vendors won't pay to be audited" trap that sinks neutral-referee plays elsewhere.
-
-**New founding top tier (all cleared ≥83.3, ranked):**
-
-| Rank | Candidate | Comp. | Vertical / type | Doc | Why it's strong |
-|--:|---|:--:|---|:--:|---|
-| 1 | **ReasonProof** | **91.7** | financial — adverse-action reason codes (ECOA) | 25 | Sharpest bet: free HMDA data + **self-generated ground truth** (no annotation) + SR 11-7 independence moat |
-| 1 | **DisputeProof** | **91.7** | financial — Reg E dispute denials | 25 | Fastest + most legally-forced (EFTA class-action wave, zero-label CFPB seed) |
-| 1 | **TieProof** | **91.7** | audit — evidence tie-out (PCAOB) | 25 | Self-labeling XBRL + FinVerBench; legally forced by AS 1105/QC 1000 |
-| 4 | **NoteProof** | 87.5 | clinical — AI-scribe note grounding | 22 | Aligned liability buyer (signing physician), free ACI-Bench, cross-vendor corpus |
-| 4 | **PortalProof** | 87.5 | clinical — AI patient-portal replies | 24 | Same shape, distinct sub-workflow; attestation lane a bit more crowded |
-| 4 | **TrajTrust** | 87.5 | AI infra — agent-trajectory judge-of-the-judge | 22 | Kappa's skill at a faster buyer; one roadmap step from copy |
-| 7 | **DenialProof** | 86.7 | clinical-payer — medical-necessity denials | 25 | SB-1120-forced aligned buyer |
-| 8 | RewardProof / QueryProof / MemTrust / TriageProof / AppealScore | 85 | RL graders / text-to-SQL / agent memory / symptom-checkers / appeals | 21,24,25 | Strong, each with one named drag |
-| 13 | VeriJudge / InteractionProof / ScreenProof | 83.3 | judge validity / drug-interaction / sanctions | 21,24,25 | Clear the bar; more contested |
-
-Strong near-misses (75–83): TrueTool 82.5, Molt 82.5, DoseGuard 82.5, RxAgentProof 82.5, SheetSentry 80,
-CustomsProof 80, TaxProof 80, DispoProof 80, AuthAudit 80.
-
-**Two honest caveats before betting on a 91.7:**
-1. **Cross-stream calibration.** Each stream's judge scored independently (all anchored to Kappa 83.3),
-   so a 91.7 from doc 25 and the 84.2 (Ingestion) computed here are not guaranteed on an identical scale.
-   The top 3–4 need **one consolidated head-to-head re-score** before committing.
-2. **Monetization shape.** "Independent verifier" can be a fundable SaaS *or* a low-margin trust/media
-   play. The financial/clinical ones are strongest precisely because the liability-holder is the paying
-   buyer — but each still has a named GTM drag (examiner-gated sales, noisy outcome proxies, corpus access).
-
-**Updated recommendation (supersedes the shortlist below on the founding side):** the founding pick is now
-clearly in the **liability-verifier family**. Deep-vet **ReasonProof, DisputeProof, NoteProof, and TieProof**
-head-to-head with a single consolidated scorer + a monetization/GTM stress-test, then choose. The pilots
-below (esp. **Ingestion** and **Kappa**) remain the best *fast-artifact / hire* plays and the honest
-low-risk start; the new tier is the *founding* upgrade you asked for.
-
----
-
-## The criteria and exactly how they're weighted
-
-The ranking is computed from **your** stated priorities, not generic ones. Five criteria, each scored
-1–5 per candidate, combined into a **0–100 composite** with these weights:
+The ranking is computed from **your** stated priorities. Five criteria, each scored 1–5 per candidate,
+combined into a **0–100 composite** with these weights:
 
 | Criterion | Weight | What it asks |
 |---|:--:|---|
@@ -98,762 +43,844 @@ The ranking is computed from **your** stated priorities, not generic ones. Five 
 | **Executability** | **2.5** | Can *you* actually do it — data, cost, skill-fit, risk? |
 | **Hire-signal** | **1.5** | How legible/valuable as a credential to the teams you'd join? |
 
-**A ship-speed integrity check — the "differentiated-half" test.** Watch for one specific inflation:
-a pitch claims **ship-speed 5** by pointing at a free public dataset, but the verdict has *two halves*
-and the free data labels only the easy one. Before you accept a 5, ask: **does the free dataset label
-the DIFFERENTIATED half of the verdict, or only the commodity half? If only the commodity half, cap
-ship-speed at 4 and note the missing-corpus risk.** This matters most for the cross-vendor
-faithfulness/survival verifiers (Kappa's family), where the commodity half is a deterministic rule
-check and the differentiated half is the grounding/outcome judgment that is the actual moat.
+Composite = weighted average of all five, rescaled to 0–100. **These scores are a single consistent
+pass**, so cross-candidate comparison is now valid in a way it was not when each aperture stream scored
+independently.
 
-*Worked example — ReasonProof vs CodeSurvive, both "independent cross-vendor verifier" pitches that
-claim ship-5 off free data.* **ReasonProof clears it:** HMDA ships structured denial-reason + outcome +
-protected-class fields, so the free corpus labels the *differentiated* half (was the adverse-action
-reason legitimate?), not just the commodity deterministic-rule check — a genuine 5. **CodeSurvive fails
-it:** OIG audit reports are narrative PDFs, and free data covers only the commodity half (OIG's
-deterministic coding rules); there is **no** public note→HCC→survival-outcome corpus for the
-differentiated half (does the code survive audit?). Its honest ship-speed is **4, not 5**, with a
-missing-corpus risk to flag.
+### The data-availability verdict (new, load-bearing)
 
-Two derived views, because the "best" candidate depends on what you're optimizing for:
+Every card carries a **DATA verdict** — the honest executability-confidence signal:
 
-- **Best potential outcome** = impact + founding-upside + hire-signal (the ceiling if it works).
-- **Easiest executability** = executability + ship-speed (the lowest-friction path to *something*).
-
-Composite is the weighted average of all five, rescaled to 0–100. The outcome and ease scores are
-rescaled the same way.
+- **SOLID** — free, license-clean, currently-downloadable data (or self-generatable ground truth) that
+  labels the *differentiated* half of the verdict. Ship with confidence.
+- **WORKABLE** — a real free/self-generatable path exists, but with a named caveat (a non-commercial
+  license on the best corpus, ground truth that must be synthesized, a paid expert rater, or a corpus
+  that only accrues post-launch). Ships, but read the caveat before you bet the company on it.
+- **RISKY** — the data that would prove the *differentiated* claim is unobtainable free, thin to the
+  point of under-powering, or gated behind a non-existent-at-t0 partner. The pilot may still ship a
+  weaker result; watch these closely.
 
 ---
 
-## Master ranking (all 11, by composite)
+## THE CONVERGENT FOUNDING THESIS
 
-| # | Candidate | Type | Composite | Ship | Impact | Found | Exec | Hire | One-line |
-|--:|---|---|:--:|:--:|:--:|:--:|:--:|:--:|---|
-| 1 | **Ingestion Corruption Detector** (MetaParse + LedgerParity) | pilot | **84.2** | 4 | 4 | 4 | 5 | 4 | Label-free detector for numbers silently mangled at parse time — strongest all-rounder, and a real founding wedge into a $100M-funded parsing-reliability market. |
-| 2 | **Kappa** — judge-trust / eval-drift monitoring | founding | **83.3** | 5 | 3 | 3 | 5 | 5 | Catches LLM-judges silently rotting; fastest-ship, best skill-fit, best hire artifact — but founding lane is contested by funded incumbents. |
-| 3 | **PV-Grade** (pharmacovigilance decision benchmark) | pilot | **77.5** | 3 | 4 | 4 | 4 | 5 | Public yardstick for AI on 4 high-stakes drug-safety decisions; regulator-mandated demand, best hire+found bet, slowest of the top pilots. |
-| 4 | **Reviewer Scrutiny Metric** (Stamp Score) | pilot | **76.7** | 5 | 4 | 2 | 4 | 4 | Validated measure of whether humans really review AI code vs rubber-stamp; bulletproof problem, fast, but weak founding upside. |
-| 5 | **GroundTruth Streams** (structured-public-data corpora) | founding | **76.7** | 5 | 3 | 2 | 5 | 4 | Turns free public feeds (SEC XBRL, FAERS) into AI-ready eval sets; fastest cheapest ship, but thin moat over free data an incumbent is already accumulating. |
-| 6 | **RailKit** — drop-in hallucination guardrail SDK | founding | **71.7** | 4 | 3 | 3 | 4 | 4 | Your RAG-judge work productized as a reliability SDK; strong hire signal, but the "priced-out solo founder" wedge is already crowded. |
-| 7 | **ToolTamer** — agent tool-call repair | founding | **67.5** | 4 | 3 | 2 | 4 | 4 | Small model that repairs malformed agent/MCP tool calls; the headline feature already ships free in Vercel AI SDK. |
-| 8 | **Injection Defense Report Card** | pilot | **65.8** | 4 | 3 | 1 | 4 | 5 | Independent A–F card grading prompt-injection defenses under adaptive attack; highest+most-current hire signal, no founding upside. |
-| 9 | **Multilingual Safety Meter** (Ternary-PPI) | pilot | **62.5** | 3 | 4 | 1 | 4 | 4 | Statistically-honest per-language safety numbers under a flaky judge; high-impact nonprofit/hire play, essentially no founding upside. |
-| 10 | **Callsmith** — outcome-graded AI phone-call tuning | founding | **59.2** | 2 | 4 | 4 | 2 | 3 | Grades/tunes any voice bot on real booking conversions; biggest market + best full-arc fit, but hard cold-start — nothing ships without a live client. |
-| 11 | **SuggestionFix-Bench** | pilot | **54.2** | 3 | 3 | 1 | 3 | 4 | Grades whether AI reproduces the fix a human actually merged; clean hire artifact, but crowded space and a real gold-volume kill risk. |
-
-> **Two new candidates pending vetting — not scored above.** A 2026-07-09 founder-scout pass surfaced two
-> liability-bearing vertical-workflow verifiers, now written up in
-> [doc 18](18-expanded-domain-founding.md) as **#16 CrossCheck** (independent HTS/customs
-> classification-defensibility verifier, grounded in CBP's CROSS rulings and the HQ H350722 line between
-> "customs business" and permissible verification) and **#17 CreditProof** (Form 6765 Section-G R&D-credit
-> audit-survival grader, grounded in Tax Court disallowance patterns + the IRS RCCATG). Both are
-> vertical-AI-reliability "independent verifier" shapes in the same family as SecondRead / FieldProof, both
-> ride a hard 2026 regulatory tailwind (a fresh CBP ruling + 67% audit surge; mandatory Section G + 129 IRS
-> AI-audit use cases), and both look founder-shaped with an outcome-labeled moat a single vendor can't
-> assemble. **Neither has had the deep scoop / data-legitimacy / willingness-to-pay pass yet, so they are not
-> scored or ranked here.** Deep-vet them before comparing against the 11 above.
+Nearly every top founding candidate is the **same shape**: an **independent, vendor-agnostic verifier
+that checks an AI's output *before* a human or institution that holds non-delegable liability signs
+off.** It is a repeatable company pattern built directly on your published RAG-hallucination /
+LLM-as-judge method. It scores highest in **regulated-money and clinical verticals**, because there the
+**buyer *is* the liability-holder** (a bank, a physician, an audit partner) who *wants* the
+verification — which escapes the "vendors won't pay to be audited" trap that sinks the neutral-referee
+plays (Kappa, VeriJudge, TrajTrust, Injection Report Card) further down the list.
 
 ---
 
-## Three picks that matter
+## THE COMBINED MASTER RANKING — all 26, one scale, by composite
 
-### The overall #1 (by your criteria): **Ingestion Corruption Detector** — 84.2
-
-It wins because it's the only candidate that's strong on *every* axis at once. It's **label-free** —
-the detector manufactures its own labels by re-rendering a document at different resolutions and
-flagging numbers that flip, so there are zero labels to run it and only ~3–6 hours of your own
-spot-checking. Release-clean data is solved (FinTabNet.c under CDLA-2.0, SynFinTabs under CC-BY-4.0),
-core compute is ~$50 because it's CPU-only, and it's a direct one-step-upstream extension of your
-published RAG-hallucination-judge work. And unlike the other pilots, it has a *genuine* founding
-wedge: the OSS render-invariance "run-it-yourself" integrity checker is exactly what enterprise
-procurement is asking for, in a market that just absorbed $100M+ of parsing-reliability funding
-(Reducto alone: $108M raised, ~$40M ARR). It's even null-proof — if corrupted numbers read
-stably-wrong across renders, that clean negative still publishes and characterizes OCR failure modes.
-
-### Best potential outcome: **PV-Grade** — outcome score 86.7
-
-If you weight *ceiling* over *ease* (impact + founding + hire), PV-Grade is the top of the set. Three
-forces line up that no other candidate gets all of: **regulators now mandate independent, decision-
-specific validation** of drug-safety AI (FDA Jan-2025 draft guidance; CIOMS Working Group XIV,
-Dec-2025), **no public benchmark exists** for the four consequential PV decisions, and — rare — **the
-party being graded actually wants a credible score** to show regulators, which inverts the usual "who
-pays to be measured" problem. It's the most role-specific credential in the set (ArisGlobal, Oracle
-Health, IQVIA, Veeva, PV-AI startups) and has a real institutional-trust moat. The catch is that its
-causality-gold dependency makes it the slowest of the top pilots — ship a narrow 3-decision v1 first.
-
-### Easiest executability: **Kappa** — ease score 100
-
-If you just want the lowest-friction path to a real, shipped result, Kappa is it: perfect ease score.
-The data is ready (NVIDIA's Judge's Verdict benchmark is purpose-built for exactly this, plus your own
-study seeds the demo), the math is standard agreement/kappa work you already do, there's ~0 new
-labeling, no code review, and it's under $150 all-in for a 6–9-week OSS CLI + drift report. It's also
-the single most legible proof-of-expertise for an eval/reliability seat — the incumbents themselves
-(Galileo, Braintrust, Confident AI, Patronus) are plausible employers. The honest caveat is that as a
-*company* the lane is contested; treat the founding angle as a wedge to prove, not an open field.
+| Rank | Candidate | Type | Comp. | Ship | Impact | Found | Exec | Hire | Data | One-line |
+|--:|---|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|---|
+| 1 | **DisputeProof** | found | **91.7** | 5 | 4 | 4 | 5 | 5 | SOLID | Reg-E dispute-denial defensibility verifier; free public-domain CFPB data + a legally-forced (private right of action) buyer. |
+| 1 | **TieProof** | found | **91.7** | 5 | 4 | 4 | 5 | 5 | WORKABLE | Audit evidence tie-out verifier; self-labeling FinQA+XBRL numeric channel, PCAOB tailwind; narrative moat must be self-generated. |
+| 3 | **ToolTamer** | found | **89.2** | 5 | 4 | 4 | 5 | 4 | SOLID | Agent/MCP tool-call repair; free MIT/Apache schemas + label-free self-generated ground truth. |
+| 4 | **ReasonProof** | found | **87.5** | 5 | 4 | 4 | 4 | 5 | WORKABLE | ECOA/SR-11-7 adverse-action reason-code faithfulness; free HMDA + computed ground truth, but it's a controlled study (HMDA hides credit score). |
+| 4 | **NoteProof** | found | **87.5** | 5 | 4 | 4 | 4 | 5 | SOLID | AI-scribe clinical-note grounding; free CC-BY zero-PHI ACI-Bench, aligned signing-physician buyer. |
+| 4 | **PortalProof** | found | **87.5** | 5 | 4 | 4 | 4 | 5 | WORKABLE | AI patient-portal reply verifier; real free paired data exists but is CC-BY-NC + tiny (100 rows). |
+| 7 | **DenialProof** | found | **86.7** | 4 | 5 | 4 | 4 | 5 | WORKABLE | Medical-necessity denial verifier (SB-1120 buyer); free DMHC proves a commodity axis, the moat needs synthetic triples + paid clinician + a criteria-license workaround. |
+| 8 | **RewardProof** | found | **85.0** | 5 | 4 | 3 | 5 | 4 | SOLID | RL-grader exploit auditor; free MIT SWE-bench Verified + deterministic self-labeling — but the artifact is already a commodity. |
+| 8 | **QueryProof** | found | **85.0** | 5 | 4 | 3 | 5 | 4 | SOLID | Text-to-SQL answer verifier; execution-based auto-labels, license-clean — method already published (SQLens). |
+| 8 | **MemTrust** | found | **85.0** | 5 | 3 | 4 | 5 | 4 | WORKABLE | Cross-vendor agent-memory staleness referee; self-generated adversarial injection is the moat, best content-fit corpora are NC/ND-blocked. |
+| 11 | **Kappa** | found | **83.3** | 5 | 3 | 3 | 5 | 5 | SOLID | LLM-judge drift monitor; fastest-ship, best hire artifact, cleanest data — founding lane crowded by funded incumbents. |
+| 11 | **TrajTrust** | found | **83.3** | 5 | 3 | 3 | 5 | 5 | WORKABLE | Agent-trajectory judge-of-the-judge; most build-ready (dry run done) but free labels are research-ToS + too thin for the per-class claim. |
+| 11 | **InteractionProof** | found | **83.3** | 5 | 4 | 3 | 4 | 5 | WORKABLE | Drug-interaction alert verifier; openFDA CC0 is the safe path, but the freest ready labels are LexiDrug/DrugBank-derived. |
+| 11 | **VeriJudge** | found | **83.3** | 5 | 3 | 3 | 5 | 5 | SOLID | LLM-judge validity/confound auditor; free MIT benchmarks + self-gen recipe — but the technique is a weekend copy. |
+| 15 | **AppealScore** | found | **80.8** | 5 | 4 | 3 | 4 | 4 | WORKABLE | Insurance-appeal quality grader; free IMR proves the already-commoditized win-prediction axis, differentiated axis has no free paired data. |
+| 15 | **TriageProof** | found | **80.8** | 5 | 4 | 3 | 4 | 4 | WORKABLE | Symptom-checker undertriage leaderboard; free Semigran/AcuityBench commoditize the measurement, richest data (ER-Reason) is credentialed. |
+| 17 | **Ingestion Corruption Detector** | pilot | **80.0** | 4 | 4 | 3 | 5 | 4 | SOLID | Label-free parse/OCR numeric-corruption detector; cleanest-to-execute pilot, free redistributable data + XBRL answer key. |
+| 18 | **RailKit** | found | **79.2** | 3 | 4 | 5 | 4 | 4 | WORKABLE | Drop-in hallucination guardrail SDK (Air Canada precedent); build-data free, product/moat data must be self-generated then accrues post-launch. |
+| 19 | **Reviewer Scrutiny Metric** (Stamp Score) | pilot | **78.3** | 4 | 4 | 3 | 4 | 5 | WORKABLE | Do humans really review AI code or rubber-stamp; clean free data + elegant revert ground truth, but thin defect-revert positive class. |
+| 20 | **GroundTruth Streams** | found | **76.7** | 5 | 3 | 2 | 5 | 4 | WORKABLE | Free public feeds → AI-ready eval corpora; best-in-class data, but the moat over free feeds is already being eaten by Kensho/S&P + Stanford SEFD. |
+| 21 | **ScreenProof** | found | **75.8** | 4 | 4 | 3 | 4 | 4 | WORKABLE | Sanctions-screening rationale verifier; free watchlists are the denominator not ground truth, the one big real label set is NC + commodity-axis. |
+| 22 | **Callsmith** | found | **75.0** | 3 | 4 | 5 | 3 | 4 | WORKABLE | Outcome-graded AI phone-call tuning; un-reproducible per-vertical CRM moat, but the whole pilot is gated on landing one design-partner client. |
+| 23 | **Injection Defense Report Card** | pilot | **74.2** | 4 | 4 | 2 | 4 | 5 | SOLID | A–F prompt-injection defense card; cleanest pilot data path + elite current hire signal, but a confounded "did I attack hard enough" null. |
+| 24 | **PV-Grade** | pilot | **70.8** | 3 | 4 | 4 | 3 | 4 | WORKABLE | Pharmacovigilance decision benchmark; regulator-mandated demand, but FAERS lacks narratives, MedDRA is licensed, causality gold is expert-gated. |
+| 25 | **SuggestionFix-Bench** | pilot | **67.5** | 4 | 3 | 2 | 4 | 4 | WORKABLE | Does AI reproduce the fix a human merged; clean free data + tidy pipeline, but a verified ~8%-defect-fix base rate risks the <500-gold kill. |
+| 26 | **Multilingual Safety Meter** | pilot | **53.3** | 2 | 3 | 2 | 3 | 4 | RISKY | Honest per-language safety numbers under a flaky judge; slowest, gated on a native-Tamil annotator in a thin (n=132) set. |
 
 ---
 
-## The eleven cards
+## Callouts
 
-*Ordered by composite. Each card gives you: why it matters, whether the data is real, what you'd have
-to label, whether you can execute it, what a good outcome buys, the scores, and a verdict.*
-
----
-
-### 1 · Ingestion Corruption Detector (MetaParse + LedgerParity) — pilot — 84.2
-
-**Why it matters.** Silent numeric corruption at the parse/OCR step is a documented, high-stakes
-failure no RAG eval tool catches. OHR-Bench (ICCV 2025) shows even the best OCR loses ~14% F1 overall,
-with tables degrading worst; FinCriticalED (Nov 2025) finds digits, decimals, signs, and unit markers
-are the *most* error-sensitive OCR elements and "have not yet achieved the reliability required for
-high-stakes financial interpretation." A flipped figure produces a confident wrong answer with no
-exception raised — blast radius is finance/legal/medical RAG. Market pull is strong and growing:
-Reducto raised $108M (a16z-led $75M Series B), ~$40M ARR, 1B+ pages processed, and just shipped an
-"Agentic OCR" self-review layer. Procurement sentiment — "the only benchmark you should trust is one
-you run yourself" — is *literally* a demand for a label-free per-document integrity checker.
-
-**Data availability.** Four researched options.
-- **OHR-Bench** (HF, ICCV 2025) — human-verified per-cell gold for 8,500+ pages incl. finance. License
-  conflict (CC-BY-4.0 but "research only"): **measure-only** — benchmark against it, don't re-release.
-- **FinTabNet.c** (HF) — ~89k pages / 112k S&P-500 tables, cell structure + coords, source PDFs are
-  public-domain SEC filings. **CDLA-Permissive-2.0 — the release-safe anchor.**
-- **SynFinTabs** (HF, arXiv 2412.04262) — 100k synthetic tables + open generation code. CC-BY-4.0 and
-  regenerable, so you can *plant* known corruptions to measure detector recall precisely.
-- **SEC EDGAR Inline XBRL** (data.sec.gov) — public-domain tagged facts; a nightly cron could score any
-  pipeline's "numeric survival rate" forever (the LedgerParity leaderboard).
-- **Verdict:** *solved* for the core method (it's label-free; validation gold comes free from
-  FinTabNet.c/SynFinTabs, OHR-Bench measure-only). The only non-trivial data engineering is XBRL-to-
-  cell alignment for the leaderboard — the secondary artifact, scope it down or defer.
-
-**Annotation.** Zero labels to *run* it — value-flips across renders are the labels. Validation only:
-~50-cell perturbation-nullity audit + ~50–100 render-only-flag adjudication, **you alone, table-
-literacy only** (read "(1,234)" = −1,234; no accounting/ML/code-review). ~3–6 hrs total. **Best
-labeling profile of the six pilots**; comfortably inside your 4–7 hr ceiling.
-
-**Executability.** ~9–13 part-time weeks realistic (a public v1 in a few weeks; the sink is the
-rigorous head-to-head Venn analysis and optional XBRL alignment). Cost well under $500 (~$50 CPU +
-~$100–200 API). Excellent skill-fit — your stack, one step upstream. **Top risk:** method could be a
-null if corrupted numbers read stably-wrong across resolutions (the pre-registered kill line); DPI
-sensitivity is empirically real (~200 DPI optimum), so the render-only slice is plausibly non-empty —
-but genuinely unknown until the dry run. Secondary risk: XBRL alignment eating weeks — demote
-LedgerParity to v2 if so.
-
-**Outcome.** Publishable (FinNLP@EMNLP / RAG-eval workshop + a used OSS tool/leaderboard; NeurIPS D&B
-stretch), and **null-proof** — a clean negative publishes at DMLR/TMLR. **Scoop check passes:** closest
-works (Semantic Integrity, OCR-Reasoning-Robustness, Cross-Modal Inconsistency, FinCriticalED,
-Consensus Entropy) all use ground truth or a different axis — none uses same-parser-many-renders
-value-flips as a label-free corruption detector. Hire signal strong (Reducto/Unstructured/LlamaIndex,
-RAG-eval teams). Founding upside genuine but earned-over-time — tied-best in the set with PV-Grade;
-the moat is institutional trust via a used artifact, not defensible tech.
-
-**Scores:** Ship 4 · Impact 4 · Found 4 · Exec 5 · Hire 4 → **Composite 84.2** (outcome 80, ease 93.3).
-
-**Verdict.** The strongest all-around bet: easiest to execute, fast to a public artifact, null-proof,
-and — via the OSS checker rather than the crowded leaderboard — a real founding wedge into a
-just-funded market. The one genuine risk (a method null) the design turns into a publishable finding.
+- **Overall #1 (three-way tie by composite):** **DisputeProof, TieProof (both 91.7)** — and among them,
+  **DisputeProof is the cleaner pick** because its data is genuinely SOLID (free public-domain, no
+  license caveat) where TieProof's differentiating narrative-grounding channel must be self-generated.
+  See the recommendation for the tiebreak.
+- **Best founding bet:** **DisputeProof (91.7)** — the fastest, most legally-forced (EFTA §1693m private
+  right of action + a confirmed class-action surge), on free public-domain CFPB data, with a
+  near-verbatim reuse of your published judge.
+- **Best fast-artifact / hire pilot:** **Ingestion Corruption Detector (80.0)** — the cleanest-to-execute
+  pilot (label-free core signal, free redistributable data, ~$50 CPU compute, null-proof). For pure hire
+  legibility, **Injection Defense Report Card** and **Reviewer Scrutiny Metric** are close behind.
+- **Easiest to execute:** **DisputeProof / ToolTamer / RewardProof / QueryProof / Ingestion** all carry
+  Exec 5. Among founding bets, **DisputeProof** (free instant download + zero-annotation self-labeling)
+  is the least-friction path to a real result.
+- **RISKY-data candidate to watch:** **Multilingual Safety Meter** — the only outright RISKY verdict: the
+  low-resource language that justifies the whole method (public Tamil, n=132) is volume-fragile *and* its
+  gold requires a native annotator you cannot self-supply. Several **WORKABLE** cards carry a
+  *differentiated-axis* data gap that behaves like a RISK for the *company* even though the *pilot* ships
+  — watch **DenialProof, AppealScore, ScreenProof** (free data proves a commodity axis; the moat axis
+  has no free paired labels) and **Callsmith** (no moat data until a client signs).
 
 ---
 
-### 2 · Kappa — judge-trust / eval-drift monitoring — founding — 83.3
+## Per-candidate cards (top 15 by composite)
 
-**Why it matters.** Teams gate releases and compliance dashboards on LLM-as-judge scores, but judges
-silently rot — provider model swaps and rubric drift arrive with no warning. Drift is documented
-(GPT-4 prime-identification accuracy fell 84%→51% over three months in 2023; a 2026 LLM-supply-chain
-study found ~22.9% of prompt behaviors regress on model updates). The eval/observability category is
-large and funded (Braintrust: $80M Series B at $800M, Feb 2026; Galileo, LangSmith, Arize, Confident
-AI all active), and every 2026 best-practice guide prescribes continuous judge calibration against
-human labels via Cohen's kappa — so the pain is recognized, not hypothetical.
-
-**Data availability.** Four options; **strongest data story of any candidate.**
-- **NVIDIA Judge's Verdict** (HF/GitHub, arXiv 2510.09738) — 1,994 items × 3 expert annotations (5,982
-  total), judge-vs-human on RAG answer accuracy, inter-annotator κ=0.79. **Purpose-built for exactly
-  this.** Verify HF license before commercial redistribution.
-- **Your own RAG-hallucination-judge study data** — release-clean, on-brand (your published work *is*
-  the product). Narrow (one domain) until pilots add breadth.
-- **Chatbot Arena / MT-Bench / UltraFeedback / RewardBench-2** — tens of thousands of human-preference
-  pairs for volume. **License triage required:** UltraFeedback MIT (OK), RewardBench-2 ODC-BY, Arena
-  *outputs* CC-BY-NC (non-commercial — research-only).
-- **Synthetic drift** (BabelJudge-style perturbations; judge/model-version replay) — the *only* way to
-  demonstrate the core promise, since public sets are snapshots. Under $100.
-- **Verdict:** *solved* — judge-vs-human paired data is abundant and free. The one gap is longitudinal
-  drift, which you synthesize (cheap, standard) — that's the differentiating asset, not a download.
-
-**Annotation.** First result: ~0 new labels (Judge's Verdict already carries 3 expert annotations/
-item). Scaled: a thin per-customer human-label stream sourced from *customers'* review queues, not you.
-Your hands-on stays at a 4–7 hr validation slice. No code review — pure scoring/label-comparison, your
-home turf. **Strong fit.**
-
-**Executability.** 6–9 part-time weeks to an OSS judge-drift-monitor CLI + drift report — the low end
-of the band because data and math are ready. Under $150 all-in. **Best skill fit on the whole slate.**
-**Top risk:** the competitive whitespace is thinner than hoped — Evidently (OSS) already ships
-judge-vs-human kappa + 20+ drift tests + alerting; Galileo Autotune converts SME corrections into
-calibration; DeepEval/Confident AI monitor judges over time. The value can collapse into a feature
-incumbents bundle, so you must win the unclaimed sliver: **platform-agnostic cross-customer drift
-*prediction* + a portable judge-trust badge**, not drift detection per se.
-
-**Outcome.** High for a pilot write-up ("measuring and predicting LLM-judge drift" with kappa curves)
-— sits next to Judge's Verdict/BabelJudge. **Very strong hire signal** — the most legible eval/
-reliability credential, with incumbents as plausible employers/acquihirers. Founding upside moderate:
-real recurring anxiety-driven pain, and a genuine data-flywheel moat (cross-customer disagreement
-stream that predicts miscalibration *before* the customer's own gold set), but the moat only accrues
-after paying design partners — pre-traction it's a promise.
-
-**Scores:** Ship 5 · Impact 3 · Found 3 · Exec 5 · Hire 5 → **Composite 83.3** (outcome 73.3, ease 100).
-
-**Verdict.** GO — the fastest-to-ship, best-skill-fit, cleanest-data bet and an outstanding hire
-artifact. Rank it top for ship-speed/executability/hire. Treat founding upside as a wedge to prove
-(incumbents already ship drift+kappa features); the one defensible edge is standalone cross-customer
-drift *prediction*.
+*Each card: why it matters · the data-availability options + verdict · annotation · executability + biggest
+risk · scores · one-line verdict.*
 
 ---
 
-### 3 · PV-Grade (pharmacovigilance decision benchmark) — pilot — 77.5
+### 1 · DisputeProof — Reg-E dispute-denial defensibility verifier — founding — 91.7
 
-**Why it matters.** Regulators now demand decision-specific, independent validation of drug-safety AI
-(FDA Jan-2025 draft guidance on AI credibility; CIOMS Working Group XIV, Dec-2025, the first
-consensus framework, with "validity and robustness" as a core principle). Yet no public yardstick
-exists for the four consequential PV decisions (causality, seriousness, expectedness, faithfulness) —
-vendor due-diligence tells buyers to hand-build their own ~100-case sets. Stakes are direct (a missed
-serious/causal reaction harms patients and creates liability) and the market is real (~$2.86B PV
-software in 2026, ~13% CAGR; Oracle Argus ~60% share, ArisGlobal, IQVIA all aligning AI roadmaps to
-these mandates). **The graded party wants a credible score** — the incentive is inverted.
+**Why it matters.** Banks must resolve unauthorized-transaction disputes under EFTA/Reg-E §1005.11, and a
+confirmed class-action surge (Duane Morris tracking; Navy Federal's $1.72M settlement on the exact denial
+fact pattern) plus a **private right of action (§1693m)** means the forcing function does *not* depend on
+CFPB enforcement appetite. An independent verifier that checks a denial's defensibility *before* the bank
+signs is exactly what a liability-holding buyer wants.
 
-**Data availability.** Four options.
-- **openFDA FAERS** — millions of reports, CC0, no IRB. Structured fields only → you template cases
-  into narratives (an audit burden). MedDRA-coded reactions (see caveat).
-- **i4Ds/drug-safety-narratives** (GitHub) — 1,139 *real* FAERS narratives via FOIA, **MIT**. No
-  structured labels shipped (join back by case ID); a supporting/validation set, not the full
-  benchmark, but strengthens external validity.
-- **OnSIDES** (tatonetti-lab) — 7.1M drug-ADE pairs, **MIT**, for expectedness reference lists.
-  MedDRA-coded, so expectedness gold inherits the MedDRA constraint.
-- **Published clinical rules** (WHO-UMC, Naranjo, ICH E2B/E2A, CIOMS) — free public docs; make
-  seriousness/expectedness deterministic and free. Causality does *not* reduce to a rule.
-- **Verdict:** *largely solved* — FAERS (CC0) + real FOIA narratives (MIT) + OnSIDES (MIT) + free
-  rules give **3 of 4 decisions essentially free at scale.** Gaps: (a) MedDRA-licensed strings — ship
-  a rebuild script + de-MedDRA'd labels; (b) causality — an annotation problem, not availability.
+**Data availability — SOLID.**
+- **CFPB Consumer Complaint Database (CCDB)** — free, public-domain, daily-updated real regulated data with
+  the exact narrative + monetary-relief fields. Zero license/ToS/scraping issues; redistribution in a
+  public artifact is explicitly permitted. Tens of thousands of narrative-bearing EFT/unauthorized-txn
+  complaints. **$0.**
+- **Self-generated synthetic denial packets** — LLM-drafted denial letters + investigation records seeded
+  from CCDB narratives and public consent-order fact patterns, with known §1005.11 defects injected. Owned,
+  unlimited, ~$0–50. Closes the gap the CCDB proxy leaves.
+- **Real EFTA denial letters + docket exhibits** (PACER, Navy Federal + Duane-Morris-tracked suits) — a
+  small, high-fidelity validation/anchor set (<$50).
+- **Verdict: SOLID.** The only real weakness is that the CCDB seed labels are an **outcome PROXY**
+  ("Closed with monetary relief" vs "explanation") rather than true §1005.11 reasonableness ground truth —
+  a *headline-strength* caveat, not a data-access blocker. This is why it sits at 91.7 and not in a
+  hypothetical clean-label tier.
 
-**Annotation.** ~60–80 causality cases + ~100 faithfulness items to start. Seriousness (~1,000) and
-expectedness need **zero** new labels (rule-derived). Faithfulness you label yourself (your RAG-
-grounding competency). **Causality needs genuine PV/clinical expertise** as a second rater (a lay
-label isn't defensible) — the one thing you can't fully self-supply. Recruitable: medical experts on
-Upwork at $22–35/hr; a comparable PV study cost ~$1,432 total. Your 4–7 hrs + a paid clinician session
-(~$150–250 for 60–80 cases). No code review anywhere. **YELLOW, not a blocker** — the causality gold
-is small, cheap, and recruitable.
+**Annotation.** ~4–7 hrs spot-adjudication of a stratified ~150–300-complaint sample to calibrate the
+defensibility judge against the monetary-relief proxy. You can do v1 (§1005.11 is learnable from CFPB
+error-resolution guidance); a Reg-E SME (ideally a design partner's QA analyst, free) sharply raises label
+credibility. Fits the budget.
 
-**Executability.** ~9–13 part-time weeks (narrow v1 deferring causality ~6–8). ~$150–350 total. Very
-strong skill-fit; only causality outsourced. **Top risk:** low causality inter-rater agreement caps
-the headline — but a pre-registered null still publishes and ships the other 3 decisions.
+**Executability.** A solo can absolutely ship v1 in one pilot: free instant download, a near-verbatim
+re-point of your published RAG-grounding judge, labeling inside 4–7 hrs. **Biggest risk is not access — it
+is proxy validity:** if agreement is low, distinguish "judge is wrong" from "proxy is noisy." **Fallback:**
+pivot to self-generated synthetic denial packets with injected known §1005.11 defects, reporting
+precision/recall on defect detection instead of a noisy outcome-agreement number — and grade the *real*
+product input (investigation record + letter), not the consumer narrative.
 
-**Outcome.** Strong and near-null-proof (low model scores *are* the regulatory-relevant headline).
-Homes: ML4H / GenAI4Health / ClinicalNLP workshop + a *Drug Safety*/JAMIA short paper (highest-leverage
-for the hire/found audience); borderline NeurIPS D&B. **Highest, most role-specific hire signal in the
-set** (ArisGlobal, Oracle Health, IQVIA, Veeva, PV-AI startups). Founding upside genuine but
-conditional — sponsors pay for a private continuously-refreshed validation set; moat is institutional
-trust. **Validate willingness-to-pay early:** a signed "your PV-AI is X% wrong on causality" report is
-discoverable legal evidence, so a cautious pharma lawyer may want the yardstick to *exist* but refuse
-to be scored on the record.
+**Scores:** Ship 5 · Impact 4 · Found 4 · Exec 5 · Hire 5 → **Composite 91.7.**
 
-**Scores:** Ship 3 · Impact 4 · Found 4 · Exec 4 · Hire 5 → **Composite 77.5** (outcome 86.7, ease 73.3).
-
-**Verdict.** GO — the strongest founding-and-hire bet in the set (regulator-driven demand, verified
-near-free data, elite skill-fit). Only caveat: the causality-gold dependency makes it the slowest of
-the top pilots to a *complete* artifact — ship a narrow 3-decision v1 first to protect ship-speed.
+**Verdict.** The strongest founding bet in the set: free public-domain regulated data, a genuinely
+legally-forced aligned buyer, and near-verbatim reuse of your published judge. The one thing to watch is
+that the seed ground truth is an outcome proxy — the synthetic-defect fallback fully neutralizes it.
 
 ---
 
-### 4 · Reviewer Scrutiny Metric (Stamp Score) — pilot — 76.7
+### 1 · TieProof — audit evidence tie-out verifier — founding — 91.7
 
-**Why it matters.** Human review is the last checkpoint between autonomous-agent code and production,
-and the evidence it's decaying is strong and multi-sourced: Anthropic's production data shows
-auto-approval climbing ~20%→40%+ with session count (trust/habituation, not model improvement);
-"Habituation at the Gate" (arXiv 2606.22721, 400 reviewers / 11,429 reviews) finds approval up
-+14.5pp with inline-comment effort down 22%. It's industry-scale (AIDev: ~933k agent-authored PRs
-across 116k repos), the downstream cost is measurable (DORA + Faros AI: incident-per-merged-PR more
-than tripled with AI adoption), and regulation is converging (EU AI Act Art. 14 treats rubber-stamping
-as non-compliant). **Flagged internally as the most bulletproof problem in the program.**
+**Why it matters.** PCAOB AS 1105 / QC 1000 liability makes an audit firm want an independent check that an
+AI's cited evidence actually supports each assertion before the partner signs. Real regulatory tailwind,
+liability-holder buyer.
 
-**Data availability.** Four options.
-- **AIDev** (HF + Zenodo) — curated subset 33,596 agent PRs from 2,807 repos with reviews, inline
-  comments, approval records + timestamps, diffs. Release derived feature/outcome tables keyed to
-  public IDs (repos keep their own licenses — clean). Volume trap: only ~15% of merged agent PRs carry
-  a substantive review.
-- **Revert/hot-fix labels** — self-generated from git history (deterministic). The ground-truth moat
-  *and* the biggest risk: reverts are ~2.7% of merge deviations and noisy (rollbacks/dep-bumps), so
-  the answer key is small and partly mislabeled.
-- **GH Archive on BigQuery** — the whole public GitHub firehose, 1 TB/month free — the scale fallback
-  to lift the positive class above the power floor.
-- **Widen agent-PR set via known bot accounts** — potentially hundreds of thousands of agent PRs; the
-  concrete lever for the power question.
-- **Verdict:** *solved* for inputs and largely for outputs. The unsolved part is **volume** — whether
-  enough defect-driven reverts co-occur with reviewed agent PRs to power the test. A cheap first-week
-  dry-run question, not a blocker.
+**Data availability — WORKABLE.**
+- **FinQA (CC-BY-4.0) + SEC EDGAR Inline XBRL (public-domain)** — the *numeric* tie-out channel: 8,281
+  expert QA pairs + all public filers, airtight self-labeling (a figure agrees with XBRL/FinQA or it
+  doesn't → zero manual labels). **$0.** This channel is genuinely SOLID — but it overlaps what
+  MindBridge/DataSnipper already do.
+- **AuditFraudBench** — real 10-K/MD&A + SEC AAER narrative channel, CC-BY-4.0, but the **download URL is
+  unconfirmed** and its task shape is fraud detection, not per-assertion faithfulness — re-point, don't use
+  as-is.
+- **FinVerBench** — **the brief mischaracterizes this:** it is synthetic error-injection over only 43
+  companies (1,985 instances), a numeric-consistency task that duplicates the FinQA/XBRL channel, not
+  "real claim verification with supported/refuted/NEI labels."
+- **Self-generated source→assertion grounding set + AAER restatement pairs** — the *only* option that
+  actually produces the per-assertion supported/unsupported signal the product sells. Self-owned, ~$0 +
+  4–7 hr.
+- **Verdict: WORKABLE.** The numeric channel is SOLID and self-labeling; the **narrative-grounding moat
+  channel is over-sold in the brief** and must be self-generated as a proxy. **Fallback:** FinDVer (4,000
+  expert-annotated claim-verification examples over real financial docs) is a stronger natural seed —
+  verify its HF license first.
 
-**Annotation.** ~150–200 review artifacts hand-labeled on 4 binary depth features + ~50 reverts triaged
-defect-driven vs. rollback. **You alone, ordinary working-engineer review-literacy** (substantive
-objection vs. style nit). Outcome labels free from git; depth scores LLM-generated at scale. It's
-*reading* reviews, not authoring code fixes — **dodges the code-review dislike.** Inside 4–7 hrs.
+**Annotation.** ~4–7 hr on the numeric channel (near-zero labels) **plus** ~4–7 hr to hand-verify a
+few-hundred-item narrative grounding set — realistically 8–14 hr across two channels, slightly over the
+ideal. Stage it: ship numeric first to stay in budget. No CPA needed for a v1 benchmark.
 
-**Executability.** 6–9 part-time weeks (lightest/fastest of the pilots alongside Ingestion). ~$100–200.
-Near-perfect skill-fit (direct reuse of your hallucination-judge methodology). **Top risk:** statistical
-power / thin positive class — the reviewed-AND-reverted intersection may be too small at 3–5 repos.
-Mitigation built in (GH Archive scale-out + a blinded power dry-run *before* the confirmatory test),
-and a rigorous null still publishes, so the risk caps finding-strength, not shippability.
+**Executability.** The numeric benchmark is turnkey and ships fast/cheap. **Biggest risk is not the
+benchmark — it is that the product's real moat** (a cross-firm corpus of real AI-evidence defects +
+reviewer verdicts) is unobtainable from any public source and depends on audit firms letting a third party
+ingest their AI outputs, which they are structurally incentivized to refuse — plus brutally slow,
+relationship-gated mid-market audit-firm sales for a solo.
 
-**Outcome.** Solid workshop grade (HEAL@CHI, KDD-SE, MSR/EASE) + released dataset; MSR registered-report
-upgrade. **Null-robust** ("review depth does not predict escaped defects, here's a better proxy" is
-welcomed). Clear novelty delta (Habituation uses shallow proxies + no defect validation; CRScore
-validates against human ratings not realized defects). Strong current hire signal into a well-funded
-AI-code-review sector (CodeRabbit $60M Series B ~$550M; Greptile $25M Series A; ~$420M ARR category).
-**Founding upside weak — the honest limit:** output is a standard/measurement whose only moat is
-institutional trust, the product adjacency is crowded/capitalized, and no graded party is a paying
-buyer (unlike PV-Grade). Nonprofit/hire is the realistic ceiling.
+**Scores:** Ship 5 · Impact 4 · Found 4 · Exec 5 · Hire 5 → **Composite 91.7.**
 
-**Scores:** Ship 5 · Impact 4 · Found 2 · Exec 4 · Hire 4 → **Composite 76.7** (outcome 66.7, ease 86.7).
-
-**Verdict.** A GO and a top-tier ship-speed pick — your exact skillset, free/verified data, ~$100–200,
-no code review, null-robust: the sharpest fast credential in the set. But treat it as a **hire/nonprofit
-play** (founding upside is genuinely weak) and settle the thin-revert power question with a dry-run in
-week one before committing.
+**Verdict.** Free self-labeling numeric data ships a benchmark fast and cheap, and the PCAOB tailwind is
+real — but the narrative-grounding moat is over-sold and the true cross-firm defect corpus is unobtainable
+publicly. Ties DisputeProof on composite; ranks *behind* it on the tiebreak because its differentiated
+channel is WORKABLE where DisputeProof's data is SOLID.
 
 ---
 
-### 5 · GroundTruth Streams (structured-public-data corpora) — founding — 76.7
+### 3 · ToolTamer — agent/MCP tool-call repair — founding — 89.2
 
-**Why it matters.** Every fintech/reg-tech/health AI team re-does the same drudgery: pulling structured
-public feeds (SEC XBRL, FAERS) and cleaning them into grounded QA/eval sets, because raw feeds ship as
-relational dumps needing DB expertise. Financial reasoning is an active pain point (FinanceBench,
-SEC-QA, FinTagging, FinAuditing, PHANTOM, FinGround all 2024–26), and the training-data market is
-enormous (Surge ~$1.2B revenue; Mercor $10B valuation; Anthropic reportedly discussing $1B+ on RL
-environments). Fresh grounded eval data is the scarce input for trustworthy financial/health LLMs.
+**Why it matters.** Malformed tool/MCP arguments fail silently or trigger expensive frontier round-trips
+and runaway loops. Runtime reliability is where 2026 agent funding is moving.
 
-**Data availability.** Four options — **best-in-class.**
-- **SEC EDGAR XBRL** — public-domain, ~3000 TB/yr served free; quarterly zips + no-auth JSON APIs.
-  Release-clean for commercial redistribution of *derived* corpora. **Most contested** — Kensho (S&P
-  Global) already published SEC-QA, the same "accumulation clock" from a resourced incumbent.
-- **FDA FAERS / openFDA** — public/open, redistribution-friendly; genuinely underserved for AI-ready
-  packaging, but needs relational-DB assembly and the health-AI buyer pool is narrower.
-- **USPTO PatentsView + ClinicalTrials.gov AACT** — open bulk data; diversification that proves the
-  "many public streams" thesis, but each is a fresh cleaning project with no shared pipeline leverage.
-- **Existing open financial eval sets** (FinanceBench, FinQA, TAT-QA, ConvFinQA) — scaffolding + gap-
-  map; notably FinanceBench is CC-BY-NC (non-commercial), leaving a clean commercially-licensed opening.
-- **Verdict:** *completely solved, best-in-class* — multiple free, public-domain, release-clean,
-  continuously-updated feeds with zero annotation. **The bottleneck is not data; it's differentiation**
-  — the raw material is equally free to every competitor.
+**Data availability — SOLID.**
+- **Official MCP Registry API + reference servers** — 8,400+ verified servers (mcp.so ~20k, Glama/LobeHub
+  53k+); pull 200–500 real tool schemas (MIT/Apache, redistributable) then fuzz into malformed→repaired
+  pairs. **$0.**
+- **Self-generated malformed calls** — prompt an LLM against real schemas, capture schema-validation
+  failures as naturalistic examples; validation is the free label oracle. <$50.
+- **Public MCP fault research** (MCP-Atlas, MCP-Bench, fault taxonomies) — free for taxonomy/eval; check
+  per-repo terms before embedding their *data* in a product.
+- **Real runtime triples from the shipped OSS interceptor** — the actual moat, un-backfillable, but **ZERO
+  until adoption.**
+- **Verdict: SOLID.** Free permissively-licensed schemas at scale + schema validation making ground truth
+  self-generatable = fully de-risked on data. The only caveat is the moat corpus accrues post-launch.
+  **Fallback:** hand-author/LLM-synthesize representative schemas — the fuzz-and-validate pipeline needs no
+  third-party data at all.
 
-**Annotation.** Effectively zero. ~500 grounded numerical-QA + hallucination-eval pairs auto-generated
-from XBRL facts with Claude judges; your only human effort is a 4–7 hr hand-validation of a ~50–100
-stratified slice (a spot-check that doubles as the publication's credibility metric). No domain
-annotators, no crowd, no code review. XBRL provides ground-truth values, so labels self-source.
+**Annotation.** Effectively zero manual labeling — schema validation is the label oracle. ~4–7 hr spent on
+spot-checking repair quality and defining the failure taxonomy, not per-example labeling. No code review.
 
-**Executability.** 3–6 part-time weeks to a shippable pilot — **among the fastest of all candidates.**
-Well under $500. Near-perfect skill-fit (pure data-pipeline + LLM-as-judge). **Top risk: differentiation,
-not execution.** The accumulation clock is weak against a solo — Kensho already built continuously-
-refreshing SEC-QA, free academic corpora proliferate, and the high-value data-for-labs market is
-dominated by funded players (Surge, Mercor, Scale). The real risk is building a beautiful corpus
-nobody pays a recurring fee for.
+**Executability.** A solo can ship the pilot inside 6–13 wks and <$500 (scrape schemas, fuzz/generate
+pairs, fine-tune a 1–3B repair model, wire an MCP+one-framework interceptor, publish OSS). **Biggest risk
+is not data — it is distribution and hot-path latency:** the value prop is repair in <100ms and the moat
+only forms if the OSS package gets real adoption. Secondary: horizontal fine-tuning/observability vendors
+could bundle a repair step.
 
-**Outcome.** High for a pilot artifact (a fresh, commercially-licensed, continuously-refreshing
-financial hallucination/numerical-reasoning eval set with judge-agreement numbers → HF release +
-EMNLP/NeurIPS-D&B/FinNLP writeup). Strong hire signal — arguably **best pure hire-signal-per-week** —
-a public data+judge pipeline is a direct audition for data-foundry/lab-data teams. **Founding upside
-is the weakest dimension:** thin moat over free public data, out-accumulable by incumbents; a data
-product/on-ramp, not a venture company. Defensible variants only: a narrow commercial-license wedge
-(vs CC-BY-NC free sets) or a pivot to expert-verified RLVR verifiers where labels stop being free.
+**Scores:** Ship 5 · Impact 4 · Found 4 · Exec 5 · Hire 4 → **Composite 89.2.**
 
-**Scores:** Ship 5 · Impact 3 · Found 2 · Exec 5 · Hire 4 → **Composite 76.7** (outcome 60, ease 100).
-
-**Verdict.** A near-perfect fast, cheap, zero-annotation **ship-and-hire** bet (and an ideal always-on
-background project extending your published work), but a **weak founding bet** — the moat is free public
-data an incumbent (Kensho/S&P) is already accumulating. Treat it as a publication + hire-signal play,
-not a company, unless you pivot toward commercially-licensed or expert-verified RLVR verifiers.
+**Verdict.** Data-perfect founding bet — free MIT/Apache schemas + label-free ground truth make the pilot
+near-frictionless; the risk shifts entirely off data and onto distribution/latency and a moat that forms
+only after adoption. A hair below the regulated-buyer anchors because it lacks their legally-forced buyer.
 
 ---
 
-### 6 · RailKit — drop-in hallucination guardrail SDK — founding — 71.7
+### 4 · ReasonProof — ECOA adverse-action reason-code faithfulness verifier — founding — 87.5
 
-**Why it matters.** Hallucination liability is live and priced: *Moffatt v. Air Canada* (2024) held a
-company liable for its chatbot's invented policy; in April 2025 Cursor's own support bot fabricated a
-login policy that drove real cancellations. The exposed population is huge (YC batches ~60% AI, ~11%
-solo, "vibe-coder" founders shipping AI-native SaaS everywhere), and willingness-to-pay is externally
-validated — affirmative AI E&O insurance covering hallucinations now exists (Vouch, Munich Re aiSure/
-Mosaic up to $15M, HSB).
+**Why it matters.** ECOA/SR-11-7 forbids the self-attesting model from being its own effective challenge;
+an independent per-decline faithfulness check is regulatorily grounded. Legally-forced, liability-holder
+buyer.
 
-**Data availability.** Four options.
-- **RAGTruth** (MIT) — ~18k responses / ~3k source instances, span-level hallucination annotations.
-  Best free seed for the grounding judge + a cheap distilled classifier; generic domains, not vertical
-  policy text.
-- **HaluEval** (MIT) — 35k QA/dialogue/summarization pairs for judge benchmarking + hard-negative
-  mining; synthetic hallucinations skew easy vs. real silent errors.
-- **HaluBench** (Patronus) — 14,900 CQA-label rows. **CC-BY-NC — non-commercial:** great as a published
-  pilot benchmark, but keep out of the shipped product/moat data.
-- **Pilot correction/override logs** (generate live) — the *only* defensible dataset, un-backfillable,
-  but a chicken-and-egg cold-start: zero on day one, thin from small seed customers.
-- **Verdict:** bootstrap data *solved* (RAGTruth + HaluEval MIT fully seed the judge + a distilled
-  classifier for free); the **moat data is not solved** — the cross-domain correction corpus only
-  exists after paying customers route live traffic, exactly the resource a solo lacks.
+**Data availability — WORKABLE.**
+- **HMDA public Modified LAR** (FFIEC/CFPB) — ~10M+ records/yr, ~99 fields, public-domain/CC0, downloadable
+  today. **$0.** **But the public LAR redacts the single most decisive driver:** credit score is not
+  disclosed, the AUS result is redacted, and it gives **no (real-model → emitted-codes → true-drivers)
+  triples.**
+- **Self-generated controlled experiment** — train your own transparent model, bolt SHAP on a black-box
+  twin, grade SHAP codes against known coefficients + re-seed stability. Zero annotation, laptop compute.
+  **This is the actual fast path** and the honest core of the "self-generated ground truth" claim — but it
+  measures "SHAP is unfaithful on a model I built," a *controlled demonstration*, not a measurement on a
+  real lender's live decisions.
+- **Design-partner lender data** (scored declines + emitted reason codes, under NDA) — the only source of
+  true triples, but a company-stage motion, not a v1-artifact source.
+- **Public credit datasets** (LendingClub, Fannie/Freddie, German credit) — add credit-score-like signal
+  HMDA lacks; check per-dataset ToS.
+- **Verdict: WORKABLE.** The "self-generated ground truth on real regulated data" claim is oversold — the
+  shippable result is a strong controlled/synthetic demonstration, not a measurement on real lender
+  decisions. This is why Exec drops from 5 to 4.
 
-**Annotation.** First judge: 0–200 self-labels; scaled: none of yours — moat labels auto-mined from
-pilot override/block actions ("this was fine" / "this was wrong" *is* the label). You validate a
-~100–200 RAGTruth/HaluEval slice. No code review. $0–50. Fits the ceiling comfortably.
+**Annotation.** ~4–7 hr spot-adjudication is sufficient for the controlled v1; the core ground truth is
+**computed, not hand-labeled**, which genuinely fits your dislike of manual review. No SME gate.
 
-**Executability.** A thin SDK (wrap one outbound LLM call, run a domain-configured grounding judge,
-block/route/log) is 3–5 part-time weeks; the credible founding version (hosted judge + dashboard +
-distilled classifier) is 9–13 weeks. Under $500 (Haiku-class judge ~$0.15–0.30 / 1k messages). Very
-high skill-fit — your published RAG-judge work productized. **Top risk: wedge erosion, not build** —
-the "solo founder priced out of Galileo" gap is largely already served: Patronus ships self-serve
-pay-as-you-go eval+guardrails with a hallucination model (Lynx), Guardrails AI Pro is a managed
-service, natural-language rule config already exists (Maxim/Bifrost, GraySwan Cygnal), Guardrails AI
-OSS is free. Differentiation must be the cross-domain flywheel + English config — thin and cold-start-
-dependent.
+**Executability.** A solo can ship the controlled v1 in 6–13 wks on <$500 — a near-verbatim re-point of
+your grounding judge, no PHI/BAA/SME gate. **Biggest risk:** the cheap fast result proves the *methodological*
+claim, not the *product* claim, because public HMDA lacks credit score/AUS/triples. Second: AVAAS already
+sells SR-11-7 independent validation to this exact buyer and is one scope decision from per-decline
+faithfulness; examiner-gated MRM procurement is slow for a solo. **Fallback:** publish a fully
+self-generated reason-code-faithfulness + re-seed-stability suite over HMDA + open credit datasets — zero
+annotation, defensible as a methods contribution.
 
-**Outcome.** Moderate as a pilot (an English-configured-judge-vs-human agreement study on RAGTruth/
-HaluBench extends your paper → EMNLP/NeurIPS workshop or a strong blog+HF release; least novel of your
-candidates scientifically). Strong hire signal — a shipped reliability SDK + hosted judge + live
-cost/latency/agreement chart is exactly what Galileo/Patronus/Braintrust hire for. Founding: real,
-funded category (Galileo ~$68M, Patronus $50M Series B) with a reachable buyer, but you'd enter where
-funded incumbents already offer self-serve English-configured guardrails, competing on a flywheel moat
-you don't yet have.
+**Scores:** Ship 5 · Impact 4 · Found 4 · Exec 4 · Hire 5 → **Composite 87.5.**
 
-**Scores:** Ship 4 · Impact 3 · Found 3 · Exec 4 · Hire 4 → **Composite 71.7** (outcome 66.7, ease 80).
-
-**Verdict.** Fastest, cheapest, most skill-aligned path to a shippable reliability SDK and a strong
-hire signal — but as a founding bet the "priced-out solo founder" wedge is already crowded and the only
-real moat is a correction corpus with a hard cold-start. **A conditional go:** build it fast for the
-artifact and hire leverage; treat the company as an upside option, not the thesis.
+**Verdict.** A genuine top-of-pool founding bet — legally-forced buyer, free HMDA, computed ground truth
+that removes the SME bottleneck — but the data audit knocks Exec to 4 because it's really a
+controlled/synthetic study, landing it at NoteProof parity with AVAAS as a live founding threat.
 
 ---
 
-### 7 · ToolTamer — agent tool-call repair — founding — 67.5
+### 4 · NoteProof — AI-scribe clinical-note grounding verifier — founding — 87.5
 
-**Why it matters.** Tool/MCP calls are the point of maximum pain in the 2026 agent wave: 52% of
-enterprises run agents in production, and malformed arguments/schema violations either fail silently
-(agents hallucinate around a bad return) or trigger expensive frontier round-trips and documented
-recursive loops that burn thousands in credits overnight. Failure concentrates in the cheap/local-
-model and complex-nested-schema segment (budget models 70–85% well-formed; even Opus 4.8 / Sonnet 5
-flagged for occasional invalid args), across 9,652+ official and ~20,000 community MCP servers. Runtime
-reliability is where 2026 funding is moving (agent-governance seed rounds = 50% of deals; CodeIntegrity
-$5M).
+**Why it matters.** The signing physician holds non-delegable liability for an AI-drafted note; an
+independent grounding check before signature is exactly aligned with the buyer. Real, forced buyer.
 
-**Data availability.** Four options.
-- **MCP registries** (~9,652 official, ~20,222 indexed) — public schemas → fuzz into malformed→repaired
-  pairs. License-clean but synthetic (plausible-not-real errors); **not the moat.**
-- **Berkeley Function Calling Leaderboard** (HF, permissive) — thousands of function-call cases + gold
-  calls to corrupt (AST-checkable). Eval harness, not repair.
-- **ToolFailBench** (arXiv 2607.04686, CC-BY-4.0) — 1,000 labeled tool-failure cases; taxonomy is
-  behavioral, does *not* cover repair — an eval/negative seed.
-- **Self-generated from real agent traces** via an OSS interceptor — the intended moat, but zero at
-  launch, grows only with adoption.
-- **Verdict:** data to *build and demo* is fully solved and free (public schemas + BFCL + CC-BY
-  ToolFailBench, all fuzzable, zero human labeling); the **moat data (real live correction triples) is
-  not solved for a solo** and only accrues after distribution.
+**Data availability — SOLID.**
+- **ACI-Bench** (Nature Sci Data 2023; GitHub + Figshare) — 207 transcript-note pairs, **CC-BY-4.0
+  (commercial + redistributable)**, **fully synthetic with zero PHI**, downloadable today. **$0.** The
+  catch the brief understates: the released notes are the **cleaned, grounded (positives-only) version** —
+  you must **generate the hallucinations** to test detection.
+- **Self-generated scribe drafts over ACI-Bench transcripts** — feed the 207 transcripts to a scribe
+  prompt, judge each sentence transcript→note, producing a proper grounded+hallucinated detection test.
+  ~$20–60.
+- **PriMock57** (Babylon) — independent second corpus (57 mock consults), but **license unstated — confirm
+  before redistribution.**
+- **MEDIQA-Chat 2023** — same ACI-Bench data as challenge splits; a recognized benchmark handle, no new
+  data.
+- **Verdict: SOLID.** Free, CC-BY, zero-PHI, downloadable today. Only caveat: released notes are
+  pre-cleaned, so you self-generate the hallucinations (cheap, in-skill). **Fallback:** PriMock57 for
+  generalization; or self-generate unlimited synthetic transcript→note sets (no PHI needed).
 
-**Annotation.** ~0–2 hours — essentially zero. A hand-validated ~50–100 fuzzed-pair slice for realism.
-Light JSON/schema literacy, **no code review** (labels are schema-validator + retry outcomes, which you
-prefer). Self-labeling: JSON-schema validation gives the pass/fail label for free. **One of the lowest-
-annotation candidates.**
+**Annotation.** ~4–7 hr to hand-adjudicate 50–100 note sentences (supported/unsupported/contradicted with
+cited span) on a self-generated draft slice. ACI-Bench even ships validated annotation guidelines (0.85 F1)
+to reuse. A clinician sanity-check on ~20 borderline sentences is optional. Fits.
 
-**Executability.** 7–11 part-time weeks (~2 wk interceptor, ~2–3 wk fuzz pipeline, ~2–3 wk fine-tune a
-1–3B repair model + eval, ~1–2 wk OSS packaging). $150–450 (LLM synth + one GPU fine-tune + hosting).
-Strong ML skill-fit; **gap:** production SDK/runtime engineering (in-path latency, framework
-integrations, npm/pip DX) is software-eng outside your eval/ML core. **Top risk: the core value prop is
-already a free framework primitive** — Vercel AI SDK ships `experimental_repairToolCall`, and frontier
-models self-correct on a second attempt at 95–99%. The only wedge is a tiny repair model clearly
-faster/cheaper than a frontier round-trip *plus* a corpus you can't get solo.
+**Executability.** A near-verbatim re-point of your published judge. **Biggest risk is downstream of the
+pilot:** the moat corpus (real cross-vendor hallucinations) needs health-system PHI access a solo can't
+self-generate; gated EHR distribution + procurement-driven safety buying is brutal for a part-time solo.
 
-**Outcome.** Moderate as a pilot (an engineering result, not novel research: "a 1–3B model recovers X%
-of malformed calls at 1/Nth the cost/latency, on BFCL + ToolFailBench"). High hire signal — the hottest
-2026 buyer wave, shows the full interceptor→corpus→fine-tune→eval loop; an adopted npm/pip package is a
-strong portfolio artifact. **Founding: weakest of the strong candidates** — headline feature already
-free in Vercel AI SDK, frontier reliability rising, moat needs an install base a solo can't bootstrap.
-More likely a hire-magnet/acqui-hire OSS than a defensible company.
+**Scores:** Ship 5 · Impact 4 · Found 4 · Exec 4 · Hire 5 → **Composite 87.5.**
 
-**Scores:** Ship 4 · Impact 3 · Found 2 · Exec 4 · Hire 4 → **Composite 67.5** (outcome 60, ease 80).
-
-**Verdict.** Fastest-to-ship and lowest-annotation of the founding bets with excellent self-labeling
-data and strong hire signal — but a weak founding case (repair is commoditized, frontier reliability
-is rising, the moat needs an installed base). **Treat it as an OSS hire-magnet, not a company.**
+**Verdict.** SOLID data + a legally-forced aligned buyer make NoteProof a genuine 87.5 — top-tier
+ship-speed and hire-signal — held just below the 91.7 tier only because the moat corpus needs PHI a solo
+can't reach and ground truth must be generated rather than downloaded.
 
 ---
 
-### 8 · Injection Defense Report Card — pilot — 65.8
+### 4 · PortalProof — AI patient-portal reply verifier — founding — 87.5
 
-**Why it matters.** Prompt injection is OWASP LLM Top 10 #1 (2024 and 2025), at the exact layer where
-deployment is exploding (agents send email, move money, query DBs over untrusted content). The
-methodological stakes are large: "The Attacker Moves Second" (arXiv 2510.09023, USENIX Sec '26) broke
-12 published defenses at >90% ASR despite near-zero self-reported rates; Zhan et al. (NAACL '25) broke
-every evaluated agent defense at >50% ASR — so buyers can't distinguish robustness from marketing.
-Market pull is current: **OpenAI acquired Promptfoo (March 2026)** to embed injection/red-team testing
-into its enterprise platform, proving both demand and that independent injection-eval expertise is a
-hot hire/acquisition target.
+**Why it matters.** Same liability-holder shape as NoteProof, distinct sub-workflow (in-basket replies): a
+clinician signs an AI-drafted patient message and owns the fabrication/safety-net/acuity risk.
 
-**Data availability.** Four options — **richest, cleanest data path of the six pilots.**
-- **AgentDojo** (MIT) — 97 user tasks + 629 security test cases, with a *programmatic* state-diff success
-  oracle (no LLM judge needed for ground truth). Its own live leaderboard is static — that's the gap you
-  exploit. 629 cases clear the power requirement.
-- **Released adaptive-attack code** — OET (MIT) + Zhan et al. + Attacker-Moves-Second, wrapped under a
-  fixed budget. Caveat: AdaptiveAttackAgent is all-rights-reserved → **re-implement, don't vendor.**
-- **Defenses under test** — CaMeL (Apache-2.0), AgentDojo baselines (MIT), Meta-SecAlign, spotlighting/
-  PromptArmor/MELON/Progent/FIDES. Caveat: Meta-SecAlign *code* is CC-BY-NC → **grade via released
-  weights, not code.**
-- **Grader-gameability (OracleProof)** — HarmBench validation set (596 human-labeled completions, MIT);
-  documents benign-framing wrappers flipping judges 57–100% — directly usable as the grader-gaming test.
-- **Verdict:** *fully solved* — every ingredient exists under permissive licenses with a deterministic
-  oracle, and volume clears the power bar. The only two caveats are license-hygiene fixes, not blockers.
+**Data availability — WORKABLE.**
+- **PortalPal-AI** (Dartmouth, arXiv 2601.11344, HF) — real de-identified chart context + patient message +
+  gold clinician reply — **exactly PortalProof's input triple**, refuting the brief's "conversations not
+  pairs" worry. But **only 100 rows, single-annotator, CC-BY-NC (non-commercial):** fine for the artifact,
+  a commercial-license conversation later.
+- **PMR-Bench** (arXiv 2601.13178) — de-risks the acuity/emergency-routing check the brief called
+  "unproven" with real urgency labels (1,569 msgs; usable public portion ~1,181). Pairwise-ranking format,
+  needs light re-framing; the real-EHR slice is walled.
+- **MedRedQA + r/AskDocs** — ~51k real patient-question/physician-answer pairs; large free volume for the
+  faithfulness judge, but no chart context.
+- **npj guardrails 59-code error ontology** — a peer-reviewed labeling rubric (a huge annotation
+  shortcut); the underlying corpus is not confirmed released.
+- **Verdict: WORKABLE.** The audit slightly *improves* the picture (real free paired data + PMR-Bench
+  de-risks acuity), but the best pairs are CC-BY-NC + only 100 rows and MIMIC is credentialed — so free
+  data powers the SHIP artifact, not a commercial product corpus. **Fallback:** MedRedQA (unlimited, zero
+  PHI) loses chart-grounded fabrication but is a clean escape hatch.
 
-**Annotation.** ~150–200 agent transcripts hand-labeled attack-succeeded/failed/ambiguous to validate
-the oracle + anchor the OracleProof flip-rate. **You alone** — AgentDojo task semantics + injection
-success conditions ("was the money actually transferred?"), no security depth, **no code review.**
-Mostly sourced free (deterministic oracle + reused 596-item grader set). Fits 4–7 hrs. One of the
-lightest loads in the set.
+**Annotation.** ~4–7 hr: self-generate AI drafts on ~100–150 message+chart items, then label three flags
+(fabricated instruction / dropped safety-net / under-routed emergency) at ~2–3 min each; acuity flag
+bootstraps from PMR-Bench. The npj ontology substitutes for clinician expertise on the first pass. Fits.
 
-**Executability.** ~6–9 part-time weeks (fast substrate; person-weeks concentrate in faithfully
-reproducing 10–15 defenses to their reported static ASR + per-defense adaptive harnessing). Well under
-$500 (single rented GPU + judge API). **Strong-to-moderate skill-fit** — LLM-as-judge/eval fits, but
-security-adversarial-optimization plumbing (GCG/search wrappers, defense reimplementation) is the
-least-familiar surface. **Top risk: under-attack confound** — a ≤$500 solo can't attack as hard as a
-funded lab, so any favorable grade is confounded with "budget too small," and the null ("defenses
-hold") is the weakest in the set. Secondary: fast-moving competition shrinking the referee window.
+**Executability.** The faithfulness check re-points your judge near-verbatim; self-labeling fits 4–7 hr /
+$0 / zero PHI. **Biggest risk is unchanged and downstream of data:** gated EHR/in-basket distribution +
+procurement-driven safety buying is brutal for a part-time solo.
 
-**Outcome.** Solid workshop tier (NeurIPS/ICLR safety, SaTML) + a living leaderboard as the credibility
-engine. Moderate novelty (attack method imported; the contribution is the standardized recurring graded
-protocol + the OracleProof grader-gameability audit). **Highest, most CURRENT hire signal in the set** —
-the Promptfoo→OpenAI acquisition makes independent injection-eval a directly-hirable specialty.
-**Founding upside low:** the only moat is neutral-referee trust (uncopyable at ≤$500, slow to earn), no
-data/IP asset, and vendors are *absorbing* red-team tooling. **Moat weak and eroding** — PIArena
-(arXiv 2604.08499, Apr 2026), independent adaptive re-evals (arXiv 2606.26479), and commercial ranked
-lists already exist; the unclaimed combo (recurring dated A–F card + grader-gameability audit) survives
-today but is defensible in months, not years.
+**Scores:** Ship 5 · Impact 4 · Found 4 · Exec 4 · Hire 5 → **Composite 87.5.**
 
-**Scores:** Ship 4 · Impact 3 · Found 1 · Exec 4 · Hire 5 → **Composite 65.8** (outcome 60, ease 80).
-
-**Verdict.** A high-hire-signal, data-solved, self-doable pilot that ships in ~6–9 weeks — **take it as
-a marketable safety/security credential** (ride the Promptfoo→OpenAI wave), not a founding bet, and
-**move soon** because the neutral-referee window is measurably closing.
+**Verdict.** Ties NoteProof and clears the mid-tier: the data audit slightly improves the picture, but the
+non-commercial license + tiny corpus + gated distribution keep it found-plausible, not found-strong, and
+short of the 91.7 tier.
 
 ---
 
-### 9 · Multilingual Safety Meter (Ternary-PPI) — pilot — 62.5
+### 7 · DenialProof — medical-necessity denial verifier — founding — 86.7
 
-**Why it matters.** The multilingual safety gap is real, large, and lands on the least-protected
-populations: Yong et al. showed translating disallowed prompts into low-resource languages (Zulu,
-Scots Gaelic, Guarani) raised GPT-4's harmful engagement to ~79–80% (arXiv 2310.02446); M-ALERT found
-cross-lingual inconsistencies across 39 models; IndicSafe (2026) reports only 12.8% cross-language
-safety agreement across 12 Indic languages (~1.2B speakers). Labs publish no per-language numbers, and
-UK AISI / Frontier Model Forum fund independent multilingual-safety work. The field's real gap: the
-reported per-language number is untrustworthy because the LLM judge fails in exactly the low-resource
-regime it grades — the specific hole this method fills.
+**Why it matters.** California SB-1120 forces a licensed clinician (not an algorithm) to make medical-
+necessity denials — a legally-forced aligned buyer. A pre-send record-grounding check on the denial is the
+novel axis.
 
-**Data availability.** Four options — **materially better than the briefs assumed.**
-- **RabakBench** (HF, govtech-singapore license — *not* "modified-MIT" as doc 19 said) — ~132 items/lang
-  incl. Tamil, prompts-only with human safety labels. The only clean-license source covering Tamil, but
-  responses aren't free (generate them) and 132 Tamil items is thin.
-- **PolyGuardPrompts** (COLM 2025, arXiv 2504.04377) — **CC-BY-4.0 (best license here)**, 29,300 samples
-  × 17 languages, each with prompt + response + human refusal/harm labels. **Game-changer:** removes the
-  "responses not free" *and* much of the "gold not free" blocker for the high-resource control arm
-  (Hindi/Chinese). No Tamil.
-- **IndicSafe** (GitHub, arXiv 2603.17915) — ~6,000 culturally-grounded prompts × 12 Indic langs incl.
-  Tamil; verify repo license (treat measure-only until confirmed); still needs self-generated responses.
-- **LinguaSafe** (arXiv 2508.12733) — 45k entries, incl. Malay/Bengali — a fallback low-resource language
-  if Tamil annotator recruitment fails.
-- **Verdict:** *solved* for a solo pilot — PolyGuardPrompts unlocks free responses+gold for the control
-  arm; RabakBench/IndicSafe supply Tamil prompts. Remaining cost: (a) generate Tamil responses, (b) the
-  ~50-item native-Tamil ternary gold set — neither free. Avoid M-ALERT (CC-BY-NC-SA) for release.
+**Data availability — WORKABLE.**
+- **California DMHC IMR Determinations** — direct CSV, ~30k+ real labeled overturn/uphold outcomes with
+  free-text rationale. **$0. Caveat: "No License Provided" + OPA terms — noncommercial free, all commercial
+  uses need approval.** It proves the **commodity overturn-prediction axis** (Revecore, Epic already do
+  this), NOT the novel pre-send record-grounding axis, and gives no denial-letter→submitted-record pairs.
+- **CMS Medicare Coverage Database (NCD/LCD)** — public-domain, redistributable — the license-clean
+  substitute for the criteria leg.
+- **InterQual / MCG** — **VERIFIED BLOCKER:** proprietary licensed ontology, cannot be publicly
+  distributed, enterprise-only. Mitigation: build on public NCD/LCD + treat InterQual/MCG as
+  customer-supplied-at-runtime.
+- **Self-generated synthetic (denial, record, criteria) triples** grounded on MIMIC-IV-Note + public
+  NCD/LCD — the **only path to the actual moat**, needs a **paid clinician second-rater ($150–350).**
+- **Verdict: WORKABLE.** Free labeled real data ships the overturn axis today (commodity); the novel moat
+  needs synthetic triples + a paid rater + a criteria-license workaround. **Fallback:** ship a pure DMHC
+  overturn-risk v1 and demo grounding qualitatively; Texas TDI IRO + Medicare Appeals Council add
+  cross-jurisdiction labels.
 
-**Annotation.** ~50 human-verified ternary {REFUSE, COMPLY, UNCLEAR} gold labels **per language**
-(PPI debiases a several-hundred-item machine-labeled pool from this small gold). Total across 2–3 langs
-≈ 100–250. You do English gold + adjudication yourself. **Non-negotiable:** the Tamil labeler must be
-native/fluent *and* able to judge whether a response advances a harmful goal — the one thing you can't
-self-supply. Recruitable (Upwork/Prolific Tamil freelancers, ~$15–30/hr → ~$50–150 for the set). No
-code review. Fits tightly; **the load-bearing risk is recruiting a reliable native annotator**, not the
-label count.
+**Annotation.** DMHC outcome labels are pre-labeled (0 new for the overturn axis). The moat needs ~50–100
+synthetic triples second-rated by a **licensed clinician/UM nurse — the one thing not free**, and generating
+synthetic denials is exactly the manufactured-label work you dislike. Fits the hours but strains your
+preferences.
 
-**Executability.** ~7–10 part-time weeks (estimator is off-the-shelf: `ppi_py`'s `ppi_mean_ci`; effort
-is data plumbing + response generation + gold recruitment + coverage-simulation writeup). ~$150–300 API
-+ ~$50–150 annotation. Very high skill-fit + a light PPI lift. **Top risk: the pre-registered
-identifiability limit** — if fluent-but-wrong translations read as clean COMPLY rather than routing to
-UNCLEAR, the artifact-vs-real decomposition isn't identifiable and the headline "artifact-fraction"
-collapses to a total-noise-corrected number. Secondary: thin Tamil volume + native-annotator quality.
-All mitigable (add IndicSafe/LinguaSafe volume, swap language, pre-registered fallback) but the ceiling
-caps how exciting the result can be.
+**Executability.** The overturn axis is genuinely low-risk (free real labeled data, ~1:1 skill fit).
+**Biggest risk: the cheap free result proves the WRONG thing** (commodity overturn-prediction), and the
+moat requires disliked synthetic generation + a paid rater + the InterQual/MCG workaround. Secondary:
+payer procurement is brutal solo and Brellium ($16.7M) can fast-follow.
 
-**Outcome.** Solid but capped — an ACL-family workshop (TrustNLP/MRL/SoLaR) with a Findings shot if the
-identifiability result is clean across 3 languages. A measurement-methods contribution (ternary
-confusion matrix + PPI), not a new phenomenon; **a null publishes only if framed as an identifiability
-finding** — a narrower escape hatch than the other pilots. Strong hire signal for safety/eval roles
-(AI Safety Institutes, frontier-lab safety-eval) + a clean grant on-ramp (UK AISI, FMF AI Safety Fund).
-**Founding upside weak — the clear downside vs. your founding goal:** no paying buyer (labs that would
-buy per-language numbers are the ones who look bad in them), the artifact is a method + small dataset,
-no durable moat. Nonprofit/hire only.
+**Scores:** Ship 4 · Impact 5 · Found 4 · Exec 4 · Hire 5 → **Composite 86.7.**
 
-**Scores:** Ship 3 · Impact 4 · Found 1 · Exec 4 · Hire 4 → **Composite 62.5** (outcome 60, ease 73.3).
-
-**Verdict.** A high-impact, high-skill-fit, cheap-and-executable safety-eval pilot with a strong
-hire/grant on-ramp — but middling ship-speed (generate responses + recruit a native annotator) and
-essentially no founding upside. **Rank it as a nonprofit/hire play, not a company bet.** PolyGuardPrompts
-meaningfully de-risks the data path for the control arm.
+**Verdict.** A legally-forced aligned buyer (SB-1120) and free labeled real data make this a strong,
+above-Kappa founding bet — but it lands just under the clinical-verifier trio because the free data proves
+a commodity axis while the true moat needs synthetic triples, a paid clinician, and a criteria-license
+workaround.
 
 ---
 
-### 10 · Callsmith — outcome-graded AI phone-call tuning — founding — 59.2
+### 8 · RewardProof — RL-grader exploit auditor — founding — 85.0
 
-**Why it matters.** The SMB voice-agent market is large and fast (~$4.8B Q1 2026, up from $1.9B in 2024,
-~47% CAGR; virtual-receptionist slice ~$4.6B; SMB adoption past the 30% acceleration threshold). The
-pain is dollarized: a Feb-2026 Peerlogic analysis of 4,280 calls across 26 dental practices found 38% of
-inbound calls unanswered and new-patient conversion at 25%; practices are told they lose $47K–$140K/yr
-to missed/mishandled calls. But the specific gap Callsmith targets (grading/tuning *any* bot on business
-conversion, vendor-agnostic) is more contested than "open."
+**Why it matters.** RL graders accept provably-wrong solutions; an independent cross-vendor certification
+that a grader can't be gamed is the pitch.
 
-**Data availability.** Four options.
-- **First-party design-partner client** (one multi-location dental/HVAC group already running a bot):
-  pull 2–4 weeks of recordings/transcripts + their CRM/calendar, match each call to its outcome. **This
-  is the moat data** — outcome-labeled transcript→result. HIPAA/PII → private use only, not public. A
-  cold-start services grind: you must sell a client *before* you have any data.
-- **Voice-vendor APIs** (Vapi structuredData + successEvaluation; Retell/Bland) — transcript + native
-  per-call outcome flag once you have client credentials. **Double-edged:** vendors already extract
-  outcomes natively, shrinking the moat to attribution quality + tuning.
-- **Public call-center corpora** (CallCenterEN/AIxBlock 92k; AxonData) — **CC-BY-NC-4.0**, no outcome
-  labels: prototype the judge only, useless as moat data or shippable product.
-- **Synthetic seeded corpus** — build/demo the judge with no client dependency, but synthetic calls
-  don't carry the real transcript↔CRM-outcome linkage that is the entire value prop.
-- **Verdict:** *NOT solved — the crux risk.* No public corpus links transcript to business result; the
-  moat corpus must be generated first-party via a live client (chicken-and-egg), public sets are
-  outcome-unlabeled and non-commercial, and the vendors Callsmith would grade already emit per-call
-  outcomes natively.
+**Data availability — SOLID.**
+- **SWE-bench Verified** (princeton-nlp, **MIT**) — 500 human-validated tasks with Docker-verifiable tests;
+  **pass/fail is deterministic so the artifact self-labels** (a patch passing weak tests but failing the
+  gold-sanity gate is provably wrong — zero human annotation). **$0 data, ~$50–150 to run the exploit
+  battery.** Downside: it's THE benchmark everyone (BenchJack, Fulcrum, the 2606.16062 authors) already
+  scans.
+- **R2E-Gym + Terminal-Bench + KernelBench** — public RL/agent environments to broaden the exploit corpus
+  beyond the most-scanned target.
+- **Self-generated exploit tuples** via the published hacker-fixer loop — where any real moat lives
+  (cross-vendor breadth), but a **post-traction flywheel, not day-one IP.**
+- **Private/commissioned lab graders** — the actual revenue and only proprietary data, but access-gated and
+  demand is **unvalidated** (no lab has committed to requiring third-party grader certification).
+- **Verdict: SOLID.** Best-possible license/access + deterministic self-labeling = zero annotation, <$200
+  launch. The risk is competitive/commercial, not data. **Fallback:** pivot the seed to
+  R2E-Gym/Terminal-Bench/KernelBench, or synthesize graders with injected known weaknesses.
 
-**Annotation.** Hand-attribute ~200–600 of one client's calls (booked / no-show / never-contacted /
-lost), then calibrate an LLM judge. **You** — outcome attribution is judgment labeling in your
-LLM-as-judge wheelhouse, **not code review.** Partly sourced (ground truth lives in the client's CRM →
-labels mined by matching call→record). Fits 4–7 hrs *if* a live client with CRM access is secured first
-— the labeling is cheap; **the prerequisite client is the hard part.**
+**Annotation.** Effectively zero for the launch artifact — the deterministic gate does the correctness
+call, leaving you to audit judge behavior (your strength), not hand-verify patches. Optional 2–4 hr
+spot-review.
 
-**Executability.** 8–13 part-time weeks realistically, of which **3–6 are non-technical** (find/close a
-design partner, get CRM/PHI access, data-use agreement) *before* the build. $100–400. Excellent on the
-technical arc (data pipeline + attribution judge + tuning — best full-arc fit of the set), **poor on the
-non-technical prerequisite** (sales/services-first, negotiating PHI access solo). **Top risk: cold-start
-client dependency** — nothing ships until a real client shares recordings + booking data. Secondary: the
-moat is thinner than stated (Invoca Signal AI, Peerlogic dental analytics, native Vapi/Retell outcome
-fields occupy adjacent ground).
+**Executability.** A solo can ship the launch artifact: free MIT data, self-labeling ground truth,
+published method, <$200. **Biggest risk is not data or skill — the shippable artifact is already a
+COMMODITY** (BenchJack OSS, Fulcrum YC S25, HUD's bundled detector all do the scan today; method fully
+published) with an unvalidated certification-buyer.
 
-**Outcome.** Low as a research artifact — a product/services bet, not a paper (a case study/blog at
-best; your RAG-judge paper already covers the methodology-publish need). Strong-to-moderate hire signal
-(an end-to-end outcome-attribution+tuning demo on real calls reads well for applied-AI/forward-deployed
-roles; less legible to a research lab). **Founding upside real but contested and services-flavored** —
-concrete buyer + ROI pitch (genuinely founder-shaped), but the lane is flanked (Peerlogic, Invoca,
-Hamming, native vendor outcomes) and the moat is per-vertical, non-portable, erodable, and starts empty.
+**Scores:** Ship 5 · Impact 4 · Found 3 · Exec 5 · Hire 4 → **Composite 85.0.**
 
-**Scores:** Ship 2 · Impact 4 · Found 4 · Exec 2 · Hire 3 → **Composite 59.2** (outcome 73.3, ease 40).
-
-**Verdict.** Biggest market and best full-arc skill-fit of the SMB-voice bets, but it **fails your top
-criterion**: nothing ships until a live client hands over recordings + CRM outcomes, the moat data can't
-be seeded for free, and the lane is already flanked. A strong FOUND idea to keep on the list, but a weak
-fastest-shippable pick — **rank it below the OSS-seedable candidates.**
+**Verdict.** Data is SOLID and Exec is a genuine 5 — but the artifact is a commodity with an unvalidated
+buyer. It edges Kappa on real impact, not on a defensible founding moat.
 
 ---
 
-### 11 · SuggestionFix-Bench — pilot — 54.2
+### 8 · QueryProof — independent text-to-SQL answer verifier — founding — 85.0
 
-**Why it matters.** AI code review is deployed at scale but its most decision-relevant capability —
-producing the fix a human would actually *merge*, not just flagging a concern — is essentially
-unmeasured; the whole 2026 benchmark wave (SWE-PRBench, SWR-Bench, Martian's 200k-PR benchmark,
-CR-Bench) grades review *comments*, and SWE-PRBench shows 8 frontier models catch only 15–31% of
-human-flagged issues. The stakes are concrete (AI writes plausible-but-wrong code, the #1 developer
-complaint; a rigorous study found AI made experienced devs ~19% slower while they *felt* faster). The
-catch: the surrounding measurement space is crowded and moving fast — this matters as a narrow wedge,
-not a field-definer.
+**Why it matters.** A confidently-wrong dollar figure from a text-to-SQL system is acted on by a human —
+an independent semantic verifier catches it.
 
-**Data availability.** Four options.
-- **CodeReviewer** (Microsoft, Zenodo, **CC-BY-4.0 verified**) — large, 9 languages, comment→refined-code
-  pairs. The release-clean backbone, but pairs are comment→code, not the ```suggestion``` block signal
-  — the differentiated oracle must be re-derived; comment noise ~64% valid needs filtering.
-- **ronantakizawa/github-codereview** (HF, **license: other → index-only**) — 355,807 rows, before/after
-  + comment_type already labeled, bots excluded, change-verified. Perfect shape but can't be re-hosted.
-- **Self-mine accepted suggestion blocks** from permissive repos via GH Archive + GitHub API — the
-  release-clean path to the differentiated data, and **where the volume kill lives:** only ~8% of
-  suggestions are true defect fixes (verified: 142/1,775 in Bouraffa/Pham/Maalej 2025), so surviving
-  accepted-and-not-reverted defect-fix gold could fall below the ~500-item floor.
-- **AIDev** (CC-BY-4.0 wrapper) — for an agent-authored / review-missed extension; only ~15% of agent
-  PRs have substantive review, so it thickens the story rather than solving the gold-volume risk.
-- **Verdict:** *solved for running the study* (three verified free corpora, labels come structurally
-  from merged PRs), **not solved for the differentiated artifact** — the release-clean defect-fix
-  accepted-and-not-reverted gold is volume-fragile, and the "accepted = correct" oracle rests on your own
-  label audit rather than prior validation. **Run the <500-gold dry run before committing.**
+**Data availability — SOLID.**
+- **Self-generated corpus** — take BIRD/Spider schemas, generate SQL, apply execution-based perturbations
+  in DuckDB (drop a filter, swap a join key to fan out, ignore soft-delete), **auto-label correct-vs-wrong
+  by comparing execution results.** License-clean, unbounded, <$100. The day-one asset.
+- **BIRD + Spider** (both **CC-BY-SA 4.0**, verified) — ample clean substrate; share-alike only triggers on
+  redistributing derivative *datasets*, not on shipping a model/API.
+- **BEAVER** (arXiv 2409.02038, **CC-BY 4.0**) — ~8k enterprise queries where model accuracy is 17–21% —
+  the best proof-of-need headline eval.
+- **NL2SQL-BUGs** — 2,018 expert-labeled semantic-error instances; **license ambiguous (no LICENSE file)** —
+  optional held-out calibration, not load-bearing.
+- **Verdict: SOLID.** A clean license-safe self-generation path (auto-labeled by execution) + CC-BY BEAVER
+  + CC-BY-SA schemas mean zero annotation and no license risk. **Fallback:** BEAVER + Spider/BIRD alone
+  with pure execution-based auto-labeling — never blocked by the one ambiguous source.
 
-**Annotation.** Zero primary labeling (the gold label *is* the human's accepted suggestion, captured
-structurally). One-time validation: a ~200–400 item label-quality audit + ~200-item eval slice. **You
-alone, code-literacy level, NO manual code review for defects** (matches your dislike). Labels sourced
-free from merged-PR history. **PARTIAL fit:** the brief's ~15–30 hr one-time validation *exceeds* your
-4–7 hr ceiling — the 4–7 hr bar is only met if you ship the thinnest replicate-an-existing-task version;
-the defensible bespoke-gold version is ~15–30 hrs of your audit time.
+**Annotation.** Effectively ZERO — labels come from execution-based ground truth. ~4–7 hr spot-auditing
+~50–100 generated pairs for perturbation realism. Matches your execution-label preference.
 
-**Executability.** ~6–9 part-time weeks (thin version ~5–6; defensible with SZZ acceptance verifier ~9).
-~$100–200. **Strong skill-fit** (eval + data pipelines + LLM-as-judge map onto AST/test-verified fix
-scoring; the GH Archive/BigQuery + SZZ pipeline is the one piece slightly outside comfort). **Top risk:
-the <500-gold volume kill**, now empirically corroborated (~8% fix rate; after also requiring accepted +
-not-reverted + runnable-tests the surviving gold could collapse below the floor). Secondary: label noise
-— acceptance/revert rates are under-quantified, so the ~85%-precision filter ceiling must be validated
-by hand.
+**Executability.** Execution-probing in DuckDB is near-zero-cost, labeling is automatic, first results are
+days of work under $500. **Biggest risk is competitive timing:** SQLens (Amazon, NeurIPS'25) already
+published generator-agnostic fine-grained detection, so the technical wedge is months and the moat is a
+post-traction warehouse-metadata flywheel. Secondary: synthetic perturbation drift, mitigated by
+calibrating against NL2SQL-BUGs/BEAVER.
 
-**Outcome.** Solid for a pilot (ML4Code/SE workshop or NeurIPS Evals + dataset; a clean null is welcomed
-and pre-registered). Moderate novelty on a narrow axis — the metric hierarchy is standard APR; the
-novelty is entirely the data source. **High, current hire signal** (CodeRabbit, Qodo, Greptile, Cursor,
-GitHub, Sourcegraph — directly on-thesis with the hot 2026 code-review-eval space). **Founding upside
-low:** the broad space is saturated by funded 2026 entrants; **moat weak and time-boxed** — the one
-unclaimed slice (suggestion-block-as-literal-fix oracle) has close uncited prior art (Review4Repair
-2020, 55,060 comment→fix pairs scored by exact match) and erodes as soon as a funded team copies it.
+**Scores:** Ship 5 · Impact 4 · Found 3 · Exec 5 · Hire 4 → **Composite 85.0.**
 
-**Scores:** Ship 3 · Impact 3 · Found 1 · Exec 3 · Hire 4 → **Composite 54.2** (outcome 53.3, ease 60).
-
-**Verdict.** A clean, cheap, skill-perfect **hire artifact** for the crowded code-AI-eval market — **go
-only if the <500-gold defect-fix dry run passes**, since the ~8%-fix rarity and an under-validated
-"accepted = correct" oracle are the two things that can sink it. Near-zero founding upside, and its
-~15–30 hr validation exceeds your 4–7 hr ceiling unless you ship the thinnest replicate version.
+**Verdict.** Ship-5/Exec-5 on genuinely SOLID, self-generatable, license-clean data, and beats the
+neutral-referee tier on impact — but the founding lane only ties (method already published, Bedrock
+kill-risk), so the moat is a post-traction metadata flywheel, not day-one IP.
 
 ---
 
-## Recommendation
+### 8 · MemTrust — cross-vendor agent-memory staleness referee — founding — 85.0
+
+**Why it matters.** Agent memory silently goes stale/contradicted; a vendor-neutral adversarial referee
+that catches it is un-pretrainable.
+
+**Data availability — WORKABLE.**
+- **Self-generated adversarial fact-lifecycle injection** — insert a fact, contradict/update it on a
+  controlled clock, probe recall across Mem0/Zep/Letta/Cognee. **This is the moat and the product
+  mechanic** — vendor-neutral, un-pretrainable, unlimited, <$150. Owned outputs.
+- **LongMemEval / v2** (**MIT**, verified) — clean, on-target temporal-memory baseline (451 questions,
+  1,870 trajectories); static, so vendors can optimize to it.
+- **STALE** (arXiv 2605.06527, **CC-BY 4.0**) — 2026-fresh, directly on stale-memory detection; verify the
+  release is posted.
+- **HaluMem / MemTrace** — perfect content fit but **CC-BY-NC-ND — LEGALLY UNUSABLE in the product** (NC
+  blocks commercial, ND blocks derivatives). Use only to design the synthetic generator.
+- **Verdict: WORKABLE.** The best-fit ready-made corpora are NC/ND-blocked, but the product's own mechanic
+  (self-generated injection) sidesteps that entirely and is free/unlimited, backstopped by MIT LongMemEval
+  + CC-BY STALE. **Fallback:** synthetic battery + LongMemEval + STALE only — the leaderboard ships with
+  zero licensed data.
+
+**Annotation.** ~2–5 hr one-time — spot-check the generator's staleness/contradiction labels + calibrate
+the judge. Labels are auto-emitted by the injection clock (known by construction). Exact skill match.
+
+**Executability.** Vendors are all free-tier or Apache-2.0/OSS self-hostable; ground truth is
+self-generated; total spend <$150. **Biggest risk is business, not build:** neutrality ⟂ monetization,
+with no legally-forced aligned buyer (vendors are structurally disqualified as the referee), and Patronus
+AI could acquire the category.
+
+**Scores:** Ship 5 · Impact 3 · Found 4 · Exec 5 · Hire 4 → **Composite 85.0.**
+
+**Verdict.** Data-clean and fast to ship on a self-generated adversarial corpus, with a genuinely
+un-backfillable cross-vendor moat — but gated by the neutrality-vs-monetization problem and no
+legally-forced buyer, landing it peer to the strong-WORKABLE tier, not in the 90+ band.
+
+---
+
+### 11 · Kappa — LLM-judge drift monitor — founding — 83.3
+
+**Why it matters.** Teams gate releases on LLM-judge scores, but judges silently rot (provider model swaps,
+rubric drift). Recognized, recurring pain.
+
+**Data availability — SOLID.**
+- **Your own published RAG-hallucination-judge dataset** — paired judge/human labels, fully usable, the
+  exact seed. Single-domain until pilots add breadth.
+- **Synthetic drift injection** — now a published, validated methodology (Judge Reliability Harness;
+  "Who Drifted: System or Judge?"); manufacture ground-truth drift events on demand. ~$50–200.
+- **RewardBench (ODC-BY, ex-AlpacaEval) + JudgeBench** — real human-preference pairs to baseline
+  agreement/kappa; no time axis, so drift must be simulated on top.
+- **Design-partner live judge outputs** — the only path to the cross-customer drift-prediction moat; slow
+  to accrue, unproven cross-customer transfer.
+- **Verdict: SOLID.** Every input for a v1 is free and self-generable; the only non-self-generable data
+  (cross-customer drift stream) is the moat, not the MVP. **Fallback:** RewardBench + JudgeBench as fixed
+  gold sets, demonstrate detection by swapping judge models — a real, reproducible, zero-cost signal with
+  no simulation.
+
+**Annotation.** Minimal — you already own labeled judge/human pairs; drift labels are synthetically
+generated. 4–7 hr validation slice. No code review.
+
+**Executability.** 6–9 wks to an OSS drift-monitor CLI + demo; free data, bullseye skill fit, <$150.
+**Biggest risk is commercial:** Confident AI, Galileo, Arize/Phoenix already occupy most of this surface as
+platform features, so "open" is overstated (wedge-exists). The durable moat (cross-customer drift
+prediction) is un-self-generable, slow, and unproven.
+
+**Scores:** Ship 5 · Impact 3 · Found 3 · Exec 5 · Hire 5 → **Composite 83.3.**
+
+**Verdict.** Fastest-to-ship, lowest-data-risk candidate and a perfect hire-signal for your exact published
+work — but crowded incumbents make "open" overstated, and the only real moat is neither self-generable nor
+proven, capping founding upside.
+
+---
+
+### 11 · TrajTrust — agent-trajectory judge-of-the-judge — founding — 83.3
+
+**Why it matters.** A cross-customer per-failure-mode disagreement corpus (where trajectory judges miss)
+is the pitch. Kappa's skill at a faster buyer.
+
+**Data availability — WORKABLE.**
+- **AgentRewardBench** (McGill-NLP, HF) — 1,302 web-agent trajectories expert-labeled per-axis; **already
+  in hand.** **RISK: custom research-only ToS** (HF card declares no license; CC-BY appears only on the
+  paper) — cite, don't ship the corpus. And per-failure-mode labels are **thin** (side-effect base rate
+  6.7%, only 15 succeeded-but-damaged, ~106/1302 double-annotated) — per-class recall is statistically
+  fragile.
+- **tau2-bench** (Sierra, **MIT**, verified) — clean commercial license + programmatic reward as weak
+  gold, but you must **self-generate** the per-failure-mode human labels.
+- **WebArena** (**Apache-2.0**, verified) — clean license + write-heavy task subsets; requires running
+  agents and self-labeling.
+- **Design-partner human-review streams** — the only path to credible per-class estimates and the moat;
+  **zero at t0.**
+- **Verdict: WORKABLE.** Free real human-labeled data exists and license-clean substrates support a demo,
+  but the human labels the product sells are either thin or must be self-generated, and clean-license data
+  ships no human labels. **Fallback:** tau2-bench + WebArena write-heavy subsets, self-label ~200
+  trajectories (~$10–15) for a license-clean, publishable blind-spot map.
+
+**Annotation.** ~0 new labels for a v1 blind-spot chart (reuse AgentRewardBench + run one judge); a
+*defensible* per-class result needs hundreds of multi-annotator labels — beyond a solo's 4–7 hr.
+
+**Executability.** The dry run is done, the judge harness is written and budget-verified (~$8–38) — the
+most de-risked candidate on pure buildability. **Biggest risk: the demo does not establish the moat** — the
+cross-customer corpus needs design-partner data that doesn't exist at t0, and free public data is too thin
+for credible per-class recall, so a funded eval incumbent (Braintrust, DeepEval, Galileo) copies it in one
+roadmap step.
+
+**Scores:** Ship 5 · Impact 3 · Found 3 · Exec 5 · Hire 5 → **Composite 83.3.**
+
+**Verdict.** Most build-ready candidate here — dry run done, clean substrates, exact skill-fit — but the
+free labeled data is research-ToS + too thin for the per-class claim, and the moat requires design-partner
+data that doesn't exist yet, so it ships fast and hires well but the founding data-moat is unproven.
+
+---
+
+### 11 · InteractionProof — drug-interaction alert verifier — founding — 83.3
+
+**Why it matters.** Drug-interaction databases disagree worse than chance and LLMs miss ~half; an
+evidence-grade verifier is the pitch.
+
+**Data availability — WORKABLE.**
+- **openFDA / DailyMed drug_interactions SPL field** — 25k+ Rx + 36k OTC labels, **CC0 (commercial-OK, no
+  attribution)** — the ONLY fully license-clean, product-safe, self-generatable path. But SPL text is
+  unstructured narrative lacking a clean severity taxonomy — you engineer labels yourself.
+- **AIChemist 750-set + Rx-LLM** — clinician-validated, fast to a paper, but **MIXED/RISKY:** severity
+  labels derive from **LexiDrug (Lexicomp, proprietary)** and licenses conflict (CC-BY vs CC-BY-NC). Ships
+  the study; do NOT let the product moat depend on it.
+- **OpenDDI** — 2.54M edges, but DrugBank-derived interaction content is CC-BY-NC (non-commercial).
+- **Comparative-accuracy study pairs** — free validated disagreement anchors + marketing hook, too small to
+  be the gold set.
+- **Verdict: WORKABLE.** A license-clean commercial-safe path exists (openFDA CC0) and the core theses are
+  verified — but the fastest ready-made labeled benchmarks all derive severity from proprietary sources, so
+  they power the PAPER not the commercial gold set. **Fallback:** openFDA self-generated deterministic
+  known-pair labels.
+
+**Annotation.** ~4–7 hr for the accuracy/recall pilot (deterministic known-pair true/false = self-labeling).
+The differentiating **evidence-grade score needs pharmacist-level judgment you lack** — defer or
+design-partner-source it.
+
+**Executability.** A solo can ship the study fast; the constraint is legally-ownable commercial data + the
+clinical judgment for the evidence-grade moat, not data availability for the pilot. Audited vendors have a
+documented history of refusing to be audited.
+
+**Scores:** Ship 5 · Impact 4 · Found 3 · Exec 4 · Hire 5 → **Composite 83.3.**
+
+**Verdict.** Clears the bar at 83.3, not above: a fast, high-signal, license-clean-enough study whose
+founding case stays capped because the freest labels are proprietary-derived, the evidence-grade moat needs
+clinical judgment the solo lacks, and it's a copyable certification brand.
+
+---
+
+### 11 · VeriJudge — LLM-judge validity/confound auditor — founding — 83.3
+
+**Why it matters.** Judges are graded on agreement, not construct validity; an auditor that isolates
+verbosity/position/self-preference confounds claims the unclaimed "validity" category.
+
+**Data availability — SOLID.**
+- **LLMBar** (princeton-nlp, **MIT** verified) — 419 adversarial-instruction instances + processed sets;
+  general validity stressor, not confound-isolated.
+- **"Judging the Judges" 375-pair controlled set** — 200 bias-trigger + 25 length + 50 style + 100
+  model-origin pairs, **verdict labeled by construction**, plus a **published construction recipe** to
+  self-generate unlimited domain-specific probes. Verify the exact license before shipping released data.
+- **JudgeBench** (ICLR 2025) — ~620 objective-ground-truth pairs (validity via correctness); mixed-license
+  sources, vet before redistribution.
+- **llm-judge-calibrator** (OSS) — a working probe battery to fork day-one.
+- **Verdict: SOLID.** Multiple free commercial-safe sources + a published self-gen recipe with labels-by-
+  construction. But **this same abundance caps foundingUpside** — SOLID data does not rescue the moat.
+  **Fallback:** fully self-generated probes over MIT-licensed prompt sources — removes all third-party-data
+  risk.
+
+**Annotation.** Near-zero — matched-pair probes carry expected_verdict by construction. Fits inside 4–7 hr
+with hours to spare; probe design + spot-checking, not manual code review.
+
+**Executability.** Arguably the single most executable candidate — free abundant data, self-generating
+labels, an OSS harness to fork, exact skill-fit; the audit report is a 6-week solo artifact. **Biggest risk
+is not execution — the low execution bar is universal:** the exact technique is a public weekend copy, so
+there is no data/method moat once the report lands.
+
+**Scores:** Ship 5 · Impact 3 · Found 3 · Exec 5 · Hire 5 → **Composite 83.3.**
+
+**Verdict.** SOLID data locks in ship-5/exec-5 — but that same public abundance is why it ties the
+neutral-referee tier rather than beating it: an unclaimed category with a weekend-copyable technique,
+defensible only as a neutral certification brand.
+
+---
+
+### 15 · AppealScore — insurance-appeal quality grader — founding — 80.8
+
+**Why it matters.** AI-drafted insurance appeals need a grounding/quality check; the win-prediction axis is
+already commoditized.
+
+**Data availability — WORKABLE.**
+- **California DMHC IMR** — free, real, labeled appeal-outcome data, license-clean for a research artifact.
+  **But it labels only the already-commoditized win-prediction axis** (Rachel/Aegis/USPTO patent), not
+  AppealScore's differentiated appeal-quality/grounding axis, and has no (appeal-letter → win/loss) pairs.
+  **Commercial use needs OPA approval.**
+- **Multi-state IMR** (Texas TDI + 3 states) — fixes CA-centric thinness, same structural gap.
+- **Self-generated synthetic (denial, record, appeal) triples** — the only path to the differentiated axis,
+  but synthetic with unproven transfer (the exact weakness that capped CascadeProof).
+- **Real appeal-letter→outcome corpus** (PMC set / partner data) — research-only / PHI-locked,
+  non-redistributable.
+- **Verdict: WORKABLE.** Free labeled IMR ships a v1 cheaply, but on the commodity axis; the differentiated
+  axis has no free paired data. **Fallback:** multi-state outcome corpus for volume, still no paired-appeal
+  text.
+
+**Annotation.** ~4–7 hr for the commodity-axis v1; validating the differentiated axis needs building +
+adjudicating synthetic triples (fits if sample-capped). A rigorous win-calibration claim would want a paid
+appeals-specialist.
+
+**Executability.** A solo can ship a credible v1 on free DMHC data. **Biggest risk is scope:** the cheap
+result proves the commodity win-prediction axis (Rachel, Aegis, granted USPTO patent already own it), and
+every natural buyer is a build-not-buy incumbent that owns distribution.
+
+**Scores:** Ship 5 · Impact 4 · Found 3 · Exec 4 · Hire 4 → **Composite 80.8.**
+
+**Verdict.** A genuinely fast, publishable eval artifact on free real IMR data — but the free data proves
+the commoditized win-prediction axis, the differentiated axis has no free paired data, and every buyer is a
+build-not-buy incumbent: great study, fragile company. Below its structural twin DenialProof.
+
+---
+
+### 15 · TriageProof — symptom-checker undertriage leaderboard — founding — 80.8
+
+**Why it matters.** A life-or-death undertriage number across symptom-checkers, a near-verbatim re-point of
+your exact method.
+
+**Data availability — WORKABLE.**
+- **Semigran 45 vignettes** (BMJ 2015) — cleanest free seed with acuity gold, but **TINY and well-worn**
+  (every prior study used it) — a v1 demo number, not a moat.
+- **AcuityBench** (arXiv 2605.11398) — 914 harmonized cases with the exact undertriage/uncertainty math —
+  **but it publicly commoditizes the core measurement**, its clean release is pending publication, and its
+  components (HealthBench CC-BY-NC, PMR-Reddit ToS) complicate a commercial corpus.
+- **ER-Reason** — 25,174 real ER notes with physician ESI scores, but **PhysioNet credentialed
+  research-only — the brief's "free seed" framing is incorrect;** cannot go in the public artifact.
+- **Self-generated** — run named engines on Semigran + AcuityBench, grade dispositions vs gold — the real
+  deliverable, bounded by the tiny public gold sets.
+- **Verdict: WORKABLE.** A free deterministic-to-label seed exists (v1 ships with ~0 new labels), but
+  AcuityBench commoditizes the measurement + its clean release is pending, and ER-Reason is credentialed —
+  so it cannot go into the public artifact the brief assumes. **Fallback:** Semigran + HealthBench open
+  rubric-graded conversations; self-generate the cross-vendor corpus.
+
+**Annotation.** Effectively 0 new labels for v1 (gold acuity pre-labeled; disposition-vs-gold near-
+deterministic). ~4–6 hr setup + spot-check. Expanding the gold set needs ER-physician adjudication you
+can't self-supply.
+
+**Executability.** A near-verbatim re-point of your published work; seed data free and pre-labeled, zero
+PHI, <$500. **Biggest risk is moat, not build:** AcuityBench already publishes the exact undertriage math
+(measurement commoditizing in public now), so defensibility needs a frozen vendor-blind gold set +
+accumulated real cases — neither self-generable without ER-physician adjudication.
+
+**Scores:** Ship 5 · Impact 4 · Found 3 · Exec 4 · Hire 4 → **Composite 80.8.**
+
+**Verdict.** A fast, high-impact re-point of your exact method onto a life-or-death number — clears the bar
+but the data audit caps Exec at 4: the freest data commoditizes the measurement and the richest data is
+credentialed, not the free product seed the brief assumed.
+
+---
+
+## The remaining 11 (compact)
+
+*Composite · data verdict · one-line. Cards above cover the top 15; these round out the set.*
+
+- **Ingestion Corruption Detector** — pilot — **80.0** · **SOLID** · Label-free parse/OCR numeric-corruption
+  detector; the cleanest-to-execute pilot in the set (value-flips across renders are their own labels, free
+  redistributable FinTabNet.c + SynFinTabs + unlimited public-domain SEC XBRL answer key, ~$50 CPU). Only
+  real risk is the method itself (corrupted numbers may read stably-wrong across renders) — the first
+  experiment settles it, and a clean null still publishes.
+- **RailKit** — found — **79.2** · **WORKABLE** · Drop-in hallucination-guardrail SDK for a legally-primed
+  buyer (Air Canada precedent) with a genuine correction-data flywheel; free abundant build data (RAGTruth
+  MIT, HaluEval MIT) but source-data licenses (MS MARCO NC, Yelp) bar shipping it, so product/public data
+  must be self-generated and the moat data only accrues post-launch — top-tier founding upside,
+  product-gated shippability.
+- **Reviewer Scrutiny Metric (Stamp Score)** — pilot — **78.3** · **WORKABLE** · Validated measure of
+  whether humans really review AI code vs rubber-stamp; CC-BY AIDev + self-computed revert labels + GH
+  Archive scale path, but the binding risk is signal/volume — the substantive-review-plus-defect-revert
+  positive class is thin and can under-power. Run the power dry-run before committing.
+- **GroundTruth Streams** — found — **76.7** · **WORKABLE** · Free public feeds (SEC XBRL public-domain,
+  FAERS CC0) → AI-ready eval corpora with zero annotation; the single most executable candidate, but the
+  thin moat over free feeds is already being eaten by Kensho/S&P's LLM-Ready API + Stanford's SEFD — treat
+  as a publication + hire play (or pivot to FAERS / commercially-licensed lanes), not a venture.
+- **ScreenProof** — found — **75.8** · **WORKABLE** · Sanctions-screening rationale verifier; free
+  government watchlists (OFAC/EU/UN, public-domain) are the screening denominator not ground truth, the one
+  large real labeled asset (OpenSanctions Pairs, 760k) is CC-BY-NC + covers the commodity entity-matching
+  axis, so the differentiated rationale-grounding result runs on self-generated synthetic cases with
+  unproven live transfer — a solid hire/paper artifact, founding-capped.
+- **Callsmith** — found — **75.0** · **WORKABLE** · Outcome-graded AI phone-call tuning with an
+  un-reproducible per-vertical transcript→CRM-outcome moat (objective, self-refreshing, vendor-un-copyable)
+  — but the whole pilot is gated on landing one multi-location dental/HVAC design-partner client + CRM
+  access (weeks-long sales cycle), public corpora are NC + lack outcome linkage: strong company, cautious
+  first step.
+- **Injection Defense Report Card** — pilot — **74.2** · **SOLID** · Independent A–F card grading
+  prompt-injection defenses under adaptive attack; the cleanest pilot data path (AgentDojo MIT + deterministic
+  state-diff oracle, OET MIT, CaMeL Apache, HarmBench MIT — all verified) + an elite, current hire signal
+  (Promptfoo→OpenAI), but a confounded "did I attack hard enough" null and a genuinely narrow founding moat
+  keep it a get-hired play.
+- **PV-Grade** — pilot — **70.8** · **WORKABLE** · Public yardstick for AI on 4 high-stakes drug-safety
+  decisions with regulator-mandated demand — but FAERS (CC0) lacks the narratives the faithfulness decision
+  needs (FOIA-gated), licensed MedDRA threads through both free pillars, and causality gold is expert-gated
+  with no clean ceiling, so the honest v1 is a 2-of-4-decision benchmark and the full version is a 9–13-week
+  expertise-dependent effort.
+- **SuggestionFix-Bench** — pilot — **67.5** · **WORKABLE** · Grades whether AI reproduces the fix a human
+  actually merged; clean free data (CC-BY CodeReviewer + self-mined permissive pairs) and a tidy solo
+  pipeline, but the verified ~8%-defect-fix base rate keeps the <500-gold volume kill genuinely
+  load-bearing — run the yield dry-run before committing. A solid-not-exceptional hire play.
+- **Multilingual Safety Meter** — pilot — **53.3** · **RISKY** · Statistically-honest per-language safety
+  numbers under a flaky judge; license-clean (modified-MIT RabakBench) and methodologically elegant, but
+  the slowest to ship, weakest for founding, and gated on a native-annotator dependency in a thin (n=132)
+  Tamil set — the low-resource language that justifies the whole method is volume-fragile and its gold
+  can't be self-supplied. The clear low outlier.
+
+---
+
+## Honest caveats
+
+1. **These scores are a single consistent pass — but still judgment.** Everything here was re-scored
+   together against shared anchors in one sitting, which fixes the old cross-stream calibration problem
+   (where a 91.7 from one aperture and an 84.2 from another weren't on the same scale). What it does *not*
+   fix: the rubric is applied by judgment, several composites cluster within 1–2 points of each other (the
+   87.5 quartet, the 85.0 trio, the 83.3 quartet, the 80.8 pair), and small scoring differences inside a
+   cluster are not meaningfully distinguishable. Treat the *tiers* as real and the *within-tier ordering*
+   as soft.
+2. **The "independent verifier" monetization shape is a real risk.** The convergent thesis is powerful, but
+   an independent verifier can be a fundable SaaS *or* a low-margin trust/media play. The financial/clinical
+   ones (DisputeProof, ReasonProof, NoteProof, DenialProof) are strongest precisely because the
+   liability-holder is the paying buyer — but the neutral-referee family (Kappa, VeriJudge, TrajTrust,
+   MemTrust, Injection Report Card) faces the "vendors won't pay to be audited" trap, which is why they cap
+   in the low-80s despite SOLID data.
+3. **Per-candidate GTM drags are real and named.** Even the top bets carry a specific go-to-market
+   headwind: DisputeProof's outcome-proxy headline, TieProof's unobtainable cross-firm corpus + slow
+   audit-firm sales, ReasonProof's controlled-study gap + AVAAS incumbent + examiner-gated procurement,
+   NoteProof/PortalProof's gated EHR distribution, DenialProof's payer procurement + Brellium fast-follow,
+   and the whole neutral-referee tier's copyable-technique problem. A high composite means "worth
+   deep-vetting," not "de-risked."
+
+---
+
+## Recommendation and next step
 
 ### The single best pick by your criteria
 
-**Ingestion Corruption Detector (84.2).** It tops the composite because it's the only candidate that's
-strong on all five axes at once, and — uniquely — it's *both* the easiest to execute (label-free,
-release-clean data, ~$50 core compute, no code review, perfect skill-fit) *and* a genuine founding wedge
-(the OSS run-it-yourself integrity checker, into a parsing-reliability market that just took $100M+). It's
-null-proof, so even the worst case is a publishable finding. If you run exactly one thing, run this.
+**DisputeProof (91.7).** In a three-way tie at the top (with TieProof), it wins the tiebreak on the one
+thing that matters most for a solo part-timer: **its data is genuinely SOLID** — free, public-domain,
+daily-updated, zero license/ToS friction, downloadable today — where TieProof's differentiating channel
+must be self-generated and its true moat corpus is unobtainable. DisputeProof pairs that with the most
+*legally-forced* buyer in the set (EFTA §1693m private right of action + a confirmed class-action surge that
+does not depend on CFPB enforcement appetite) and a near-verbatim reuse of your published grounding judge.
+The one caveat (a monetary-relief outcome *proxy* for the seed labels) has a clean synthetic-defect
+fallback that grades the real product input. If you run exactly one founding bet, run this.
+
+### Best founding bet
+
+**DisputeProof (91.7)** — for the reasons above. If you want a clinical rather than financial vertical, the
+best-data clinical founding bet is **NoteProof (87.5, SOLID)** — free CC-BY zero-PHI ACI-Bench + an aligned
+signing-physician buyer.
+
+### Best fast-artifact / hire pilot
+
+**Ingestion Corruption Detector (80.0)** — the cleanest-to-execute pilot: label-free core signal, free
+redistributable data, ~$50 CPU compute, null-proof, and a genuine one-step-upstream extension of your
+published work. It's the lowest-friction way to ship a real public artifact and a strong hire signal fast.
 
 ### The 2–3 to actually run, for breadth
 
-Your own operating principle is breadth: run a small portfolio across different areas and let real-world
-engagement decide. The honest way to do that is to **mix one fast-ship pilot, one high-ceiling founding
-bet, and (optionally) one credential play** — so you're not betting the whole quarter on a single
-outcome shape.
+Your operating principle is breadth: run a small portfolio across different areas and let real-world
+engagement decide. The honest way to do that is to **mix one fast-ship pilot with one high-ceiling founding
+bet**, so you're not betting the whole quarter on a single outcome shape.
 
-1. **Ingestion Corruption Detector** *(pilot, fast + found-upside)* — your anchor. Best all-rounder,
-   lowest-friction, and the only pilot with a real founding wedge. Start here.
-2. **PV-Grade** *(pilot, best ceiling + best hire)* — the highest potential outcome and the most
-   role-specific credential, in a regulator-driven market where the graded party *wants* a score. Ship
-   the narrow 3-decision v1 first (defer causality) so it doesn't drag your ship-speed. This is your
-   "swing for the fence."
-3. **Kappa** *(founding, easiest + best hire signal)* — if you want a third, this is the cheapest,
-   fastest, most skill-perfect one to run in parallel/in the background. It's an outstanding hire
-   artifact and a wedge worth proving, as long as you go in eyes-open that the founding lane is
-   contested by funded incumbents.
+1. **Ingestion Corruption Detector** *(pilot — fastest, lowest-risk, null-proof)* — your anchor and the
+   quickest path to a shipped artifact + hire signal. Data is SOLID and the only risk is a publishable
+   method null.
+2. **DisputeProof** *(founding — best overall + best founding bet)* — the swing for the fence. SOLID
+   public-domain data, a legally-forced buyer, and a near-verbatim reuse of your judge. Start the v1 in
+   parallel; the data download and judge re-point are days of work.
+3. *(Optional third)* **NoteProof** *(founding — best-data clinical vertical)* if you want a second
+   founding shot in a different vertical, or **Kappa** *(founding — easiest + best hire signal)* if you'd
+   rather run the cheapest, most skill-perfect neutral-referee bet in the background — eyes open that its
+   founding lane is contested by funded incumbents.
 
-**The honest tradeoff.** Ingestion + PV-Grade gives you one thing that ships fast *and* one thing with
-the best ceiling — but PV-Grade is the slowest of the top pilots (the causality-gold dependency), so
-you'll feel that drag if you don't hold it to the narrow v1. Adding Kappa is nearly free on effort and
-maximizes hire optionality, but it's a *third front* and its company-story is the weakest of the three
-on moat. If you'd rather keep it to two, run **Ingestion + PV-Grade** and treat Kappa as a background
-project. If your priority right now is *getting hired fast* over founding, swap PV-Grade for
-**Reviewer Scrutiny Metric** (5 on ship-speed, bulletproof problem, null-robust) — you lose founding
-ceiling but gain speed and certainty.
+**The honest tradeoff.** Ingestion + DisputeProof gives you one thing that ships fast *and* one thing with
+the best ceiling and the cleanest founding data in the set — the strongest two-bet portfolio by your own
+weights. If your priority right now is *getting hired fast* over founding, swap DisputeProof for a second
+pilot (**Injection Defense Report Card**, elite current hire signal, or **Reviewer Scrutiny Metric**,
+bulletproof problem) — you lose founding ceiling but gain speed and legibility.
 
 ### Concrete next step
 
-Start the **Ingestion Corruption Detector dry run this week**: render ~50 numeric tables from
-FinTabNet.c at 150/200/300 DPI through one open OCR engine, flag value-flips, and check whether the
-render-only slice is non-empty against a multi-parser + self-consistency baseline. That single
-experiment (a few days, ~$0) settles the one real risk — whether corrupted numbers read stably-wrong
-across resolutions — and tells you whether the method is a go or a publishable null before you commit
-any real time. In parallel, send 2–3 outreach messages to gauge PV-Grade willingness-to-pay (does a
-sponsor want the yardstick to *exist*, and would a lawyer let them be scored on the record) so that
-bet's central risk is de-risked early too.
+**Run the DisputeProof data + judge dry run this week.** Pull the CFPB CCDB EFT/unauthorized-transaction
+slice (free bulk download or the Open Data API), re-point your published RAG-grounding judge at
+~150–300 stratified complaint narratives, and check agreement between the judge's defensibility verdict and
+the monetary-relief outcome proxy. That single experiment (a few days, ~$0) settles the one real risk —
+whether the outcome proxy is signal or noise — and tells you whether to proceed on real CCDB data or pivot
+to the synthetic-defect fallback. **In parallel, kick off the Ingestion dry run** (render ~50 FinTabNet.c
+tables at 150/200/300 DPI, flag value-flips, check the render-only slice is non-empty) so your fast pilot's
+one method risk is settled the same week.

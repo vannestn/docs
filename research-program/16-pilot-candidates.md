@@ -125,8 +125,8 @@ mangles things — a table cell shifts, a "1,234" becomes "1234" or "1.234", a c
 confidently using the corrupted number. Today's RAG evaluation tools don't catch this: they assume the extracted
 text is correct and only check whether the AI used it faithfully. So the error is invisible until it surfaces as a
 wrong answer (a flipped figure in a financial or medical document). Benchmarks show ~50% accuracy drops on
-table questions from this alone. A company (Reducto) already makes ~$1M/year with 4 people selling reliability here
-— proof people pay.
+table questions from this alone. A well-funded, high-volume commercial market already sells parsing reliability
+— Reducto alone has raised ~$108.5M and processed 1B+ pages — proof people pay.
 
 **How it solves it.** The usual blocker: to know a number got corrupted you need the *correct* answer to compare
 against, and building that answer key for every document type is expensive. The trick is that **you don't need an
