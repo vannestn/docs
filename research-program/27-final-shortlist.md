@@ -33,9 +33,9 @@ hire me." Sell the person + roadmap, not just the tool.*
 
 | Candidate | Comp | Data | Who to approach | The OSS artifact |
 |---|:--:|:--:|---|---|
-| **Kappa** ⭐ | 83.3 | 🟢 SOLID | Braintrust, LangSmith, Arize, Galileo, Patronus, HumanLoop | Judge-drift / kappa monitor (**your exact published skill**) |
+| **Kappa** ⭐ | 83.3 | 🟢 SOLID | Braintrust ($800M), Patronus (frontier-lab customers), LangChain/LangSmith (unicorn); Cisco (ex-Galileo). *~~Arize~~ excluded* | Judge-drift / kappa monitor (**your exact published skill**) |
 | **Injection Defense Report Card** | 74.2 | 🟢 SOLID | Lakera/Check Point, Prompt Security/SentinelOne, Promptfoo/OpenAI, Gray Swan, HiddenLayer | Adaptive-robustness living leaderboard (acquisitions *prove* the hiring demand) |
-| **Ingestion Corruption Detector** | 80.0 | 🟢 SOLID | Reducto, Unstructured, Contextual AI, LlamaIndex, Tensorlake | Numeric-integrity linter + XBRL leaderboard |
+| **Ingestion Corruption Detector** | 80.0 | 🟢 SOLID | Reducto (category leader), Contextual AI (⚠️ talent exodus), LlamaIndex, Tensorlake. *~~Unstructured~~ excluded* | Numeric-integrity linter + XBRL leaderboard |
 | **ToolTamer** | 89.2 | 🟢 SOLID | Vercel, LangChain, LlamaIndex, Sierra, agent startups | Tool-call conformance harness |
 | **RewardProof** | 85.0 | 🟢 SOLID | AI labs + RL/eval teams (BenchJack/Fulcrum) | Reward-hacking auditor |
 | **QueryProof** | 85.0 | 🟢 SOLID | Analytics / text-to-SQL AI (Numbers Station, Julius, BI vendors) | Semantic-SQL verifier |
@@ -43,6 +43,11 @@ hire me." Sell the person + roadmap, not just the tool.*
 **Second-tier (valid, narrower):** MemTrust (agent-memory cos), TrajTrust / VeriJudge (agent-eval / eval
 cos), Reviewer Scrutiny Metric (AI code-review cos), TieProof (audit-AI cos — a good *hire* artifact even
 though it's a poor *founder* bet).
+
+**Excluded target companies (prior employers — cannot return): Arize, Unstructured.** (Both are in his
+build-to-hire spaces, so the *experience* is a credibility asset for the artifacts — aim outreach at their
+competitors.) Target company funding/stage vetted 2026-07-09; note several eval/security firms were
+acquired (Galileo→Cisco, Lakera→Check Point, Prompt Security→SentinelOne, Promptfoo→OpenAI).
 
 **Build-to-hire flagship:** **Kappa** — exact skill, richest hiring landscape, OSS burns no moat.
 (**Injection Report Card** is the close runner-up; **Ingestion** the fastest to ship.)
