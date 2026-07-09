@@ -25,6 +25,7 @@ hired paths all stay open.
 | [13 · Problem validation](13-problem-validation.md) | Thorough validation of top-11 problems (2 evidence + 2 kills each); 4 advance, 7 killed |
 | [**16 · Pilot candidates (plain-English)**](16-pilot-candidates.md) | **Start here for pilots.** The readable synthesis: the ~6 surviving pilots, each explained — what it is, why it exists, the problem it solves, how it solves it, plus labeling burden, publishability & effort, and how it could fail |
 | [pilot-drafts/](pilot-drafts/) | Publication-grade **Introduction + Methods** draft per pilot (title, abstract, formalized method, metrics, human validation, statistics, pre-registered success/kill) — doubles as a pre-registration |
+| [18 · Expanded-domain founding](18-expanded-domain-founding.md) | Initial list of **15 founding-upside opportunities in builder-shaped domains OUTSIDE the original five** (product framing, solo-buildable moats, skill-aligned) — breadth-first, lightly checked |
 | [14 · Creative re-angles](14-creative-reangles.md) | *Research log (dense).* Re-shaping each real problem's **business** to dodge why a solo couldn't found on it. Readable version → doc 16 |
 | [15 · Method-transfer solutions](15-method-transfer-solutions.md) | *Research log (dense).* Mining top papers' **methods** and recombining them into cheaper technical approaches. Readable version → doc 16 |
 | [12 · Company theses](12-company-theses.md) | Creative company-thesis pass (8 lenses) + VC vet — early SOLUTION sketch, subordinate to the problem-first pass |
