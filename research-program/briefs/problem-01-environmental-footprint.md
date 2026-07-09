@@ -5,6 +5,12 @@
 (verified against primary sources), extended with web research. Claims marked ⚠️ are unverified or
 from secondary sources only; everything else was read on the linked page this session.*
 
+> **How to read this brief.** This is the measurement-and-transparency layer of AI's physical
+> footprint — the study of how to *count* AI's energy, water, carbon, and hardware waste when the
+> companies running the systems won't share their numbers. Where the text names a paper or a technical
+> term (LCA, WUE, market- vs location-based accounting…), a plain-language gloss follows in parentheses
+> or an em-dash so you can grasp it without opening the link.
+
 ---
 
 ## The problem, concretely
@@ -15,37 +21,47 @@ numbers that exist are not comparable with each other.
 
 **What's at stake, with numbers:**
 
-- **Energy/grid.** The IEA projects global datacenter electricity roughly **doubling to ~945 TWh by
-  2030** (~3% of global use), AI the main driver ([IEA Energy & AI](https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai)).
-  This is already visible in prices: in PJM's Dec 2025 capacity auction, **data-center load was ~40%
-  (~$6.5B) of the $16.4B capacity cost** ([Utility Dive](https://www.utilitydive.com/news/data-centers-pjm-capacity-auction/808951/)),
+- **Energy/grid.** The IEA (International Energy Agency, the intergovernmental energy body) projects
+  global datacenter electricity roughly **doubling to ~945 TWh by 2030** (TWh = terawatt-hour, a billion
+  kWh; ~3% of global use), AI the main driver ([IEA Energy & AI](https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai)).
+  This is already visible in prices: in PJM's Dec 2025 capacity auction (PJM is the largest US grid
+  operator; a capacity auction is where utilities pre-buy future generation), **data-center load was
+  ~40% (~$6.5B) of the $16.4B capacity cost** ([Utility Dive](https://www.utilitydive.com/news/data-centers-pjm-capacity-auction/808951/)),
   and Harvard's Electricity Law Initiative documents rate structures and **secret utility–datacenter
-  contracts** shifting Big Tech's power costs onto ordinary ratepayers
-  ([Martin & Peskoe 2025](https://eelp.law.harvard.edu/extracting-profits-from-the-public-how-utility-ratepayers-are-paying-for-big-techs-power/)).
+  contracts** shifting Big Tech's power costs onto ordinary ratepayers ([Martin & Peskoe 2025](https://eelp.law.harvard.edu/extracting-profits-from-the-public-how-utility-ratepayers-are-paying-for-big-techs-power/)
+  — legal review of utility filings finding datacenter deals quietly raise everyone else's bills).
 - **Carbon accounting games.** The Guardian calculated that 2020–2022 emissions from Google, Microsoft,
   Meta, and Apple's own datacenters were likely **~662% higher than officially reported**, because
   companies report "market-based" figures laundered through renewable-energy certificates instead of
   location-based grid reality ([Guardian analysis, via TechInformed](https://techinformed.com/data-centre-emissions-over-660-more-than-meta-microsoft-google-and-apple-report/)).
-- **Water.** Per-query water figures span **~30–150× depending on boundary** (Google's measured 0.26 mL
-  on-site vs. Li/Ren's 10–50 mL including off-site generation water vs. Mistral's 45 mL marginal figure
-  — map doc, verified). Mytton found US datacenters use ~1.7B liters/day and **fewer than a third of
-  operators even track water** ([npj Clean Water 2021](https://www.nature.com/articles/s41545-021-00101-w)).
+- **Water.** Per-query water figures span **~30–150× depending on boundary** (boundary = how much of the
+  supply chain you count — Google's measured 0.26 mL on-site vs. Li/Ren's 10–50 mL including off-site
+  water used to *generate the electricity* vs. Mistral's 45 mL marginal figure — map doc, verified).
+  Mytton (what he did: surveyed US datacenter water use) found ~1.7B liters/day and **fewer than a third
+  of operators even track water** ([npj Clean Water 2021](https://www.nature.com/articles/s41545-021-00101-w)).
 - **E-waste.** One modeling study projects generative AI adds **1.2–5.0 Mt of cumulative e-waste
-  2020–2030**, reducible 16–86% via circularity ([Wang et al., Nature Computational Science 2024](https://www.nature.com/articles/s43588-024-00712-6)).
-- **The opacity core.** The US GAO's technology assessment concluded generative AI's environmental
-  effects "are uncertain and not well understood" chiefly because **"companies are generally not
-  reporting details"** of energy and water use ([GAO-25-107172, Apr 2025](https://www.gao.gov/products/gao-25-107172)).
+  2020–2030**, reducible 16–86% via circularity (reuse/refurbish/recycle instead of scrap)
+  ([Wang et al., Nature Computational Science 2024](https://www.nature.com/articles/s43588-024-00712-6)
+  — what they did: modeled discarded-hardware tonnage from AI buildout).
+- **The opacity core.** The US GAO's (Government Accountability Office, Congress's audit arm) technology
+  assessment concluded generative AI's environmental effects "are uncertain and not well understood"
+  chiefly because **"companies are generally not reporting details"** of energy and water use
+  ([GAO-25-107172, Apr 2025](https://www.gao.gov/products/gao-25-107172)).
   Per Hugging Face, **15 of the top 20 most-used models on OpenRouter are closed-source and zero closed
   vendors have submitted models for energy benchmarking**
   ([AI Energy Score call-to-action](https://huggingface.co/blog/sasha/energy-score-call-to-action)).
 
 **Measurable sub-problems** (each is a viable study unit): per-query operational energy of closed
-models; boundary-consistent water accounting; embodied/manufacturing carbon (only two vendor anchors
-exist — Google TPU LCA [arXiv:2502.01671](https://arxiv.org/abs/2502.01671) and the
-[NVIDIA H100 PCF](https://images.nvidia.com/aem-dam/Solutions/documents/HGX-H100-PCF-Summary.pdf), on
-different hardware); the reasoning/agentic energy multiplier; grid-cost attribution; e-waste flows;
-and *comparability itself* — median vs mean, marginal vs average, market- vs location-based, GPU-only
-vs full facility.
+models; boundary-consistent water accounting; embodied/manufacturing carbon (the carbon emitted making
+the chip, before it runs anything — only two vendor anchors exist: Google TPU LCA
+[arXiv:2502.01671](https://arxiv.org/abs/2502.01671) (LCA = life-cycle assessment, cradle-to-grave
+environmental accounting) and the
+[NVIDIA H100 PCF](https://images.nvidia.com/aem-dam/Solutions/documents/HGX-H100-PCF-Summary.pdf)
+(PCF = product carbon footprint, the vendor's own emissions figure for one product), on different
+hardware); the reasoning/agentic energy multiplier (how much more power "thinking harder" modes and
+tool-using agents draw); grid-cost attribution; e-waste flows; and *comparability itself* — median vs
+mean, marginal (the extra cost of one more query) vs average, market- vs location-based, GPU-only vs
+full facility.
 
 ---
 
@@ -56,20 +72,21 @@ the numbers. Sub-areas, methods, maturity:
 
 | Sub-area | Method | Maturity |
 |---|---|---|
-| **Per-query inference energy (open models)** | Direct GPU metering on owned/rented hardware: [CodeCarbon](https://arxiv.org/html/2509.22092v1) (software estimator), [Zeus](https://pytorch.org/blog/zeus/) (hardware-level, U. Michigan), [ML.ENERGY Benchmark](https://arxiv.org/abs/2505.06371) (NeurIPS 2025), [AI Energy Score](https://huggingface.github.io/AIEnergyScore/) (166+ models, 10 tasks) | **Most mature.** Tooling open-source; leaderboards exist; validation studies emerging ([Ground-truthing CodeCarbon, arXiv:2509.22092](https://arxiv.org/html/2509.22092v1)) |
-| **Per-query energy (closed models)** | (a) First-party production telemetry — only Google has published one, with methodology ([arXiv:2508.15734](https://arxiv.org/abs/2508.15734), 0.24 Wh median); (b) black-box estimation from API behavior + inferred hardware ([Jegham et al., arXiv:2505.09598](https://arxiv.org/abs/2505.09598); [Epoch AI](https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use)) | **Immature.** One methodology-backed vendor number; OpenAI's 0.34 Wh is a CEO blog claim without methodology; black-box estimates have a single validation anchor |
-| **Training/lifecycle LCA** | Full life-cycle assessment: [Strubell et al. 2019](https://aclanthology.org/P19-1355/) (training CO₂ estimation), [BLOOM LCA](https://jmlr.org/papers/v24/23-0069.html) (embodied + dynamic + idle), Mistral's third-party-reviewed 18-month LCA ([Mistral 2025](https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai/)) | **Method exists, coverage tiny.** ~3 public model-level LCAs total |
-| **Macro demand estimation** | Top-down (IEA) vs bottom-up (chip shipments — de Vries); meta-review of estimate quality ([Mytton & Ashtine, Joule 2022](https://www.cell.com/joule/fulltext/S2542-4351(22)00358-0): 258 estimates, 46 publications, 43% reliant on private IDC data, 11% broken source links) | **Bounded but noisy**; systematic provenance defects documented |
-| **Water** | Indirect modeling (electricity→water intensity + WUE): [Li et al./Ren, "Making AI Less Thirsty"](https://arxiv.org/abs/2304.03271) (CACM 2025); adversarial critique: [Mytton, "Overestimating AI's water footprint"](https://www.devsustainability.com/p/overestimating-ais-water-footprint) | **Contested.** Active methodological dispute between the two main researchers |
-| **Grid/ratepayer economics** | Regulatory-docket analysis ([Harvard ELI](https://eelp.law.harvard.edu/extracting-profits-from-the-public-how-utility-ratepayers-are-paying-for-big-techs-power/) reviewed ~50 proceedings), auction data (PJM) | **New (2024–25)**, mostly legal scholarship + journalism |
-| **E-waste** | Material-flow scenario modeling ([Wang et al. 2024](https://www.nature.com/articles/s43588-024-00712-6)); a 2026 recalibration exists ([Resources, Conservation & Recycling](https://www.sciencedirect.com/science/article/pii/S0921344926000960) ⚠️ paywalled, not opened — title only) | **Thinnest sub-area**: essentially one primary model + one critique |
-| **Rebound / net effects** | Socio-economic rebound taxonomy ([Luccioni, Strubell & Crawford, FAccT 2025](https://arxiv.org/abs/2501.16548)) | **Conceptual only** — the paper's core claim is that the field *lacks a measurement framework* for net effects |
+| **Per-query inference energy (open models)** | Direct GPU metering on owned/rented hardware: [CodeCarbon](https://arxiv.org/html/2509.22092v1) (software that estimates energy/CO₂ from usage counters), [Zeus](https://pytorch.org/blog/zeus/) (reads the GPU's actual power draw, U. Michigan), [ML.ENERGY Benchmark](https://arxiv.org/abs/2505.06371) (NeurIPS 2025 energy leaderboard), [AI Energy Score](https://huggingface.github.io/AIEnergyScore/) (standardized energy-rating harness, 166+ models, 10 tasks) | **Most mature.** Tooling open-source; leaderboards exist; validation studies emerging ([Ground-truthing CodeCarbon, arXiv:2509.22092](https://arxiv.org/html/2509.22092v1) — checks the software estimate against a physical power meter) |
+| **Per-query energy (closed models)** | (a) First-party production telemetry (the vendor's own live measurements) — only Google has published one, with methodology ([arXiv:2508.15734](https://arxiv.org/abs/2508.15734), 0.24 Wh median); (b) black-box estimation (inferring energy from outside, since you can't see inside the API) from API behavior + inferred hardware ([Jegham et al., arXiv:2505.09598](https://arxiv.org/abs/2505.09598); [Epoch AI](https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use)) | **Immature.** One methodology-backed vendor number; OpenAI's 0.34 Wh is a CEO blog claim without methodology; black-box estimates have a single validation anchor |
+| **Training/lifecycle LCA** | Full life-cycle assessment (adding up environmental cost across the whole lifespan): [Strubell et al. 2019](https://aclanthology.org/P19-1355/) (estimated training CO₂), [BLOOM LCA](https://jmlr.org/papers/v24/23-0069.html) (accounts for embodied + dynamic + idle — chip-manufacturing + active-compute + standby energy), Mistral's third-party-reviewed 18-month LCA ([Mistral 2025](https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai/)) | **Method exists, coverage tiny.** ~3 public model-level LCAs total |
+| **Macro demand estimation** | Top-down (IEA, from national totals) vs bottom-up (summing chip shipments — de Vries); meta-review of estimate quality ([Mytton & Ashtine, Joule 2022](https://www.cell.com/joule/fulltext/S2542-4351(22)00358-0) — audited 258 estimates across 46 publications, finding 43% reliant on private IDC market data, 11% broken source links) | **Bounded but noisy**; systematic provenance defects documented |
+| **Water** | Indirect modeling (convert electricity→water via intensity factors + WUE): [Li et al./Ren, "Making AI Less Thirsty"](https://arxiv.org/abs/2304.03271) (CACM 2025 — the paper that created AI-water accounting) (WUE = water usage effectiveness, liters consumed per kWh of IT power); adversarial critique: [Mytton, "Overestimating AI's water footprint"](https://www.devsustainability.com/p/overestimating-ais-water-footprint) (argues Ren's numbers run high) | **Contested.** Active methodological dispute between the two main researchers |
+| **Grid/ratepayer economics** | Regulatory-docket analysis (reading the filings utilities submit to regulators) ([Harvard ELI](https://eelp.law.harvard.edu/extracting-profits-from-the-public-how-utility-ratepayers-are-paying-for-big-techs-power/) reviewed ~50 proceedings), auction data (PJM) | **New (2024–25)**, mostly legal scholarship + journalism |
+| **E-waste** | Material-flow scenario modeling (projecting hardware in→waste out under different assumptions) ([Wang et al. 2024](https://www.nature.com/articles/s43588-024-00712-6)); a 2026 recalibration exists ([Resources, Conservation & Recycling](https://www.sciencedirect.com/science/article/pii/S0921344926000960) ⚠️ paywalled, not opened — title only) | **Thinnest sub-area**: essentially one primary model + one critique |
+| **Rebound / net effects** | Socio-economic rebound taxonomy (rebound = efficiency gains getting eaten by increased usage, so total impact rises) ([Luccioni, Strubell & Crawford, FAccT 2025](https://arxiv.org/abs/2501.16548)) | **Conceptual only** — the paper's core claim is that the field *lacks a measurement framework* for net effects |
 | **Policy/standards** | EU AI Act GPAI docs must include "estimated or known energy consumption" — to authorities, not public ([EC guidelines](https://digital-strategy.ec.europa.eu/en/faqs/guidelines-obligations-general-purpose-ai-providers)); US [AI Environmental Impacts Act](https://www.congress.gov/bill/119th-congress/senate-bill/4727/text) (NIST measurement consortium + voluntary reporting) reintroduced **June 9, 2026** ([Markey](https://www.markey.senate.gov/news/press-releases/senator-markey-rep-beyer-reintroduce-ai-environmental-impacts-act)), not passed | **Pre-standards.** No mandatory public per-query or lifecycle disclosure anywhere yet |
 
-Publication venues: FAccT (measurement + critique), Joule (commentary/macro), NeurIPS D&B
-(benchmarks), CACM, npj journals, and the dedicated
-[HotCarbon workshop on sustainable computer systems](https://hotcarbon.org/) (4th edition, Cambridge
-2025) — a small venue explicitly for early-stage work.
+Publication venues: FAccT (fairness/accountability/transparency conference — measurement + critique),
+Joule (Cell's energy journal — commentary/macro), NeurIPS D&B (the Datasets & Benchmarks track of the
+top ML conference), CACM (Communications of the ACM), npj journals (Nature's open-access family), and
+the dedicated [HotCarbon workshop on sustainable computer systems](https://hotcarbon.org/) (4th edition,
+Cambridge 2025) — a small venue explicitly for early-stage work.
 
 ---
 
@@ -77,7 +94,9 @@ Publication venues: FAccT (measurement + critique), Joule (commentary/macro), Ne
 
 **Individuals (the field is strikingly individual-driven):**
 - **Sasha Luccioni** — AI & Climate lead at Hugging Face; CodeCarbon co-creator, BLOOM LCA, Power
-  Hungry Processing, AI Energy Score lead ([announcement](https://huggingface.co/blog/sasha/announcing-ai-energy-score)). Company-employed but the output is public-interest tooling.
+  Hungry Processing (the first task-by-task measurement of inference energy), AI Energy Score lead
+  ([announcement](https://huggingface.co/blog/sasha/announcing-ai-energy-score)). Company-employed but
+  the output is public-interest tooling.
 - **Emma Strubell** — CMU professor; founded the field with the 2019 NLP energy paper; co-author on
   most of Luccioni's measurement work. Academic/grant funding.
 - **Shaolei Ren** — UC Riverside; created the AI-water topic with 3 co-authors
@@ -150,9 +169,10 @@ standing through persistent public work, not lab affiliation.
    (1.2–5.0 Mt cumulative by 2030) via material-flow scenarios. Opened a sub-field that still has
    essentially one primary model.
 8. **[Data center emissions probably 662% higher than big tech claims](https://techinformed.com/data-centre-emissions-over-660-more-than-meta-microsoft-google-and-apple-report/)** —
-   Guardian, Sept 2024. Journalists re-deriving location-based emissions from companies' own filings.
-   Mattered because it quantified the REC/market-based accounting gap — a data-analysis exercise, not
-   privileged access.
+   Guardian, Sept 2024. Journalists re-deriving location-based emissions (what the local grid actually
+   emitted) from companies' own filings. Mattered because it quantified the REC/market-based accounting
+   gap (RECs = renewable-energy certificates, paper credits firms buy to *claim* clean power without
+   physically using it) — a data-analysis exercise, not privileged access.
 
 ---
 
@@ -166,7 +186,8 @@ Specific and named, each grounded in a source read this session:
    Only Google has published a methodology-backed production number
    ([arXiv:2508.15734](https://arxiv.org/abs/2508.15734)); OpenAI's 0.34 Wh is an unmethodologized CEO
    claim; Anthropic has published no per-query figures and — ⚠️ per a third-party tracker, unverified —
-   no Scope 1/2/3 emissions as of March 2026 ([azvai.com](https://azvai.com/en/is-claude-sustainable/)).
+   no Scope 1/2/3 emissions (the standard carbon-reporting tiers: direct, purchased-energy, and
+   supply-chain) as of March 2026 ([azvai.com](https://azvai.com/en/is-claude-sustainable/)).
 2. **Black-box estimation has exactly one validation anchor.** Jegham et al.'s API-side method
    ([arXiv:2505.09598](https://arxiv.org/abs/2505.09598)) and Epoch's estimate can only be sanity-checked
    against Google's single disclosed median. No published work systematically validates black-box
@@ -179,8 +200,9 @@ Specific and named, each grounded in a source read this session:
    [critique of overestimation](https://www.devsustainability.com/p/overestimating-ais-water-footprint);
    Google notes most operators don't report WUE at all (map doc). No adjudicating study exists.
 5. **Embodied carbon has two non-comparable vendor anchors and no independent check** — Google TPU LCA
-   vs NVIDIA H100 PCF, different hardware, both first-party (map doc, verified). Memory (HBM/DRAM) is
-   the fastest-growing manufacturing hotspot with essentially no outside scrutiny.
+   vs NVIDIA H100 PCF, different hardware, both first-party (map doc, verified). Memory (HBM/DRAM — the
+   high-bandwidth and standard memory chips stacked on AI accelerators) is the fastest-growing
+   manufacturing hotspot with essentially no outside scrutiny.
 6. **Estimate provenance rot.** Mytton & Ashtine showed the macro-estimate literature runs on private
    market data and dead links ([Joule 2022](https://www.cell.com/joule/fulltext/S2542-4351(22)00358-0));
    no one has repeated that audit for the post-ChatGPT (2022–2026) wave of AI-specific estimates.
@@ -214,12 +236,13 @@ pipelines, LLM tuning, eval methodology). Facts and precedents only — no ranki
    Directly extends the [AI Energy Score v2](https://huggingface.co/blog/sasha/ai-energy-score-v2)
    30×/150–700× finding into the unit nobody publishes. This is benchmark/eval design — the profile's
    published strength.
-3. **A "boundary crosswalk" for public footprint numbers.** Build a dataset + conversion layer that
-   restates every published per-query figure (Google median/Comprehensive-vs-Existing, Mistral marginal,
-   Altman, Epoch, Jegham, AI Energy Score entries) on common boundaries (accelerator-only ↔
-   full-facility ×1.72, median↔mean, on-site↔lifecycle water). The map doc shows figures differ by
-   orders of magnitude purely from boundary choice; no crosswalk exists. Pure data-pipeline work, zero
-   compute cost.
+3. **A "boundary crosswalk" for public footprint numbers.** Build a dataset + conversion layer (a
+   crosswalk = a lookup that restates each number on the same terms so they can be compared) for every
+   published per-query figure (Google median/Comprehensive-vs-Existing, Mistral marginal, Altman, Epoch,
+   Jegham, AI Energy Score entries) on common boundaries (accelerator-only ↔ full-facility ×1.72 — the
+   ~1.72 factor scales chip-only energy up to whole-datacenter energy — median↔mean, on-site↔lifecycle
+   water). The map doc shows figures differ by orders of magnitude purely from boundary choice; no
+   crosswalk exists. Pure data-pipeline work, zero compute cost.
 4. **Repeat the Mytton & Ashtine audit for the AI era.** Systematic provenance/methodology review of
    post-2022 *AI-specific* footprint estimates, following the published
    [258-estimate protocol](https://www.cell.com/joule/fulltext/S2542-4351(22)00358-0)

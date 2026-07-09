@@ -16,6 +16,7 @@ hired paths all stay open.
 | [04 · Topic-selection process](04-topic-selection-process.md) | How the choice will be made (not yet made) |
 | [05 · Domain comparison index](05-domain-comparison-index.md) | Every candidate domain scored side-by-side against the stated needs |
 | [06 · Radar design](06-radar-design.md) | Spec for the weekly + monthly automated scanning agents |
+| [07 · Publishing pathways](07-publishing-pathways.md) | How to publish each kind of artifact so the work is actually useful — venues, mechanics, distribution |
 | [briefs/](briefs/) | Source research briefs |
 | [radar/](radar/) | Weekly + monthly radar digests (auto-generated) |
 
