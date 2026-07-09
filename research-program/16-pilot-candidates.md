@@ -57,7 +57,7 @@ Higher "vetting score" = stronger (0–100, from the adversarial judge; two numb
 | 1 | **Ingestion Corruption Detector** | An OSS tool + public leaderboard that catches numbers silently mangled when documents are fed to AI | RAG systems answer confidently wrong because parsing quietly corrupts tables/numbers and nothing checks | hire → **found upside** | 80 / 75 |
 | 2 | **Reviewer Scrutiny Metric** | A validated score for whether a human is *really* reviewing AI output vs rubber-stamping | "A human approved it" is becoming theater; oversight decays as AI does more of the work | hire / nonprofit | 81 |
 | 3 | **PV-Grade** | A public benchmark grading AI on the four high-stakes drug-safety decisions | Drug-safety AI must be independently validated by law, but no yardstick exists | hire → **found upside** | 82 |
-| 4 | **Code-Review Catch-vs-Noise Bench** | A benchmark measuring subtle bugs an AI reviewer catches vs how often it cries wolf | AI writes plausible-but-wrong code; review got slower and nobody measures the tradeoff honestly | hire | 78 / 77 |
+| 4 | **SuggestionFix-Bench** | Grades whether an AI reproduces the fix a human actually got merged (GitHub suggestion blocks) — no manual review | AI writes plausible-but-wrong code; nobody measures whether the AI's *fix* matches what a human accepted | hire | narrow wedge |
 | 5 | **Multilingual Safety Meter** | A statistical method to measure if a model is less safe in other languages, robust to a flaky judge | Models refuse harm in English but comply in low-resource languages; labs don't measure it | nonprofit / hire | 77 / 70 |
 | 6 | **Injection Defense Report Card** | An independent A–F report card grading prompt-injection defenses under *adaptive* attack | Defenses claim ~100% and fail >90% once the attacker adapts; no neutral referee exists | hire | 73 |
 
@@ -79,7 +79,7 @@ labeling flags (PV-Grade, Multilingual) — no hard blockers, but both need expe
 | 1 · Ingestion Corruption | 🟢 GREEN | You; table-literacy only | Self-supervised; gold from OHR-Bench; XBRL answer key | ~3–6 hrs, spot-check |
 | 2 · Reviewer Scrutiny | 🟢 GREEN | You; working-engineer level | Reverts free from git; PRs from AIDev; small hand-calibration | ~4–7 hrs |
 | 3 · PV-Grade | 🟡 YELLOW | Causality needs a PV/clinical specialist | 3 of 4 decisions free (FAERS, OnSIDES); causality isn't | Your 4–7 hrs + a few hrs of a clinician |
-| 4 · Code-Review | 🟢 GREEN | You (a SWE); equivalent-mutant judgment | Bug-present & "subtle" labels free by construction; APPS-Control-Arena | ~7 hrs, triage mutants |
+| 4 · SuggestionFix-Bench | 🟢 GREEN | none — no manual code review | labels = humans' accepted PR suggestion-fixes (GitHub) | ~15–30 hrs one-time validation |
 | 5 · Multilingual Safety | 🟡 YELLOW | Native/fluent speaker per language (mandatory) | Prompts free (RabakBench/IndicJR); the ~50 gold labels/lang are **not** | 1–2 native annotators/language |
 | 6 · Injection Report Card | 🟢 GREEN | You; read tool-call traces | Success labels free/deterministic (AgentDojo); tiny judge-validation | ~4–7 hrs |
 
@@ -90,7 +90,7 @@ labeling flags (PV-Grade, Multilingual) — no hard blockers, but both need expe
 | 1 · Ingestion Corruption | moderate | FinNLP@EMNLP workshop → NeurIPS Evals/DMLR stretch | ~9–13 | Yes (DMLR/TMLR) |
 | 2 · Reviewer Scrutiny | moderate | HEAL@CHI / KDD-SE workshop → MSR registered report | ~6–9 | Yes (a strength) |
 | 3 · PV-Grade | moderate | ML4H/ClinicalNLP workshop + *Drug Safety* journal → D&B stretch | ~9–13 | Yes (low scores = the headline) |
-| 4 · Code-Review | moderate | NeurIPS Evals & Datasets / MSR showcase | ~8–11 | Yes (welcomed) |
+| 4 · SuggestionFix-Bench | moderate (narrow) | ML4Code/SE workshop or NeurIPS Evals + dataset | ~6–9 | Yes (welcomed) |
 | 5 · Multilingual Safety | moderate | ACL-family workshop (TrustNLP/MRL/SoLaR) → Findings stretch | ~7–10 | Only as an identifiability finding |
 | 6 · Injection Report Card | moderate | NeurIPS/ICLR safety workshop or SaTML + living leaderboard | ~6–9 | Weakest (under-attack confound) |
 
@@ -256,56 +256,61 @@ vertical-AI-safety / PV-tech, with real found upside.
 
 ---
 
-### 4 · Code-Review Catch-vs-Noise Bench
-*Fuses methods **NullPatch** + **SubtleMutants ROC-Bench** (doc 15). (The business-shape version was killed — scooped by Martian — but the method version measures the thing Martian doesn't.)*
+### 4 · SuggestionFix-Bench — grade AI fixes against real accepted PR corrections
+*Redesigned 2026-07-09 to use real GitHub PR data instead of any manual code review (per your preference). It grades
+the **fix**, not the flag. Full draft: [pilot-drafts/04](pilot-drafts/04-code-review-catch-vs-noise.md).*
 
-**What it is.** A benchmark that measures two numbers everyone needs and no one reports together: how many *subtle*
-bugs an AI code-reviewer catches, and how often it flags things that are actually fine ("cries wolf").
+**What it is.** A benchmark that checks whether an AI reviewer can reproduce the *correction a real human actually
+made and got merged* — using GitHub "suggestion blocks" (the one-click inline fix a reviewer proposes) as
+machine-verified gold. **Zero code review by you.**
 
-**Why it exists / the problem.** AI writes code that looks right and compiles but is subtly wrong — it's the #1
-developer complaint (66% of 49,000 surveyed), and a rigorous study found AI made experienced developers **19%
-slower** while they *felt* faster, because reviewing the almost-right output eats the time. Worse, AI shifts errors
-from obvious to subtle (one study found a 322% rise in hidden privilege-escalation paths). Everyone sells AI code
-review; nobody has a trusted measure of whether it actually catches the subtle stuff without drowning you in false
-alarms.
+**Why it exists / the problem.** AI writes code that looks right and compiles but is subtly wrong — the #1 developer
+complaint (66% of 49,000 surveyed); a rigorous study found AI made experienced developers **19% slower** while they
+*felt* faster, because reviewing almost-right output eats the time. Everyone sells AI code review, but nobody
+measures whether the AI's *fix* matches the correction a competent human actually accepted.
 
-**How it solves it.** Two honest measurements nobody combines. (1) **The false-alarm floor:** create code changes
-that look scary but are *provably harmless* (a frightening-looking rename; a rewritten-but-mathematically-identical
-comparison), verify they're harmless with an automatic checker, and count how often the AI wrongly flags them.
-Because you can *prove* the code is fine, this false-alarm number is clean. (2) **The real-catch rate:** inject
-subtle bugs (an off-by-one in a permission check) that still pass all existing tests, pair each with the untouched
-original, and measure how often the reviewer catches them. Then plot catch-rate against false-alarm-rate, so you
-can say "at a false-alarm rate developers will actually tolerate, it catches X% of subtle bugs." That tradeoff
-curve is what the field is missing.
+**How it solves it (no manual review by you).** GitHub review "suggestion blocks" are literal (problem-lines →
+human-authored replacement) pairs with a location attached. Keep only the **accepted** ones — the suggested text is
+in the merged code and no later revert/hotfix touched those lines — and you have a machine-verified (problem →
+accepted-fix) gold pair, authored by real programmers, needing zero code review from you. The AI must reproduce the
+human's accepted correction, scored by AST-normalized exact match, an AST-equivalence band, and (on repos with
+runnable suites) behavioral test-verified match. Divergent-but-valid AI fixes are routed to test-verification as
+"alternative-valid," not penalized.
 
-**What you'd build first (≤$500).** ~150 "scary-but-harmless" traps + ~300 test-passing subtle bugs over a small
-repo → certify the harmless ones with an automatic checker + a manual spot-check → run 2–3 frontier AI reviewers →
-report the false-alarm floor and the catch-rate at a realistic false-alarm cutoff. No GPU, ~$100–200.
+**What you'd build first (≤$500).** Download an existing labeled corpus (`ronantakizawa/github-codereview`, 355k
+inline-comment rows with before/after + comment types) + the CodeReviewer corpus → regex out the ```suggestion
+blocks → keep accepted-and-not-reverted (merged-head check + revert back-trace) → assemble ~800–1,500 gold
+(problem → accepted-fix) pairs, split by repo → run 2–3 frontier LLMs (with-comment and no-comment) + a
+nearest-neighbor retrieval baseline → score exact / AST-equiv / test-verified. CPU/free-tier + ~$100–200 API.
 
-**Why it fits you / path.** Eval + data-pipeline craft; a strong, differentiated credential for any code-AI team
-(CodeRabbit, Qodo, Cursor, GitHub). **Hire.**
+**Why it fits you / path.** Eval + data-pipeline craft; a differentiated credential for any code-AI team (CodeRabbit,
+Qodo, Cursor, GitHub). **Hire** (the founding wedge is narrow — see below).
 
-**How it could fail (the kill line).** It all rests on the "harmless" changes *truly* being harmless — the checker
-that proves it is only probabilistic, so a hidden behavior change would recreate the exact bug you're critiquing.
-Mitigate by sticking to near-provable transformations + manual audit. Also: needs a fresh "has this been done"
-re-check on the combined form, since this corner moves fast.
+**How it could fail (the kill line).** Two live risks. (1) **Label noise** — comment/type filters cap ~85%
+precision; if >10% of the "accepted-suggestion" gold is mislabeled (never actually applied, or formatting-only), the
+oracle breaks → pre-registered kill. (2) **Scope/scoop** — suggestion blocks are *rare* (only ~8% are true defect
+fixes), so the gold set may be small and skewed to tiny local edits; **kill if <~500 gold items survive filtering,
+or if no reviewer beats the plain retrieval baseline.**
 
-**Prior work → your delta.** *RealVuln* ([2604.13764](https://arxiv.org/abs/2604.13764)) has "false-positive traps"
-but for a different (whole-file security-scanner) setting; the AI-safety "control" line sweeps a catch-vs-noise
-curve but for adversarial backdoors, not everyday code review. Your delta is the fusion applied to naturalistic
-pull-request review.
+**Prior work → your delta.** The hard scoop check came back **KILL on the broad framing** — grading code review from
+PR data is saturated: SWR-Bench ([2509.01494](https://arxiv.org/abs/2509.01494)), SWE-PRBench
+([2603.26130](https://arxiv.org/abs/2603.26130)), Martian's Code Review Bench, CodeReviewer
+([2203.09095](https://arxiv.org/abs/2203.09095)), ReDef ([2509.09192](https://arxiv.org/abs/2509.09192)). **The one
+surviving wedge:** all of those grade the review *comment* (or do defect prediction); *none* uses accepted
+**suggestion blocks as a literal exact-match / test-verified fix-correctness oracle.** Genuinely unclaimed — but
+"defensible for months, not years."
 
-**Human labeling.** 🟢 Green because *you're* the labeler and you're an engineer — though the judgment is genuinely
-expert (deciding whether two code versions are behaviorally identical = the equivalent-mutant problem, which the
-literature calls costly and subjective). The hard labels are free by construction: planted bugs are known-present,
-and a mutant that compiles and passes existing tests is by definition "subtle." Paired clean/backdoored data
-already exists (APPS-Control-Arena). Your ~7 hrs go to triaging out accidental equivalent mutants and auditing
-~20% of the "clean" traps.
+**Human labeling.** 🟢 Green — and now **genuinely no manual code review by you** (your ask). The label *is* the
+human's accepted suggestion, captured structurally from merged PRs; you author no corrections and inspect no diffs
+for defects. The only remaining tax is one-time *validation*: a ~200–400-item audit that the "accepted-suggestion"
+gold holds up + a ~200-item hand-verified eval slice — ~15–30 hrs total (as little as ~5 hrs if you just replicate
+an existing corpus's task).
 
-**Publishability & effort.** Moderate novelty; realistic home is the NeurIPS Evaluations & Datasets track or an MSR
-Data & Tool showcase, plus an adopted leaderboard. **~8–11 part-time weeks** (manual mutant triage + oracle audit
-push it past ≤6wk). Null is publishable and explicitly welcomed. Strong hire credential for code-AI teams — but not
-a founding wedge (Martian holds the neutral-standard slot).
+**Publishability & effort.** Moderate novelty on a *narrow* axis; realistic home is an ML4Code/SE workshop or the
+NeurIPS Evaluations & Datasets track + a released dataset. **~6–9 part-time weeks** (lighter than the old design — no
+mutant triage). Cleaner, cheaper, and less scoopable *on its specific axis* than the manual-review version — but the
+wedge is narrow and dataset-size-fragile, so the "<500 gold items" kill is load-bearing. Not a founding wedge (the
+broad space is taken).
 
 ---
 
