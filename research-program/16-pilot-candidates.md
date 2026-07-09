@@ -94,7 +94,20 @@ labeling flags (PV-Grade, Multilingual) — no hard blockers, but both need expe
 | 5 · Multilingual Safety | moderate | ACL-family workshop (TrustNLP/MRL/SoLaR) → Findings stretch | ~7–10 | Only as an identifiability finding |
 | 6 · Injection Report Card | moderate | NeurIPS/ICLR safety workshop or SaTML + living leaderboard | ~6–9 | Weakest (under-attack confound) |
 
-Per-pilot detail is in each brief below, under **Human labeling** and **Publishability & effort**.
+**Data path** (audited 2026-07-09; full detail + fallbacks in [19 · pilot data paths](19-pilot-data-paths.md)). All
+six have a legitimate path to obtaining or generating data — every one **WORKABLE, none RISKY**. In three cases the
+binding risk is *volume*, not licensing.
+
+| Pilot | Obtain/gen | Release-clean source | The caveat |
+|---|---|---|---|
+| 1 · Ingestion | obtain + gen | FinTabNet.c (CDLA-2.0) + SynFinTabs + SEC XBRL (public domain) | OHR-Bench is research-only → measure-only, don't re-release |
+| 2 · Reviewer Scrutiny | obtain + gen | AIDev (CC-BY-4.0) + git revert labels (self) | volume: ~15% of agent PRs have real reviews → check power first (GH Archive to widen) |
+| 3 · PV-Grade | obtain + gen | openFDA FAERS (CC0) + OnSIDES (MIT) + published rules | MedDRA terms licensed → ship a rebuild script, release de-MedDRA'd labels |
+| 4 · SuggestionFix | obtain + gen | CodeReviewer (CC-BY-4.0) + self-mined permissive pairs | github-codereview is "license: other" → internal index only; <500-gold volume risk |
+| 5 · Multilingual Safety | obtain + gen | RabakBench (modified-MIT) + self-gen responses + native gold | responses NOT free (generate them); Tamil n=156 thin; avoid M-ALERT/IndicJR for release |
+| 6 · Injection Report Card | obtain | AgentDojo/OET/CaMeL/HarmBench/InjecAgent (MIT/Apache) | re-implement (don't vendor) no-license AdaptiveAttackAgent; grade Meta-SecAlign via weights |
+
+Per-pilot detail is in each brief below, under **Human labeling** and **Publishability & effort**; data-path detail is in [doc 19](19-pilot-data-paths.md).
 
 ---
 
