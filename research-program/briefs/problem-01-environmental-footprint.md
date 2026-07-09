@@ -35,14 +35,27 @@ numbers that exist are not comparable with each other.
   companies report "market-based" figures laundered through renewable-energy certificates instead of
   location-based grid reality ([Guardian analysis, via TechInformed](https://techinformed.com/data-centre-emissions-over-660-more-than-meta-microsoft-google-and-apple-report/)).
 - **Water.** Per-query water figures span **~30–150× depending on boundary** (boundary = how much of the
-  supply chain you count — Google's measured 0.26 mL on-site vs. Li/Ren's 10–50 mL including off-site
-  water used to *generate the electricity* vs. Mistral's 45 mL marginal figure — map doc, verified).
-  Mytton (what he did: surveyed US datacenter water use) found ~1.7B liters/day and **fewer than a third
-  of operators even track water** ([npj Clean Water 2021](https://www.nature.com/articles/s41545-021-00101-w)).
-- **E-waste.** One modeling study projects generative AI adds **1.2–5.0 Mt of cumulative e-waste
-  2020–2030**, reducible 16–86% via circularity (reuse/refurbish/recycle instead of scrap)
-  ([Wang et al., Nature Computational Science 2024](https://www.nature.com/articles/s43588-024-00712-6)
-  — what they did: modeled discarded-hardware tonnage from AI buildout).
+  supply chain you count — Google's *measured* 0.26 mL/prompt vs. Li/Ren's 10–50 mL including off-site
+  water used to *generate the electricity* vs. Mistral's 45 mL marginal figure — ✅ all three now verified
+  in the primary Google PDF §2.1 + §4.2, which cites Li/Ren at "10–50 mL per prompt" and Mistral at "45 mL").
+  The dispute is concrete: Mytton shows Ren's model rests on an **on-site WUE of 3.8–5.2 L/kWh** sourced
+  from "a WSJ article from 2015 referencing a presentation from 2009" plus a Chinese online post, whereas
+  real hyperscale WUE is far lower — Meta 0.26 L/kWh, Microsoft 0.1–1.65 L/kWh ([Mytton critique](https://www.devsustainability.com/p/overestimating-ais-water-footprint),
+  ✅ read this pass). Google's own paper independently reports **WUE Category 2 = 1.15 L/kWh** (consumptive,
+  fleet 2023–24), corroborating that hyperscale WUE sits an order of magnitude below Ren's inputs. Mytton's
+  earlier survey (what he did: surveyed US datacenter water use) found ~1.7B liters/day and **fewer than a
+  third of operators even track water** ([npj Clean Water 2021](https://www.nature.com/articles/s41545-021-00101-w)).
+- **E-waste.** One modeling study projects generative AI adds **~8–16 Mt of *cumulative* end-of-service
+  e-waste 2020–2030** (16.1 Mt optimistic / 11.2 Mt moderate / 9.0 Mt conservative scenarios; ✅ verified
+  in the primary PDF, Fig. 1c + abstract), of which the out-of-system portion is **reducible by −58% to
+  +30%** (−9.3 to +4.9 Mt) depending on circular-economy lever — lifespan-extension (C1) cuts most,
+  stepwise-upgrade (C2) can *add* waste ([Wang et al., Nature Computational Science 2024](https://www.nature.com/articles/s43588-024-00712-6)
+  — what they did: a Computational-Power-driven Material-Flow-Analysis of discarded AI-server tonnage,
+  3-year lifespan baseline). *(Deepening pass 2 correction: an earlier draft cited "1.2–5.0 Mt … reducible
+  16–86%" — both figures were wrong and are corrected here against the read PDF.)* The 2026 supply-side
+  recalibration lands far lower: **131.0–224.8 kt/year by 2030** ([de Vries-Gao, Resources, Conservation
+  & Recycling 2026](https://www.sciencedirect.com/science/article/pii/S0921344926000960); ✅ headline
+  verified via [VU Amsterdam announcement](https://vu.nl/en/news/2026/new-estimate-of-ai-e-waste)).
 - **The opacity core.** The US GAO's (Government Accountability Office, Congress's audit arm) technology
   assessment concluded generative AI's environmental effects "are uncertain and not well understood"
   chiefly because **"companies are generally not reporting details"** of energy and water use
@@ -78,7 +91,7 @@ the numbers. Sub-areas, methods, maturity:
 | **Macro demand estimation** | Top-down (IEA, from national totals) vs bottom-up (summing chip shipments — de Vries); meta-review of estimate quality ([Mytton & Ashtine, Joule 2022](https://www.cell.com/joule/fulltext/S2542-4351(22)00358-0) — audited 258 estimates across 46 publications, finding 43% reliant on private IDC market data, 11% broken source links) | **Bounded but noisy**; systematic provenance defects documented |
 | **Water** | Indirect modeling (convert electricity→water via intensity factors + WUE): [Li et al./Ren, "Making AI Less Thirsty"](https://arxiv.org/abs/2304.03271) (CACM 2025 — the paper that created AI-water accounting) (WUE = water usage effectiveness, liters consumed per kWh of IT power); adversarial critique: [Mytton, "Overestimating AI's water footprint"](https://www.devsustainability.com/p/overestimating-ais-water-footprint) (argues Ren's numbers run high) | **Contested.** Active methodological dispute between the two main researchers |
 | **Grid/ratepayer economics** | Regulatory-docket analysis (reading the filings utilities submit to regulators) ([Harvard ELI](https://eelp.law.harvard.edu/extracting-profits-from-the-public-how-utility-ratepayers-are-paying-for-big-techs-power/) reviewed ~50 proceedings), auction data (PJM) | **New (2024–25)**, mostly legal scholarship + journalism |
-| **E-waste** | Material-flow scenario modeling (projecting hardware in→waste out under different assumptions) ([Wang et al. 2024](https://www.nature.com/articles/s43588-024-00712-6)); a 2026 recalibration exists ([Resources, Conservation & Recycling](https://www.sciencedirect.com/science/article/pii/S0921344926000960) ⚠️ paywalled, not opened — title only) | **Thinnest sub-area**: essentially one primary model + one critique |
+| **E-waste** | Computational-power material-flow modeling ([Wang et al. 2024](https://www.nature.com/articles/s43588-024-00712-6): ~8–16 Mt cumulative to 2030, ✅ PDF read); a 2026 supply-side recalibration ([de Vries-Gao, Resources, Conservation & Recycling](https://www.sciencedirect.com/science/article/pii/S0921344926000960): 131–225 kt/yr by 2030 — ✅ headline verified via [VU announcement](https://vu.nl/en/news/2026/new-estimate-of-ai-e-waste); full text still browser-gated, body unread) | **Thinnest sub-area**: essentially one primary model + one recalibration |
 | **Rebound / net effects** | Socio-economic rebound taxonomy (rebound = efficiency gains getting eaten by increased usage, so total impact rises) ([Luccioni, Strubell & Crawford, FAccT 2025](https://arxiv.org/abs/2501.16548)) | **Conceptual only** — the paper's core claim is that the field *lacks a measurement framework* for net effects |
 | **Policy/standards** | EU AI Act GPAI docs must include "estimated or known energy consumption" — to authorities, not public ([EC guidelines](https://digital-strategy.ec.europa.eu/en/faqs/guidelines-obligations-general-purpose-ai-providers)); US [AI Environmental Impacts Act](https://www.congress.gov/bill/119th-congress/senate-bill/4727/text) (NIST measurement consortium + voluntary reporting) reintroduced **June 9, 2026** ([Markey](https://www.markey.senate.gov/news/press-releases/senator-markey-rep-beyer-reintroduce-ai-environmental-impacts-act)), not passed | **Pre-standards.** No mandatory public per-query or lifecycle disclosure anywhere yet |
 
@@ -166,8 +179,10 @@ standing through persistent public work, not lab affiliation.
    attackable, which is an invitation.
 7. **[E-waste challenges of generative artificial intelligence](https://www.nature.com/articles/s43588-024-00712-6)** —
    Wang et al., Nature Computational Science 2024. Small team; first quantification of AI e-waste
-   (1.2–5.0 Mt cumulative by 2030) via material-flow scenarios. Opened a sub-field that still has
-   essentially one primary model.
+   (~8–16 Mt cumulative by 2030 across scenarios; ✅ verified in primary PDF) via computational-power
+   material-flow scenarios. Opened a sub-field that still has essentially one primary model — since
+   recalibrated *downward* by de Vries-Gao 2026 (131–225 kt/yr) using a supply-side manufacturing
+   constraint the original omitted.
 8. **[Data center emissions probably 662% higher than big tech claims](https://techinformed.com/data-centre-emissions-over-660-more-than-meta-microsoft-google-and-apple-report/)** —
    Guardian, Sept 2024. Journalists re-deriving location-based emissions (what the local grid actually
    emitted) from companies' own filings. Mattered because it quantified the REC/market-based accounting
@@ -208,9 +223,12 @@ Specific and named, each grounded in a source read this session:
    no one has repeated that audit for the post-ChatGPT (2022–2026) wave of AI-specific estimates.
 7. **Net-effects/rebound has no measurement framework** — the explicit core claim of
    [Luccioni, Strubell & Crawford FAccT 2025](https://arxiv.org/abs/2501.16548).
-8. **E-waste is a one-model field.** Wang et al. 2024 plus a paywalled 2026 recalibration
-   ([RCR](https://www.sciencedirect.com/science/article/pii/S0921344926000960) ⚠️ not opened); no
-   empirical tracking of actual GPU retirement/secondary-market flows.
+8. **E-waste is a one-model field.** Wang et al. 2024 (~8–16 Mt cumulative to 2030, ✅ PDF read) plus a
+   2026 supply-side recalibration ([de Vries-Gao, RCR](https://www.sciencedirect.com/science/article/pii/S0921344926000960):
+   131–225 kt/yr by 2030, ✅ headline verified, full body browser-gated); the two disagree by ~an order of
+   magnitude on the *annual-by-2030* number because de Vries-Gao bounds it by realistic AI-server
+   manufacturing capacity (a supply constraint Wang's demand-driven model omits). No empirical tracking of
+   actual GPU retirement/secondary-market flows exists — an open replication/reconciliation target.
 9. **No disclosure mandate has teeth yet.** EU AI Act requires energy info only in technical
    documentation to authorities ([EC](https://digital-strategy.ec.europa.eu/en/faqs/guidelines-obligations-general-purpose-ai-providers));
    the US bill ([S.4727](https://www.congress.gov/bill/119th-congress/senate-bill/4727/text)) proposes
@@ -253,11 +271,13 @@ pipelines, LLM tuning, eval methodology). Facts and precedents only — no ranki
    public-docket text is voluminous and unmined at scale. An LLM-extraction pipeline with a rigorous
    eval harness (the profile's LLM-as-a-judge experience maps directly onto validating extraction
    accuracy) could track contract terms, load forecasts, and rate-shift mechanisms continuously.
-6. **Independent e-waste recalibration from shipment data.** Rebuild Wang et al.'s material-flow model
-   using public GPU shipment figures (e.g., NVIDIA's 3.7M GPUs in 2024, per the FAccT 2025 paper) and
-   published refresh-cycle assumptions; publish the model open-source. The sub-field has one primary
-   model and one (paywalled) critique — a reproduction with sensitivity analysis is a real contribution
-   (XGBoost/classical-modeling skill set, no GPU needed).
+6. **Reconcile the two e-waste models from shipment data.** Wang 2024 (demand-driven CP-MFA, ~8–16 Mt
+   cumulative to 2030) and de Vries-Gao 2026 (supply-side, 131–225 kt/yr by 2030) disagree by ~an order
+   of magnitude on the annual number and report on *different bases* (cumulative tonnage vs annual rate),
+   which nobody has yet placed on a common footing. Rebuild both using public GPU shipment figures (e.g.,
+   NVIDIA's 3.7M GPUs in 2024, per the FAccT 2025 paper) and published refresh-cycle assumptions; publish
+   a boundary-consistent crosswalk + sensitivity analysis open-source. This is a genuine open reconciliation
+   with only two primaries in the field (XGBoost/classical-modeling skill set, no GPU needed).
 
 ---
 
@@ -278,7 +298,11 @@ pipelines, LLM tuning, eval methodology). Facts and precedents only — no ranki
 - **Fate of the AI Environmental Impacts Act of 2026** (reintroduced 2026-06-09, not passed) and
   whether EU AI Act energy documentation ever becomes public.
 - **Production agentic-workload energy** — all published numbers predate large-scale agent deployment.
-- **Contents of the 2026 e-waste recalibration paper** — paywalled, unread (⚠️).
+- **Full method of the 2026 e-waste recalibration** — headline verified (131–225 kt/yr by 2030,
+  supply-side) but the paper body is still ScienceDirect browser-gated (403 to non-browser fetch; not on
+  sci-hub; VU repository record has no file yet). The *cumulative-to-2030* comparison between Wang (~8–16 Mt)
+  and de Vries-Gao (annual kt/yr) is not directly reconciled in the sources read — a real open question,
+  since the two studies report on different bases (cumulative tonnage vs annual rate).
 
 ---
 
@@ -294,3 +318,53 @@ Data-pipeline and classical-ML skills apply directly to the estimate-audit, cros
 and material-flow study shapes. Publication routes used by outsiders include Joule commentaries, FAccT,
 NeurIPS D&B, [HotCarbon](https://hotcarbon.org/), and independent newsletters with demonstrated field
 influence.
+
+---
+
+## Deepening pass 2 (2026-07-08)
+
+Row-specific focus: read the Wang 2024 e-waste PDF; verify the Google 0.24 Wh methodology, the Ren–Mytton
+water dispute, and the sector-energy figures against primary; decide whether the browser-gated de Vries-Gao
+2026 recalibration caps confidence.
+
+**Primaries read this pass:**
+- **Google, "Measuring the environmental impact of delivering AI at Google Scale"** ([arXiv:2508.15734](https://arxiv.org/abs/2508.15734)) —
+  full 11-page PDF read (already local).
+- **Wang et al., "E-waste Challenges of Generative AI"** (Nature Comput. Sci. 2024 / Research Square
+  CC-BY preprint) — full 11-page PDF read (already local).
+- **Mytton, "Overestimating AI's water footprint"** ([devsustainability.com](https://www.devsustainability.com/p/overestimating-ais-water-footprint)) —
+  fetched and read.
+- **de Vries-Gao 2026 recalibration** — headline verified via [VU Amsterdam announcement](https://vu.nl/en/news/2026/new-estimate-of-ai-e-waste)
+  + [ScienceDirect abstract](https://www.sciencedirect.com/science/article/pii/S0921344926000960) (full
+  body still 403 to non-browser fetch).
+- **IEA 945 TWh / 2030** — corroborated via [S&P Global](https://www.spglobal.com/energy/en/news-research/latest-news/electric-power/041025-global-data-center-power-demand-to-double-by-2030-on-ai-surge-iea)
+  + IEA executive summary (main IEA page 403).
+
+**Resolved (with verifying primary):**
+1. **CORRECTED a load-bearing error.** The brief twice cited Wang 2024 as "1.2–5.0 Mt cumulative, reducible
+   16–86%." The primary PDF (Fig. 1c + abstract + text) gives **~8–16 Mt cumulative** (16.1 optimistic /
+   11.2 moderate / 9.0 conservative; "most conservative … 8 Mt") and circularity reduction of **−58% to
+   +30% (−9.3 to +4.9 Mt)** — C2 (stepwise upgrade) can *increase* waste. Both prior figures were wrong;
+   fixed inline in two places. *Verifying source: Wang 2024 PDF, pp. 3–5, Fig. 1c.*
+2. **Google 0.24 Wh methodology fully verified.** Comprehensive Approach 0.24 Wh = 0.14 accelerator + 0.06
+   CPU/DRAM + 0.02 idle + 0.02 overhead; Existing Approach 0.10 Wh; the **1.72×** accelerator→full-facility
+   scaling factor is exact (p. 7); median-not-mean rationale (skewed distribution) confirmed; water 0.26 mL,
+   WUE Cat-2 1.15 L/kWh, MB emissions 0.03 gCO2e all confirmed. The paper itself documents Altman's 0.34 Wh
+   as a no-methodology blog claim, Li/Ren at 10–50 mL, Mistral at 45 mL — corroborating the brief's
+   closed-model and water-boundary claims from a primary. *Source: arXiv:2508.15734 §§3–4, Tables 1–2.*
+3. **Ren–Mytton water dispute made concrete + corroborated.** Mytton's specific charge (Ren's on-site WUE
+   of 3.8–5.2 L/kWh traces to a 2015 WSJ article citing a 2009 presentation + a Chinese online post; real
+   hyperscale WUE is Meta 0.26 / Microsoft 0.1–1.65) now cited. Google's independent 1.15 L/kWh figure
+   corroborates the direction of Mytton's critique (Ren runs high). *Sources: Mytton critique + Google PDF §3.3.*
+4. **de Vries-Gao 2026 headline verified** (131.0–224.8 kt/yr by 2030, first supply-side estimate, responds
+   to earlier ~5 Mt figure) and reconciled framing added: it disagrees with Wang partly because it bounds
+   AI-server *manufacturing capacity*, and it reports an annual rate vs Wang's cumulative tonnage.
+5. **IEA 945 TWh / doubling / ~3% of global / AI-main-driver** verified against S&P + IEA exec summary.
+
+**Still capping (why not 5):** The de Vries-Gao 2026 paper *body* remains browser-gated (ScienceDirect 403
+to non-browser fetch; not on sci-hub; VU repository file not yet posted), so the newest, actively-disputed
+e-waste number is verified only at headline level, and the cumulative-vs-annual reconciliation between the
+field's *two* primaries is a genuine open empirical question, not a peripheral unknown. E-waste is also
+explicitly a two-primary sub-field. This is a real caveat on a load-bearing sub-claim → honest ceiling is **4**.
+The rest of the row's load-bearing claims (Google methodology, water dispute, IEA macro, Wang cumulative
+figures) are now primary-verified and multi-sourced.

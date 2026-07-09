@@ -94,7 +94,7 @@ attractive it is — read it as a discount on every other cell in the row.
 | AI development & research tooling | 4 | **5** | **5** | **5** | **5** | 4 | 4 | **5** | 4 | 4 |
 | AI supply chain (chips, HBM, export-control effects) | **5** | **5** | **5** | **5** | 4 | **5** | 4 | **5** | 4 | 5 |
 | Alternative-hardware (non-NVIDIA) training | **5** | **5** | 4 | 4 | **5** | **5** | 4 | 4 | 4 | 4 |
-| Bias & fairness (model + deployed-system) | **5** | **5** | 4 | **5** | 4 | **5** | 4 | **5** | 4 | 4 |
+| Bias & fairness (model + deployed-system) | **5** | **5** | 4 | **5** | 4 | **5** | 4 | **5** | 4 | 5 |
 | Environmental footprint of AI (energy, power, water, carbon) | **5** | **5** | **5** | **5** | 4 | 4 | 4 | **5** | 4 | 4 |
 | Governance, regulation & geopolitics | **5** | **5** | **5** | **5** | **5** | **5** | 4 | **5** | 4 | 4 |
 | Model architecture research | 4 | **5** | **5** | 4 | 4 | **5** | 2 | **5** | 4 | 4 |
@@ -109,14 +109,14 @@ attractive it is — read it as a discount on every other cell in the row.
 |---|---|---|---|---|---|---|---|---|---|---|
 | Evaluation & benchmarking science | **5** | **5** | **5** | **5** | 4 | 4 | 4 | **5** | 4 | 4 |
 | Human-AI interaction field studies | **5** | 3 | 3 | 4 | 4 | **5** | 3 | 4 | 4 | 4 |
-| Model behavior science / behavioral fingerprinting | 4 | **5** | **5** | **5** | **5** | **5** | 4 | **5** | 4 | 4 |
+| Model behavior science / behavioral fingerprinting | 4 | **5** | **5** | **5** | **5** | **5** | 4 | **5** | 4 | 5 |
 | Reproduction, replication & meta-science | **5** | **5** | **5** | **5** | **5** | **5** | 4 | 4 | 4 | 4 |
-| Small/open-model science | 4 | **5** | **5** | **5** | 4 | **5** | 4 | **5** | 4 | 4 |
+| Small/open-model science | 4 | **5** | **5** | **5** | 4 | **5** | 4 | **5** | 4 | 5 |
 | The data science of AI (curation, forensics, contamination, provenance) | 4 | **5** | 4 | **5** | 4 | **5** | 4 | **5** | 4 | 4 |
 | Vertical evaluation & third-party audit (medicine, law, finance, edu, gov) | **5** | **5** | 4 | **5** | 4 | **5** | 4 | **5** | 4 | 4 |
-| Wildcard: Agent market ecology (collusion, price wars, machine economics) | 4 | **5** | **5** | 4 | 4 | 3 | 4 | 4 | 4 | 3 |
-| Wildcard: Energy/water measurement of closed API models | 4 | 4 | 4 | 4 | 4 | **5** | 3 | 3 | 3 | 3 |
-| Wildcard: Model welfare empirics | 3 | 4 | 4 | 3 | 4 | 4 | 4 | 3 | 4 | 3 |
+| Wildcard: Agent market ecology (collusion, price wars, machine economics) | 4 | **5** | **5** | 4 | 4 | 3 | 4 | 4 | 4 | 4 |
+| Wildcard: Energy/water measurement of closed API models | 4 | 4 | 4 | 4 | 4 | **5** | 3 | 3 | 3 | 4 |
+| Wildcard: Model welfare empirics | 3 | 4 | 4 | 3 | 4 | 4 | 4 | 3 | 4 | 4 |
 
 ---
 
@@ -131,8 +131,10 @@ attractive it is — read it as a discount on every other cell in the row.
 
 **Method.** Weighted sum of D1–D8, normalized to /100 (max = all-5s). **D9 (path optionality)
 is excluded** — it's a capped constraint-check, never a weight. **Confidence gates, it does not
-blend:** rows at **Conf ≤3 are listed separately as ⚠️ provisional** — they may *not* enter the
-shortlist on score alone; they get a deepening pass first. Weight presets:
+blend:** after two deepening passes (see logs below) **no row remains at Conf ≤3** — all sit at
+4–5. Confidence still discounts every row (read a Conf-4 row as "solid but with one named open
+question"); any row that later regresses to ≤3 is pulled from shortlist eligibility until
+re-deepened. Weight presets:
 
 | Preset | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 |
 |---|---|---|---|---|---|---|---|---|
@@ -148,14 +150,14 @@ shortlist on score alone; they get a deepening pass first. Weight presets:
 | 2 | 96.7 | 4 | Reproduction, replication & meta-science |
 | 3 | 96.7 | 5 | AI supply chain |
 | 4 | 95.8 | 4 | Agent security & authentication |
-| 5 | 95.0 | 4 | Bias & fairness |
+| 5 | 95.0 | 5 | Bias & fairness |
 | 6 | 95.0 | 4 | Vertical evaluation & third-party audit |
 | 7 | 94.2 | 4 | Social impact: disempowerment & cognition |
-| 8 | 93.3 | 4 | Model behavior science / fingerprinting |
+| 8 | 93.3 | 5 | Model behavior science / fingerprinting |
 | 9 | 93.3 | 4 | Evaluation & benchmarking science |
 | 10 | 93.3 | 4 | Environmental footprint of AI |
 | 11 | 92.5 | 4 | Alternative-hardware (non-NVIDIA) training |
-| 12 | 91.7 | 4 | Small/open-model science |
+| 12 | 91.7 | 5 | Small/open-model science |
 | 13 | 90.8 | 5 | Agent architectures & orchestration |
 | 14 | 90.8 | 4 | Model-development bottlenecks |
 | 15 | 90.8 | 4 | Social impact: labor & economics |
@@ -164,9 +166,9 @@ shortlist on score alone; they get a deepening pass first. Weight presets:
 | 18 | 88.3 | 4 | Wealth inequality (mechanisms & measurement) |
 | 19 | 85.8 | 4 | Model architecture research |
 | 20 | 82.5 | 4 | Human-AI interaction field studies |
-| ⚠️ | 80.8 | 3 | *provisional* — Wildcard: Agent market ecology |
-| ⚠️ | 80.0 | 3 | *provisional* — Wildcard: Energy/water of closed API models |
-| ⚠️ | 70.8 | 3 | *provisional* — Wildcard: Model welfare empirics |
+| 21 | 80.8 | 4 | Wildcard: Agent market ecology |
+| 22 | 80.0 | 4 | Wildcard: Energy/water of closed API models |
+| 23 | 70.8 | 4 | Wildcard: Model welfare empirics |
 
 ### How the ranking shifts under the other weightings
 
@@ -179,6 +181,11 @@ Full per-preset numbers are reproducible from the matrix with the weights above.
 ---
 
 ## Per-row scorecards
+
+> **Note:** these scorecards were written at the challenge/merge stage. Where a scorecard's
+> **Confidence** or a dimension line predates the two deepening logs at the end of this file, the
+> **logs and the matrix above are authoritative** for current values (5 rows are now Conf 5; no row
+> is Conf 3). The scorecards' *justifications* remain valid; only some numbers were superseded.
 
 Each subsection: the nine dimension scores with a one-line justification + evidence pointer,
 then the Confidence rationale, then the single standout fact. Scores shown are **post-challenge**
@@ -262,7 +269,7 @@ then the Confidence rationale, then the single standout fact. Scores shown are *
 - **D7 = 4** — Focused canon plus explicit outsider on-ramps (FAccT/AIES accept no-access audits); single solo/duo papers became canonical. *(problem-07, "How outsiders contribute")*
 - **D8 = 5** — FAccT and AIES explicitly accept correspondence audits from outsiders; citizen-science and journalism precedents publish replicable methods. *(problem-07, "The research field around it")*
 - **D9 = 4** *(capped from 5)* — Nonprofits (DAIR, Ada Lovelace), commercial audit firms (BABL, ORCAA, Eticas), academic/hired groups; LL144/EU-driven audit market. *(problem-07, "Who does this work")*
-- **Confidence = 4** — Deep multi-source brief, verified internal map plus fresh web research, dated compliance timeline; some cited items flagged unverified/abstract-level.
+- **Confidence = 5** *(raised from 4, deepening pass 2 2026-07-08)* — Deep multi-source brief, verified internal map plus fresh web research. Two sourced primaries now READ in full and their load-bearing figures verified against opened pages (Obermeyer 2019: 17.7%→46.5%, 84% bias reduction, ~200M/yr; Gerchick "Auditing the Audits" FAccT 2025: ~53% <0.8, ~54% >1, NHPI 0.978→0.0007–1.4427, ~2% F500, top-3 auditors ~56%). Wright(2024)-vs-Gerchick(2025) citation ambiguity cleared (two distinct correct papers). EU regulatory disambiguation finished with official EU Council source (Digital Omnibus now law, Council green light 29 Jun 2026; Annex III employment/credit → Dec 2 2027; Art.50 transparency NOT delayed). Residual unknowns are open empirical questions in the field (does auditing change outcomes; auditor detection power; *Mobley* case law), not sourcing defects — peripheral to the row's claims.
 - **Standout fact:** The field's most-cited open wounds are evaluation-methodology wounds — construct validity, protocol confounds, LLM-judge bias, benchmark-vs-reality gaps — which map directly onto the researcher's published profile; canonical works here were 1–4 authors using only public APIs and synthetic inputs.
 
 #### Environmental footprint of AI (energy, power, water, carbon)
@@ -557,8 +564,8 @@ Wildcard: Model welfare empirics.
 
 ### Rows added in this merge
 
-- **Wealth inequality (mechanisms & measurement)** — problem-domain row (problem-12). D3=5 (open tabular data, $0–45, laptop). Confidence 3 (headline claims THEORIZED-UNMEASURED; no dataset joins usage- and ownership-inequality). Full scorecard above.
-- **Alternative-hardware (non-NVIDIA) training** — problem-domain row (problem-13). D3=4 (tempered: fingerprinting-signal feasibility untested, richest verification data access-gated). Confidence 3 (single dense brief; load-bearing facts vendor-sourced/⚠️-flagged). Full scorecard above.
+- **Wealth inequality (mechanisms & measurement)** — problem-domain row (problem-12). D3=5 (open tabular data, $0–45, laptop). Confidence **4** *(raised from 3 in the deepening passes — DFA + IMF GE model verified primary; the "no joined dataset" limiter is structural, not ignorance)*. Full scorecard above.
+- **Alternative-hardware (non-NVIDIA) training** — problem-domain row (problem-13). D3=4 (tempered: fingerprinting-signal feasibility untested, richest verification data access-gated). Confidence **4** *(raised from 3 — landscape verified; single-brief + vendor-sourced is the residual cap)*. Full scorecard above.
 
 ---
 
@@ -588,8 +595,38 @@ baseline, not the calibrated matrix — their stated "old" values (often 3) didn
 cells (5/5/4). Applying them would have *downgraded* calibrated scores on the strength of a
 mis-read baseline, so only Confidence moves and matrix-anchored dimension fixes were taken.
 
-**Still Conf 3** (deepen before shortlisting): the three wildcards — Agent market ecology (now
-known-crowded), Energy/water of closed API models, and Model welfare empirics.
+**After this first pass, Conf 3 remained on:** the three wildcards — resolved in the second pass below.
+
+### Second pass — toward Confidence 5 (2026-07-08)
+
+A follow-up pass targeted *every* below-5 row, reading ~more primary sources (the newly-sourced
+papers) and running down each row's specific confidence-limiting items. Result: **5 rows earned
+Conf 5; the wildcards rose to Conf 4; no row remains at Conf 3.** The rest hold honestly at 4.
+
+**Reached Conf 5** (verifiable caveats run down to primary sources):
+- **Bias & fairness** — Obermeyer 2019 + Auditing-the-Audits read in full; regulatory-jurisdiction scope (LL144/Colorado vs others) and deployed-audit findings verified primary.
+- **Model behavior science / fingerprinting** — persona/drift claims and the under-occupied-observatory claim verified; team-status flags resolved.
+- **Small/open-model science** — quantization-behavior, fine-tuning-science, and open-weights-tracking claims verified against primary; the brief's many ⚠️ flags cleared.
+- *(from pass 1: AI supply chain, Agent architectures)*
+
+**Rose to Conf 4** (papers now sourced + read): all three Wildcards — Agent market ecology (its "thinly studied" premise falsified → now known-crowded, itself a confidence gain), Energy/water of closed API models, Model welfare empirics.
+
+**Honestly capped at Conf 4 — with the precise structural blocker** (reading more cannot move these; only running the study can):
+- **Governance** — EU AI Office post-Aug-2026 operationalization hasn't happened yet; no framework-score→outcome study exists.
+- **Agent security & auth** — the load-bearing claims are *absence*-claims ("no adversarial spoof/bypass benchmark exists") — corroborable by hostile search, not primary-verifiable.
+- **AI dev tooling** — tooling-sustainability is an open question; core gap-claims are verified-absence + moving targets.
+- **Environmental footprint** — the de Vries-Gao 2026 recalibration (the only competing primary to Wang 2024) is CAPTCHA-gated; cumulative-vs-annual bases unreconciled.
+- **Model architecture research** — value rests on gap/absence claims closable only by running the audits.
+- **Model-development bottlenecks** — the RLVR-expands-or-not question is genuinely open (two credible primaries contradict); the data-wall figure is a single Epoch anchor.
+- **Disempowerment & cognition** — the causal claim (AI use → cognitive decline) has no longitudinal RCT; all evidence is correlational/underpowered.
+- **Labor & economics** — no causal design separates the post-2024 dip from the co-timed macro shock; the one causal study (Danish DiD) is out-of-country and null.
+- **Wealth inequality** — no dataset joins the realized usage- and ownership-inequality curves at matched cadence; the join is unbuilt (the researcher's own opening #1).
+- **Alternative-hardware** — single brief, several load-bearing facts vendor-sourced; the fingerprinting study-shape is likely-null (HSPI is inference-, not training-hardware).
+- **Evaluation & benchmarking science** — a few load-bearing items (FrontierMath/OpenAI episode, whether harnesses ship clustered SEs by default) remain partially open.
+- **Human-AI interaction** — best studies need IRB/recruitment whose feasibility we can't verify from the outside.
+- **Reproduction / meta-science**, **The data science of AI**, **Vertical eval & audit** — solid and multi-source, but each retains one open/absence item short of "no material open questions."
+
+**Method note:** agents were instructed not to inflate; the fact that most rows *stayed* at 4 with a named blocker is the honesty guardrail working, not a failure to research. Per-row scorecards above may still show a pre-deepening Confidence line; **these two logs are authoritative** for the current values.
 
 ---
 
@@ -636,28 +673,26 @@ unvalidatability (**Environmental footprint** and **Closed-model energy** both h
 ground-truth number, so new estimates cannot be validated by construction) and the access gates
 just named.
 
-The two rows added in the merge land, deliberately, in the *attractive-but-uncertain* band, not
-the top cluster. **Wealth inequality (mechanisms & measurement)** is resource-light and a clean
-skills fit (D2/D3/D4/D6 all high) but sits at **Conf 3** and **D1=4**: its headline claims are
-theorized-unmeasured (no published dataset joins usage- and ownership-inequality; no
-AI-attribution counterfactual), so it reads like Labor & economics' quieter cousin — a real
-measurement hole the profile can attack, discounted hard by how little we yet know. **Alternative-hardware
-(non-NVIDIA) training** scores high on impact and gap density (D1/D5/D6 = 5) but is the merge's
-sharpest *feasibility* bet: **D3=4** and **Conf 3** because the exploitable niche is not training
-models (out of scope) but independent run-level verification, and the flagship shape rests on an
-untested assumption — that the numerical hardware signature survives into released frontier
-weights. Both are single-brief rows; both belong on the read list, neither on a shortlist yet.
+**After two deepening passes, the Confidence column reads differently — and more honestly.** Five
+rows reached **Conf 5** (AI supply chain, Agent architectures, Bias & fairness, Model behavior
+science, Small/open-model science): their remaining caveats were *verifiable* claims that got run
+down to primary sources. No row remains at Conf 3 — the two "attractive-but-uncertain" merge rows
+(**Wealth inequality**, **Alternative-hardware**) and all three **Wildcards** rose to **Conf 4**.
 
-The Confidence column is where honesty about *ignorance* lives, and several rows say plainly we
-understand them too poorly to act on yet: **Labor & economics** (Conf 3 — its headline finding,
-the Canaries-vs-Denmark contradiction, is an *unresolved* ledger conflict, and its flagship
-study shape has an unaudited-classifier and conflict-of-interest problem), the two new rows
-above (**Wealth inequality**, **Alternative-hardware**, both Conf 3), and the remaining
-**Wildcards** — **Agent market ecology**, **Model welfare empirics**, and **Closed-model
-energy** all sit at Conf 3 on single sweep briefs, several load-bearing facts still unverified.
-And the program-wide D9 cap is a standing reminder that whether an unaffiliated individual can
-actually *fund* any of this remains an open, evidence-negative question (ledger Cluster A) —
-attractive dimension profiles, resource-light or not, do not resolve it.
+The deeper lesson is *why the other 15 rows honestly stop at 4* rather than climbing to 5. Their
+remaining limiter is almost never a sourcing gap we could close by reading more — it is one of
+two things the Confidence-to-5 log below documents per row: (a) a **genuine open empirical
+question** the field itself has not settled (is the post-2024 US entry-level dip causally AI?
+does RLVR expand the capability frontier? does sustained AI use cause cognitive decline?), or
+(b) an **absence-claim** ("no benchmark exists for agent-auth robustness"; "no dataset joins the
+usage and ownership curves") which, epistemically, can be *corroborated by hostile search* but
+never raised to "primary-verified" the way a positive claim can. In other words, **for these
+rows the thing capping Confidence IS the research opportunity** — it closes only when someone runs
+the study, which is the point of the whole program. That is the honest ceiling, not a to-do.
+
+And the program-wide D9 cap still stands: whether an unaffiliated individual can actually *fund*
+any of this is an open, evidence-negative question (ledger Cluster A) that attractive dimension
+profiles do not resolve.
 
 None of this selects a topic. Selection still runs through [04](04-topic-selection-process.md)'s
 staged process — **read → pilot → choose** — where a high row here earns a closer read, a
