@@ -53,7 +53,7 @@ The field is **young where it matters most**: exposure indices (2018–2024) are
 **Nonprofit/think tank:** Economic Innovation Group ([EIG "AI and Jobs: The Final Word (Until the Next One)," Aug 2025](https://eig.org/wp-content/uploads/2025/08/EIG-AI-and-Jobs.pdf), with [open replication code on GitHub](https://github.com/EIG-Research/AI-unemployment)); [Brookings](https://www.brookings.edu/articles/is-generative-ai-a-job-killer-evidence-from-the-freelance-market/); METR (nonprofit, ran the developer RCT).
 
 **How outsiders contribute — funding paths that exist right now:**
-- **[Anthropic Economic Futures Program](https://www.anthropic.com/economic-futures/program)** — research awards of **$10k–$50k + $5k Claude API credits** for empirical work on AI's economic impacts, explicitly open to external researchers; plus symposia (Georgetown McCourt, LSE) and a commitment to scale the Economic Index into a longitudinal dataset ([launch post](https://www.anthropic.com/news/introducing-the-anthropic-economic-futures-program)). A larger **$200M Economic Futures Research Fund** was announced for policy trials — ⚠️ unverified whether individual independent researchers are eligible ([secondary report](https://aiweekly.co/node/2863)).
+- **[Anthropic Economic Futures Program](https://www.anthropic.com/economic-futures/program)** — Economic Futures **Research Awards** of **$10k–$50k + $5k Claude API credits** for empirical work on AI's economic impacts, on a rolling basis; plus symposia (Georgetown McCourt, LSE) and a commitment to scale the Economic Index into a longitudinal dataset ([launch post](https://www.anthropic.com/news/introducing-the-anthropic-economic-futures-program)). **Eligibility (verified from the program page, 2026-07-08):** the stated criterion is *qualifications, not formal affiliation* — "We encourage economists with strong quantitative research backgrounds to apply. This program is particularly well-suited for academic economists, data scientists, and PhD students…" It does **not** explicitly require a university appointment, and Anthropic separately invites *independent research institutions* to email `economicfutures@anthropic.com`. So a credentialed independent (data scientist with a quantitative track record) is plausibly in-scope, but the page neither names nor guarantees unaffiliated individuals. ⚠️ Residual: applications were **closed** ("not currently accepting applications") on the date checked — this is a rolling/cyclical program, so timing matters more than eligibility. The separate large **Economic Futures Research Fund** (widely reported at ~$100M–$200M) targets policy trials/institutions; individual-independent eligibility remains ⚠️ unverified (secondary sources only).
 - NBER affiliation is not required to build on the open datasets (Anthropic HF data, Canaries dashboard downloads, GDPval gold subset, EIG code, O*NET/BLS public data).
 
 ## Published exemplars
@@ -73,7 +73,7 @@ Favoring small teams (all links opened):
 
 Specific, source-grounded:
 
-1. **The Canaries–Denmark contradiction is unadjudicated.** US payroll shows entry-level declines; Danish registry shows precise nulls. Candidate explanations (US vs. EU labor institutions, chatbots-vs-agents timing, ADP balanced-sample selection — the dashboard [itself notes](https://digitaleconomy.stanford.edu/project/indicators/canaries-dashboard/) it excludes firm entry/exit) are hypothesized, not tested. No published reconciliation as of the pages opened here.
+1. **The Canaries–Denmark contradiction is now *partly* adjudicated (updated 2026-07-08).** The two headline results largely *do not measure the same thing* (see Deepening pass §1): Canaries measures US **entry-level headcount** by age×exposure; Humlum-Vestergaard measures Danish **earnings/hours** for adopters of any age in 11 occupations. The live debate that *does* pit like against like is Canaries (entry-level employment decline is AI) vs. **EIG "Looking for the Ladder"** (Jan 2026; it's a monetary-policy artifact) — and Brynjolfsson et al. have published a **Feb 2026 rebuttal** conceding the *pre-2024* timing but defending a *post-2024* AI-driven divergence and countering the interest-rate story with Zens et al. (2020) exposure data. So this moved from "unadjudicated" to "actively contested with a documented exchange" — still not settled, but the axes of disagreement are now sharp and testable (the ⚠️ ADP balanced-sample / firm-entry-exit selection concern remains valid and open).
 2. **Exposure ≠ outcome validation is thin.** The workhorse indices (Eloundou GPT-4-scored, Felten AIOE, Webb patents) are *ex ante predictions* (guesses made before the fact about what AI *might* do, never checked against what actually happened); systematic horse-races (head-to-head tests of which index best predicts reality) against realized employment/wage changes barely exist ([EIG](https://eig.org/wp-content/uploads/2025/08/EIG-AI-and-Jobs.pdf) and [Bruegel](https://www.bruegel.org/system/files/2024-03/WP%2006.pdf) are early attempts). The indices intercorrelate ~0.8 (agree fairly strongly) yet imply different exposed populations.
 3. **Wage effects outside freelance platforms are near-absent.** Hui-Reshef-Zhou is the clean causal wage result; economy-wide wage evidence is missing (Humlum-Vestergaard's null covers Denmark only).
 4. **Micro-to-macro translation is unsolved** (the map doc flags this): RCT gains of 14–40% coexist with Acemoglu's ≤0.71%/decade TFP bound and METR's negative result for experienced experts. Nobody has published the aggregation model that reconciles them. ⚠️ inferred from absence in sources opened, not from a survey claiming absence.
@@ -107,3 +107,75 @@ For the program ledger:
 ## Fit notes
 
 The field's open datasets (Anthropic HF, Canaries ZIPs, GDPval gold subset, O*NET/BLS/CPS, EIG code) are tabular and pipeline-shaped, matching the researcher's XGBoost/classical-ML and data-pipeline strengths; the marquee studies above were done by 2–3-person teams on comparable tooling. The researcher's published LLM-as-a-judge work maps directly onto two live methodological needs: auditing the Economic Index's LLM-based task classifier and GDPval's grading pipeline. A named external funding channel exists at the right grant size (Anthropic Economic Futures, $10k–50k + API credits). The domain requires no GPU training runs; frontier-API and laptop-scale compute cover every study shape listed.
+
+---
+
+## Deepening pass (2026-07-08)
+
+Sources read in full this pass: the three assigned PDFs (Canaries pp.1–15; Humlum-Vestergaard pp.1–15 and pp.29–39; Hui-Reshef-Zhou pp.1–12) plus the newly-sourced **EIG "Looking for the Ladder"** (Iscenko & Curto Millet, Jan 2026 — downloaded to `papers/program-pdfs/eig-looking-for-the-ladder.pdf`, read pp.1–10) and two primary web pages (Anthropic Economic Futures program page; Stanford DEL's Feb-2026 rebuttal). **Net effect: the field's central contradiction is now much better understood as a set of distinct, resolvable disagreements rather than a flat paradox — but it remains genuinely unresolved on the merits.** Confidence rises from 3 to **4**.
+
+### 1. Reconciling Canaries (US −13–16% entry-level) vs. Humlum-Vestergaard (Danish near-null) — from the actual papers
+
+**The single most important finding: these two papers mostly are not in contradiction, because they measure different outcomes, populations, time windows, and institutions.** Verified from the full texts:
+
+| Dimension | Canaries (Brynjolfsson-Chandar-Chen) | Humlum-Vestergaard |
+|---|---|---|
+| **Outcome** | Employment **headcount** (count of workers by firm×age×exposure quintile), Poisson event study | **Earnings, hours, wages** (DiD adopters vs non-adopters), and occupational mobility |
+| **Population** | Ages **22–25** vs older, US-wide | All ages, **11 exposed occupations**, adopters vs non-adopters |
+| **Data** | ADP payroll, 3.5–5M workers/mo, balanced firm sample, through **Sep 2025** | Danish registry (E-Income/BFL) linked to two 25k-worker surveys, through **June 2024** (perceptions to Nov 2024) |
+| **Country** | US (flexible, at-will) | Denmark (flexible by EU standards; the paper explicitly argues DK hire/fire costs are low and comparable to US) |
+| **Headline** | −13% (paper) / ~16% (dashboard, Oct 2025) relative entry-level employment decline in top-exposure occupations | Precise nulls: CIs rule out earnings/hours effects **>1% at individual level, >5% at occupation level**; time savings **2.8%** of hours |
+
+Concretely: **Canaries finds nothing on wages either** — its Fact 5 states "little difference in annual salary trends by age or exposure quintile," i.e. adjustment shows up in *headcount, not compensation*. That is *consistent* with Humlum-Vestergaard's earnings null. The genuine tension is narrower than the brief implied: it is specifically **US entry-level headcount decline** vs. **Danish adopter earnings/hours nulls**, and those are close to non-overlapping measurements.
+
+**Humlum-Vestergaard directly reconciles the freelance contradiction** (Hui-Reshef-Zhou / Teutloff) in §4.2.4, giving three factors: (i) most exposed occupations aren't as extreme-substitutable as freelance proofreading (survey time savings are only modest); (ii) freelance spot markets have far less rigidity, so productivity shocks show up faster; (iii) workers reallocate saved time to new tasks, so total hours/earnings don't move even when task demand shifts. The paper also closes the "missing intercept"/general-equilibrium loophole: in App. A.2.6 an equilibrium model shows that under reasonable demand elasticities, null worker- and workplace-level DiD estimates *imply* a negligible occupation-wide effect; and 99.5% of *non-adopters* self-report no earnings impact, bounding spillovers.
+
+**Humlum-Vestergaard also reports a Denmark entry-level result that undercuts a naive AI-displacement read of Canaries:** the newest version finds *no difference in entry-level hiring* between AI-adopting and non-adopting Danish firms, and no differential job creation/destruction at adopting workplaces (§4.2.3, Fig.13). So the Danish data says "no" even to the specific hiring channel Canaries flags.
+
+### 2. The live, like-for-like debate: EIG "Looking for the Ladder" (Jan 2026) vs. Canaries — and Brynjolfsson's Feb-2026 rebuttal
+
+This is the exchange that actually adjudicates the US entry-level question, and it landed *after* the original brief. **EIG "Looking for the Ladder"** (Zanna Iscenko & Fabien Curto Millet — Google Chief Economist's team; EIG American Worker Project) argues the entry-level decline is a **monetary-policy artifact, not AI**. Verified claims from the PDF (data: Lightcast, 238M US postings Sep 2019–Aug 2025, 767 SOC × 21 NAICS; AI exposure = Eloundou GPT-4 β, same basis as Canaries):
+
+- **Timing.** Job postings for the top AI-exposure quintile **peaked March–April 2022 and fell steeply *before* ChatGPT (Nov 2022)** — Chart 1. The Canaries employment inflection (Nov 2022) is the lagged consequence of a pre-existing hiring freeze (attrition no longer offset by hires).
+- **Junior vs. senior parallel.** Junior *and* senior postings in the top quintile fell roughly in parallel since Spring 2022; **junior stabilized *faster*** — Chart 2. That contradicts a junior-specific AI effect.
+- **Interest-rate correlate.** AI exposure ≈ interest-rate sensitivity; ~38% of top-quintile workers are in Information / Finance / Professional-Technical services (vs <2% in the least-exposed quintile). Fed's fastest-in-40-years hiking cycle began March 2022, coincident with the postings decline — Chart 3.
+- **Placebo in COVID.** The same "AI-exposed occupations fall harder" pattern appeared in the 2020 COVID shock, when AI *could not* be the cause — Chart 4. These occupations are simply more cyclical.
+- **Mechanical cohort-aging.** A narrow 22–25 band shrinks mechanically when hiring inflows freeze even with zero layoffs (older cohorts are restocked by aging-in; the entry cohort is not).
+- **Adoption too slow to explain the timing.** Enterprise tooling (OpenAI API Mar 2023; ChatGPT Enterprise Aug 2023) postdates the inflection; US Census: <10% of large businesses even *planned* AI use in Q4 2023, ~12% actual by Q3 2025.
+
+**Brynjolfsson, Chandar & Chen's Feb-2026 rebuttal** ("Canaries, Interest Rates, and Timing," Stanford DEL — verified from the DEL page) does *not* cite EIG by name but answers the substance and **partially concedes the timing point**:
+
+- **Concession:** with **firm-time fixed effects**, the entry-level decline is **statistically significant only after 2024** — i.e. they grant the 2022–2023 drop may be non-AI (macro), while defending a *post-2024* AI-driven divergence.
+- **Interest-rate counter:** they cite **Zens et al. (2020)** to argue the *opposite* of EIG — that more AI-exposed jobs are on average *less* interest-rate-exposed (construction = high rate exposure, low AI exposure), and the exposure gradient holds within *both* below- and above-median rate-exposure groups. (⚠️ Both sides invoke Zens et al. 2020 with opposite readings — a directly resolvable empirical question, and a clean solo replication target.)
+- **Persistence:** the dashboard extends to **~April 2026** (~4 years post-ChatGPT); the effect has *not* mean-reverted and has grown ~0.5 pp/month; magnitude ~16% by Oct 2025 vs 13% in the paper. (Persistence/growth is Brynjolfsson's strongest card against a one-off macro shock; the DEL page I fetched did not itself display the April-2026 series — that figure is from a Jun-2026 Fortune interview, ⚠️ secondary.)
+- **Not addressed in the rebuttal I read:** the postings-peaked-before-ChatGPT chart, the junior/senior-parallel chart, and the mechanical cohort-aging critique specifically. Those remain live.
+
+**Net adjudication:** the honest state is *AI-caused entry-level displacement is plausible but not established.* The strongest pro-AI evidence is persistence + the automation/augmentation split (declines only in automative-use occupations) + firm-time-FE robustness post-2024. The strongest skeptic evidence is the pre-ChatGPT postings peak, the junior/senior parallel, the COVID placebo, and adoption being too slow/shallow in the 2022–23 window. This is a real, tractable dispute — and (see §5) an unusually clean solo research target.
+
+### 3. Confirmed load-bearing figures (verified against primary text this pass)
+
+- Canaries: **−13% (paper headline), ~16% (dashboard)** relative entry-level employment decline; **15 log-point** decline with firm-time FE; declines concentrated in **automative** (not augmentative) AI-use occupations; **wages ~flat** by age/exposure. ✔ verified from PDF pp.9–13.
+- Humlum-Vestergaard: CIs **rule out >1% (individual) / >5% (occupation)** earnings-hours effects; **2.8%** time savings; **~2%** occupational-mobility (FTE) shift; **97.7% of adopters / 99.5% of non-adopters** report no earnings impact; employer initiatives cut the adoption gender gap from **12→1–2 pp**. ✔ verified from PDF pp.3–4, 29–39.
+- Hui-Reshef-Zhou: **−2% jobs, −5.2% monthly earnings** for writing freelancers post-ChatGPT; extensive margin −1.2 pp (~10% of baseline); intensive −4.7% jobs / −5.1% income; **top-rated freelancers hit as hard or harder** (skill did not protect); replicated on image models (DALL-E 2/Midjourney, Apr 2022). ✔ verified from PDF pp.2–10. (Note: the assigned copy is the **CESifo WP 10601 / "Short-Term Effects…"** working-paper version, not the later *Organization Science* title — same study, cite accordingly.)
+
+### 4. Current industry facts (verified this pass)
+
+- **Anthropic Economic Index, June 2026 report ("Cadences")** and Mar-2026 ("Learning curves"): overall use is ~**57% augmentation / 43% automation** on Claude.ai, but automation dominates 1P API traffic; **coding = ~35%** of Claude.ai conversations. A **Dec-2025 survey of 81,000 Claude users** found large self-reported productivity gains alongside **displacement worry concentrated among early-career workers** and occupations where Claude does the most work — a telemetry-side echo of the Canaries age gradient. Women are **12%** of the linked sample and use Claude more iteratively (automation share 7.3 pp below men). Data remains **CC-BY on Hugging Face**.
+- **Anthropic Economic Futures** eligibility clarified (see fixed inline item): qualifications-not-affiliation framing; credentialed independents plausibly in-scope; applications were **closed** on 2026-07-08 (rolling program).
+
+### 5. What this changes for a solo researcher (sharpened)
+
+The Canaries⇄EIG exchange is the highest-leverage, lowest-cost target in the whole domain and it is **wide open right now**:
+- **Adjudicate the Zens-et-al.-(2020) interest-rate claim** that both camps cite oppositely — merge Zens interest-rate-exposure, Eloundou β, and Lightcast/BLS postings-and-employment series; test whether the exposure gradient survives controlling for rate exposure and the pre-ChatGPT postings peak. Pure data-pipeline + classical stats; $0 data cost; directly settles a published disagreement between a Stanford lab and Google's Chief Economist team.
+- **Decompose the cohort-aging mechanic** EIG raises vs. the firm-time-FE identification Canaries uses — a transparent replication on the public Canaries dashboard ZIPs would show how much of the 22–25 decline is mechanical inflow-freeze vs. differential.
+- The earlier study shapes (exposure-index horse-race, Economic Index classifier audit, GDPval grading audit, event study on a 2026 release) all still stand; the classifier-audit and grading-audit remain (⚠️) with **no published external audit found** this pass either.
+
+### 6. Residual unknowns (still ⚠️)
+
+- **Is the post-2024 divergence causal AI?** Not settled; persistence is suggestive, the postings/cohort critiques are unrebutted in the exchange read here.
+- **ADP balanced-sample / firm-entry-exit selection** in Canaries — still unaddressed; the dashboard concedes it excludes firm entry/exit.
+- **Zens-et-al. interest-rate direction** — contradictory readings, unresolved (but resolvable).
+- **Classifier validity** of the Anthropic Economic Index O*NET mapping, and **GDPval grader** robustness — no independent audit found.
+- **Global South outcomes** — still exposure-only; Anthropic's Dec-2025 note (lower-income countries report higher perceived AI capability but complementary-skill gaps) is perception, not labor-market outcome.
+- **Economy-wide US causal wage effect** — still absent (freelance negative; Denmark null; no US GE estimate).
+- **Economic Futures Research *Fund* (~$100–200M)** individual-independent eligibility — secondary sources only.

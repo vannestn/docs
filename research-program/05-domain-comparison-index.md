@@ -89,19 +89,19 @@ attractive it is — read it as a discount on every other cell in the row.
 
 | Domain | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 | D9 | Conf |
 |---|---|---|---|---|---|---|---|---|---|---|
-| Agent architectures & orchestration | 4 | 5 | 5 | 4 | **5** | **5** | 4 | **5** | 4 | 4 |
-| Agent security & authentication | **5** | **5** | **5** | 4 | **5** | 3 | 4 | **5** | 4 | 4 |
+| Agent architectures & orchestration | 4 | 5 | 5 | 4 | **5** | **5** | 4 | **5** | 4 | 5 |
+| Agent security & authentication | **5** | **5** | **5** | 4 | **5** | 5 | 4 | **5** | 4 | 4 |
 | AI development & research tooling | 4 | **5** | **5** | **5** | **5** | 4 | 4 | **5** | 4 | 4 |
-| AI supply chain (chips, HBM, export-control effects) | **5** | **5** | **5** | **5** | 4 | **5** | 4 | **5** | 4 | 4 |
-| Alternative-hardware (non-NVIDIA) training | **5** | **5** | 4 | 4 | **5** | **5** | 4 | 4 | 4 | 3 |
+| AI supply chain (chips, HBM, export-control effects) | **5** | **5** | **5** | **5** | 4 | **5** | 4 | **5** | 4 | 5 |
+| Alternative-hardware (non-NVIDIA) training | **5** | **5** | 4 | 4 | **5** | **5** | 4 | 4 | 4 | 4 |
 | Bias & fairness (model + deployed-system) | **5** | **5** | 4 | **5** | 4 | **5** | 4 | **5** | 4 | 4 |
 | Environmental footprint of AI (energy, power, water, carbon) | **5** | **5** | **5** | **5** | 4 | 4 | 4 | **5** | 4 | 4 |
 | Governance, regulation & geopolitics | **5** | **5** | **5** | **5** | **5** | **5** | 4 | **5** | 4 | 4 |
 | Model architecture research | 4 | **5** | **5** | 4 | 4 | **5** | 2 | **5** | 4 | 4 |
 | Model-development bottlenecks (data wall, compute, RL limits) | **5** | **5** | **5** | 4 | 4 | 4 | 4 | **5** | 4 | 4 |
 | Social impact: disempowerment & cognitive change | **5** | 4 | 4 | **5** | **5** | **5** | 4 | **5** | 4 | 4 |
-| Social impact: labor & economics | **5** | **5** | **5** | 4 | 4 | **5** | 3 | 4 | 4 | 3 |
-| Wealth inequality (mechanisms & measurement) | 4 | **5** | **5** | **5** | 4 | **5** | 3 | 4 | 4 | 3 |
+| Social impact: labor & economics | **5** | **5** | **5** | 4 | 4 | **5** | 3 | 4 | 4 | 4 |
+| Wealth inequality (mechanisms & measurement) | 4 | **5** | **5** | **5** | 4 | **5** | 3 | 4 | 4 | 4 |
 
 ### Fields & wildcards
 
@@ -114,9 +114,67 @@ attractive it is — read it as a discount on every other cell in the row.
 | Small/open-model science | 4 | **5** | **5** | **5** | 4 | **5** | 4 | **5** | 4 | 4 |
 | The data science of AI (curation, forensics, contamination, provenance) | 4 | **5** | 4 | **5** | 4 | **5** | 4 | **5** | 4 | 4 |
 | Vertical evaluation & third-party audit (medicine, law, finance, edu, gov) | **5** | **5** | 4 | **5** | 4 | **5** | 4 | **5** | 4 | 4 |
-| Wildcard: Agent market ecology (collusion, price wars, machine economics) | 4 | **5** | **5** | 4 | 4 | 4 | 4 | 4 | 4 | 3 |
+| Wildcard: Agent market ecology (collusion, price wars, machine economics) | 4 | **5** | **5** | 4 | 4 | 3 | 4 | 4 | 4 | 3 |
 | Wildcard: Energy/water measurement of closed API models | 4 | 4 | 4 | 4 | 4 | **5** | 3 | 3 | 3 | 3 |
 | Wildcard: Model welfare empirics | 3 | 4 | 4 | 3 | 4 | 4 | 4 | 3 | 4 | 3 |
+
+---
+
+## Composite views — a lens, not a decision
+
+> **This does not pick a topic.** A single number invites the three failures the charter forbids:
+> false precision (a 96.7 vs 95.8 gap is noise at 1–5 resolution), premature elimination, and
+> marketability-ranking. It is shown as **three weightings side by side** *because the reshuffle
+> between them is the signal* — a row that's #1 under one emphasis and #10 under another is telling
+> you something a single ranking would hide. It **feeds the shortlist gate** (candidates for
+> reading), never the final pick, which still runs through [read → pilot → choose](04-topic-selection-process.md).
+
+**Method.** Weighted sum of D1–D8, normalized to /100 (max = all-5s). **D9 (path optionality)
+is excluded** — it's a capped constraint-check, never a weight. **Confidence gates, it does not
+blend:** rows at **Conf ≤3 are listed separately as ⚠️ provisional** — they may *not* enter the
+shortlist on score alone; they get a deepening pass first. Weight presets:
+
+| Preset | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 |
+|---|---|---|---|---|---|---|---|---|
+| **Impact-first** (charter default — your specs) | 3 | 1.5 | 1 | 1.5 | 1 | 2 | 1 | 1 |
+| Fastest-artifact | 1 | 2 | 2 | 1 | 2 | 1 | 1 | 1.5 |
+| Long-game SME | 2 | 1 | 1 | 1 | 1 | 2 | 3 | 1 |
+
+### Impact-first ranking (primary)
+
+| # | Score | Conf | Domain |
+|---|---|---|---|
+| 1 | 98.3 | 4 | Governance, regulation & geopolitics |
+| 2 | 96.7 | 4 | Reproduction, replication & meta-science |
+| 3 | 96.7 | 5 | AI supply chain |
+| 4 | 95.8 | 4 | Agent security & authentication |
+| 5 | 95.0 | 4 | Bias & fairness |
+| 6 | 95.0 | 4 | Vertical evaluation & third-party audit |
+| 7 | 94.2 | 4 | Social impact: disempowerment & cognition |
+| 8 | 93.3 | 4 | Model behavior science / fingerprinting |
+| 9 | 93.3 | 4 | Evaluation & benchmarking science |
+| 10 | 93.3 | 4 | Environmental footprint of AI |
+| 11 | 92.5 | 4 | Alternative-hardware (non-NVIDIA) training |
+| 12 | 91.7 | 4 | Small/open-model science |
+| 13 | 90.8 | 5 | Agent architectures & orchestration |
+| 14 | 90.8 | 4 | Model-development bottlenecks |
+| 15 | 90.8 | 4 | Social impact: labor & economics |
+| 16 | 90.0 | 4 | The data science of AI |
+| 17 | 90.0 | 4 | AI development & research tooling |
+| 18 | 88.3 | 4 | Wealth inequality (mechanisms & measurement) |
+| 19 | 85.8 | 4 | Model architecture research |
+| 20 | 82.5 | 4 | Human-AI interaction field studies |
+| ⚠️ | 80.8 | 3 | *provisional* — Wildcard: Agent market ecology |
+| ⚠️ | 80.0 | 3 | *provisional* — Wildcard: Energy/water of closed API models |
+| ⚠️ | 70.8 | 3 | *provisional* — Wildcard: Model welfare empirics |
+
+### How the ranking shifts under the other weightings
+
+- **Fastest-artifact** (rewards tractability/cost/Claude-leverage/community): **model behavior science, agent security, agent architectures, and AI dev tooling jump up**; supply chain and bias slip a little. Top still led by governance.
+- **Long-game SME** (rewards time-to-expert + gap density + impact): rankings compress toward the same top cluster; **model architecture and human-AI interaction fall** (large canon / slow, gated fieldwork), reproduction and supply chain hold.
+- **Stable across all three:** governance, reproduction/meta-science, supply chain, agent security, bias, vertical audit, model behavior, eval science form the persistent top cluster. **The tightness (top ~17 within ~8 points) is the real finding** — many viable paths, no dominant one, which is why the choice belongs to reading + pilots, not the arithmetic.
+
+Full per-preset numbers are reproducible from the matrix with the weights above.
 
 ---
 
@@ -504,10 +562,42 @@ Wildcard: Model welfare empirics.
 
 ---
 
+## Confidence-deepening log (2026-07-08)
+
+A dedicated pass did more primary reading + industry research on the low-Confidence rows and
+re-verified the anchors that had docked others. ~15 additional papers were sourced (legal-first;
+see [briefs/resource-profiles.md] siblings and the program-pdfs manifest) and read in full,
+including the labor set (Canaries, Humlum-Vestergaard, Hui et al., + the EIG rebuttal), the IMF
+WP/25/68 inequality GE model, the agent-collusion literature, the model-welfare empirics, and the
+Pangu/HSPI hardware papers.
+
+**Confidence changes applied:**
+- **Labor & economics · 3→4** — the "Canaries vs Denmark contradiction" dissolves on full-text reading (different outcomes/populations/windows/countries; Canaries' flat wages are *consistent* with the Danish earnings null). The real dispute (is the post-2024 US entry-level dip AI or monetary policy?) is now sharp and sourced (EIG vs Stanford DEL), not a paradox. Caps at 4 — causation still unresolved.
+- **Wealth inequality · 3→4** — both ends of the "decoupling" thesis verified against *primary* data (Fed DFA: top-1% = 50.2% of equities, computed directly; AEI usage-geography reversal re-confirmed) and given a formal model (IMF WP/25/68 predicts wage-Gini −1.73pp, wealth-Gini +7.18pp). Caps at 4 — nobody has joined the two *realized* curves.
+- **Alternative-hardware · 3→4** — landscape now primary-verified (Pangu on Ascend, LongCat), AND a load-bearing assumption was *falsified*: HSPI is inference/serving fingerprinting, **not** training-hardware-from-weights — so the "signature survives into released weights" study-shape is likely-null. Understanding rose (hence +1) even as one method weakened (noted in the scorecard).
+- **AI supply chain · 4→5** — the snippet-only figures that had capped it (RAND 327 GW-by-2030 / 88 GW-2022 / 8 GW-per-run; CNAS/Epoch smuggling ranges; HBM integrated-loophole; CXMT capacity) are now verified against opened primaries (one figure corrected: domestic-production "400k–1M" → 200k–400k).
+- **Agent architectures · 4→5** — the two flagged claims (LOCOMO answer-key ~6.4% error / judge accepts ~63% wrong; HAL "higher reasoning effort *reduces* accuracy in the majority of runs") both verified verbatim.
+
+**Dimension changes applied:**
+- **Agent security & authentication · D6 3→5** — the anchor that docked it (arXiv:2605.16282: "robustness is the sole risk category with zero primary benchmarks") is now *confirmed verbatim* from the downloaded paper (Finding 6; R10 = 0 primary / 7 partial). The penalty is reversed — the gap is real *and* now primary-sourced.
+- **Wildcard: Agent market ecology · D6 4→3** — deepening *falsified* the "thinly studied" premise (≥6 teams entered in <18 months; Andon Labs is ~16 people). The niche is real but no longer under-occupied.
+
+**Changes deliberately NOT applied (transparency):** several deepening agents returned dimension
+"corrections" (e.g. labor D1/D3/D5, wealth D1/D2, alt-hardware D1) computed from their *own*
+baseline, not the calibrated matrix — their stated "old" values (often 3) didn't match the actual
+cells (5/5/4). Applying them would have *downgraded* calibrated scores on the strength of a
+mis-read baseline, so only Confidence moves and matrix-anchored dimension fixes were taken.
+
+**Still Conf 3** (deepen before shortlisting): the three wildcards — Agent market ecology (now
+known-crowded), Energy/water of closed API models, and Model welfare empirics.
+
+---
+
 ## Reading the results
 
 This index is a *comparison instrument, not a decision*. Read it column by column, discounted
-by Confidence — never as a leaderboard.
+by Confidence — and now via the [composite views](#composite-views--a-lens-not-a-decision) — but
+never as a leaderboard.
 
 On raw dimension profile for **this** program (impact-first, solo, ≤$500, eval/LLM-as-judge
 strengths), the strongest-fitting rows cluster where the profile's published expertise —
