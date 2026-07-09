@@ -74,6 +74,18 @@ rescaled the same way.
 | 10 | **Callsmith** — outcome-graded AI phone-call tuning | founding | **59.2** | 2 | 4 | 4 | 2 | 3 | Grades/tunes any voice bot on real booking conversions; biggest market + best full-arc fit, but hard cold-start — nothing ships without a live client. |
 | 11 | **SuggestionFix-Bench** | pilot | **54.2** | 3 | 3 | 1 | 3 | 4 | Grades whether AI reproduces the fix a human actually merged; clean hire artifact, but crowded space and a real gold-volume kill risk. |
 
+> **Two new candidates pending vetting — not scored above.** A 2026-07-09 founder-scout pass surfaced two
+> liability-bearing vertical-workflow verifiers, now written up in
+> [doc 18](18-expanded-domain-founding.md) as **#16 CrossCheck** (independent HTS/customs
+> classification-defensibility verifier, grounded in CBP's CROSS rulings and the HQ H350722 line between
+> "customs business" and permissible verification) and **#17 CreditProof** (Form 6765 Section-G R&D-credit
+> audit-survival grader, grounded in Tax Court disallowance patterns + the IRS RCCATG). Both are
+> vertical-AI-reliability "independent verifier" shapes in the same family as SecondRead / FieldProof, both
+> ride a hard 2026 regulatory tailwind (a fresh CBP ruling + 67% audit surge; mandatory Section G + 129 IRS
+> AI-audit use cases), and both look founder-shaped with an outcome-labeled moat a single vendor can't
+> assemble. **Neither has had the deep scoop / data-legitimacy / willingness-to-pay pass yet, so they are not
+> scored or ranked here.** Deep-vet them before comparing against the 11 above.
+
 ---
 
 ## Three picks that matter

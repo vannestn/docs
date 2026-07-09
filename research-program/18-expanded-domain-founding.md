@@ -1,10 +1,11 @@
-# 18 · Expanded-Domain Founding — 15 opportunities outside the original five
+# 18 · Expanded-Domain Founding — 17 opportunities outside the original five
 
 *Written 2026-07-09. Plain-English, like [doc 16](16-pilot-candidates.md) — NOT the dense research-log
 style. This answers a question you asked directly: **"would it help to expand our domains?"** The short
-answer is **yes**, and this doc is the concrete reason why, plus an initial list of 15 places to look.*
+answer is **yes**, and this doc is the concrete reason why, plus an initial list of 17 places to look
+(the original 15 plus 2 added 2026-07-09 from a founder-scout pass — see #16–17).*
 
-> **What this is and isn't.** This is a **breadth-first initial list** — 15 opportunities, each lightly
+> **What this is and isn't.** This is a **breadth-first initial list** — 17 opportunities, each lightly
 > checked (I note the nearest existing player for every one so you can see the gap is real), but **none of
 > them deep-vetted yet.** It's meant for you to react to and narrow. The deep "has anyone already done
 > exactly this / is the data really free / would the buyer really pay" pass comes *after* you pick favorites
@@ -40,16 +41,21 @@ argument for expanding: same skills, a shape that builds a product, and a moat a
 
 Nine new domains are represented below, grouped loosely: **vertical-AI reliability, dev/agent infrastructure,
 data products, applied fine-tuning, workflow vertical agents, embedded reliability products, AI-native ops,**
-and a couple of **adjacent wildcards** (the SMB voice-agent world). All 15 lean on the same core loop you
+and a couple of **adjacent wildcards** (the SMB voice-agent world). All 17 lean on the same core loop you
 already own: *measure it → the corrections become data → the data trains a cheaper model → repeat.*
 
 ---
 
-## The 15 at a glance
+## The 17 at a glance
 
 "Novelty" is a rough flag, not a verdict: **open** = I found no funded player doing this specific thing;
 **wedge-exists** = adjacent players exist but the specific angle (usually independent / cross-vendor /
 self-serve) looks unclaimed. Both still need the real scoop check after you pick.
+
+*#16–17 were added 2026-07-09 from a later founder-scout pass — two more liability-bearing "independent
+verifier" shapes in the same family as SecondRead (#2) / FieldProof (#12). They're in the table and briefs
+below but are **not yet folded into the "How to narrow" picks** at the bottom; treat them as new candidates
+still awaiting the deep-vet pass.*
 
 | # | Name | Domain | Who pays | Moat | Novelty | One-line |
 |--:|---|---|---|---|:--:|---|
@@ -68,6 +74,8 @@ self-serve) looks unclaimed. Both still need the real scoop check after you pick
 | 13 | **Kappa** | ai-native-ops | AI-native teams gating releases on evals | Cross-customer judge-vs-human drift stream | open | A platform-agnostic "referee's referee" that alerts when your LLM-judge rots |
 | 14 | **Proofpoint** | adjacent-wildcard | White-label voice-agent agencies / resellers | Labeled good-vs-botched call corpus + report lock-in | open | Independent per-call QA + branded client-proof reports that kill reseller churn |
 | 15 | **Callsmith** | adjacent-wildcard | SMB voice-agent vendors & multi-location businesses | Outcome-labeled transcript→business-result corpus | open | Grades AI-handled calls by business *result* and tunes any bot to convert more |
+| 16 | **CrossCheck** | vertical-AI-reliability | Importers of record, customs brokers, trade-compliance teams | Cross-vendor + audit-outcome defensibility corpus (CROSS-grounded) | wedge-exists | Independent, CROSS-grounded verifier scoring whether a 10-digit HTS code survives a "reasonable-care" audit — not self-scored |
+| 17 | **CreditProof** | vertical-AI-reliability | R&D tax-credit firms, CPA firms, mid-market self-filers | Disallowance-pattern corpus (Tax Court + RCCATG) + graded-narrative→outcome stream | wedge-exists | Grades a completed Form 6765 Section G narrative against audit-survival probability per business component — a grader, not a doc generator |
 
 ---
 
@@ -439,6 +447,76 @@ wedge, the nearest player + how you'd get past them, and the first cheap step.
   pull 2–4 weeks of recordings + their booking calendar, hand-attribute outcomes, and show the 10 calls that
   lost bookable revenue plus 3 prompt fixes that measurably lift booking.
 
+### 16 · CrossCheck — the independent HTS classification-defensibility verifier
+**Domain:** vertical-AI-reliability · **Novelty:** wedge-exists
+
+- **The problem.** The importer of record bears strict "reasonable care" liability for every 10-digit HTS
+  classification, yet even the best fine-tuned models get only ~40% of 10-digit codes right — and CBP just
+  drew a bright line: Headquarters ruling **HQ H350722 (2026-01-16)** holds that an AI tool assigning a code
+  *tied to a specific entry* is "customs business" requiring a licensed broker, while general classification
+  *research / verification disconnected from a specific entry, with a disclaimer,* is permissible. Meanwhile
+  CBP audits are up **67% YoY** ($134M recovered in the first four months of 2025; **42% of penalties** trace
+  to misclassification), and every classification vendor only self-scores its own confidence — nobody offers
+  an independent, cross-vendor second read.
+- **The product.** Paste a proposed 10-digit code + product description (from any vendor, broker, or in-house)
+  and get back an *independent* CROSS-grounded classification with GRI reasoning, a calibrated defensibility
+  probability, the closest supporting and contradicting public rulings, and a "reasonable care" documentation
+  packet — deliberately framed as classification research/verification *disconnected from a specific entry*
+  with a disclaimer, staying on the legal side of H350722.
+- **Who pays.** Mid-market importers of record (who carry the liability), customs brokers wanting a cheap
+  second check, corporate trade-compliance teams, and 3PLs — per-classification-verified or a monthly
+  compliance subscription; later, aggregated "defensibility by chapter / by vendor" benchmarks.
+- **The moat.** A compounding cross-vendor + audit-outcome corpus: which vendor's 10-digit read disagreed with
+  the CROSS-grounded independent read, and which reading actually *survived* a ruling or audit —
+  un-backfillable, and structurally invisible to any single vendor that only sees its own outputs.
+- **Your wedge.** Squarely your lane: LLM-as-judge for the independent read + GRI-reasoning grounding,
+  classical calibration (XGBoost) on defensibility probability, and a data pipeline over CROSS's **220,989
+  public rulings** (1989–present, on data.gov; third-party scrapers like Apify exist) — labels *mined* from
+  public rulings, no manual annotation.
+- **Nearest player + wedge.** TariffLens, Gaia Dynamics (only $1.5M pre-seed, Andrew Ng's AI Fund), and
+  Camtom/TariffPro all self-score their *own* confidence. **Wedge:** the independent, vendor-agnostic
+  defensibility verifier grounded in CROSS that complements rather than competes — riding two live tailwinds
+  (the H350722 ruling that legitimizes exactly this research/verification posture, plus the 67% audit surge).
+  Distinct from SecondRead (#2, insurance-claims extraction) and FieldProof (#12, invoice fields): different
+  document, different ground truth, different buyer.
+- **First step (<$500).** Scrape a slice of CROSS (data.gov / Apify) for one high-audit chapter (textiles /
+  apparel or electronics), build the GRI-grounded independent classifier + defensibility scorer, hand-validate
+  against held-out rulings, and offer 3–5 mid-market importers a free "is this code defensible?" check on
+  recent entries in exchange for outcome feedback.
+
+### 17 · CreditProof — the R&D-credit audit-survival grader
+**Domain:** vertical-AI-reliability · **Novelty:** wedge-exists
+
+- **The problem.** IRS Form 6765 **Section G becomes mandatory** for most filers starting **tax year 2026** —
+  you must itemize ≥80% of qualified research expenses (QREs) by business component, up to 50 components — and
+  the IRS now runs **129 AI audit use cases** (up from 54). Documentation must be *contemporaneous*;
+  retroactive reconstruction fails on audit. Firms and CPAs can *generate* the narratives, but nobody tells
+  them whether a completed narrative would actually *survive*.
+- **The product.** Feed a completed Section G business-component narrative + QRE allocation and get back a
+  calibrated **audit-survival probability per component**, the specific weaknesses flagged (a missing
+  four-part-test element, a vague technological-uncertainty statement, an unsupported wage/QRE allocation)
+  grounded in real disallowance patterns, and a suggested fix — a defensibility **grader**, not another doc
+  generator.
+- **Who pays.** R&D tax-credit specialty firms and consultancies, CPA firms filing 6765, and mid-market
+  companies self-filing — per-study or per-component, sold as disallowance-risk reduction on a credit that is
+  now mandatorily itemized *and* AI-audited.
+- **The moat.** A structured "what got disallowed and why" corpus mined from Tax Court opinions (George's of
+  Missouri, TC Memo 2026-10; Smith v. Commissioner, TC Memo 2026-50) and the IRS **Research Credit Claims
+  Audit Techniques Guide (RCCATG)**, plus an un-backfillable stream of graded-narrative → actual-audit-outcome
+  pairs that no doc generator captures.
+- **Your wedge.** Your published RAG-grounding-judge shape applied to audit survival: LLM-as-judge scoring
+  narrative-vs-four-part-test, classical calibration on survival probability, and a data pipeline over public
+  Tax Court opinions + the RCCATG — labels mined from published outcomes, zero manual annotation.
+- **Nearest player + wedge.** CodeROI automates Section G *doc generation* for software; nobody sells a
+  defensibility *grader* that scores a finished narrative against audit-survival probability. **Wedge:** the
+  independent second-opinion layer that sits on top of *any* doc-generation workflow (CodeROI's output
+  included) and grades it against real disallowance patterns — complements rather than competes, with the
+  mandatory-Section-G + AI-audit surge as the tailwind.
+- **First step (<$500).** Scrape published Tax Court R&D-credit opinions + the RCCATG, build a four-part-test
+  defensibility rubric + grader for one component type (software), hand-validate against held-out
+  allowed-vs-disallowed cases, and offer 3–5 R&D-credit firms a free "would this narrative survive?" score on
+  a redacted past study.
+
 ---
 
 ## How to narrow
@@ -468,7 +546,7 @@ Honorable near-misses: **SnapJudge (#4)** (tightest technical fit — LLM-judge 
 independent-verifier shapes, likely competing against incumbent platform features).
 
 **The honest caveat (guardrail #2).** These nine new domains are **less understood than the original five.**
-Doc 16's candidates were adversarially killed and prior-work-checked to the paper level; the fifteen here are
+Doc 16's candidates were adversarially killed and prior-work-checked to the paper level; the seventeen here are
 breadth-first with only a nearest-player note each. Every "open" flag is a *hypothesis*, not a finding —
 markets move fast and a funded player may already exist that I didn't surface. So the plan is unchanged from
 how we've worked: **you react and narrow to 3–5**, and *then* I do the real study on the winners — the deep
