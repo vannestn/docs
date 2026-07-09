@@ -22,6 +22,7 @@ hired paths all stay open.
 | [10 · Startup pilot specs](10-startup-pilot-specs.md) | ~3 pilots/domain, each fully evaluated (feasibility, novelty, founding vs hire value, success/kill) |
 | [11 · Problem space](11-problem-space.md) | Problem-FIRST foundation — 33 pains mined via 8 discovery lenses + adversarial vet; the driver that supersedes the solution-first drafts (08/10/12) |
 | [11b · Expanded problem catalog](11b-expanded-problem-catalog.md) | ~90 problems, 12 clusters, wide-aperture + source-mined; top-11 for deep validation |
+| [13 · Problem validation](13-problem-validation.md) | Thorough validation of top-11 problems (2 evidence + 2 kills each); 4 advance, 7 killed |
 | [12 · Company theses](12-company-theses.md) | Creative company-thesis pass (8 lenses) + VC vet — early SOLUTION sketch, subordinate to the problem-first pass |
 | [briefs/](briefs/) | Source research briefs |
 | [radar/](radar/) | Weekly + monthly radar digests (auto-generated) |
