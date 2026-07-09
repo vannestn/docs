@@ -20,6 +20,7 @@ hired paths all stay open.
 | [08 · Pilot specs](08-pilot-specs.md) | The locked 5-field shortlist as runnable pilots (RQ, method, cost, success/kill, artifact) |
 | [09 · Startup lens](09-startup-lens.md) | The same domains re-scored for venture potential (2026-07-08 founding pivot) — wedge, moat, comparables, what to drop |
 | [10 · Startup pilot specs](10-startup-pilot-specs.md) | ~3 pilots/domain, each fully evaluated (feasibility, novelty, founding vs hire value, success/kill) |
+| [11 · Problem space](11-problem-space.md) | Problem-FIRST foundation — 33 pains mined via 8 discovery lenses + adversarial vet; the driver that supersedes the solution-first drafts (08/10/12) |
 | [12 · Company theses](12-company-theses.md) | Creative company-thesis pass (8 lenses) + VC vet — early SOLUTION sketch, subordinate to the problem-first pass |
 | [briefs/](briefs/) | Source research briefs |
 | [radar/](radar/) | Weekly + monthly radar digests (auto-generated) |
