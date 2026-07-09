@@ -31,6 +31,7 @@ hired paths all stay open.
 | [21 · Founding: from literature](21-founding-candidates-literature.md) | Literature-mined founding candidates scored vs Kappa (83.3). Cleared: **RewardProof 85, QueryProof 85, MemTrust 85, VeriJudge 83.3** |
 | [22 · Founding: vertical + buyer](22-founding-vertical-and-buyer.md) | New founding candidates (industry + buyer-GTM apertures) scored vs Kappa (83.3). Cleared: **NoteProof 87.5, TrajTrust 87.5** |
 | [23 · Founding: capability + adjacent](23-founding-capability-and-adjacent.md) | New founding candidates (capability-frontier + adjacent-to-published apertures). 0 cleared; near-misses TrueTool 82.5, Blindspot 80, TaxProof 80 |
+| [24 · Founding: health/safety verticals](24-founding-health-safety-verticals.md) | Deep liability-holding clinical sub-workflows. Cleared: **PortalProof 87.5, TriageProof 85, InteractionProof 83.3** |
 | [14 · Creative re-angles](14-creative-reangles.md) | *Research log (dense).* Re-shaping each real problem's **business** to dodge why a solo couldn't found on it. Readable version → doc 16 |
 | [15 · Method-transfer solutions](15-method-transfer-solutions.md) | *Research log (dense).* Mining top papers' **methods** and recombining them into cheaper technical approaches. Readable version → doc 16 |
 | [12 · Company theses](12-company-theses.md) | Creative company-thesis pass (8 lenses) + VC vet — early SOLUTION sketch, subordinate to the problem-first pass |

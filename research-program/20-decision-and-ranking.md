@@ -48,6 +48,23 @@ The ranking is computed from **your** stated priorities, not generic ones. Five 
 | **Executability** | **2.5** | Can *you* actually do it — data, cost, skill-fit, risk? |
 | **Hire-signal** | **1.5** | How legible/valuable as a credential to the teams you'd join? |
 
+**A ship-speed integrity check — the "differentiated-half" test.** Watch for one specific inflation:
+a pitch claims **ship-speed 5** by pointing at a free public dataset, but the verdict has *two halves*
+and the free data labels only the easy one. Before you accept a 5, ask: **does the free dataset label
+the DIFFERENTIATED half of the verdict, or only the commodity half? If only the commodity half, cap
+ship-speed at 4 and note the missing-corpus risk.** This matters most for the cross-vendor
+faithfulness/survival verifiers (Kappa's family), where the commodity half is a deterministic rule
+check and the differentiated half is the grounding/outcome judgment that is the actual moat.
+
+*Worked example — ReasonProof vs CodeSurvive, both "independent cross-vendor verifier" pitches that
+claim ship-5 off free data.* **ReasonProof clears it:** HMDA ships structured denial-reason + outcome +
+protected-class fields, so the free corpus labels the *differentiated* half (was the adverse-action
+reason legitimate?), not just the commodity deterministic-rule check — a genuine 5. **CodeSurvive fails
+it:** OIG audit reports are narrative PDFs, and free data covers only the commodity half (OIG's
+deterministic coding rules); there is **no** public note→HCC→survival-outcome corpus for the
+differentiated half (does the code survive audit?). Its honest ship-speed is **4, not 5**, with a
+missing-corpus risk to flag.
+
 Two derived views, because the "best" candidate depends on what you're optimizing for:
 
 - **Best potential outcome** = impact + founding-upside + hire-signal (the ceiling if it works).
