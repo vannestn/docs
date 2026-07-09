@@ -138,11 +138,47 @@ re-deepened. Weight presets:
 
 | Preset | D1 | D2 | D3 | D4 | D5 | D6 | D7 | D8 |
 |---|---|---|---|---|---|---|---|---|
-| **Impact-first** (charter default — your specs) | 3 | 1.5 | 1 | 1.5 | 1 | 2 | 1 | 1 |
+| **Ship-first, impact-second** ⬅ *the researcher's chosen weighting (2026-07-08)* | 2.5 | 3 | 3 | 2 | 2 | 1.5 | 0.5 | 2 |
+| Impact-first (charter default) | 3 | 1.5 | 1 | 1.5 | 1 | 2 | 1 | 1 |
 | Fastest-artifact | 1 | 2 | 2 | 1 | 2 | 1 | 1 | 1.5 |
 | Long-game SME | 2 | 1 | 1 | 1 | 1 | 2 | 3 | 1 |
 
-### Impact-first ranking (primary)
+The researcher chose (2026-07-08): weight **fastest shippable result highest, impact second**;
+genuine interest across all four thematic areas (so interest doesn't narrow the field — the
+weighting drives it); all three exit paths kept open (marketability = pass/fail check only, which
+every domain clears). The **Ship-first ranking below is therefore the operative one**; Impact-first
+is kept as an alternate view.
+
+### Ship-first, impact-second ranking (operative)
+
+| # | Score | Conf | Domain |
+|---|---|---|---|
+| 1 | 99.4 | 4 | Governance, regulation & geopolitics |
+| 2 | 97.0 | 4 | Reproduction, replication & meta-science |
+| 3 | 97.0 | 5 | AI supply chain |
+| 4 | 97.0 | 4 | Agent security & authentication |
+| 5 | 96.4 | 5 | Model behavior science / fingerprinting |
+| 6 | 95.2 | 4 | Evaluation & benchmarking science |
+| 7 | 95.2 | 4 | Environmental footprint of AI |
+| 8 | 94.5 | 4 | AI development & research tooling |
+| 9 | 93.9 | 5 | Small/open-model science |
+| 10 | 93.9 | 5 | Agent architectures & orchestration |
+| 11 | 93.3 | 5 | Bias & fairness |
+| 12 | 93.3 | 4 | Vertical evaluation & third-party audit |
+| 13 | 92.7 | 4 | Model-development bottlenecks |
+| 14 | 92.1 | 4 | Social impact: disempowerment & cognition |
+| 15 | 91.5 | 4 | Social impact: labor & economics |
+| 16 | 90.9 | 4 | Wealth inequality (mechanisms & measurement) |
+| 17 | 90.3 | 4 | The data science of AI |
+| 18 | 90.3 | 4 | Model architecture research |
+| 19 | 85.5 | 4 | Wildcard: Agent market ecology |
+| 20 | 78.8 | 4 | Wildcard: Energy/water of closed API models |
+| 21 | 77.0 | 4 | Human-AI interaction field studies |
+| 22 | 72.1 | 4 | Wildcard: Model welfare empirics |
+
+Top ~12 within ~6 points — deliberately tight; the tie-break is a pilot, not the decimals.
+
+### Impact-first ranking (alternate view)
 
 | # | Score | Conf | Domain |
 |---|---|---|---|
@@ -626,7 +662,21 @@ Conf 5; the wildcards rose to Conf 4; no row remains at Conf 3.** The rest hold 
 - **Human-AI interaction** — best studies need IRB/recruitment whose feasibility we can't verify from the outside.
 - **Reproduction / meta-science**, **The data science of AI**, **Vertical eval & audit** — solid and multi-source, but each retains one open/absence item short of "no material open questions."
 
-**Method note:** agents were instructed not to inflate; the fact that most rows *stayed* at 4 with a named blocker is the honesty guardrail working, not a failure to research. Per-row scorecards above may still show a pre-deepening Confidence line; **these two logs are authoritative** for the current values.
+**Method note:** agents were instructed not to inflate; the fact that most rows *stayed* at 4 with a named blocker is the honesty guardrail working, not a failure to research. Per-row scorecards above may still show a pre-deepening Confidence line; **these logs are authoritative** for the current values.
+
+### Third pass — multi-source corroboration (2026-07-08)
+
+A final thoroughness pass secured **≥2 independent primary sources** per load-bearing claim across
+all 18 below-5 rows (16 agents; ~more papers sourced legal-first + read). **Outcome: no row moved
+to Conf 5 — every residual cap is structural, not source-count.** Concretely, all 16 returned
+`residual = structural` (an open empirical question or an absence-claim), confirming the earlier
+finding: the rows still at 4 are held there by *the open question itself*, which only a pilot
+resolves. The pass's value was thoroughness — briefs now carry independent corroboration per claim
+and explicitly list which claims are *inherently* single-source (e.g. eval-science ~8, model-dev
+bottlenecks ~5, agent-security ~5) rather than under-researched. **Final Confidence: 5 rows at
+Conf 5 (AI supply chain, Agent architectures, Bias & fairness, Model behavior science,
+Small/open-model science), 18 at Conf 4, none below.** Desk research is now at its ceiling; further
+Confidence gains require *doing a pilot*, not reading.
 
 ---
 

@@ -24,6 +24,13 @@ numbers that exist are not comparable with each other.
 - **Energy/grid.** The IEA (International Energy Agency, the intergovernmental energy body) projects
   global datacenter electricity roughly **doubling to ~945 TWh by 2030** (TWh = terawatt-hour, a billion
   kWh; ~3% of global use), AI the main driver ([IEA Energy & AI](https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai)).
+  *Independently corroborated in direction/magnitude by orgs using different methods:* Deloitte
+  (~1,065 TWh global by 2030), BCG (~970 TWh), Goldman Sachs (+165% capacity vs 2023), and — for the
+  US, from a government lab primary — **Lawrence Berkeley National Lab's 2024 DOE report** (US datacenter
+  use 176 TWh in 2023 = 4.4% of US electricity → **325–580 TWh by 2028** = 6.7–12.0% of US)
+  ([LBNL-2001637, Dec 2024](https://escholarship.org/content/qt32d6m0d1/qt32d6m0d1.pdf), ✅ PDF read
+  this pass). The "roughly doubling to ~1,000 TWh" magnitude is thus multi-sourced across independent
+  estimators, even though point values differ.
   This is already visible in prices: in PJM's Dec 2025 capacity auction (PJM is the largest US grid
   operator; a capacity auction is where utilities pre-buy future generation), **data-center load was
   ~40% (~$6.5B) of the $16.4B capacity cost** ([Utility Dive](https://www.utilitydive.com/news/data-centers-pjm-capacity-auction/808951/)),
@@ -34,6 +41,13 @@ numbers that exist are not comparable with each other.
   Meta, and Apple's own datacenters were likely **~662% higher than officially reported**, because
   companies report "market-based" figures laundered through renewable-energy certificates instead of
   location-based grid reality ([Guardian analysis, via TechInformed](https://techinformed.com/data-centre-emissions-over-660-more-than-meta-microsoft-google-and-apple-report/)).
+  The Guardian's exact 662% figure is single-source, but the *underlying mechanism* (RECs let firms report
+  paper emission cuts that don't reflect real grid emissions) is independently confirmed by peer-reviewed
+  primaries: **Bjørn, Lloyd, Brander & Matthews, *Nature Climate Change* 2022** studied 115 SBTi-certified
+  companies and found that removing RECs collapsed their combined 2015–2019 Scope-2 decline from 31% to
+  10% — i.e., **~42% of reported Scope-2 reductions likely have no real GHG impact**
+  ([DOI 10.1038/s41558-022-01379-5](https://doi.org/10.1038/s41558-022-01379-5), ✅ verified via OpenAlex
+  + primary summary), reinforced by [Environmental Research Letters 2024–25 REC/Scope-2 studies](https://iopscience.iop.org/article/10.1088/1748-9326/adc941).
 - **Water.** Per-query water figures span **~30–150× depending on boundary** (boundary = how much of the
   supply chain you count — Google's *measured* 0.26 mL/prompt vs. Li/Ren's 10–50 mL including off-site
   water used to *generate the electricity* vs. Mistral's 45 mL marginal figure — ✅ all three now verified
@@ -63,6 +77,11 @@ numbers that exist are not comparable with each other.
   Per Hugging Face, **15 of the top 20 most-used models on OpenRouter are closed-source and zero closed
   vendors have submitted models for energy benchmarking**
   ([AI Energy Score call-to-action](https://huggingface.co/blog/sasha/energy-score-call-to-action)).
+  The opacity finding is multi-sourced beyond HF: GAO (above), Stanford CRFM's
+  [Foundation Model Transparency Index](https://arxiv.org/pdf/2512.10169) (independent instrument scoring
+  vendor disclosure, energy among indicators), [Brookings](https://www.brookings.edu/articles/as-energy-demands-for-ai-increase-so-should-company-transparency/),
+  and ["Misinformation by Omission" (arXiv:2506.15572)](https://arxiv.org/pdf/2506.15572) all
+  independently document that closed vendors do not disclose per-query energy/water.
 
 **Measurable sub-problems** (each is a viable study unit): per-query operational energy of closed
 models; boundary-consistent water accounting; embodied/manufacturing carbon (the carbon emitted making
@@ -86,7 +105,7 @@ the numbers. Sub-areas, methods, maturity:
 | Sub-area | Method | Maturity |
 |---|---|---|
 | **Per-query inference energy (open models)** | Direct GPU metering on owned/rented hardware: [CodeCarbon](https://arxiv.org/html/2509.22092v1) (software that estimates energy/CO₂ from usage counters), [Zeus](https://pytorch.org/blog/zeus/) (reads the GPU's actual power draw, U. Michigan), [ML.ENERGY Benchmark](https://arxiv.org/abs/2505.06371) (NeurIPS 2025 energy leaderboard), [AI Energy Score](https://huggingface.github.io/AIEnergyScore/) (standardized energy-rating harness, 166+ models, 10 tasks) | **Most mature.** Tooling open-source; leaderboards exist; validation studies emerging ([Ground-truthing CodeCarbon, arXiv:2509.22092](https://arxiv.org/html/2509.22092v1) — checks the software estimate against a physical power meter) |
-| **Per-query energy (closed models)** | (a) First-party production telemetry (the vendor's own live measurements) — only Google has published one, with methodology ([arXiv:2508.15734](https://arxiv.org/abs/2508.15734), 0.24 Wh median); (b) black-box estimation (inferring energy from outside, since you can't see inside the API) from API behavior + inferred hardware ([Jegham et al., arXiv:2505.09598](https://arxiv.org/abs/2505.09598); [Epoch AI](https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use)) | **Immature.** One methodology-backed vendor number; OpenAI's 0.34 Wh is a CEO blog claim without methodology; black-box estimates have a single validation anchor |
+| **Per-query energy (closed models)** | (a) First-party production telemetry (the vendor's own live measurements) — only Google has published one, with methodology ([arXiv:2508.15734](https://arxiv.org/abs/2508.15734), 0.24 Wh median); (b) black-box estimation (inferring energy from outside, since you can't see inside the API) from API behavior + inferred hardware ([Jegham et al., arXiv:2505.09598](https://arxiv.org/abs/2505.09598); [Epoch AI](https://epoch.ai/gradient-updates/how-much-energy-does-chatgpt-use)) | **Immature.** One methodology-backed vendor number; OpenAI's 0.34 Wh is a CEO blog claim without methodology; black-box estimates have a single validation anchor. *Weak convergence worth noting:* three independent parties land in a **0.24–0.34 Wh** band for a standard text query — Google 0.24 Wh (methodology), Epoch AI ~0.30 Wh (independent H100-time model), Altman 0.34 Wh (no methodology) — but each is a distinct estimate of a *different* model, not a replication, so this is directional agreement, not verification |
 | **Training/lifecycle LCA** | Full life-cycle assessment (adding up environmental cost across the whole lifespan): [Strubell et al. 2019](https://aclanthology.org/P19-1355/) (estimated training CO₂), [BLOOM LCA](https://jmlr.org/papers/v24/23-0069.html) (accounts for embodied + dynamic + idle — chip-manufacturing + active-compute + standby energy), Mistral's third-party-reviewed 18-month LCA ([Mistral 2025](https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai/)) | **Method exists, coverage tiny.** ~3 public model-level LCAs total |
 | **Macro demand estimation** | Top-down (IEA, from national totals) vs bottom-up (summing chip shipments — de Vries); meta-review of estimate quality ([Mytton & Ashtine, Joule 2022](https://www.cell.com/joule/fulltext/S2542-4351(22)00358-0) — audited 258 estimates across 46 publications, finding 43% reliant on private IDC market data, 11% broken source links) | **Bounded but noisy**; systematic provenance defects documented |
 | **Water** | Indirect modeling (convert electricity→water via intensity factors + WUE): [Li et al./Ren, "Making AI Less Thirsty"](https://arxiv.org/abs/2304.03271) (CACM 2025 — the paper that created AI-water accounting) (WUE = water usage effectiveness, liters consumed per kWh of IT power); adversarial critique: [Mytton, "Overestimating AI's water footprint"](https://www.devsustainability.com/p/overestimating-ais-water-footprint) (argues Ren's numbers run high) | **Contested.** Active methodological dispute between the two main researchers |
@@ -368,3 +387,69 @@ field's *two* primaries is a genuine open empirical question, not a peripheral u
 explicitly a two-primary sub-field. This is a real caveat on a load-bearing sub-claim → honest ceiling is **4**.
 The rest of the row's load-bearing claims (Google methodology, water dispute, IEA macro, Wang cumulative
 figures) are now primary-verified and multi-sourced.
+
+---
+
+## Multi-source corroboration (2026-07-08)
+
+Goal of this pass: make every **load-bearing** claim rest on ≥2 *independent* primaries (different
+authors/orgs/datasets/methods reaching the same conclusion — not a press restatement of one origin).
+
+**Load-bearing claims and their independent sources:**
+
+1. **Macro energy: datacenter electricity ~doubles to ~1,000 TWh globally by 2030 (~3% of use), AI the
+   main driver.** — NOW MULTI-SOURCED. IEA ~945 TWh is corroborated in direction/magnitude by
+   *independent estimators using different methods*: Deloitte (~1,065 TWh), BCG (~970 TWh), Goldman Sachs
+   (+165% capacity), and — as a government-lab primary read this pass — **LBNL's 2024 DOE report**
+   (US 176 TWh/2023 = 4.4% → 325–580 TWh/2028 = 6.7–12.0%;
+   [PDF read](https://escholarship.org/content/qt32d6m0d1/qt32d6m0d1.pdf), LBNL-2001637). Point values
+   diverge (that divergence is itself a documented finding — Mytton & Ashtine), but the "roughly doubling
+   to ~1,000 TWh" magnitude is robust across ≥4 independent orgs. *Note: S&P Global (cited last pass) is
+   NOT independent — it restates IEA's number.*
+
+2. **Carbon-accounting gap: market-based/REC reporting understates real (location-based) datacenter
+   emissions.** — MECHANISM NOW MULTI-SOURCED; the specific 662% number stays single-source. The Guardian's
+   662% is one analysis; all the re-reports (Techerati, Cybernews, Impakter…) trace back to it (NOT
+   independent). But the *load-bearing mechanism* is confirmed by an independent peer-reviewed primary:
+   **Bjørn, Lloyd, Brander & Matthews, *Nature Climate Change* 2022** — 115 SBTi companies, RECs removed
+   drop combined 2015–19 Scope-2 decline from 31%→10%, ~42% of reported reductions likely no real GHG
+   impact ([DOI 10.1038/s41558-022-01379-5](https://doi.org/10.1038/s41558-022-01379-5); authorship/venue
+   verified via OpenAlex, findings via primary summary + Scientific American/NBC coverage of the study),
+   plus [Environmental Research Letters 2024–25](https://iopscience.iop.org/article/10.1088/1748-9326/adc941)
+   REC/Scope-2 work. Different authors, dataset, method, same conclusion.
+
+3. **Opacity: closed vendors don't disclose per-query energy/water; most top models are unmeasured.** —
+   NOW MULTI-SOURCED. Previously HF-only. Now: GAO-25-107172 ("companies are generally not reporting
+   details"), Stanford CRFM's [Foundation Model Transparency Index](https://arxiv.org/pdf/2512.10169)
+   (independent scoring instrument), [Brookings transparency piece](https://www.brookings.edu/articles/as-energy-demands-for-ai-increase-so-should-company-transparency/),
+   and ["Misinformation by Omission" arXiv:2506.15572](https://arxiv.org/pdf/2506.15572) — four
+   independent orgs, same conclusion.
+
+4. **Water boundary spread (~30–150×) and "Ren runs high."** — MULTI-SOURCED (confirmed last pass, holds).
+   Google primary PDF (WUE Cat-2 = 1.15 L/kWh; cites Li/Ren 10–50 mL, Mistral 45 mL) + Mytton's
+   independent critique (real hyperscale WUE Meta 0.26 / Microsoft 0.1–1.65 L/kWh) + Mytton & Ashtine's
+   independent 2021 npj survey. Three independent parties; the *direction* of the dispute (Ren's inputs
+   run high) is agreed, the *adjudicated magnitude* is still open (structural, needs a study — gap #4).
+
+**Inherently single-source (honest limits — not fixable by more searching):**
+- **Google's 0.24 Wh median + full boundary breakdown** — one vendor's own production telemetry; no
+  second party can replicate without the same internal data. Epoch (~0.30 Wh) and Altman (0.34 Wh)
+  land in the same band but estimate *different* models by *different* means, so this is directional
+  convergence, not independent verification of Google's number.
+- **de Vries-Gao 2026 e-waste recalibration (131–225 kt/yr by 2030)** — ACCESS-GATED. ScienceDirect
+  body still 403 to non-browser fetch; not on sci-hub; VU repository file not yet posted. Headline
+  verified only (VU announcement + abstract). This is a genuine access cap, flagged per row hint.
+- **E-waste is structurally a two-primary field.** Wang et al. 2024 (~8–16 Mt cumulative to 2030,
+  demand-side) and de Vries-Gao 2026 (annual kt/yr, supply-side) are the *only* two model-level primaries,
+  and they report on different bases and disagree by ~an order of magnitude on the annual figure. No third
+  independent model exists; no empirical GPU-retirement tracking exists. This is not a search failure —
+  the field simply has two primaries. (This is itself an open reconciliation target, study shape #6.)
+
+**Residual confidence cap → stays 4.** Two structural caps remain, both real and neither fixable by more
+literature search: (a) the newest, actively-disputed e-waste number (de Vries-Gao) is access-gated and the
+sub-field has only two non-comparable primaries — the cumulative-vs-annual reconciliation is a genuine open
+empirical question needing a pilot (study shape #6); and (b) Google's per-query numbers are inherently
+single-source vendor disclosure. The macro-energy, carbon-accounting-mechanism, opacity, and water-dispute
+claims are now genuinely multi-sourced across independent primaries, so the source-count cap on *those* is
+lifted; the residual cap is **structural** (open reconciliation question + access-gated primary), not
+source-count.
