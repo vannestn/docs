@@ -53,9 +53,11 @@ already own: *measure it → the corrections become data → the data trains a c
 self-serve) looks unclaimed. Both still need the real scoop check after you pick.
 
 *#16–17 were added 2026-07-09 from a later founder-scout pass — two more liability-bearing "independent
-verifier" shapes in the same family as SecondRead (#2) / FieldProof (#12). They're in the table and briefs
-below but are **not yet folded into the "How to narrow" picks** at the bottom; treat them as new candidates
-still awaiting the deep-vet pass.*
+verifier" shapes in the same family as SecondRead (#2) / FieldProof (#12). They've since been deep-vetted and
+scored into [doc 20](20-decision-and-ranking.md): **CrossCheck 75.8 · SOLID data** and **CreditProof 71.7 ·
+RISKY data** — both mid-pack founding bets (below doc 20's top-15 card cutoff). The briefs below have been
+corrected against that deep-vet (several founder-scout facts didn't survive — see the inline correction
+notes); they're **not** among the original "How to narrow" picks at the bottom of this doc.*
 
 | # | Name | Domain | Who pays | Moat | Novelty | One-line |
 |--:|---|---|---|---|:--:|---|
@@ -516,8 +518,9 @@ wedge, the nearest player + how you'd get past them, and the first cheap step.
   litigated corpus is dozens of cases at whole-case granularity — enough for a defensible rubric, not a
   trained per-component gold set; the moat is thinner than it looks.)*
 - **Your wedge.** Your published RAG-grounding-judge shape applied to audit survival: LLM-as-judge scoring
-  narrative-vs-four-part-test, classical calibration on survival probability, and a data pipeline over public
-  Tax Court opinions + the RCCATG — labels mined from published outcomes, zero manual annotation.
+  the narrative against the four-part test + the RCCATG disallowance taxonomy, few-shot-grounded in the real
+  §41 opinions, over a public Tax Court + RCCATG pipeline — rubric mined from published outcomes, zero manual
+  annotation. (The calibrated-*probability* layer is the part the data can't yet support — see the product note.)
 - **Nearest player + wedge.** CodeROI automates Section G *doc generation*; the real threat is **creditARMOR**
   (Swanson Reed, launched Aug 2025) — pre-submission narrative-quality flagging + audit-readiness reports +
   insurance, but *qualitative only*, no numeric per-component score. Defense/insurance is also sold by Boast

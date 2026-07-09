@@ -99,11 +99,13 @@ plays (Kappa, VeriJudge, TrajTrust, Injection Report Card) further down the list
 | 19 | **Reviewer Scrutiny Metric** (Stamp Score) | pilot | **78.3** | 4 | 4 | 3 | 4 | 5 | WORKABLE | Do humans really review AI code or rubber-stamp; clean free data + elegant revert ground truth, but thin defect-revert positive class. |
 | 20 | **GroundTruth Streams** | found | **76.7** | 5 | 3 | 2 | 5 | 4 | WORKABLE | Free public feeds → AI-ready eval corpora; best-in-class data, but the moat over free feeds is already being eaten by Kensho/S&P + Stanford SEFD. |
 | 21 | **ScreenProof** | found | **75.8** | 4 | 4 | 3 | 4 | 4 | WORKABLE | Sanctions-screening rationale verifier; free watchlists are the denominator not ground truth, the one big real label set is NC + commodity-axis. |
-| 22 | **Callsmith** | found | **75.0** | 3 | 4 | 5 | 3 | 4 | WORKABLE | Outcome-graded AI phone-call tuning; un-reproducible per-vertical CRM moat, but the whole pilot is gated on landing one design-partner client. |
-| 23 | **Injection Defense Report Card** | pilot | **74.2** | 4 | 4 | 2 | 4 | 5 | SOLID | A–F prompt-injection defense card; cleanest pilot data path + elite current hire signal, but a confounded "did I attack hard enough" null. |
-| 24 | **PV-Grade** | pilot | **70.8** | 3 | 4 | 4 | 3 | 4 | WORKABLE | Pharmacovigilance decision benchmark; regulator-mandated demand, but FAERS lacks narratives, MedDRA is licensed, causality gold is expert-gated. |
-| 25 | **SuggestionFix-Bench** | pilot | **67.5** | 4 | 3 | 2 | 4 | 4 | WORKABLE | Does AI reproduce the fix a human merged; clean free data + tidy pipeline, but a verified ~8%-defect-fix base rate risks the <500-gold kill. |
-| 26 | **Multilingual Safety Meter** | pilot | **53.3** | 2 | 3 | 2 | 3 | 4 | RISKY | Honest per-language safety numbers under a flaky judge; slowest, gated on a native-Tamil annotator in a thin (n=132) set. |
+| 21 | **CrossCheck** | found | **75.8** | 4 | 4 | 2 | 5 | 4 | SOLID | Independent cross-vendor HTS classification-defensibility verifier; public-domain CROSS + a retrieval/calibration reframe dodge the ~40% 10-digit ceiling, but a thin free-data moat and a discoverable "not defensible" report cap it. |
+| 23 | **Callsmith** | found | **75.0** | 3 | 4 | 5 | 3 | 4 | WORKABLE | Outcome-graded AI phone-call tuning; un-reproducible per-vertical CRM moat, but the whole pilot is gated on landing one design-partner client. |
+| 24 | **Injection Defense Report Card** | pilot | **74.2** | 4 | 4 | 2 | 4 | 5 | SOLID | A–F prompt-injection defense card; cleanest pilot data path + elite current hire signal, but a confounded "did I attack hard enough" null. |
+| 25 | **CreditProof** | found | **71.7** | 4 | 4 | 2 | 4 | 4 | RISKY | Form 6765 Section G audit-survival grader; open predictive-grader lane + strong LLM-judge fit, but the litigated §41 corpus is tiny/wrong-granularity and Section G narratives never existed → calibration is data-blocked (reframe to a rubric checker). |
+| 26 | **PV-Grade** | pilot | **70.8** | 3 | 4 | 4 | 3 | 4 | WORKABLE | Pharmacovigilance decision benchmark; regulator-mandated demand, but FAERS lacks narratives, MedDRA is licensed, causality gold is expert-gated. |
+| 27 | **SuggestionFix-Bench** | pilot | **67.5** | 4 | 3 | 2 | 4 | 4 | WORKABLE | Does AI reproduce the fix a human merged; clean free data + tidy pipeline, but a verified ~8%-defect-fix base rate risks the <500-gold kill. |
+| 28 | **Multilingual Safety Meter** | pilot | **53.3** | 2 | 3 | 2 | 3 | 4 | RISKY | Honest per-language safety numbers under a flaky judge; slowest, gated on a native-Tamil annotator in a thin (n=132) set. |
 
 ---
 
@@ -122,18 +124,84 @@ plays (Kappa, VeriJudge, TrajTrust, Injection Report Card) further down the list
 - **Easiest to execute:** **DisputeProof / ToolTamer / RewardProof / QueryProof / Ingestion** all carry
   Exec 5. Among founding bets, **DisputeProof** (free instant download + zero-annotation self-labeling)
   is the least-friction path to a real result.
-- **RISKY-data candidate to watch:** **Multilingual Safety Meter** — the only outright RISKY verdict: the
-  low-resource language that justifies the whole method (public Tamil, n=132) is volume-fragile *and* its
-  gold requires a native annotator you cannot self-supply. Several **WORKABLE** cards carry a
+- **RISKY-data candidates to watch:** **Multilingual Safety Meter** and the newly-added **CreditProof** —
+  the two outright RISKY verdicts. For CreditProof, the headline per-component "survival probability" has no
+  ground truth to calibrate against (Section G narratives have never existed in any litigated/published
+  source). For Multilingual, the low-resource language that justifies the whole method (public Tamil, n=132)
+  is volume-fragile *and* its gold requires a native annotator you cannot self-supply. Several **WORKABLE** cards carry a
   *differentiated-axis* data gap that behaves like a RISK for the *company* even though the *pilot* ships
   — watch **DenialProof, AppealScore, ScreenProof** (free data proves a commodity axis; the moat axis
   has no free paired labels) and **Callsmith** (no moat data until a client signs).
 
 ---
 
+## Value & investment lens — the best options
+
+*Added 2026-07-09. The composite above optimized for the stated criteria (ship-speed first). This section
+re-reads the candidates scoring **> 83.3** through a different question — **which is really worth the
+investment?** — and pulls out the shortlist.*
+
+**The discriminator the composite under-weighted: forced ≠ willing.** A "legally-forced buyer" is not the
+same as a buyer whose incentives *align* with your output. Three regimes:
+- **Aligned (worth most):** a clinician who *wants* to catch a fabrication before signing — the verifier
+  saves them from liability. Demand is pull-based.
+- **Discovery paradox (worth less):** a bank/lender may *not* want a third party generating a discoverable
+  "your denials/reason-codes are indefensible" report — that's adverse evidence.
+- **Misaligned (worth least):** a payer *profits* from denials — they don't want a tool that makes denying
+  harder.
+
+| Candidate | Comp | Buyer incentive | Moat durability | Main threat | Investment read |
+|---|:--:|---|---|---|---|
+| **NoteProof** | 87.5 | ✅ aligned (signer wants it) | correction corpus via partner (real) | scribe vendors; EHR distribution | **Tier 1 — best company bet** |
+| **PortalProof** | 87.5 | ✅ aligned | thinner data | ClinicalSwipe; EHR distribution | **Tier 1** (a step behind NoteProof) |
+| **DisputeProof** | 91.7 | ⚠️ discovery paradox | thin (public data) | fintech-compliance adds it | **Tier 2 — fast wedge + credential**, not yet a durable co |
+| **ReasonProof** | 87.5 | ⚠️ discovery paradox | thin | AVAAS incumbent; controlled-study ceiling | **Tier 2 — credential + financial probe** (pre-reg ready) |
+| **ToolTamer** | 89.2 | neutral | self-gen corpus, platform-threatened | Vercel AI SDK ships it free | **Tier 3 — hire-strong, founding-risky** |
+| TieProof | 91.7 | neutral | weak solo (workpapers gated) | MindBridge/DataSnipper | **Excluded** — brutal audit-firm sales cycle for a solo |
+| RewardProof | 85.0 | neutral | commodity | BenchJack/Fulcrum | **Excluded** — commoditized; hire piece only |
+| QueryProof | 85.0 | neutral | flywheel post-traction | SQLens (method published) | **Excluded** — undifferentiated |
+| DenialProof | 86.7 | ❌ misaligned (payers profit) | — | Brellium; huge VLM COGS | Over-rated by score |
+| MemTrust | 85.0 | ⚠️ no forced buyer | real self-gen corpus | — | Fresh but demand-risky |
+
+### ⭐ The best options (pulled out)
+
+**Found — Tier 1 (real company bets, aligned demand):**
+- **NoteProof** — huge, exploding market (ambient scribes) + an *aligned* buyer + clean POC data. The one
+  risk is **distribution (EHR/in-basket)** — a known, partner-solvable motion, not a demand or data problem.
+- **PortalProof** — same thesis, distinct sub-workflow; one step behind on data + crowding.
+
+**Found — Tier 2 (fast wedge + strong credential; test buyer appetite before over-investing):**
+- **DisputeProof** — fastest, SOLID free data, pre-reg ready; run it *and* use it to test whether banks
+  actually want the report. Upgrades to a company only if that demand test passes.
+- **ReasonProof** — strong skill-fit + dual-method pre-reg; a financial-compliance credential and founding
+  probe, capped by the AVAAS incumbent and the controlled-study ceiling.
+
+**Hot-space (portfolio / hire-strong, founding-risky) — carried per request:**
+- **ToolTamer** — best agent-infra hire signal; company risk is real (Vercel ships the headline feature free).
+
+**Pilot anchor (separate track — fastest public artifact):**
+- **Ingestion Corruption Detector** — the null-proof, cleanest-to-execute pilot; ship it in parallel for a
+  fast credential regardless of the founding pick.
+
+**Excluded from the best options:** **TieProof** (wrong founder-fit — a solo can't crack conservative
+audit-firm procurement; keep only as a hire credential), **RewardProof** (commoditized), **QueryProof**
+(undifferentiated). Everything below 83.3 stays out of the founding conversation.
+
+### The bottom line
+- **For a company:** **NoteProof** (with PortalProof as the sibling) — the composite's "best founding bet"
+  (DisputeProof) is really the best *fast/clean-data* bet; on *realized* company value, NoteProof leads
+  because the buyer's incentives *align*.
+- **For the fastest strong credential + a cheap real-world signal:** **DisputeProof** (run as a wedge-test),
+  plus the **Ingestion** pilot in parallel.
+- **The meta-lesson:** stop indexing on "legally forced," start indexing on **"does the buyer *want* the
+  number to exist?"** — that separates a durable verifier business (NoteProof) from a compliance artifact
+  nobody will pay to be graded by.
+
+---
+
 ## Per-candidate cards (top 15 by composite)
 
-*Each card: why it matters · the data-availability options + verdict · annotation · executability + biggest
+*Each card: why it matters · the data-availability options + verdict · annotation · executability · biggest
 risk · scores · one-line verdict.*
 
 ---
@@ -748,7 +816,7 @@ credentialed, not the free product seed the brief assumed.
 
 ---
 
-## The remaining 11 (compact)
+## The remaining 13 (compact)
 
 *Composite · data verdict · one-line. Cards above cover the top 15; these round out the set.*
 
@@ -775,6 +843,17 @@ credentialed, not the free product seed the brief assumed.
   large real labeled asset (OpenSanctions Pairs, 760k) is CC-BY-NC + covers the commodity entity-matching
   axis, so the differentiated rationale-grounding result runs on self-generated synthetic cases with
   unproven live transfer — a solid hire/paper artifact, founding-capped.
+- **CrossCheck** — found — **75.8** · **SOLID** · Independent, cross-vendor HTS classification-*defensibility*
+  verifier for the importer-of-record who holds reasonable-care liability (19 USC 1484); paste a proposed
+  10-digit code and get back supporting *and* contradicting CROSS rulings + a calibrated defensibility score.
+  Data is genuinely SOLID — CROSS is public-domain with a live auth-free JSON API and an Apache-2.0 labeled
+  subset (ATLAS, 18,731 rulings) — and reframing to *retrieval + calibration* sidesteps the ~40% de-novo
+  10-digit ceiling (best fine-tuned model ~40%, ATLAS/HSCodeComp). Novelty holds (nothing ships cross-vendor
+  defensibility with contra-rulings; nearest is Descartes' HS Validator), but the moat is thin (CROSS is free
+  to all, Descartes can fast-follow, the category just took seed money — Gaia $1.5M, GingerControl $2.1M) and
+  a written "not defensible" finding is discoverable, forcing a counsel-facing, privilege-aware shape that
+  also dodges the H350722 "customs business" line. A strong hire/artifact wedge into the AI-customs cohort;
+  founding-capped.
 - **Callsmith** — found — **75.0** · **WORKABLE** · Outcome-graded AI phone-call tuning with an
   un-reproducible per-vertical transcript→CRM-outcome moat (objective, self-refreshing, vendor-un-copyable)
   — but the whole pilot is gated on landing one multi-location dental/HVAC design-partner client + CRM
@@ -785,6 +864,16 @@ credentialed, not the free product seed the brief assumed.
   state-diff oracle, OET MIT, CaMeL Apache, HarmBench MIT — all verified) + an elite, current hire signal
   (Promptfoo→OpenAI), but a confounded "did I attack hard enough" null and a genuinely narrow founding moat
   keep it a get-hired play.
+- **CreditProof** — found — **71.7** · **RISKY** · Per-business-component audit-*survival* grader for Form
+  6765 Section G (mandatory for tax years beginning after 2025), scoring a completed narrative against the
+  four-part test + the IRS RCCATG disallowance taxonomy for a liability-holding buyer (the filer/CPA). Market
+  is real and timely (~$32B/yr claimed, Tier-1 enforcement) and the *predictive-grader* lane is genuinely
+  open (creditARMOR does qualitative flagging + insurance, no numeric per-component score). But the literal
+  "calibrated survival probability" is **data-blocked**: the litigated §41 corpus is only ~20–40 whole-case
+  opinions at the wrong granularity, and Section G narratives have never existed in any ground-truth source,
+  so any probability is fabricated calibration (and itself a penalty-defense liability). Reframe to a
+  rubric-grounded checker delivered pre-filing / ephemeral / no-retention as improvement guidance — a
+  legitimate fast credential, but buyers (Neo.Tax, Boast) can build it, so founding upside is modest.
 - **PV-Grade** — pilot — **70.8** · **WORKABLE** · Public yardstick for AI on 4 high-stakes drug-safety
   decisions with regulator-mandated demand — but FAERS (CC0) lacks the narratives the faithfulness decision
   needs (FOIA-gated), licensed MedDRA threads through both free pillars, and causality gold is expert-gated
