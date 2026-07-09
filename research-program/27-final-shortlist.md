@@ -14,12 +14,12 @@ parallel (higher ceiling, with a safety net under it). The tracks are not either
 
 *The rule: do NOT open-source the core (it burns the moat). A small teaser benchmark for inbound is fine.*
 
-| Candidate | Comp | Data | Why it's here | The one risk |
+| Candidate | Comp | Data | What it does & addresses | Why it's the pick / the risk |
 |---|:--:|:--:|---|---|
-| **NoteProof** ⭐ | 87.5 | 🟢 SOLID | **Lead founder bet.** Huge exploding market (ambient scribes) + an *aligned* buyer (the signing physician *wants* the check) + genuinely clean commercial-OK data (ACI-Bench CC BY 4.0). Value **and** data both line up. | Distribution (EHR/in-basket) — a known, partner-solvable motion |
-| **PortalProof** | 87.5 | 🟡 WORKABLE | Same thesis, distinct sub-workflow (in-basket replies). | Thinner data (fix: MIMIC + MedRedQA); same EHR gate |
-| **DisputeProof** | 91.7 | 🟢 SOLID | Fastest, SOLID free public-domain data, pre-reg ready. Run it *and* use it to test whether banks actually want the report. | "Discovery paradox" — the buyer may not want a discoverable report; soft outcome label (PPI protocol handles it) |
-| **ReasonProof** | 87.5 | 🟡 WORKABLE | Strong skill-fit + dual-method pre-reg; financial-compliance credential and founding probe. | AVAAS incumbent + controlled-study ceiling until a lender partner |
+| **NoteProof** ⭐ | 87.5 | 🟢 SOLID | Verifies each sentence of an AI clinical-scribe note is grounded in the visit transcript — catches fabricated exam findings before the physician signs. | **Lead** — aligned buyer + clean CC-BY data; risk = EHR distribution |
+| **PortalProof** | 87.5 | 🟡 WORKABLE | Checks AI-drafted patient-portal message replies for fabrications, dropped safety-netting, and missed emergencies before a clinician sends. | Sibling thesis; thinner data (MIMIC/MedRedQA fix), same EHR gate |
+| **DisputeProof** | 91.7 | 🟢 SOLID | Grades whether a bank's denial of a Reg-E electronic-payment dispute is actually defensible against the evidence and the rule. | Fast wedge + a real bank-demand test; discovery-paradox risk |
+| **ReasonProof** | 87.5 | 🟡 WORKABLE | Verifies a lender's AI-generated loan-denial reason codes actually reflect what drove the decision (ECOA fair-lending faithfulness). | Financial credential + founding probe; controlled-study ceiling |
 
 **Founder lead:** **NoteProof.** **Fast financial wedge + buyer-test:** **DisputeProof.**
 
@@ -31,18 +31,24 @@ parallel (higher ceiling, with a safety net under it). The tracks are not either
 with a short blog, then approach the incumbents with "I built this in your space; here's how I'd extend it —
 hire me." Sell the person + roadmap, not just the tool.*
 
-| Candidate | Comp | Data | Who to approach | The OSS artifact |
+| Candidate | Comp | Data | What it does & addresses (the OSS artifact) | Target companies *(Arize/Unstructured excluded)* |
 |---|:--:|:--:|---|---|
-| **Kappa** ⭐ | 83.3 | 🟢 SOLID | Braintrust ($800M), Patronus (frontier-lab customers), LangChain/LangSmith (unicorn); Cisco (ex-Galileo). *~~Arize~~ excluded* | Judge-drift / kappa monitor (**your exact published skill**) |
-| **Injection Defense Report Card** | 74.2 | 🟢 SOLID | Lakera/Check Point, Prompt Security/SentinelOne, Promptfoo/OpenAI, Gray Swan, HiddenLayer | Adaptive-robustness living leaderboard (acquisitions *prove* the hiring demand) |
-| **Ingestion Corruption Detector** | 80.0 | 🟢 SOLID | Reducto (category leader), Contextual AI (⚠️ talent exodus), LlamaIndex, Tensorlake. *~~Unstructured~~ excluded* | Numeric-integrity linter + XBRL leaderboard |
-| **ToolTamer** | 89.2 | 🟢 SOLID | Vercel, LangChain, LlamaIndex, Sierra, agent startups | Tool-call conformance harness |
-| **RewardProof** | 85.0 | 🟢 SOLID | AI labs + RL/eval teams (BenchJack/Fulcrum) | Reward-hacking auditor |
-| **QueryProof** | 85.0 | 🟢 SOLID | Analytics / text-to-SQL AI (Numbers Station, Julius, BI vendors) | Semantic-SQL verifier |
+| **Kappa** ⭐ | 83.3 | 🟢 SOLID | Monitors your LLM-as-judge evals for drift and alerts when a judge silently stops being reliable. | Braintrust, Patronus, LangChain; Cisco (ex-Galileo) |
+| **Injection Defense Report Card** | 74.2 | 🟢 SOLID | Independent A–F grades of prompt-injection defenses under *adaptive* attack — exposes overstated robustness. | Check Point (Lakera), SentinelOne (Prompt Security), OpenAI (Promptfoo), Gray Swan, HiddenLayer |
+| **Ingestion Corruption Detector** | 80.0 | 🟢 SOLID | Flags numbers silently corrupted when documents are parsed/OCR'd into an AI pipeline — no answer key needed. | Reducto, Contextual AI (⚠️), LlamaIndex, Tensorlake |
+| **ToolTamer** | 89.2 | 🟢 SOLID | Real-time middleware that validates and repairs malformed agent/MCP tool calls. | Sierra, LangChain, Vercel, LlamaIndex |
+| **RewardProof** | 85.0 | 🟢 SOLID | Audits an RL reward/grader for exploitability — what % of provably-wrong solutions it wrongly rewards (reward hacking). | OpenAI/Anthropic/DeepMind + RL-eval teams (BenchJack, Fulcrum) |
+| **QueryProof** | 85.0 | 🟢 SOLID | Verifies AI-generated SQL actually answers the question — catches confidently-wrong-but-runnable queries. | Numbers Station, Julius, BI-vendor AI |
 
-**Second-tier (valid, narrower):** MemTrust (agent-memory cos), TrajTrust / VeriJudge (agent-eval / eval
-cos), Reviewer Scrutiny Metric (AI code-review cos), TieProof (audit-AI cos — a good *hire* artifact even
-though it's a poor *founder* bet).
+**Second-tier (valid, narrower):**
+
+| Candidate | Comp | Data | What it does & addresses | Target companies |
+|---|:--:|:--:|---|---|
+| **MemTrust** | 85.0 | 🟡 WORKABLE | Tests an AI agent's memory for staleness, contradictions, and time-drift. | Mem0, Letta, Zep, cognee |
+| **TrajTrust** | 83.3 | 🟡 WORKABLE | Judge-of-the-judge: reveals which failure types an agent-trajectory evaluator silently misses. | Patronus, LangChain |
+| **VeriJudge** | 83.3 | 🟢 SOLID | Certifies an LLM-judge measures the real thing vs. being fooled by verbosity/position/self-preference. | Braintrust, Patronus |
+| **Reviewer Scrutiny Metric** | 78.3 | 🟡 WORKABLE | Measures whether humans truly review AI-written code vs. rubber-stamp it (validated against later reverts). | CodeRabbit, Qodo, Greptile |
+| **TieProof** | 91.7 | 🟡 WORKABLE | Verifies the evidence an auditor's AI cites actually supports each financial claim before the partner signs. | MindBridge, DataSnipper, Trullion |
 
 **Excluded target companies (prior employers — cannot return): Arize, Unstructured.** (Both are in his
 build-to-hire spaces, so the *experience* is a credibility asset for the artifacts — aim outreach at their
