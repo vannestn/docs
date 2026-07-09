@@ -24,6 +24,7 @@ hired paths all stay open.
 | [11b · Expanded problem catalog](11b-expanded-problem-catalog.md) | ~90 problems, 12 clusters, wide-aperture + source-mined; top-11 for deep validation |
 | [13 · Problem validation](13-problem-validation.md) | Thorough validation of top-11 problems (2 evidence + 2 kills each); 4 advance, 7 killed |
 | [14 · Creative re-angles](14-creative-reangles.md) | Re-shaping the real-but-unfoundable problems to beat their specific solo-founder kill + fresh foundable-shape discovery; 14 survive, 5 killed |
+| [15 · Method-transfer solutions](15-method-transfer-solutions.md) | Mine top papers' methods, then alter/combine/transfer them for creative technical solutions; 16 survive. The "free-label" insight that dissolves the ground-truth-capital blocker |
 | [12 · Company theses](12-company-theses.md) | Creative company-thesis pass (8 lenses) + VC vet — early SOLUTION sketch, subordinate to the problem-first pass |
 | [briefs/](briefs/) | Source research briefs |
 | [radar/](radar/) | Weekly + monthly radar digests (auto-generated) |
