@@ -17,6 +17,7 @@ hired paths all stay open.
 | [05 · Domain comparison index](05-domain-comparison-index.md) | Every candidate domain scored side-by-side against the stated needs |
 | [06 · Radar design](06-radar-design.md) | Spec for the weekly + monthly automated scanning agents |
 | [07 · Publishing pathways](07-publishing-pathways.md) | How to publish each kind of artifact so the work is actually useful — venues, mechanics, distribution |
+| [08 · Pilot specs](08-pilot-specs.md) | The locked 5-field shortlist as runnable pilots (RQ, method, cost, success/kill, artifact) |
 | [briefs/](briefs/) | Source research briefs |
 | [radar/](radar/) | Weekly + monthly radar digests (auto-generated) |
 

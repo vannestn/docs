@@ -2,7 +2,7 @@
 
 *How the deep-commitment topic will be chosen. Implements charter principle #2 ([00-goals-and-operating-principles.md](00-goals-and-operating-principles.md)): **map → read → pilot → choose** — a staged process, never a single jump. Companion to the [knowledge-gaps ledger](03-knowledge-gaps-and-assumptions-ledger.md), whose items gate several stage transitions.*
 
-> **Current status (2026-07-08): NO topic is chosen.** Stage 0 (Map) is complete; Stage 1 has not begun. The next concrete step is the **shortlist gate**: run ledger items CH-1 (adversarially re-score 5 briefs, ≥1 must fail) and CH-5 (filter every on-ramp by ≤15 hrs/wk + no relocation), then cut the ~25 briefed domains to a shortlist of 3–5 using the criteria below. **No new briefs until the shortlist exists** (ledger CH-9: mapping must stop being the deliverable).
+> **Current status (2026-07-08): NO topic is chosen — but the shortlist is LOCKED and pilots are specced.** Stage 0 (Map) is complete; the [comparison index](05-domain-comparison-index.md) is fully scored, deepened (5 rows at Conf 5, 18 at Conf 4, none below — remaining caps are structural, i.e. only a pilot can move them), and ranked on the researcher's chosen **ship-first, impact-second** weighting. The shortlist is locked to **five fields**: Evaluation & benchmarking science, Model behavior science, Reproduction/meta-science, Agent security & authentication, AI supply chain. **Pilot specs for all five are in [08 · pilot-specs](08-pilot-specs.md).** The next concrete step is **Stage 2**: run 2–3 pilots in *different* fields (suggested start: ReproCheck → JudgeFlip → ScopeBench or DiversionDB). Desk research is at its ceiling; the field is now separated by *doing*, not scoring.
 
 ## The stages
 
