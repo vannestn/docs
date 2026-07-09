@@ -35,6 +35,56 @@ scoring 4 on founding-upside is remarkable *for a pilot*.
 
 ---
 
+## UPDATE (2026-07-09, later) — expanded founding search supersedes the founding tier below
+
+After the 11-candidate ranking below was written, an aggressive parallel founding search ran five
+aperture streams ([docs 21–25](README.md)) — literature-mining, vertical-industry, buyer-GTM,
+capability-frontier, and two deep liability-vertical drills — generating **~150 candidates**, each
+adversarially "already-built"-checked and scored on the *same* Kappa-anchored rubric. **~15 cleared the
+83.3 bar**, and the strongest **beat the old overall #1 (Ingestion, 84.2).** The original doc-18 five
+founding bets (Kappa, GroundTruth Streams, RailKit, ToolTamer, Callsmith) are now **superseded** by this
+tier for the *founding* decision.
+
+**The convergent thesis.** Nearly every top candidate is the *same shape*: **an independent,
+vendor-agnostic verifier that checks an AI's output before a human or institution that holds
+non-delegable liability signs off.** It is a repeatable company pattern built directly on your published
+RAG-hallucination / LLM-as-judge method. It scores highest in **regulated-money and clinical verticals**,
+because there the *buyer is the liability-holder* (a bank, a physician) who *wants* the verification —
+which escapes the "vendors won't pay to be audited" trap that sinks neutral-referee plays elsewhere.
+
+**New founding top tier (all cleared ≥83.3, ranked):**
+
+| Rank | Candidate | Comp. | Vertical / type | Doc | Why it's strong |
+|--:|---|:--:|---|:--:|---|
+| 1 | **ReasonProof** | **91.7** | financial — adverse-action reason codes (ECOA) | 25 | Sharpest bet: free HMDA data + **self-generated ground truth** (no annotation) + SR 11-7 independence moat |
+| 1 | **DisputeProof** | **91.7** | financial — Reg E dispute denials | 25 | Fastest + most legally-forced (EFTA class-action wave, zero-label CFPB seed) |
+| 1 | **TieProof** | **91.7** | audit — evidence tie-out (PCAOB) | 25 | Self-labeling XBRL + FinVerBench; legally forced by AS 1105/QC 1000 |
+| 4 | **NoteProof** | 87.5 | clinical — AI-scribe note grounding | 22 | Aligned liability buyer (signing physician), free ACI-Bench, cross-vendor corpus |
+| 4 | **PortalProof** | 87.5 | clinical — AI patient-portal replies | 24 | Same shape, distinct sub-workflow; attestation lane a bit more crowded |
+| 4 | **TrajTrust** | 87.5 | AI infra — agent-trajectory judge-of-the-judge | 22 | Kappa's skill at a faster buyer; one roadmap step from copy |
+| 7 | **DenialProof** | 86.7 | clinical-payer — medical-necessity denials | 25 | SB-1120-forced aligned buyer |
+| 8 | RewardProof / QueryProof / MemTrust / TriageProof / AppealScore | 85 | RL graders / text-to-SQL / agent memory / symptom-checkers / appeals | 21,24,25 | Strong, each with one named drag |
+| 13 | VeriJudge / InteractionProof / ScreenProof | 83.3 | judge validity / drug-interaction / sanctions | 21,24,25 | Clear the bar; more contested |
+
+Strong near-misses (75–83): TrueTool 82.5, Molt 82.5, DoseGuard 82.5, RxAgentProof 82.5, SheetSentry 80,
+CustomsProof 80, TaxProof 80, DispoProof 80, AuthAudit 80.
+
+**Two honest caveats before betting on a 91.7:**
+1. **Cross-stream calibration.** Each stream's judge scored independently (all anchored to Kappa 83.3),
+   so a 91.7 from doc 25 and the 84.2 (Ingestion) computed here are not guaranteed on an identical scale.
+   The top 3–4 need **one consolidated head-to-head re-score** before committing.
+2. **Monetization shape.** "Independent verifier" can be a fundable SaaS *or* a low-margin trust/media
+   play. The financial/clinical ones are strongest precisely because the liability-holder is the paying
+   buyer — but each still has a named GTM drag (examiner-gated sales, noisy outcome proxies, corpus access).
+
+**Updated recommendation (supersedes the shortlist below on the founding side):** the founding pick is now
+clearly in the **liability-verifier family**. Deep-vet **ReasonProof, DisputeProof, NoteProof, and TieProof**
+head-to-head with a single consolidated scorer + a monetization/GTM stress-test, then choose. The pilots
+below (esp. **Ingestion** and **Kappa**) remain the best *fast-artifact / hire* plays and the honest
+low-risk start; the new tier is the *founding* upgrade you asked for.
+
+---
+
 ## The criteria and exactly how they're weighted
 
 The ranking is computed from **your** stated priorities, not generic ones. Five criteria, each scored
