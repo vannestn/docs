@@ -93,44 +93,70 @@ OSS verifier + public report + (founding) design-partner outreach.
 
 ---
 
-## Pre-reg C · ReasonProof (second founding bet — controlled study)
+## Pre-reg C · ReasonProof (second founding bet — controlled study, dual-method + PPI)
 
-**Research question (falsifiable).** Can an independent verifier **detect unfaithful adverse-action reason
-codes** — reasons that don't reflect what actually drove a credit decision — at high precision in a
-setting where the true feature attributions are known?
+**Research question (falsifiable).** Can an independent verifier detect unfaithful adverse-action reason
+codes — reasons that don't reflect what actually drove a credit decision — and **how much harder is
+*naturally-occurring* LLM unfaithfulness than *synthetic* unfaithfulness** (the injected-vs-natural gap)?
 
 **Why controlled (stated up front).** A *real-lender* measurement is impossible from public data (no access
 to the lender's model; public HMDA redacts credit score + underwriting variables). So this is a
-**controlled study: we build the model, so we know the true reasons by construction.** It proves the
+**controlled study: we build the model, so we know the true drivers by construction.** It proves the
 *method*; a real-lender claim requires a design-partner lender later — pre-registered as out of scope here.
 
-**Data plan (re-pointed, per the method discussion).** *Modeling substrate (features present):* a public
-lending dataset **with** underwriting features + outcomes — Lending Club, Home Credit Default Risk, "Give
-Me Some Credit," or Fannie/Freddie loan-performance data (check each license; several are CC0/permissive).
-*Realism/fairness context:* HMDA public LAR (denial-reason fields; credit score redacted — used for context,
-not modeling). No external labeling: ground-truth attributions come from the model we build (SHAP /
-exact attributions).
+**Data plan (re-pointed).** *Modeling substrate (features present):* a public lending dataset **with**
+underwriting features + outcomes — Lending Club, Home Credit Default Risk, "Give Me Some Credit," or
+Fannie/Freddie loan-performance data (check each license; several CC0/permissive). *Realism/fairness
+context:* HMDA public LAR (used for context, not modeling — credit score redacted). Ground-truth
+attributions come from the model we build.
 
-**Method.** (1) Train a credit model on the features. (2) Have an LLM generate adverse-action reason codes
-for its decisions. (3) **Inject known-unfaithful reason codes** (swap the true top driver for a plausible
-decoy) as positives, keep faithful ones as negatives. (4) The verifier must separate faithful from
-unfaithful, scored against the *known* attributions.
+**Two probes, combined (the design).**
+- **Probe A — injection (clean-truth floor).** Corrupt reason codes by swapping the true top driver for a
+  plausible decoy, **graded** from obvious (rank-1 swap) to subtle (rank-2↔rank-3). Ground truth known by
+  construction — zero label noise.
+- **Probe B — natural (realistic headline).** Have an LLM generate reason codes the way production
+  gen-AI-underwriting does; label faithfulness against the model's true top-k attributions. Realistic, but
+  the label rests on (contestable) attributions.
+- **How they combine (the point):**
+  1. **A validates B's scorer.** Run B's faithfulness-scorer on the *known-answer* Probe-A cases; its
+     accuracy there = the measured reliability of B's labels (reported, not assumed).
+  2. **PPI headline (the signature move).** Treat B (large, realistic, noisy-label) as the bulk + a
+     clean-truth gold anchor (Probe-A cases + ~50 hand-validated natural cases) → **Prediction-Powered
+     Inference** → one unbiased real-world verifier-performance estimate **with CIs**.
+  3. **Difficulty curve.** Verifier catch-rate vs. injection subtlety — a dose-response curve anchored
+     clean-synthetic ↔ natural.
+  4. **Disagreement region (named deliverable).** The cases where clean-logic (A) and the attribution-scorer
+     (B) disagree = the genuinely-ambiguous slice where attribution instability bites and real reason-code
+     disputes live. Characterized as a first-class output.
 
-**Metrics.** Verifier precision/recall/AUC at detecting unfaithful reason codes; robustness across model
-types (linear vs GBM) and attribution methods.
+**Ground-truth reliability guard.** Use exact attributions (linear/GAM) *or* require SHAP + permutation
+importance to agree on the top driver; hand-validate ~50 of B's "unfaithful" calls; report B's numbers
+*with* this reliability caveat.
 
-**Success (pre-registered).** Verifier detects injected-unfaithful reason codes at AUC ≥ 0.8 across ≥2 model
-families → release the method + benchmark; pursue a lender design partner for the real-system extension.
+**Metrics.** PPI-corrected real-world AUC **with CIs** (headline); B-scorer accuracy on known-answer cases
+(reliability); the subtlety dose-response curve; injected-vs-natural gap; size + characterization of the
+disagreement region.
 
-**Kill (pre-registered).** If the verifier can't beat a trivial baseline (e.g., keyword overlap) at
-separating faithful/unfaithful → the signal isn't there; report and stop.
+**Success (pre-registered).** *Floor:* verifier catches obvious injected unfaithfulness at AUC ≥ 0.85
+(sanity). *Headline:* PPI-corrected real-world AUC ≥ 0.75 with the CI lower bound above the keyword-overlap
+baseline → release the method + dual-method benchmark; pursue a lender design partner.
+
+**Kill (pre-registered).** Fails the injected floor (can't catch even *obvious* synthetic unfaithfulness →
+no signal) → stop. If it passes the floor but the PPI-corrected real-world estimate isn't distinguishable
+from baseline → report "natural unfaithfulness isn't reliably detectable at this fidelity — here's the gap
+and the disagreement region" (still a finding) and stop/pivot.
+
+**Caveat (pre-registered).** If you later *train* the verifier on A and *test* on B, the
+train-synthetic/test-real generalization gap is real but **measurable** — report it, don't assume it away.
 
 **Scoop protocol.** Watch "reason code faithfulness", "adverse action explanation verification", FairPlay/
 Stratyfy roadmaps, and the SHAP-instability paper cluster.
 
-**First week.** One dataset (Lending Club) + one GBM model + SHAP attributions + the unfaithful-injection
-harness on a small slice → confirm the verifier gets signal *before* scaling. **Budget:** ~$50–150.
-**Artifact:** OSS verifier + benchmark + short paper.
+**First week (go/no-go).** One dataset (Lending Club) + one linear/GBM model + attributions + Probe-A
+injection on a small slice → confirm the verifier catches *obvious* injections (the floor); then run ~20
+natural LLM reason codes (Probe B) to confirm they produce gradable cases. Both must pass before scaling.
+**Budget:** ~$50–150. **Artifact:** OSS verifier + dual-method benchmark (floor + PPI headline + difficulty
+curve + disagreement region) + short paper.
 
 ---
 

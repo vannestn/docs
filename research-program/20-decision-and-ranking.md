@@ -11,7 +11,7 @@ doc is current.** If you read nothing else, read this.*
 
 ## What this document is (and how to read it)
 
-You have **26 fully-worked candidates**. Each was checked the same way: is the problem real, is the
+You have **28 fully-worked candidates**. Each was checked the same way: is the problem real, is the
 data actually obtainable and license-clean, how much of *your own* labeling does it need, can a solo
 pull it off for ≤$500 part-time, and what does a good outcome buy you. This pass adds one thing the
 scattered docs never had: **every candidate re-scored together, against the same anchors, in a single
@@ -74,7 +74,7 @@ plays (Kappa, VeriJudge, TrajTrust, Injection Report Card) further down the list
 
 ---
 
-## THE COMBINED MASTER RANKING — all 26, one scale, by composite
+## THE COMBINED MASTER RANKING — all 28, one scale, by composite
 
 | Rank | Candidate | Type | Comp. | Ship | Impact | Found | Exec | Hire | Data | One-line |
 |--:|---|---|:--:|:--:|:--:|:--:|:--:|:--:|:--:|---|

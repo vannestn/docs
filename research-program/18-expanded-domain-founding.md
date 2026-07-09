@@ -450,19 +450,23 @@ wedge, the nearest player + how you'd get past them, and the first cheap step.
 ### 16 · CrossCheck — the independent HTS classification-defensibility verifier
 **Domain:** vertical-AI-reliability · **Novelty:** wedge-exists
 
-- **The problem.** The importer of record bears strict "reasonable care" liability for every 10-digit HTS
-  classification, yet even the best fine-tuned models get only ~40% of 10-digit codes right — and CBP just
-  drew a bright line: Headquarters ruling **HQ H350722 (2026-01-16)** holds that an AI tool assigning a code
-  *tied to a specific entry* is "customs business" requiring a licensed broker, while general classification
-  *research / verification disconnected from a specific entry, with a disclaimer,* is permissible. Meanwhile
-  CBP audits are up **67% YoY** ($134M recovered in the first four months of 2025; **42% of penalties** trace
-  to misclassification), and every classification vendor only self-scores its own confidence — nobody offers
-  an independent, cross-vendor second read.
+- **The problem.** The importer of record carries "reasonable care" liability for every classification (19
+  USC 1484 — a negligence standard, with penalties under 1592; not strict liability), yet even the best
+  fine-tuned models get only ~40% of 10-digit codes right (ATLAS; HSCodeComp corroborates ~47% best-agent vs
+  ~95% human). CBP just sharpened the stakes: Headquarters ruling **HQ H350722 (2026-01-16)** signals that an
+  AI tool assigning a code *tied to a specific entry* looks like "customs business" requiring a licensed
+  broker, making classification *research disconnected from a specific entry* the safer posture — though CBP
+  left the tool's status explicitly *unclear*, and a disclaimer alone does **not** cure the entry-nexus (HQ
+  H290535). Enforcement stakes are rising (1H-FY2025 audit collections ~$134M vs ~$118M for all of FY2024;
+  +$4.1B CBP funding under OBBBA), and every classification vendor only self-scores its own confidence —
+  nobody offers an independent, cross-vendor second read. *(The "67% audit surge" and "42% of penalties from
+  misclassification" figures from the founder-scout note trace to a single low-authority blog and are struck.)*
 - **The product.** Paste a proposed 10-digit code + product description (from any vendor, broker, or in-house)
-  and get back an *independent* CROSS-grounded classification with GRI reasoning, a calibrated defensibility
-  probability, the closest supporting and contradicting public rulings, and a "reasonable care" documentation
-  packet — deliberately framed as classification research/verification *disconnected from a specific entry*
-  with a disclaimer, staying on the legal side of H350722.
+  and get back an *independent* CROSS-grounded read: the closest supporting and contradicting public rulings,
+  a GRI reasoning check, a *calibrated* defensibility score, and a "reasonable care" documentation packet.
+  Deliberately framed as classification research *disconnected from a specific entry* and built counsel-facing
+  / privilege-aware (see doc 20) — which both sidesteps the "customs business" line and protects the buyer,
+  since a written "not defensible" finding is otherwise discoverable.
 - **Who pays.** Mid-market importers of record (who carry the liability), customs brokers wanting a cheap
   second check, corporate trade-compliance teams, and 3PLs — per-classification-verified or a monthly
   compliance subscription; later, aggregated "defensibility by chapter / by vendor" benchmarks.
@@ -473,12 +477,13 @@ wedge, the nearest player + how you'd get past them, and the first cheap step.
   classical calibration (XGBoost) on defensibility probability, and a data pipeline over CROSS's **220,989
   public rulings** (1989–present, on data.gov; third-party scrapers like Apify exist) — labels *mined* from
   public rulings, no manual annotation.
-- **Nearest player + wedge.** TariffLens, Gaia Dynamics (only $1.5M pre-seed, Andrew Ng's AI Fund), and
-  Camtom/TariffPro all self-score their *own* confidence. **Wedge:** the independent, vendor-agnostic
-  defensibility verifier grounded in CROSS that complements rather than competes — riding two live tailwinds
-  (the H350722 ruling that legitimizes exactly this research/verification posture, plus the 67% audit surge).
-  Distinct from SecondRead (#2, insurance-claims extraction) and FieldProof (#12, invoice fields): different
-  document, different ground truth, different buyer.
+- **Nearest player + wedge.** TariffLens, Gaia Dynamics ($1.5M pre-seed, AI Fund — confirmed), GingerControl
+  ($2.1M seed), Tarifflo, and Camtom/TariffPro all self-score their *own* confidence; the real threat is
+  **Descartes CustomsInfo (HS Validator)**, a public-company incumbent already built around validating
+  existing user-supplied codes that could fast-follow a scoring feature. **Wedge:** the independent,
+  vendor-agnostic defensibility verifier grounded in CROSS with *both* supporting and contradicting rulings —
+  no product ships that today (deep-vet: novelty holds, moat is thin). Distinct from SecondRead (#2,
+  insurance-claims extraction) and FieldProof (#12, invoice fields): different document, ground truth, buyer.
 - **First step (<$500).** Scrape a slice of CROSS (data.gov / Apify) for one high-audit chapter (textiles /
   apparel or electronics), build the GRI-grounded independent classifier + defensibility scorer, hand-validate
   against held-out rulings, and offer 3–5 mid-market importers a free "is this code defensible?" check on
@@ -487,31 +492,39 @@ wedge, the nearest player + how you'd get past them, and the first cheap step.
 ### 17 · CreditProof — the R&D-credit audit-survival grader
 **Domain:** vertical-AI-reliability · **Novelty:** wedge-exists
 
-- **The problem.** IRS Form 6765 **Section G becomes mandatory** for most filers starting **tax year 2026** —
-  you must itemize ≥80% of qualified research expenses (QREs) by business component, up to 50 components — and
-  the IRS now runs **129 AI audit use cases** (up from 54). Documentation must be *contemporaneous*;
-  retroactive reconstruction fails on audit. Firms and CPAs can *generate* the narratives, but nobody tells
-  them whether a completed narrative would actually *survive*.
+- **The problem.** IRS Form 6765 **Section G becomes mandatory** for tax years beginning after 2025 — you
+  must itemize ≥80% of qualified research expenses (QREs) by business component, up to 50 components (small /
+  QSB filers exempt) — for a large, penalty-heavy, Tier-1-enforcement credit (~$32B/yr claimed) while the IRS
+  scales AI in examination (≈126 active AI use cases mid-2025). Records must be *sufficient to substantiate*
+  and courts increasingly reject after-the-fact reconstruction (Little Sandy Coal). Firms and CPAs can
+  *generate* the narratives, but nobody tells them whether a completed one would actually *survive*. *(The
+  founder-scout "129 AI audit use cases" figure is Treasury-wide and not IRS-audit-specific — corrected.)*
 - **The product.** Feed a completed Section G business-component narrative + QRE allocation and get back a
-  calibrated **audit-survival probability per component**, the specific weaknesses flagged (a missing
-  four-part-test element, a vague technological-uncertainty statement, an unsupported wage/QRE allocation)
-  grounded in real disallowance patterns, and a suggested fix — a defensibility **grader**, not another doc
-  generator.
+  **per-component defensibility read** — the specific weaknesses flagged (a missing four-part-test element, a
+  vague technological-uncertainty statement, an unsupported wage/QRE allocation) grounded in the IRS
+  disallowance taxonomy + real case outcomes, with a suggested fix. A defensibility **grader**, not another
+  doc generator. *(Deep-vet: ship this as a rubric-grounded checker, not a "calibrated survival probability" —
+  Section G narratives have never existed in any ground-truth source, so a literal probability is fabricated
+  calibration; deliver it pre-filing / ephemeral / no-retention as improvement guidance, not a verdict.)*
 - **Who pays.** R&D tax-credit specialty firms and consultancies, CPA firms filing 6765, and mid-market
   companies self-filing — per-study or per-component, sold as disallowance-risk reduction on a credit that is
   now mandatorily itemized *and* AI-audited.
-- **The moat.** A structured "what got disallowed and why" corpus mined from Tax Court opinions (George's of
-  Missouri, TC Memo 2026-10; Smith v. Commissioner, TC Memo 2026-50) and the IRS **Research Credit Claims
-  Audit Techniques Guide (RCCATG)**, plus an un-backfillable stream of graded-narrative → actual-audit-outcome
-  pairs that no doc generator captures.
+- **The moat.** A structured "what got disallowed and why" rubric mined from the IRS **Research Credit Claims
+  Audit Techniques Guide (RCCATG)** and the ~20–40 real §41 Tax Court opinions (George v. Commissioner, TC
+  Memo 2026-10; Smith v. Commissioner, TC Memo 2026-50; Little Sandy Coal; Union Carbide), plus an
+  un-backfillable stream of graded-narrative → outcome pairs no doc generator captures. *(Honest caveat: that
+  litigated corpus is dozens of cases at whole-case granularity — enough for a defensible rubric, not a
+  trained per-component gold set; the moat is thinner than it looks.)*
 - **Your wedge.** Your published RAG-grounding-judge shape applied to audit survival: LLM-as-judge scoring
   narrative-vs-four-part-test, classical calibration on survival probability, and a data pipeline over public
   Tax Court opinions + the RCCATG — labels mined from published outcomes, zero manual annotation.
-- **Nearest player + wedge.** CodeROI automates Section G *doc generation* for software; nobody sells a
-  defensibility *grader* that scores a finished narrative against audit-survival probability. **Wedge:** the
-  independent second-opinion layer that sits on top of *any* doc-generation workflow (CodeROI's output
-  included) and grades it against real disallowance patterns — complements rather than competes, with the
-  mandatory-Section-G + AI-audit surge as the tailwind.
+- **Nearest player + wedge.** CodeROI automates Section G *doc generation*; the real threat is **creditARMOR**
+  (Swanson Reed, launched Aug 2025) — pre-submission narrative-quality flagging + audit-readiness reports +
+  insurance, but *qualitative only*, no numeric per-component score. Defense/insurance is also sold by Boast
+  AuditShield, Strike Shield, TaxRobot. **Wedge:** the *predictive per-component grader* mechanic is genuinely
+  open; but "flag weaknesses" is already partly commoditized, and the natural buyers (Neo.Tax, Boast,
+  TaxRobot) are also the most likely in-house competitors — so differentiate on the grounded rubric, not on
+  spotting weak narratives.
 - **First step (<$500).** Scrape published Tax Court R&D-credit opinions + the RCCATG, build a four-part-test
   defensibility rubric + grader for one component type (software), hand-validate against held-out
   allowed-vs-disallowed cases, and offer 3–5 R&D-credit firms a free "would this narrative survive?" score on
