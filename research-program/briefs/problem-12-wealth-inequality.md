@@ -1,0 +1,165 @@
+# Problem 12 — AI & Wealth Inequality
+
+*Brief prepared July 2026. Synthesizes six mechanism-cluster research passes (labor, capital, access, global, policy, measurement). Companion to and deliberately non-duplicative of [problem-05-labor-economics.md](problem-05-labor-economics.md), which covers displacement/augmentation, wage effects, exposure indices, and the Canaries–Denmark contradiction. Every claim below is from a page that was opened; items not confirmed from an opened page are marked ⚠️ unverified. Evidence is graded ESTABLISHED / CONTESTED / THEORIZED-UNMEASURED throughout.*
+
+---
+
+## Why inequality is a lens, not a mechanism
+
+"AI and labor" asks *does AI destroy jobs*. "AI and wealth inequality" asks a bigger, messier question: **when AI creates value, who ends up owning it?** That value moves through many channels at once — wages, prices, profits, equity, compute rents, IP, taxes, and cross-border flows — and the same technology can compress inequality on one channel while widening it on another. The single most important structural fact in this brief is that the two best-measured channels **point in opposite directions**:
+
+- **Usage is diffusing *down* the income gradient** (equalizing): within the US, Claude usage inequality is *falling* — the top-5 states' share of per-capita usage dropped from 30% to 24% (Aug 2025–Feb 2026), projecting rough per-capita parity in 5–9 years ([Anthropic March 2026 report](https://www.anthropic.com/research/economic-index-march-2026-report)).
+- **Ownership is concentrating *up* the wealth gradient** (unequalizing): the top 1% held **~50% of US corporate equities and mutual-fund shares** as of 2026, up from ~43% in 1989 (Fed Distributional Financial Accounts, [FRED WFRBST01122](https://fred.stlouisfed.org/series/WFRBST01122) — ⚠️ FRED blocks automated fetch; value from cluster-1/2 direct pulls), and Anthropic's co-founders became worth ~$8–15.5B each on ~1–1.6% stakes after the $965B round ([Bloomberg](https://www.bloomberg.com/news/articles/2026-05-29/anthropic-co-founders-worth-8-billion-each-after-funding-round); [Forbes](https://www.forbes.com/sites/richardnieva/2026/05/29/anthropics-cofounders-worth/)).
+
+*Nobody has published a dataset that joins these two curves.* Whether the equalizing tool-access effect can outrun the unequalizing ownership effect is the central open question, and it is a **measurement** question before it is an economic one. That is the thread running through this brief.
+
+---
+
+## The mechanisms map
+
+Every distinct mechanism surfaced across the six clusters. Direction = effect on inequality (widens / narrows / ambiguous). Strength = how well the *AI-specific* causal claim is evidenced (not whether the phenomenon exists).
+
+| # | Mechanism | Causal path (one line) | Direction | Strength | Key source |
+|---|---|---|---|---|---|
+| **L1** | Task displacement vs. augmentation | AI automates whole tasks (→capital) or augments workers (→labor); the *mode* sets the sign | Ambiguous | CONTESTED | [AEI Sept 2025](https://www.anthropic.com/research/anthropic-economic-index-september-2025-report) |
+| **L2** | Wage polarization / skill premium | AI hits cognitive tasks; may extend polarization *or* compress if novices match experts | Ambiguous | ESTABLISHED (past automation) / THEORIZED (genAI) | [Acemoglu-Restrepo, Econometrica 2022](https://economics.mit.edu/sites/default/files/2022-10/Tasks%20Automation%20and%20the%20Rise%20in%20US%20Wage%20Inequality.pdf) |
+| **L3** | Entry-level ladder collapse | Firms automate the routine tasks juniors trained on, cutting the bottom rung | Widens | CONTESTED | [Canaries, Nov 2025](https://digitaleconomy.stanford.edu/app/uploads/2025/11/CanariesintheCoalMine_Nov25.pdf) vs [Yale Budget Lab](https://budgetlab.yale.edu/research/what-we-do-and-dont-know-about-how-ai-affecting-labor-market) |
+| **L4** | Exposure gradients by income | Higher-wage cognitive jobs are more *exposed* — but exposure ≠ outcome | Ambiguous | ESTABLISHED (prediction) | [IMF Cazzaniga et al. 2024](https://www.imf.org/-/media/files/publications/sdn/2024/english/sdnea2024001.pdf) |
+| **L5** | Data-labor economics | Model value flows to capital while RLHF/annotation labor is paid poverty wages | Widens | ESTABLISHED (wages) / THEORIZED (aggregate) | [TIME 2023](https://time.com/6247678/openai-chatgpt-kenya-workers/); [Fairwork AI](https://fair.work/en/fw/fairwork-ai/) |
+| **L6** | Within-/between-firm wage effects | AI raises wages inside adopters, cuts headcount, widens superstar–laggard gaps | Widens | CONTESTED | [IMF WP/25/68](https://www.imf.org/-/media/files/publications/wp/2025/english/wpiea2025068-print-pdf.pdf) ⚠️; [SF Fed 2022](https://www.frbsf.org/wp-content/uploads/wp2022-05.pdf) |
+| **C1** | Capital-share vs. labor-share shift | Displacement > reinstatement → labor share falls → concentrated capital gains | Widens | ESTABLISHED (mechanism) / THEORIZED (AI magnitude) | [Acemoglu-Restrepo JPE 2020](https://www.nber.org/system/files/working_papers/w23285/w23285.pdf) |
+| **C2** | Wealth concentration via AI equity | AI gains accrue first as equity; equity ownership is extremely concentrated | Widens | ESTABLISHED (concentration) / THEORIZED (AI contribution) | [FRED WFRBST01122](https://fred.stlouisfed.org/series/WFRBST01122); [Bloomberg](https://www.bloomberg.com/news/articles/2026-05-29/anthropic-co-founders-worth-8-billion-each-after-funding-round) |
+| **C3** | Compute-as-capital (rentier) | Owning chips/fab/cloud extracts rent regardless of who wins the app layer | Widens | ESTABLISHED (concentration) / THEORIZED (rent size) | [Nvidia ~85% share/margin](https://finance.yahoo.com/news/nvidias-85-gpu-market-share-210500376.html); [AI Now compute](https://ainowinstitute.org/publications/compute-and-ai) |
+| **C4** | Market concentration / winner-take-most | High fixed + near-zero marginal cost → oligopoly → durable markups (rents) | Widens | CONTESTED | [Autor et al. QJE 2020](https://economics.mit.edu/sites/default/files/publications/Autor%20et%20al_2020_The%20Fall%20of%20the%20Labor%20Share%20and%20t.pdf); [Brookings](https://www.brookings.edu/articles/market-concentration-implications-of-foundation-models-the-invisible-hand-of-chatgpt/) |
+| **C5** | IP / data appropriation | Training on creative work uncompensated transfers value creators→AI owners | Widens | THEORIZED-UNMEASURED | [EU Parl STUD 778859](https://www.europarl.europa.eu/RegData/etudes/STUD/2025/778859/IUST_STU(2025)778859_EN.pdf) ⚠️ |
+| **A1** | Surplus capture (firm vs. worker) | Productivity gains split to wages/prices/profits; RCTs measure output, not pay | Ambiguous | THEORIZED-UNMEASURED | [Brynjolfsson-Li-Raymond QJE 2025](https://academic.oup.com/qje/article/140/2/889/7990658) |
+| **A2** | Price-tiering of capability | Strongest models sit behind paywalls; leverage compounds for those who can pay | Widens | THEORIZED-UNMEASURED | [IntuitionLabs plan comparison](https://intuitionlabs.ai/articles/chatgpt-plans-comparison) |
+| **A3** | SME vs. large-enterprise gain gap | Big firms have complementary assets to convert adoption into productivity | Widens | CONTESTED | [BIS WP 1325](https://www.bis.org/publ/work1325.pdf) ⚠️; [Census BTOS](https://capsulecrm.com/blog/small-business-ai-adoption-statistics/) |
+| **A4** | Geographic concentration | AI capital/talent agglomerate; datacenter costs land on other communities | Widens | ESTABLISHED (concentration) / CONTESTED (datacenter incidence) | [Bay Area 60% of VC](https://theaieconomy.substack.com/p/ai-vc-2025-bay-area-concentration); [Brookings datacenters](https://www.brookings.edu/articles/new-evidence-on-data-center-employment-effects/) |
+| **A5** | Skill/education access to leverage | AI-skill wage premium clusters among the already-educated | Widens | ESTABLISHED (correlational) | [PwC 2026 Barometer](https://www.pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-jobs-barometer.html) |
+| **A6** | Augmentation dividend (equalizing) | AI helps low-skill workers most, compressing within-firm skill gaps | Narrows | ESTABLISHED (productivity) / UNMEASURED (pay) | [Brynjolfsson-Li-Raymond QJE 2025](https://academic.oup.com/qje/article/140/2/889/7990658) |
+| **G1** | North–South exposure/positioning | Rich economies have exposure *and* complementarity + capacity to capture upside | Widens (between-country) | ESTABLISHED (exposure) / THEORIZED (outcome) | [IMF blog](https://www.imf.org/en/blogs/articles/2024/01/14/ai-will-transform-the-global-economy-lets-make-sure-it-benefits-humanity) ⚠️ |
+| **G2** | Sovereign-compute gap | No domestic compute → no frontier capability → dependence, value accrues to host | Widens | ESTABLISHED (descriptive) | [Oxford compute geography, AIES 2024](https://ojs.aaai.org/index.php/AIES/article/view/31683) |
+| **G3** | Data-labor extraction ("AI colonialism") | South supplies cheap labeling; North captures model value | Widens | ESTABLISHED (wages) / CONTESTED (framing) | [Brookings Global South](https://www.brookings.edu/articles/reimagining-the-future-of-data-and-ai-labor-in-the-global-south/); [arXiv:2410.14230](https://arxiv.org/abs/2410.14230) |
+| **G4** | Leapfrogging vs. ladder-closing | AI skips infra stages *or* makes cheap-labor industrialization obsolete | Ambiguous | CONTESTED / THEORIZED | [CGD](https://www.cgdev.org/blog/robots-and-economic-development-catch-growth-thing-past) |
+| **G5** | Foreign-automation spillover | Trade partners automate → developing-country export demand falls | Widens | CONTESTED (measured for robots) | [Automated Deindustrialization, World Dev 2023](https://www.sciencedirect.com/science/article/abs/pii/S0305750X23001675) |
+| **P1** | Capital–labor tax asymmetry | Labor taxed ~28% vs capital ~5% → over-automation beyond social optimum | Widens | ESTABLISHED (asymmetry) / THEORIZED (magnitude) | [Acemoglu-Manera-Restrepo, Brookings 2020](https://www.brookings.edu/articles/does-the-u-s-tax-code-favor-automation/) |
+| **P2** | Robot/automation tax (corrective) | Levy on automation slows marginal displacement, backfills tax base | Narrows | CONTESTED (one natural experiment) | [Kang-Lee-Quach, Korea, SSRN 2024](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5005128) |
+| **P3** | Fiscal-base erosion | Labor→capital shift shrinks payroll/income tax base as needs rise | Widens | THEORIZED-UNMEASURED | [Korinek-Lockwood, Digitalist 2025](https://www.digitalistpapers.com/vol2/korineklockwood) |
+| **P4** | UBI / unconditional transfers | Redistribute AI gains as cash; risk of labor-supply withdrawal | Narrows | ESTABLISHED (RCT + quasi-exp, split by design) | [Vivalt et al. NBER w32719](https://www.nber.org/papers/w32719); [Jones-Marinescu NBER w24312](https://www.nber.org/system/files/working_papers/w24312/w24312.pdf) |
+| **P5** | Antitrust as inequality policy | Limiting concentration raises labor share, cuts top capital income | Narrows | ESTABLISHED (concentration→labor share) / THEORIZED (remedy) | [Autor et al. QJE 2020](https://academic.oup.com/qje/article-abstract/135/2/645/5721266) |
+| **P6** | Public compute / public equity stakes | Government provision or ownership redistributes returns to citizens | Narrows | THEORIZED-UNMEASURED | [NAIRR](https://www.nsf.gov/focus-areas/ai/nairr); [OpenAI 5% stake pitch](https://www.forbes.com/sites/siladityaray/2026/07/02/openai-reportedly-pitches-granting-us-government-5-stake/) |
+| **P7** | Windfall clauses / data dividends | Voluntary profit-sharing or data micropayments | Narrows (if adopted) | ADVOCACY-ONLY (none adopted) | [Metaculus windfall](https://www.metaculus.com/questions/4061/); [AAF data dividends](https://www.americanactionforum.org/insight/a-dive-into-digital-dividends/) |
+| **M1–M4** | Measurement channels | Can we *see* / *attribute* / *time* the shift at all? | (Meta) | THEORIZED-UNMEASURED for AI attribution | [Fed DFA](https://www.federalreserve.gov/releases/efa/efa-distributional-financial-accounts.htm); [WID methodology](https://wid.world/methodology/) |
+
+**Reading the table:** the mechanisms that *widen* inequality are numerous and mostly ESTABLISHED-as-phenomena but THEORIZED-as-AI-attribution. The mechanisms that *narrow* it are fewer, and the two strongest (A6 augmentation dividend, P4 UBI) share the same fatal gap — the equalizing effect is measured in *productivity or a pilot*, never in *realized economy-wide pay or wealth*. That asymmetry is the honest headline.
+
+---
+
+## The mechanisms, in depth
+
+### Labor channels (L) — the value split at the point of production
+See [problem-05](problem-05-labor-economics.md) for displacement/augmentation, exposure indices, and the Canaries–Denmark null contradiction. The *distributional* extensions:
+
+- **The augmentation/automation split flips by deployment context (L1).** On consumer Claude.ai, augmentation ~57% vs automation ~43% late 2025; but on the enterprise **API, automation dominates 77% vs 12% augmentation** ([AEI Sept 2025](https://www.anthropic.com/research/anthropic-economic-index-september-2025-report); confirmed via search of the report). Automation-mode use is the labor→capital transfer; augmentation-mode is the worker-retaining one. The sign of AI's inequality effect therefore depends on *where* AI is deployed, and the enterprise side — where the money is — leans automation. **CONTESTED**; effect on inequality unmeasured.
+- **Past automation explains 50–70% of the 1980–2016 rise in between-group wage inequality (L2)** ([Acemoglu-Restrepo, Econometrica 2022](https://economics.mit.edu/sites/default/files/2022-10/Tasks%20Automation%20and%20the%20Rise%20in%20US%20Wage%20Inequality.pdf)) — but that is robotics/software, not genAI, and the genAI "leveling" RCTs point the *other* way (A6). Which dominates economy-wide: unmeasured.
+- **Data-labor value capture (L5).** Kenyan labelers took home **$1.32–$2/hr** while OpenAI paid Sama **$12.50/hr** — a 6–9× markup ([TIME 2023](https://time.com/6247678/openai-chatgpt-kenya-workers/)); across 15 platforms Oxford Fairwork found none scored above "bare minimum," only 2 guarantee minimum wage, none pays a living wage ([Fairwork AI](https://fair.work/en/fw/fairwork-ai/)). Exploitation is **ESTABLISHED**; the *share of model value* captured vs. paid out is unquantified.
+
+### Capital & ownership channels (C) — who owns the assets
+This is the cluster where the *direction* is least ambiguous (all widening) and the *AI-specific magnitude* is least measured.
+
+- **Labor share fell ~63%→~59% (2000–2022)** ([McKinsey](https://www.mckinsey.com/featured-insights/employment-and-growth/a-new-look-at-the-declining-labor-share-of-income-in-the-united-states)); [Karabarbounis-Neiman](https://www.nber.org/system/files/working_papers/w19136/w19136.pdf) attribute ~half the *global* decline to cheaper investment goods substituting for labor. **The decline predates AI** — isolating AI's marginal contribution is the field's single biggest gap (C1).
+- **Equity concentration is real and rising (C2):** top 1% ~50% of equities (2026) vs ~43% (1989); bottom 50% ~1% ([Wikipedia summarizing DFA](https://en.wikipedia.org/wiki/Wealth_inequality_in_the_United_States)). Because AI gains arrive first as equity, an AI market rally is mechanically a wealth-concentration engine — but **no study decomposes** how much of the top-1% equity-share rise is AI vs. general tech/monetary factors.
+- **Compute-as-capital (C3):** Nvidia holds ~80–85% of AI accelerators at ~85–88% gross margins ([Yahoo/Motley Fool](https://finance.yahoo.com/news/nvidias-85-gpu-market-share-210500376.html)); four hyperscalers guide ~$725B 2026 capex ([Tom's Hardware](https://www.tomshardware.com/tech-industry/big-tech/big-techs-ai-spending-plans-reach-725-billion)). The "compute landlord" collects rent regardless of who wins the app layer — but the *size* of compute rents and who ultimately bears them is unmeasured.
+- **IP appropriation (C5):** documented deals exist (News Corp–OpenAI ~$250M/5yr; Shutterstock $104M) but these are negotiated prices, not measures of *uncompensated* transfer. No economy-wide creator→firm transfer estimate exists.
+
+### Access & distribution channels (A) — who gets the gains
+The pivotal, most solo-tractable cluster, because it contains the field's **central measurement hole**.
+
+- **Surplus capture is essentially unmeasured (A1).** The flagship RCT ([Brynjolfsson-Li-Raymond, QJE 2025](https://academic.oup.com/qje/article/140/2/889/7990658), 5,172 agents, +15% issues/hour, novices gain most) *explicitly states its data do not allow observation of wages*. Dozens of productivity RCTs, near-zero wage measurement — so whether a 15–40% productivity jump reaches workers, prices, or profits is **unknown from the studies themselves**. This is the highest-leverage gap in the whole brief.
+- **The augmentation dividend is the one strong equalizing force (A6)** — but "equalizing productivity ≠ equalizing income" until pay incidence is measured (same hole as A1).
+- **Geographic concentration (A4):** Bay Area captured **60% ($126B) of 2025 global AI VC** and **91% of generative-AI unicorn market cap** ([theaieconomy](https://theaieconomy.substack.com/p/ai-vc-2025-bay-area-concentration)). Datacenter cost incidence is the sharpest live controversy: [Bahar-Wright synthetic control (~770 facilities)](https://www.brookings.edu/articles/new-evidence-on-data-center-employment-effects/) finds +4–5% local employment but naive comparisons overstate jobs 3×; largest datacenters employ **<150 permanent workers, sometimes 25** ([WRI](https://www.wri.org/insights/us-data-center-growth-impacts)); PJM power costs rose $2.2B→$14.7B in one year, but attribution splits 50% (Amazon/E3) vs 63% (IEEFA) depending on method ([Latitude Media](https://www.latitudemedia.com/news/studies-say-data-centers-dont-raise-rates-does-it-matter/)). Genuinely **CONTESTED** and funder-entangled.
+- **AI-skill premium 56%→62% (A5)** ([PwC 2026 Barometer](https://www.pwc.com/gx/en/news-room/press-releases/2026/pwc-2026-ai-jobs-barometer.html)) — but correlational, vendor-sourced, and blind to displaced workers (survivorship). Notably, *degree* requirements for AI-exposed jobs are *falling*, hinting the gate is shifting from credential to skill.
+
+### Global channels (G) — the between-country axis
+- **Between-country usage inequality is *rising* even as within-US falls:** the top-20 countries went from 45%→48% of population-adjusted usage (Aug 2025–Feb 2026) ([Anthropic March 2026 report](https://www.anthropic.com/research/economic-index-march-2026-report)); AI Usage Index Israel 7.0×, US 3.6× vs India 0.27×, Nigeria 0.2×; **+1% GDP/capita → +0.7% usage** ([AEI Sept 2025](https://www.anthropic.com/research/anthropic-economic-index-september-2025-report)). Advanced GPUs are concentrated in ~33 countries ([Oxford, AIES 2024](https://ojs.aaai.org/index.php/AIES/article/view/31683)).
+- **Ladder-closing has measured precedent for robots** — trade-partner robotization reduced Brazil's manufacturing employment share via the export-demand channel ([World Dev 2023](https://www.sciencedirect.com/science/article/abs/pii/S0305750X23001675)) — but whether *AI specifically* closes the ladder is THEORIZED. CGD cautions the developing world's 800M-job gap "was here" before AI ([CGD](https://www.cgdev.org/blog/developing-worlds-jobs-crisis-was-here-ai)).
+
+### Policy channels (P) — the response, and its evidence
+This is the least-mapped and most advocacy-contaminated literature. Two anchors have real empirical weight:
+- **Korea's 2017 automation-credit cut (3%→1% for large firms) is the field's one natural experiment (P2):** it reduced automation investment, *raised* employment, and *reduced wage inequality* (slower top-half wage growth) with a positive fiscal externality ([Kang-Lee-Quach, SSRN 2024](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5005128)) — a genuine quasi-experiment, though a single-country credit reduction, not a clean robot tax.
+- **UBI is the strongest-evidenced redistribution mechanism, and the evidence is split by design (P4).** RCT (partial equilibrium): OpenResearch/Vivalt et al., $1,000/mo × 3yr × 1,000 people → **−3.9pp employment, −1.3 to 1.4 hrs/week, ~$1,800/yr fall in non-transfer income; extra time went to leisure** ([NBER w32719](https://www.nber.org/papers/w32719); confirmed via [OpenResearch findings](https://www.openresearchlab.org/findings/nber-working-paper-employment)). Quasi-experiment (general equilibrium): the *permanent, universal* Alaska dividend shows **no employment effect, +1.8pp part-time** ([Jones-Marinescu, NBER w24312](https://www.nber.org/system/files/working_papers/w24312/w24312.pdf)). The RCT-vs-Alaska tension — an RCT structurally *cannot* capture the macro-demand offset a universal program would create — is the key open policy question.
+- **Windfall clauses / data dividends are ADVOCACY-ONLY (P7):** as of 2025 no major lab has adopted a formal windfall clause ([Metaculus](https://www.metaculus.com/questions/4061/)); OpenAI's own "hollowing out the tax base" warning cites no evidence ([TechCrunch](https://techcrunch.com/2026/04/06/openais-vision-for-the-ai-economy-public-wealth-funds-robot-taxes-and-a-four-day-work-week/)).
+
+### Measurement channels (M) — can we even see it?
+This cluster is why the whole brief carries so many THEORIZED tags.
+- **Top-end inequality is estimated by *distributing* macro aggregates onto micro shares (M1)** — WID's DINA and the Fed's DFA both allocate national totals to percentiles using survey/tax data ([WID](https://wid.world/methodology/); [Fed DFA](https://www.federalreserve.gov/releases/efa/efa-distributional-financial-accounts.htm)). Any AI signal must survive interpolation and only refreshes when the triennial SCF microdata does. The DFA gives quarterly top-1% net-worth shares (~30% late 2025) back to 1989 — the instrument is solid, but **no opened source isolates an AI component within it.**
+- **Capital-share and within-labor channels live on different instruments with different lags (M2)** — so no single series captures "AI's effect on inequality." [Chen-Meng](https://arxiv.org/pdf/2603.05565) model the trap directly: AI can *compress* wage dispersion while *asset ownership* concentrates, so watching wage-Gini alone can show "improvement" while total inequality worsens.
+- **Attribution is structurally hard (M3):** AI is a general-purpose technology deployed everywhere at once — no untreated control group — and 2022–2026 bundles COVID recovery, the [§174 R&D-capitalization tax change](https://www.lbke.fr/fondateurs/eric-burel/ai-impact-employment-and-peer-review) (a live confound for the junior-software decline), the tech-hiring correction, and rate hikes. The K-shaped 2025–26 economy mimics or masks an AI signal.
+- **Usage telemetry is a leading indicator, not an outcome, and it's a two-lab oligopoly (M4)** — only Anthropic (open, CC-BY on [HF](https://huggingface.co/datasets/Anthropic/EconomicIndex)) and OpenAI (internal) publish; the conversation→O*NET classifier is vendor-built and self-audited.
+
+---
+
+## How much do we actually know
+
+**Established (as phenomena, with realized data):**
+- Equity/wealth ownership is extremely concentrated and the concentration is rising (DFA). ✔
+- Data-labor wages are poverty-level with 6–9× subcontractor markups (TIME, Fairwork). ✔
+- AI VC, talent, and compute are geographically concentrated (Bay Area, ~33-country GPU map). ✔
+- Between-country usage inequality is rising; within-US usage inequality is falling (Anthropic). ✔
+- Past automation drove a large share of historical wage inequality (Acemoglu-Restrepo). ✔ (analogy, not AI)
+- The AI-skill wage premium exists (PwC). ✔ (correlational)
+- UBI labor-supply effects: −3.9pp employment in an RCT, ~zero under Alaska's permanent universal design. ✔ (both clean)
+- Korea's automation-credit cut raised employment and reduced wage inequality. ✔ (single natural experiment)
+
+**Theorized / contested (mechanism plausible, AI-specific magnitude unmeasured):**
+- Every "AI's marginal contribution to X" claim: to labor share (C1), to equity concentration (C2), to compute rents (C3), to the tax base (P3). No counterfactual "no-AI" world has been built. **This is the field's defining weakness.**
+- Surplus capture (A1) — the pay-incidence RCT does not exist.
+- Datacenter cost/rate incidence (A4) — 50% vs 63% depending on method.
+- Entry-level ladder collapse (L3) — Canaries vs. Yale vs. §174 confound, unadjudicated.
+- Creator→firm IP transfer (C5) — no denominator, mid-litigation.
+- "AI colonialism" framing (G3) — wages established, framing and value-wedge magnitude contested.
+
+**What limits the research itself:**
+- **Data locked in labs.** The best usage data sit inside the firms that own the equity — a conflict of interest specific to the capital-side questions. Only Anthropic open-sources.
+- **Attribution has no control group.** A GPT deployed everywhere, amid COVID/§174/rate confounds, cannot be cleanly separated with current designs.
+- **Timescale mismatch.** Usage telemetry is real-time; DFA is quarterly-but-interpolated-from-triennial-SCF; IRS/WID tax microdata lags 2–3+ years and is access-gated. *The cause is observable years before the effect.*
+- **Funding slant runs both directions.** Optimistic numbers (PwC 56–62% premium) come from consultancies selling AI transformation; some displacement papers carry founder conflicts (Workhelix); datacenter studies are commissioned by Amazon/E3 vs. IEEFA; the main external money (Anthropic Economic Futures) is vendor-shaped. "AI-washing" — blaming AI for cost-driven layoffs — contaminates both directions ([Fortune on Yale](https://fortune.com/2026/02/02/ai-labor-market-yale-budget-lab-ai-washing/)).
+- **Politicization.** "AI colonialism" is contested on ideological lines; IMF/OECD framing is member-state-shaped ("prepare and benefit"); IP is mid-litigation.
+
+---
+
+## What a solo researcher could do here
+
+Study shapes fitting the profile (data-pipeline / classical-ML / LLM-as-judge; laptop + free tiers + ≤$500 + frontier APIs). Ordered to favor the **measurement gaps**, which are the most tractable and least crowded, and which no one else can address without the same locked data.
+
+1. **The decoupling dashboard (the brief's headline gap, M2/A6).** Join Anthropic's open AUI usage series (falling within-US Gini) with Fed DFA/FRED wealth-share series and BEA state factor shares to test empirically whether *usage diffusion* and *capital concentration* are decoupling — the exact "wage-Gini falls while capital-Gini rises" trap Chen-Meng predict but nobody has measured. Pure public-data pipeline, $0 data. **Highest-novelty, highest-fit.**
+2. **Pay-incidence meta-analysis (A1).** Systematically catalog every AI productivity RCT/field study and code whether it measured *wages/prices/profits* vs. only output — turning "the surplus-capture measurement gap" into a citable, quantified fact. Pure literature pipeline, $0. Directly names the field's biggest hole.
+3. **Independent audit of the Anthropic Economic Index classifier (M4).** Every distributional inference above rests on the conversation→O*NET augmentation/automation labels; no external audit exists. Re-run with alternative judge models/prompts, quantify how classifier choice moves the income-gradient coefficients (0.7 / 1.8) and the automation/augmentation split. **Directly extends the researcher's published LLM-as-judge work**; API-only budget; matches the [Anthropic Economic Futures award](https://www.anthropic.com/economic-futures/program) ($10k–50k + credits).
+4. **AI-exposure decomposition of the top-1% equity share (C2/M3).** Merge FRED DFA equity-holdings series with firm-level "AI-intensity" (capex, patents, revenue mix) to estimate what fraction of the post-2020 top-1% equity-share rise is attributable to AI-heavy firms — the first attempt at the field's defining counterfactual, at laptop scale. $0 data.
+5. **Attribution horse-race (M3).** Test whether AI-exposure/usage-intensity predicts *state-level* capital-income-share changes better than *pre-AI* automation exposure — a falsifiable, cheap test of whether AI adds signal beyond the 50–70% prior-automation analogy. Public data only.
+6. **Datacenter tax-incentive-per-permanent-job database (A4).** Merge public facility lists (~770–1,200 known), state incentive filings, and BLS county employment; publish cost-per-permanent-job and cost-incidence by facility type — a neutral third-party estimate the funder-entangled literature lacks. Pipeline + classical-ML, the researcher's core strengths.
+
+*(Secondary shapes surfaced across clusters, lower priority: value-capture wedge estimator for data labor; compute-rent tracker from Nvidia + hyperscaler 10-Ks; UBI RCT-vs-Alaska elasticity meta-analysis; windfall-pledge ledger against O'Keefe criteria; foreign-automation spillover replication on post-2020 emerging-economy data.)*
+
+---
+
+## What we still don't know (for the ledger)
+
+- **The single biggest gap: nobody has decomposed AI's marginal contribution** to the top-1% equity share, the labor-share decline, or the tax base. Every such claim is THEORIZED because no counterfactual "no-AI" baseline exists.
+- **Surplus capture is unmeasured:** productivity RCTs almost never observe wages, so who captures the AI productivity dividend (workers/consumers/owners) is unknown from the studies themselves.
+- **Do the two best-measured curves actually decouple?** Usage-inequality is falling (within-US) while ownership-inequality rises — but no dataset joins them to test whether the equalizing effect can outrun the unequalizing one.
+- **Is the AI-skill premium (56–62%) skill or selection?** Confounded by self-selection of high-ability workers; no clean causal estimate.
+- **Datacenter cost incidence:** 50% vs 63% of PJM increases depending on method; unresolved and funder-entangled.
+- **Data-labor value-capture wedge:** wages established, but the *share of model value* paid to Global-South labelers vs. captured by capital is unquantified.
+- **UBI at scale:** every RCT is partial-equilibrium by construction; Alaska is the only permanent-universal case and it's one state. The macro-demand offset that matters for a *universal* AI-funded program is unmeasured.
+- **Is the Anthropic classifier valid as a measurement instrument?** The augmentation/automation labels underpinning every distributional inference are vendor-built and un-audited externally (⚠️ absence inferred).
+- **Timescale:** we can observe the *cause* (usage, capex, equity) years before the *effect* (tax-microdata top shares) — so any near-term "AI isn't worsening inequality" claim is premature by construction.
+
+---
+
+## Fit notes
+
+The open datasets that dominate this problem (Anthropic HF EconomicIndex, FRED/DFA wealth series, BEA/BLS factor shares, Compustat, public 10-Ks, datacenter facility lists, O*NET) are **tabular and pipeline-shaped**, matching the researcher's XGBoost/classical-ML and data-pipeline strengths; every study shape above runs on laptop + free tiers + frontier APIs, with **no GPU training required**. The researcher's published LLM-as-judge work maps directly onto opening #3 (auditing the vendor classifier that underpins the whole distributional literature) — the single highest-fit, highest-novelty study in the brief. A named external funding channel exists at the right size ([Anthropic Economic Futures](https://www.anthropic.com/economic-futures/program), $10k–50k + $5k credits), with the usual conflict-of-interest caveat for capital-side questions. The domain is **crowded on the labor axis** (problem-05) but **thin on the wealth/ownership/measurement axis** — the decoupling-dashboard and pay-incidence gaps in particular appear genuinely unfilled in the sources opened here.
+
+**Recommendation (fact, not ranking):** this warrants becoming **index row 19 — a distinct problem from problem-05**, because its unit of analysis (who *owns* the value) and its binding constraint (a measurement/attribution problem, not a labor-outcome problem) are different, and because it surfaces at least two solo-tractable openings — the *usage-vs-ownership decoupling dashboard* and the *pay-incidence meta-analysis* — that do not appear anywhere in the labor brief. It cross-references problem-05 heavily but does not duplicate it.
