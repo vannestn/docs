@@ -19,6 +19,7 @@ hired paths all stay open.
 | [07 · Publishing pathways](07-publishing-pathways.md) | How to publish each kind of artifact so the work is actually useful — venues, mechanics, distribution |
 | [08 · Pilot specs](08-pilot-specs.md) | The locked 5-field shortlist as runnable pilots (RQ, method, cost, success/kill, artifact) |
 | [09 · Startup lens](09-startup-lens.md) | The same domains re-scored for venture potential (2026-07-08 founding pivot) — wedge, moat, comparables, what to drop |
+| [10 · Startup pilot specs](10-startup-pilot-specs.md) | ~3 pilots/domain, each fully evaluated (feasibility, novelty, founding vs hire value, success/kill) |
 | [briefs/](briefs/) | Source research briefs |
 | [radar/](radar/) | Weekly + monthly radar digests (auto-generated) |
 
