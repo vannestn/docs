@@ -1,0 +1,334 @@
+# 16 · Pilot Candidates — the plain-English version
+
+*Written 2026-07-09. This is the readable synthesis of the two creative-solution rounds —
+[14 · creative re-angles](14-creative-reangles.md) and [15 · method-transfer solutions](15-method-transfer-solutions.md).
+Those two are raw research logs: every idea we generated, scored, and adversarially killed, written in
+insider shorthand. **This doc is the part you actually read to choose.** Each candidate below answers four
+questions in plain terms: what is it, why does it exist, what problem does it solve, and how does it solve it.*
+
+---
+
+## The story so far, in three sentences
+
+We found a set of real, well-evidenced problems in AI ([doc 13](13-problem-validation.md)) — but every one was
+a poor fit for a *solo-founded company*: not because the problem was fake, but because the obvious business
+around it was already owned by an incumbent, given away free, or needed a pile of labeled data we can't afford.
+So we ran two creativity engines: one that **re-shapes the business** around each problem to dodge that trap
+([doc 14](14-creative-reangles.md)), and one that **mines the top research papers' methods** and recombines them
+into a cheaper, cleverer technical approach ([doc 15](15-method-transfer-solutions.md)). The candidates below are
+the strongest survivors of both, adversarially checked for "has someone already done this," and fused into
+concrete pilots.
+
+## What a "pilot" is here
+
+A pilot is a small study you can actually run: **≤ $500, ≤ 6 weeks, solo**, ending in a **public artifact**
+(a short paper, a released dataset, or an open-source tool), with a **pre-written win-or-kill line** so you know
+before starting what counts as success and what makes you stop. A pilot is *not* the company or the career — it's
+the cheapest possible test of whether an idea is worth going deep on. You'd run 2–3 across different areas and let
+real-world engagement decide.
+
+## Two words that show up everywhere: "shape" and "method"
+
+- The **shape** is the *business framing* — what you make, who it's for, and why they'd pay attention. (This is
+  what doc 14 generated.)
+- The **method** is the *technical trick* — usually: how you measure something, or get the data to measure it,
+  without paying for a lab or an army of labelers. (This is what doc 15 generated.)
+
+Most pilots below fuse one of each: a method that makes the study cheap, plus a shape that makes the result matter.
+
+## Why they almost all say "hire" — and why that's still the plan
+
+Across both rounds, one honest pattern held: even after re-shaping and re-methoding, most of these lead to
+**getting hired** (into an AI startup or lab) rather than cleanly **founding** a company. The reason is specific:
+the ideas that beat the "needs capital / already owned" problems tend to leave *one* remaining moat —
+**institutional trust** (will a court, a regulator, or an enterprise take a solo's number seriously) — which money
+can't buy at ≤$500 but a great public artifact *can earn over time*. So the strategy isn't "give up on founding."
+It's: **ship a cheap, skill-perfect artifact → get hired or get cited into the seat → found from inside it.** A few
+below (marked "found upside") keep a real path to a company if a paying buyer shows up.
+
+---
+
+## The candidates at a glance
+
+Higher "vetting score" = stronger (0–100, from the adversarial judge; two numbers = method score / shape score).
+
+| # | Pilot | What it is, in one line | The problem it cracks | Best path | Vetting |
+|--:|---|---|---|---|:--:|
+| 1 | **Ingestion Corruption Detector** | An OSS tool + public leaderboard that catches numbers silently mangled when documents are fed to AI | RAG systems answer confidently wrong because parsing quietly corrupts tables/numbers and nothing checks | hire → **found upside** | 80 / 75 |
+| 2 | **Reviewer Scrutiny Metric** | A validated score for whether a human is *really* reviewing AI output vs rubber-stamping | "A human approved it" is becoming theater; oversight decays as AI does more of the work | hire / nonprofit | 81 |
+| 3 | **PV-Grade** | A public benchmark grading AI on the four high-stakes drug-safety decisions | Drug-safety AI must be independently validated by law, but no yardstick exists | hire → **found upside** | 82 |
+| 4 | **Code-Review Catch-vs-Noise Bench** | A benchmark measuring subtle bugs an AI reviewer catches vs how often it cries wolf | AI writes plausible-but-wrong code; review got slower and nobody measures the tradeoff honestly | hire | 78 / 77 |
+| 5 | **Multilingual Safety Meter** | A statistical method to measure if a model is less safe in other languages, robust to a flaky judge | Models refuse harm in English but comply in low-resource languages; labs don't measure it | nonprofit / hire | 77 / 70 |
+| 6 | **Injection Defense Report Card** | An independent A–F report card grading prompt-injection defenses under *adaptive* attack | Defenses claim ~100% and fail >90% once the attacker adapts; no neutral referee exists | hire | 73 |
+
+---
+
+## The briefs
+
+### 1 · Ingestion Corruption Detector
+*Fuses method **MetaParse** (doc 15) + shape **LedgerParity / NumeriGuard** (doc 14).*
+
+**What it is.** An open-source "numeric integrity" checker that flags numbers a document pipeline silently
+corrupted, plus a public, auto-updating leaderboard scoring how faithfully different pipelines preserve the numbers
+in a document.
+
+**Why it exists / the problem.** When you feed PDFs and tables into an AI system, the *parsing* step quietly
+mangles things — a table cell shifts, a "1,234" becomes "1234" or "1.234", a column merges. The AI then answers
+confidently using the corrupted number. Today's RAG evaluation tools don't catch this: they assume the extracted
+text is correct and only check whether the AI used it faithfully. So the error is invisible until it surfaces as a
+wrong answer (a flipped figure in a financial or medical document). Benchmarks show ~50% accuracy drops on
+table questions from this alone. A company (Reducto) already makes ~$1M/year with 4 people selling reliability here
+— proof people pay.
+
+**How it solves it.** The usual blocker: to know a number got corrupted you need the *correct* answer to compare
+against, and building that answer key for every document type is expensive. The trick is that **you don't need an
+answer key.** Render the *same page* at three different resolutions and feed each to the *same* parser. A correct
+parser reads "1,234" as "1,234" regardless of resolution — so if the extracted value *changes* when the only thing
+you changed was the resolution, that number is unreliable. The disagreement itself is the alarm, and it costs
+nothing. (A second free check: blank out a number and ask a model to predict it from surrounding context; if its
+confident guess contradicts the parser, flag it.) For the public leaderboard, you get a *real* answer key for
+free from SEC filings, which by law publish their numbers in machine-readable form — so a nightly script can score
+any pipeline's "numeric survival rate" forever.
+
+**What you'd build first (≤$500).** Take a free numeric-table benchmark with known answers → one open-source OCR
+engine → render each table at 150/200/300 DPI → flag any cell whose value flips → compare against two existing
+approaches (running many parsers; running the model repeatedly) → report which errors *only* the resolution trick
+caught. CPU-only, ~$50.
+
+**Why it fits you / path.** This is your published RAG-hallucination-judge work moved one step upstream. **Hire**
+into financial/document-AI or assurance teams; **found upside** as a neutral fidelity authority if a buyer appears.
+
+**How it could fail (the kill line).** If corrupted numbers read *stably wrong* across resolutions too, the trick
+catches nothing new → you publish a clean null and stop. The first experiment is designed to answer exactly this.
+
+**Prior work → your delta.** Closest is *Semantic Integrity Failures* ([2606.15020](https://arxiv.org/pdf/2606.15020)),
+which detects corruption by disagreement between *different parsers*; you invert it to *one parser, many
+renderings*, catching the confident errors parser-voting misses.
+
+---
+
+### 2 · Reviewer Scrutiny Metric
+*Fuses method **Stamp Score** (doc 15) + shape **Habituation Index / VerifierBench** (doc 14).*
+
+**What it is.** A validated score that tells whether a human reviewing AI output is exercising real judgment or
+just rubber-stamping — published as an open standard (a "scrutiny-decay rate") or as a tool that grades automated
+checkers.
+
+**Why it exists / the problem.** As AI does more of the work, the humans who are supposed to check it disengage and
+approve on autopilot — and it gets *worse* the longer they do it. Anthropic's own production data shows
+auto-approval climbing from ~20% to over 40% as reviewers rack up sessions; in medicine, a wrong AI hint nearly
+*halved* expert radiologists' accuracy. "A human is in the loop" is quietly becoming theater. This was the most
+bulletproof problem in the entire program — every attempt to argue it away failed.
+
+**How it solves it.** Normally you'd need a controlled lab study to know if a reviewer is really paying attention.
+The trick combines two *free* signals. (1) Have an AI grade each human review for depth — did they point to a
+specific line? argue why the AI is *wrong*? propose an alternative? A shallow "looks good" scores low. (2) Check
+that depth score against something every code repository already records for free: which merged changes later had
+to be **reverted or hot-fixed**. If shallow reviews reliably come *before* reverts, you've proven the depth score
+actually predicts missed bugs — with no lab, no volunteers, and no ethics-board approval.
+
+**What you'd build first (≤$500).** Mine 3–5 public repos with heavy AI-generated-PR activity → build the AI depth
+rubric (~$50) → score every human review → separately mark which merged PRs were later reverted/hot-fixed (free,
+from git history) → test whether low depth predicts reverts, with error bars. ~$100.
+
+**Why it fits you / path.** LLM-as-judge craft again. **Nonprofit/hire** as an open standard (a standard needs
+citers, not a budget); **hire with found upside** as "VerifierBench," grading the automated reward-checkers that
+AI labs already pay to get right.
+
+**How it could fail (the kill line).** Reverts are noisy — most are feature rollbacks, not missed bugs. If review
+depth shows no real link to reverts after controlling for change size, the headline collapses. But that negative
+("review depth doesn't predict escaped bugs — here's a better proxy") is itself publishable.
+
+**Prior work → your delta.** Closest is *Habituation at the Gate* ([2606.22721](https://arxiv.org/pdf/2606.22721)),
+which measures scrutiny only by approval rates and comment counts — no depth rubric, and crucially no
+revert-validation. Your delta is the "did they say why the AI is *wrong*" feature plus using reverts as a free
+answer key.
+
+---
+
+### 3 · PV-Grade — drug-safety decision benchmark
+*Shape only (doc 14) — the highest-scoring idea in the whole set. (No method-transfer pass yet; I'd run a quick one first.)*
+
+**What it is.** A public benchmark that grades how well AI makes the four legally-consequential pharmacovigilance
+("drug-safety monitoring") decisions — did this drug plausibly *cause* the event, is it *serious*, is it
+*expected*, and does the AI's summary faithfully match the source report.
+
+**Why it exists / the problem.** As of January 2026, FDA/EMA guidance requires drug companies to *prove* the AI
+they use to process adverse-event reports is accurate and independently validated — but **there is no yardstick to
+measure it.** (Papers-with-Code lists zero benchmarks and zero datasets for this; vendor checklists literally tell
+buyers to hand-build their own ~100-case test sets because none exists.) Patients suffer when a serious drug
+reaction is missed; companies face liability.
+
+**How it solves it.** You build the missing yardstick — and you can do it without buying labeled data. The
+government's public FAERS database gives you free real adverse-event reports; published medical rules (WHO-UMC,
+CIOMS) define the "right answer" for causality and seriousness; and judging whether an AI summary faithfully
+matches its source is *exactly* your published expertise. The deeper reason this one is special: **unlike every
+other idea, the party being graded actually wants a high, credible score** — because they legally need to show
+regulators independent validation. So the usual "who would pay to be measured?" problem inverts in your favor.
+
+**What you'd build first (≤$500).** Ship the public FAERS-grounded leaderboard scoring the four decisions as a
+paper-with-code; validate your AI judge against a small human-labeled causality set. Free data, single model,
+comfortably under budget.
+
+**Why it fits you / path.** A near-direct extension of your published RAG-hallucination-judge study
+(faithfulness = grounding). **Hire** into drug-safety-AI or vertical-AI-safety teams; **found upside** if sponsors
+pay for a private, continuously-refreshed validation set.
+
+**How it could fail (the honest catch).** The moment your independent score comes back *low* for a system, a signed
+"your drug-safety AI is X% wrong on causality" report becomes discoverable legal evidence — so a cautious company
+lawyer might refuse to let a third party score them on the record. "They want the yardstick to exist" may not
+extend to "they'll pay *you* to grade them." That's the specific thing to test before betting on founding. Also:
+causality has no universal gold standard, which caps how clean the benchmark can be.
+
+**Prior work → your delta.** Closest is *Robust or Suggestible?* ([2510.13931](https://arxiv.org/abs/2510.13931)),
+which touches the same four decisions but as a bias study — no released benchmark, no honest accuracy number. Your
+delta is the actual benchmark + honest leaderboard.
+
+---
+
+### 4 · Code-Review Catch-vs-Noise Bench
+*Fuses methods **NullPatch** + **SubtleMutants ROC-Bench** (doc 15). (The business-shape version was killed — scooped by Martian — but the method version measures the thing Martian doesn't.)*
+
+**What it is.** A benchmark that measures two numbers everyone needs and no one reports together: how many *subtle*
+bugs an AI code-reviewer catches, and how often it flags things that are actually fine ("cries wolf").
+
+**Why it exists / the problem.** AI writes code that looks right and compiles but is subtly wrong — it's the #1
+developer complaint (66% of 49,000 surveyed), and a rigorous study found AI made experienced developers **19%
+slower** while they *felt* faster, because reviewing the almost-right output eats the time. Worse, AI shifts errors
+from obvious to subtle (one study found a 322% rise in hidden privilege-escalation paths). Everyone sells AI code
+review; nobody has a trusted measure of whether it actually catches the subtle stuff without drowning you in false
+alarms.
+
+**How it solves it.** Two honest measurements nobody combines. (1) **The false-alarm floor:** create code changes
+that look scary but are *provably harmless* (a frightening-looking rename; a rewritten-but-mathematically-identical
+comparison), verify they're harmless with an automatic checker, and count how often the AI wrongly flags them.
+Because you can *prove* the code is fine, this false-alarm number is clean. (2) **The real-catch rate:** inject
+subtle bugs (an off-by-one in a permission check) that still pass all existing tests, pair each with the untouched
+original, and measure how often the reviewer catches them. Then plot catch-rate against false-alarm-rate, so you
+can say "at a false-alarm rate developers will actually tolerate, it catches X% of subtle bugs." That tradeoff
+curve is what the field is missing.
+
+**What you'd build first (≤$500).** ~150 "scary-but-harmless" traps + ~300 test-passing subtle bugs over a small
+repo → certify the harmless ones with an automatic checker + a manual spot-check → run 2–3 frontier AI reviewers →
+report the false-alarm floor and the catch-rate at a realistic false-alarm cutoff. No GPU, ~$100–200.
+
+**Why it fits you / path.** Eval + data-pipeline craft; a strong, differentiated credential for any code-AI team
+(CodeRabbit, Qodo, Cursor, GitHub). **Hire.**
+
+**How it could fail (the kill line).** It all rests on the "harmless" changes *truly* being harmless — the checker
+that proves it is only probabilistic, so a hidden behavior change would recreate the exact bug you're critiquing.
+Mitigate by sticking to near-provable transformations + manual audit. Also: needs a fresh "has this been done"
+re-check on the combined form, since this corner moves fast.
+
+**Prior work → your delta.** *RealVuln* ([2604.13764](https://arxiv.org/abs/2604.13764)) has "false-positive traps"
+but for a different (whole-file security-scanner) setting; the AI-safety "control" line sweeps a catch-vs-noise
+curve but for adversarial backdoors, not everyday code review. Your delta is the fusion applied to naturalistic
+pull-request review.
+
+---
+
+### 5 · Multilingual Safety Meter
+*Method (doc 15): **Ternary-PPI** or **PARITY-DIF**.*
+
+**What it is.** A statistical *method* (not just another benchmark) to reliably measure whether a model is less
+safe in other languages — and, importantly, one that stays trustworthy even though the AI judge you'd use to score
+it is itself shaky in those languages.
+
+**Why it exists / the problem.** A model will refuse a dangerous request in English but comply when it's asked in a
+low-resource language. Frontier labs don't publish per-language safety numbers at all. The harm lands on exactly
+the populations with the least recourse. Validation surfaced the real twist: to *check* safety in Tamil you'd use
+an AI judge — but the judge is also unreliable in Tamil, so you can't tell a genuine safety gap from a broken
+measurement. That means a *reliable measurement method* is itself the research contribution.
+
+**How it solves it.** Borrow a move from testing science, which long ago learned to separate "this student is
+weaker" from "this exam question is unfair." Instead of forcing every answer into safe/unsafe, you track a *third*
+outcome explicitly — "the output was garbled or unclear" — as its own category. Then, from a small set of ~50
+human-checked examples per language, you build a correction table that mathematically backs out how much of the
+apparent "unsafe" rate is really just translation-and-judge noise. The output is an honest safety gap *with error
+bars*, instead of a scary number you can't trust.
+
+**What you'd build first (≤$500).** On one released multilingual safety benchmark, score answers as
+refuse/comply/unclear per language → hand-build (or recruit 1–2 bilingual helpers — within your ~7-hour budget) a
+~50-item answer key in 2–3 languages including Tamil → apply the correction and report the true gap with error
+bars. Closed-form math, ~$150.
+
+**Why it fits you / path.** LLM-judge methodology, extended into safety + multilingual — a strong profile for an AI
+Safety Institute / Frontier Model Forum grant *and* a safety-team hire. **Nonprofit / hire.**
+
+**How it could fail (the kill line).** The correction only cleanly separates translation error from real unsafety
+if garbled translations mostly land in the "unclear" bucket; a fluent-but-wrong translation that reads as a clean
+"comply" breaks the separation. If so, you still ship the total-noise-corrected number and name the limit honestly.
+
+**Prior work → your delta.** Closest is *Why Do Safety Guardrails Degrade Across Languages?*
+([2605.17173](https://arxiv.org/abs/2605.17173)) — binary, no "unclear" channel, no error bars on the noise
+fraction. Your delta is the three-way correction with honest confidence intervals per language.
+
+---
+
+### 6 · Injection Defense Report Card
+*Fuses shape **Kepler Report** + method **OracleProof** (docs 14 & 15).*
+
+**What it is.** An independent, recurring **A–F report card** grading prompt-injection defenses by how well they
+hold up against a *smart, adapting* attacker — not the fixed test suites the vendors grade themselves on.
+
+**Why it exists / the problem.** Prompt injection is the top security risk for tool-using AI agents. Vendors ship
+defenses and report they stop ~100% of attacks — but that's against a *static* list. When a researcher lets the
+attacker *adapt* to the defense, the same defenses fail **over 90%** of the time. There is no standard, independent
+referee that grades defenses under adaptive attack, so buyers can't tell real robustness from marketing.
+
+**How it solves it.** You become the referee. Run adaptive attacks against every defense that advertises
+robustness, and publish a dated A–F card grading the gap between what they *claim* (near-zero break rate on their
+static test) and what actually holds up (break rate under adaptation) — an honesty score. Your credibility comes
+from a position the big players can't copy: **you have no defense of your own to sell**, and every major red-team
+tool is now owned by a security vendor with a conflict of interest. The clever technical add: also test whether the
+*grading itself* can be gamed (a rigged referee is worthless), which is the genuinely unclaimed slice.
+
+**What you'd build first (≤$500).** Confirmed doable on one rented GPU + a small open model with released attack
+code: wrap an existing adaptive-attack tool into a fixed "attack budget," define the A–F rubric, publish a v1 card
+grading ~10–15 defenses that claim robustness, and commit to re-running it. Add the "can the scoring be gamed"
+check.
+
+**Why it fits you / path.** Judging whether an injection succeeded is an LLM-as-judge task. This is a *proven*
+hiring on-ramp — OpenAI acquired the eval company Promptfoo. **Hire** (founding upside is low here).
+
+**How it could fail (the kill line).** Your authority depends on attacking *hard* — a ≤$500 solo can't attack as
+hard as a well-funded lab, so a "B" grade might just mean "I didn't try hard enough." You mitigate by grading
+against a *documented, fixed* attack budget so results are comparable. The edge ("no one has bothered to be the
+neutral referee yet") also erodes once someone else does.
+
+**Prior work → your delta.** The adaptive-attack *method* is already well-established (*The Attacker Moves Second*,
+[2510.09023](https://arxiv.org/abs/2510.09023)) — you don't claim to invent it. The existing public leaderboard
+(AgentDojo) is *static*. Your delta is the recurring, dated report card grading the *claim*, plus the
+"is-the-referee-gameable" check. (A close sibling idea was already killed — scooped by a paper called LaunchSafe.)
+
+---
+
+## Honorable mentions (real, but second-tier for now)
+
+- **MCP tool conformance checker** (score 77) — an open-source tool that runs published AI "MCP" tools and checks
+  whether they actually do what they claim. Ships fast, elite credibility; the race is that a Microsoft OSS project
+  is ~one feature away.
+- **FieldDrop / FunctionalAltBench / Voice-Defense Grading Lab** — solid "build the measuring stick everyone must
+  cite" artifacts for deepfakes-in-court, accessibility, and voice-fraud detection respectively. Each is a good
+  publish-and-get-hired project but has a data-sourcing or someone-got-there-first cap that makes it weaker as a
+  *founding* bet.
+
+---
+
+## How to choose
+
+The four questions that actually decide it — and only you can answer the first:
+
+1. **Which would you genuinely spend nights on?** Energy is the real tiebreaker; the scores are close enough that
+   interest dominates.
+2. **Hire vs found appetite?** If founding upside matters most: Ingestion Corruption Detector and PV-Grade keep the
+   clearest path to a company. If a strong credential fast matters most: Reviewer Scrutiny Metric and Code-Review
+   Bench are the cleanest, quickest wins.
+3. **Fastest to a shipped artifact?** Ingestion Corruption Detector (~$50, CPU-only) and Reviewer Scrutiny Metric
+   are the fastest to something public.
+4. **Breadth?** The staged plan says run 2–3 in *different* areas. A natural trio: one document/RAG (Ingestion),
+   one human-oversight (Reviewer Scrutiny), one safety/security (Multilingual Safety or Injection Report Card).
+
+**Next step:** pick 2–3. For each, I'll run a final "has anyone already done exactly this" check on the combined
+form, then write a one-page pre-registration (question · method · what counts as success · what makes you stop ·
+cost · the public artifact) so you can start.

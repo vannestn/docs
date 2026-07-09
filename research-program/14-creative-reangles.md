@@ -1,5 +1,13 @@
 # Creative Re-angles — beating the kill-mechanisms, not accepting the kills
 
+> **New here? Read [16 · Pilot candidates](16-pilot-candidates.md) instead — it explains the surviving
+> ideas in plain English.** This document is the raw *research log* for the **business-shape engine**:
+> for each real-but-unfoundable problem, it re-shaped the business around it to dodge the specific reason a
+> solo couldn't build a company there, then adversarially killed the weak ones. It is deliberately dense
+> and full of scoring/kill-mechanism shorthand (it's an audit trail, not a reader-facing summary). What
+> a "shape" means: the business framing — what you make, who it's for, why they'd care. The readable
+> synthesis lives in [doc 16](16-pilot-candidates.md).
+
 *Written 2026-07-09. This is the creative-expansion round that follows
 [13 · problem validation](13-problem-validation.md). That pass produced a hard, specific
 result: **zero of eleven problems earned a clean CONFIRMED, and none died on being unreal.**

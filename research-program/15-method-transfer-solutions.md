@@ -1,5 +1,13 @@
 # Method-Transfer Solutions — re-angling the METHOD, not the business
 
+> **New here? Read [16 · Pilot candidates](16-pilot-candidates.md) instead.** This document is the raw
+> *research log* for the **method engine**: it mined the top research papers' techniques for each problem
+> and recombined them (alter / combine / transfer) into cheaper technical approaches, then adversarially
+> vetted them. It is deliberately dense and full of paper codenames and scoring shorthand (an audit trail,
+> not a reader-facing summary). What a "method" means here: the technical trick — usually how to *measure*
+> something, or get the data to measure it, without a lab. The readable synthesis lives in
+> [doc 16](16-pilot-candidates.md).
+
 *Written 2026-07-09. Companion to [14 · Creative re-angles](14-creative-reangles.md), which re-angled the
 business SHAPE of the four surviving problems. This round re-angles the **method**. It mines the top papers'
 techniques for the sub-problems that still lack good solutions, then **mutates / combines / transfers** those
