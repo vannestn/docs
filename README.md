@@ -1,32 +1,37 @@
-# Mintlify Starter Kit
+# AI Research Repository
 
-Click on `Use this template` to copy the Mintlify starter kit. The starter kit contains examples including
+A structured, citation-backed map of the field of AI research as of **mid-2026** —
+spanning established directions, frontier-lab programs, the global lab ecosystem, small
+startups and independent collectives, nascent research directions, and the politics/capital
+dimension.
 
-- Guide pages
-- Navigation
-- Customizations
-- API Reference pages
-- Use of popular components
+## → [Start in the AI Research Map](ai-research-map/README.md)
 
-### Development
+The map is organized as a **directory tree**: each top-level area is a folder, and each
+research direction within it is its own document with concrete papers, labs, and links.
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the documentation changes locally. To install, use the following command
+**Quick links:**
+- **[Synthesis](ai-research-map/00-overview/synthesis.md) — the whole field as one narrative (read this first)**
+- [Landscape overview](ai-research-map/00-overview/landscape-overview.md) — the cross-cutting meta-trends
+- [State-of-research scorecard](ai-research-map/00-overview/state-of-research-scorecard.md) — what's working vs. unproven, per area
+- [Solo-researcher agenda](ai-research-map/00-overview/solo-researcher-research-agenda.md) — tractable open research questions for one person + a laptop
+- [Compute & memory footprint](ai-research-map/00-overview/compute-and-memory-footprint.md) — laptop vs. datacenter, per area
+- [Glossary](ai-research-map/00-overview/glossary.md) — acronyms, defined
+- [Source index](ai-research-map/00-overview/source-index.md) — full bibliography (310 sources)
+- [Verification checklist](ai-research-map/00-overview/verification-checklist.md) — claims needing a manual source check
+- [Methodology & caveats](ai-research-map/00-overview/methodology-and-sources.md) — how it was built, reliability notes
 
-```
-npm i -g mintlify
-```
+The map spans **16 branches grouped into 5 parts** (Capabilities · Foundations & Methods ·
+Safety, Evaluation & Society · Applications & Science · The Ecosystem) across **91 documents**.
 
-Run the following command at the root of your documentation (where docs.json is)
+## → [The Research Program](research-program/README.md)
 
-```
-mintlify dev
-```
+The active research program built on top of the map: a charter with explicit operating
+principles, deep field maps (evaluation/benchmarking first), a broad candidate-fields
+sweep, a knowledge-gaps ledger, a side-by-side domain-comparison index, and automated
+weekly/monthly radar agents that keep it current. Start at the
+[charter](research-program/00-goals-and-operating-principles.md).
 
-### Publishing Changes
+---
 
-Install our Github App to auto propagate changes from your repo to your deployment. Changes will be deployed to production automatically after pushing to the default branch. Find the link to install on your dashboard. 
-
-#### Troubleshooting
-
-- Mintlify dev isn't running - Run `mintlify install` it'll re-install dependencies.
-- Page loads as a 404 - Make sure you are running in a folder with `docs.json`
+*This is a research/reference repository — plain Markdown, no build step or site framework.*

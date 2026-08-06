@@ -1,0 +1,5 @@
+papers/download-failures.log
+papers/download-progress.log
+.DS_Store
+papers/pdf/
+papers/program-pdfs/

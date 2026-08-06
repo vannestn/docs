@@ -1,0 +1,45 @@
+# Research Program
+
+A deliberate, staged program for becoming an AI researcher: map the fields where a
+solo, low-budget researcher can genuinely contribute → read the prior work → run
+cheap pilots → choose where to go deep. Impact-first; nonprofit, startup, and
+hired paths all stay open.
+
+**Start here:** [00-goals-and-operating-principles.md](00-goals-and-operating-principles.md)
+
+| Doc | What it is |
+|---|---|
+| [00 · Goals & operating principles](00-goals-and-operating-principles.md) | The charter and the process guardrails |
+| [01 · Evaluation field map](01-evaluation-field-map.md) | Shape & scope of the benchmarking/evals ecosystem |
+| [02 · Candidate research fields](02-candidate-research-fields.md) | The broad creative sweep beyond evals |
+| [03 · Knowledge-gaps ledger](03-knowledge-gaps-and-assumptions-ledger.md) | What we don't know yet (living doc) |
+| [04 · Topic-selection process](04-topic-selection-process.md) | How the choice will be made (not yet made) |
+| [05 · Domain comparison index](05-domain-comparison-index.md) | Every candidate domain scored side-by-side against the stated needs |
+| [06 · Radar design](06-radar-design.md) | Spec for the weekly + monthly automated scanning agents |
+| [07 · Publishing pathways](07-publishing-pathways.md) | How to publish each kind of artifact so the work is actually useful — venues, mechanics, distribution |
+| [08 · Pilot specs](08-pilot-specs.md) | The locked 5-field shortlist as runnable pilots (RQ, method, cost, success/kill, artifact) |
+| [09 · Startup lens](09-startup-lens.md) | The same domains re-scored for venture potential (2026-07-08 founding pivot) — wedge, moat, comparables, what to drop |
+| [10 · Startup pilot specs](10-startup-pilot-specs.md) | ~3 pilots/domain, each fully evaluated (feasibility, novelty, founding vs hire value, success/kill) |
+| [11 · Problem space](11-problem-space.md) | Problem-FIRST foundation — 33 pains mined via 8 discovery lenses + adversarial vet; the driver that supersedes the solution-first drafts (08/10/12) |
+| [11b · Expanded problem catalog](11b-expanded-problem-catalog.md) | ~90 problems, 12 clusters, wide-aperture + source-mined; top-11 for deep validation |
+| [13 · Problem validation](13-problem-validation.md) | Thorough validation of top-11 problems (2 evidence + 2 kills each); 4 advance, 7 killed |
+| [**16 · Pilot candidates (plain-English)**](16-pilot-candidates.md) | **Start here for pilots.** The readable synthesis: the ~6 surviving pilots, each explained — what it is, why it exists, the problem it solves, how it solves it, plus labeling burden, publishability & effort, and how it could fail |
+| [pilot-drafts/](pilot-drafts/) | Publication-grade **Introduction + Methods** draft per pilot (title, abstract, formalized method, metrics, human validation, statistics, pre-registered success/kill) — doubles as a pre-registration |
+| [18 · Expanded-domain founding](18-expanded-domain-founding.md) | Initial list of **15 founding-upside opportunities in builder-shaped domains OUTSIDE the original five** (product framing, solo-buildable moats, skill-aligned) — breadth-first, lightly checked |
+| [19 · Pilot data paths](19-pilot-data-paths.md) | Legitimacy audit: each pilot's verified path to **obtaining or generating data** (release-clean source, license caveat, volume, fallback). All six WORKABLE, none RISKY |
+| [**20 · Decision & ranking**](20-decision-and-ranking.md) | **The single decision document.** All 11 candidates (6 pilots + 5 founding bets) deep-researched (data options, annotation, importance, executability, outcome) and ranked by the user's criteria. #1 Ingestion · best-outcome PV-Grade · easiest Kappa |
+| [21 · Founding: from literature](21-founding-candidates-literature.md) | Literature-mined founding candidates scored vs Kappa (83.3). Cleared: **RewardProof 85, QueryProof 85, MemTrust 85, VeriJudge 83.3** |
+| [22 · Founding: vertical + buyer](22-founding-vertical-and-buyer.md) | New founding candidates (industry + buyer-GTM apertures) scored vs Kappa (83.3). Cleared: **NoteProof 87.5, TrajTrust 87.5** |
+| [23 · Founding: capability + adjacent](23-founding-capability-and-adjacent.md) | New founding candidates (capability-frontier + adjacent-to-published apertures). 0 cleared; near-misses TrueTool 82.5, Blindspot 80, TaxProof 80 |
+| [24 · Founding: health/safety verticals](24-founding-health-safety-verticals.md) | Deep liability-holding clinical sub-workflows. Cleared: **PortalProof 87.5, TriageProof 85, InteractionProof 83.3** |
+| [25 · Founding: regulated-money verticals](25-founding-regulated-money-verticals.md) | Deep financial-compliance liability workflows — **strongest of all.** Cleared: **ReasonProof 91.7, DisputeProof 91.7, TieProof 91.7, DenialProof 86.7, AppealScore 85, ScreenProof 83.3** |
+| [**26 · Pre-registrations**](26-preregistrations.md) | **Commitment specs** for the top candidates (Ingestion, DisputeProof, ReasonProof): falsifiable RQ, verified data plan, AI-extraction + human-anchored PPI labeling protocol, pre-registered success **and** kill criteria, first-week go/no-go |
+| [**27 · Final shortlist**](27-final-shortlist.md) | **The decision.** Two tracks run in parallel: **Founder** (NoteProof lead · PortalProof · DisputeProof · ReasonProof) and **Build-to-hire** OSS+outreach (Kappa flagship · Injection · Ingestion · ToolTamer · RewardProof · QueryProof). Parked list + first moves |
+| [14 · Creative re-angles](14-creative-reangles.md) | *Research log (dense).* Re-shaping each real problem's **business** to dodge why a solo couldn't found on it. Readable version → doc 16 |
+| [15 · Method-transfer solutions](15-method-transfer-solutions.md) | *Research log (dense).* Mining top papers' **methods** and recombining them into cheaper technical approaches. Readable version → doc 16 |
+| [12 · Company theses](12-company-theses.md) | Creative company-thesis pass (8 lenses) + VC vet — early SOLUTION sketch, subordinate to the problem-first pass |
+| [briefs/](briefs/) | Source research briefs |
+| [radar/](radar/) | Weekly + monthly radar digests (auto-generated) |
+
+Related: [the AI research map](../ai-research-map/README.md) ·
+[solo-researcher agenda](../ai-research-map/00-overview/solo-researcher-research-agenda.md)
